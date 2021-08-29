@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;400;500;600;700&display=swap");
+@import "../assets/break-points";
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Spartan", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  background: #EFEFEF;
+
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  a {
+    color: white;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+  .logo {
+    font-size: 24px;
+  }
+}
+
+.cover {
+  background: url("../assets/Hero.png") center center no-repeat;
+  height: 660px;
+  width: 100%;
+}
+
+input{ border:none; }
+button{
+  text-transform:uppercase;
+  background:#121212;
+  color:white;
+}
+.button, button {
+  text-transform:uppercase;
+  padding:15px 45px;
+  color:white;
+  background:black;
+  display:inline-block;
+  border:none;
+  &:hover{
+    color:white;
+    cursor:pointer;
+  }
+}
+
+.page-title{
+  text-transform:uppercase;
+  font-weight:600;
+  font-size:26px;
+}
+
+.register-cover{
+  min-height:94.5vh;
+  background: url("../assets/Register.png") center center no-repeat;
+  background-size:cover;
+}
+
+.register-text{
+  a{
+    text-decoration:underline;
+  }
+}
