@@ -1,4 +1,4 @@
-const firebase = require('firebase');
+const firebase = require("firebase");
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -15,5 +15,5 @@ export default function firebaseClient(){
     if(!firebase.apps.length){
         firebase.initializeApp(firebaseConfig);
     }
-    console.log('Firebase was successfully init.');
+    console.log("Firebase was successfully init.");
 }
