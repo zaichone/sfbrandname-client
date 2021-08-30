@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@100;300;400;500;600;700&display=swap');
 @import "../assets/break-points";
 html,
 body {
@@ -22,11 +22,12 @@ a {
 * {
   box-sizing: border-box;
 }
-
-header {
+.top-header {
   background: black;
   a {
     color: white;
+    font-size:12px;
+    font-family: 'Poppins', sans-serif;
     &:hover {
       color: white;
       text-decoration: none;
@@ -130,7 +131,26 @@ button {
 }
 .front-how-it-work{
   padding: 115px 0 100px;
-  background:#E5E5E5;
+  background:#fefefe;
+  .sub-section{
+    background:#fefefe;
+    border:none;
+    padding:120px 0;
+    .card{ 
+      background:transparent; border:none; 
+      .card-title{
+        font-size:34px;
+        font-weight:400;
+        font-style:italic;
+      }
+    }
+  }
+  .middle-section{
+  background:#FAFAFA;
+  padding:120px 0 140px;
+  margin-left:21px;
+
+  }
   .learn-more{
     margin-top:85px;
     font-size:14px;
