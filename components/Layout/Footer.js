@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Credit from './Credit';
 
 function Footer() {
     return (
-        <div>
-            
-        </div>
+        <footer>
+            <Credit/>
+        </footer>
     )
 }
 
