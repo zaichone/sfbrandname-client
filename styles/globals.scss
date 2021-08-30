@@ -103,7 +103,7 @@ button {
 }
 .front-services {
   padding: 55px 0 100px;
-  background:white;
+  background:#F6F6F6;
   .card {
     border:none;
     img {
@@ -117,6 +117,16 @@ button {
       text-transform:none;
     }
   }
+  .learn-more{
+    margin-top:85px;
+    font-size:14px;
+    font-weight:500;
+    a{ padding:15px 45px; background:black; color:white; }
+  }
+}
+.front-how-it-work{
+  padding: 115px 0 100px;
+  background:#FAFAFA;
   .learn-more{
     margin-top:85px;
     font-size:14px;
