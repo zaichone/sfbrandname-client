@@ -106,10 +106,14 @@ button {
   background:#F6F6F6;
   .card {
     border:none;
+    background:transparent;
+    
     img {
       width: initial !important;
       height: auto;
       max-width:100%;
+      background:url('../assets/Circle.png')center center no-repeat;
+      background-size:cover;
     }
     .card-title{
       font-size:18px;
@@ -126,7 +130,7 @@ button {
 }
 .front-how-it-work{
   padding: 115px 0 100px;
-  background:#FAFAFA;
+  background:#E5E5E5;
   .learn-more{
     margin-top:85px;
     font-size:14px;
