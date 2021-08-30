@@ -1,7 +1,7 @@
 import Link from 'next/link';
 function Header() {
     return (
-        <header className="d-flex justify-content-between py-2 px-5 bg-dark">
+        <header className="d-flex justify-content-between py-2 px-5 top-header">
             <Link href="/" className="logo">LOGO</Link>
             <ul className="nav d-flex justify-content-end">
                 <li className="nav-item"><Link href="/how-it-work/" className="nav-link">How it Work</Link></li>

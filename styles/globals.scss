@@ -7,8 +7,7 @@ body {
   font-family: "Spartan", sans-serif;
   font-size: 14px;
   font-weight: 300;
-  background: #EFEFEF;
-
+  background: #efefef;
 }
 
 a {
@@ -25,6 +24,7 @@ a {
 }
 
 header {
+  background: black;
   a {
     color: white;
     &:hover {
@@ -43,41 +43,144 @@ header {
   width: 100%;
 }
 
-input{ border:none; }
-button{
-  text-transform:uppercase;
-  background:#121212;
-  color:white;
+input {
+  border: none;
 }
-.button, button {
-  text-transform:uppercase;
-  padding:15px 45px;
-  color:white;
-  background:black;
-  display:inline-block;
-  border:none;
-  &:hover{
-    color:white;
-    cursor:pointer;
+button {
+  text-transform: uppercase;
+  background: #121212;
+  color: white;
+}
+.button,
+button {
+  text-transform: uppercase;
+  padding: 15px 45px;
+  color: white;
+  background: black;
+  display: inline-block;
+  border: none;
+  &:hover {
+    color: white;
+    cursor: pointer;
   }
 }
 
-.page-title{
-  text-transform:uppercase;
-  font-weight:600;
-  font-size:26px;
+.page-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 26px;
 }
 
-.register-cover{
-  min-height:94.5vh;
+.register-cover {
+  min-height: 94.5vh;
   background: url("../assets/Register.png") center center no-repeat;
-  background-size:cover;
+  background-size: cover;
 }
 
-.register-text{
-  a{
-    text-decoration:underline;
+.register-text {
+  a {
+    text-decoration: underline;
   }
 }
-
-footer p{ font-size:11px; font-weight:500; }
+.cta {
+  min-height: 300px;
+  position: relative;
+  .cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .heading {
+    font-size: 80px;
+    font-weight: 400;
+    color: white;
+    text-transform: none;
+  }
+}
+.front-services {
+  padding: 55px 0 100px;
+  background:white;
+  .card {
+    border:none;
+    img {
+      width: initial !important;
+      height: auto;
+      max-width:100%;
+    }
+    .card-title{
+      font-size:18px;
+      font-weight:400;
+      text-transform:none;
+    }
+  }
+  .learn-more{
+    margin-top:85px;
+    font-size:14px;
+    font-weight:500;
+    a{ padding:15px 45px; background:black; color:white; }
+  }
+}
+.subscribe {
+  background: #121212;
+  padding: 12px 0;
+  p {
+    color: white;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .subscribe-form {
+    .form-control {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      &::placeholder {
+        color: white;
+      }
+    }
+    button {
+      background: black;
+      color: white;
+      border: 1px solid white;
+    }
+  }
+  .socials {
+    .nav-item {
+      margin-right: 0;
+      margin-left: 12px;
+      a {
+        color: white;
+      }
+    }
+  }
+}
+.footer-widgets {
+  padding: 40px 0px;
+  background: white;
+  h3 {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .list-group-item {
+    padding-left: 0;
+    border: none;
+    a {
+      color: #121212;
+      font-weight: 400;
+    }
+  }
+}
+.credit-section {
+  padding: 12px 0;
+  background: white;
+}
+footer p {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 0;
+}

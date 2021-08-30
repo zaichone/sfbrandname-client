@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Reminder from '../assets/Reminder.jpeg';
+
+import Cta from '../components/Layout/Cta';
+import ServiceList from '../components/Layout/ServiceList';
 
 export default function Home() {
   return (
@@ -32,6 +36,10 @@ Our expert team in designer brands can verify the authenticity of new & pre-owne
 
         </div>
       </main>
+      <Cta title="What We Specialist" bg={Reminder}/>
+      <ServiceList/>
+      <Cta title="How it Work?" bg={Reminder}/>
+      <Cta title="Reminder" bg={Reminder}/>
     </div>
   )
 }
