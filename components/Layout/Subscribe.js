@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Logo from '../../assets/credit.png';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faInstagram, faPinterest, faLine } from '@fortawesome/free-brands-svg-icons';
 
 function Subscribe() {
     return (
@@ -27,16 +27,19 @@ function Subscribe() {
                     <div className="col-3">
                         <ul className="nav justify-content-end socials">
   <li className="nav-item">
-  <Link href="https://www.facebook.com/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faFacebook}/></a></Link>
+  <Link href="https://www.facebook.com/sfshopbrandname/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faFacebook}/></a></Link>
   </li>
   <li className="nav-item">
   <Link href="https://www.twitter.com/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faTwitter}/></a></Link>
   </li>
   <li className="nav-item">
-  <Link href="https://www.instagram.com/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faInstagram}/></a></Link>
+  <Link href="https://www.instagram.com/sfbrandname/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faInstagram}/></a></Link>
   </li>
   <li className="nav-item">
   <Link href="https://www.pinterest.com/" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faPinterest}/></a></Link>
+  </li>
+  <li className="nav-item">
+  <Link href="https://lin.ee/3NiYmtw" passHref={true}><a target="_blank"><FontAwesomeIcon icon={faLine}/></a></Link>
   </li>
 </ul></div>
                 </div>
