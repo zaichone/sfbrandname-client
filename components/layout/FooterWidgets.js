@@ -18,7 +18,7 @@ function FooterWidgets() {
                     <h3>{widget.title}</h3>
                     <ul className="list-group">
                         {widget.menus?.map((menu, ind) => 
-                            <li className="list-group-item"><Link href={menu.link}>{menu.label}</Link></li>
+                            <li className="list-group-item" key={ind}><Link href={menu.link}>{menu.label}</Link></li>
                         )}
                                                   
                     </ul>
