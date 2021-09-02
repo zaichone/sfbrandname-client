@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@100;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@100;300;400;500;600;700&display=swap");
 @import "../assets/break-points";
 html,
 body {
@@ -9,12 +9,23 @@ body {
   font-weight: 300;
   background: white;
 }
-strong{ font-weight:bold; }
-h1, h2,h3,h4,h5,h6{
-  text-transform:none;
+strong {
+  font-weight: bold;
 }
-h2{ font-size:20px; }
-h3{ font-size:18px; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: none;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}
 a {
   color: black;
   text-decoration: none;
@@ -31,8 +42,8 @@ a {
   background: black;
   a {
     color: white;
-    font-size:12px;
-    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
     &:hover {
       color: white;
       text-decoration: none;
@@ -41,8 +52,8 @@ a {
   .logo {
     font-size: 24px;
   }
-  .img-logo{
-    cursor:pointer;
+  .img-logo {
+    cursor: pointer;
   }
 }
 
@@ -79,12 +90,17 @@ button {
   font-weight: 600;
   font-size: 26px;
 }
-.learn-more{
-  margin-top:85px;
-  margin-bottom:140px;
-  font-size:14px;
-  font-weight:500;
-  a{ padding:15px 45px; background:black; color:white; display:inline-block; }
+.learn-more {
+  margin-top: 85px;
+  margin-bottom: 140px;
+  font-size: 14px;
+  font-weight: 500;
+  a {
+    padding: 15px 45px;
+    background: black;
+    color: white;
+    display: inline-block;
+  }
 }
 
 .register-cover {
@@ -101,9 +117,9 @@ button {
 .cta {
   min-height: 300px;
   position: relative;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   .cover {
     display: flex;
     justify-content: center;
@@ -123,9 +139,9 @@ button {
 .page-title {
   min-height: 300px;
   position: relative;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   .cover {
     display: flex;
     justify-content: center;
@@ -145,12 +161,12 @@ button {
 .page-second-title {
   min-height: 265px;
   position: relative;
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
   .cover {
     display: flex;
     justify-content: center;
@@ -169,92 +185,105 @@ button {
 }
 .front-services {
   padding: 55px 0 100px;
-  background:#F6F6F6;
+  background: #f6f6f6;
   .card {
-    border:none;
-    background:transparent;
-    
+    border: none;
+    background: transparent;
+
     img {
       width: initial !important;
       height: auto;
-      max-width:100%;
-      background:url('../assets/Circle.png')center center no-repeat;
-      background-size:cover;
+      max-width: 100%;
+      background: url("../assets/Circle.png") center center no-repeat;
+      background-size: cover;
     }
-    .card-title{
-      font-size:18px;
-      font-weight:400;
-      text-transform:none;
+    .card-title {
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: none;
     }
   }
-  .learn-more{
-    margin-top:85px;
-    margin-bottom:0;
-    font-size:14px;
-    font-weight:500;
-    a{ padding:15px 45px; background:black; color:white; }
+  .learn-more {
+    margin-top: 85px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    a {
+      padding: 15px 45px;
+      background: black;
+      color: white;
+    }
   }
 }
-.how-it-work{
+.how-it-work {
   padding: 115px 0 0px;
-  background:white;
-  .sub-section{
-    background:#fefefe;
-    border:none;
-    padding:120px 0;
-    .card{ 
-      background:transparent; border:none; 
-      .card-title{
-        font-size:34px;
-        font-weight:400;
-        font-style:italic;
+  background: white;
+  .sub-section {
+    background: #fefefe;
+    border: none;
+    padding: 120px 0;
+    .card {
+      background: transparent;
+      border: none;
+      .card-title {
+        font-size: 34px;
+        font-weight: 400;
+        font-style: italic;
       }
     }
   }
-  .middle-section{
-  background:#FAFAFA;
-  padding:120px 0 140px;
-  margin-left:21px;
-
+  .middle-section {
+    background: #fafafa;
+    padding: 120px 0 140px;
+    margin-left: 21px;
   }
-  .learn-more{
-    margin-top:85px;
-    font-size:14px;
-    font-weight:500;
-    a{ padding:15px 45px; background:black; color:white; }
+  .learn-more {
+    margin-top: 85px;
+    font-size: 14px;
+    font-weight: 500;
+    a {
+      padding: 15px 45px;
+      background: black;
+      color: white;
+    }
   }
 }
-.page-section{
+.page-section {
   padding: 115px 0 0px;
-  background:white;
-  .page-description{
-    margin:0px 0 80px;
+  background: white;
+  .page-description {
+    margin: 0px 0 80px;
   }
-  h2{ font-size:20px; }
-  .sub-section{
-    background:#fafafa;
-    border:none;
-    padding:120px 0;
-    .card{ 
-      background:transparent; border:none; 
-      .card-title{
-        font-size:34px;
-        font-weight:400;
-        font-style:italic;
+  h2 {
+    font-size: 20px;
+  }
+  .sub-section {
+    background: #fafafa;
+    border: none;
+    padding: 120px 0;
+    .card {
+      background: transparent;
+      border: none;
+      .card-title {
+        font-size: 34px;
+        font-weight: 400;
+        font-style: italic;
       }
     }
   }
-  .middle-section{
-  background:white;
-  padding:120px 0 140px;
-  
-
+  .middle-section {
+    background: white;
+    padding: 120px 0 140px;
   }
-  .learn-more{
-    margin-top:85px;
-    font-size:14px;
-    font-weight:500;
-    a{ padding:15px 45px; background:black; color:white; }
+  .learn-more {
+    margin-top: 85px;
+    font-size: 14px;
+    font-weight: 500;
+    a {
+      padding: 15px 45px;
+      background: black;
+      color: white;
+    }
   }
 }
 .subscribe {
@@ -306,12 +335,14 @@ button {
       color: #121212;
       font-weight: 400;
     }
-    svg{ margin-right:5px;}
+    svg {
+      margin-right: 5px;
+    }
   }
 }
 .credit-section {
   padding: 12px 0;
-  background:#F8F8F8;
+  background: #f8f8f8;
 }
 footer p {
   font-size: 11px;
@@ -321,57 +352,94 @@ footer p {
 
 .services {
   padding: 55px 0 100px;
-  background:white;
+  background: white;
   .card {
-    border:none;
-    background:transparent;
-    
+    border: none;
+    background: transparent;
+
     img {
       width: initial !important;
       height: auto;
-      max-width:100%;
-      background:url('../assets/Circle.png')center center no-repeat;
-      background-size:cover;
+      max-width: 100%;
+      background: url("../assets/Circle.png") center center no-repeat;
+      background-size: cover;
     }
-    .card-title{
-      font-size:18px;
-      font-weight:400;
-      text-transform:none;
+    .card-title {
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: none;
     }
   }
-  .learn-more{
-    margin-top:85px;
-    margin-bottom:0;
-    font-size:14px;
-    font-weight:500;
-    a{ padding:15px 45px; background:black; color:white; }
-  }
-}
-
-.search-bar{
-  background:#F6F6F6;
-  padding:70px 120px;
-  input{
-    background:white;
+  .learn-more {
+    margin-top: 85px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    a {
+      padding: 15px 45px;
+      background: black;
+      color: white;
+    }
   }
 }
 
-.brands{
-  background:white;
-  padding:0px 0px 120px;
-  display:grid;
-  grid-template-columns:auto auto auto auto auto;
-  .brand{
-    min-height:200px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    &.odd{
-      background:#F8F8F8;
+.search-bar {
+  background: #f6f6f6;
+  padding: 70px 120px;
+  input {
+    background: white;
+  }
+}
+
+.brands {
+  background: white;
+  padding: 0px 0px 120px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  .brand {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &.odd {
+      background: #f8f8f8;
     }
-    &.even{
-      background:white;
+    &.even {
+      background: white;
     }
+  }
+}
+
+.page-services {
+  .service-featured {
+    padding: 50px 0 75px;
+    background: white;
+    .card {
+      border: none;
+      .card-title{ font-size:25px; }
+    }
+  }
+  .premium-plus {
+    background: #f6f6f6;
+  }
+}
+
+.custom-heading {
+  min-height: 250px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -200px center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heading {
+    font-size: 80px;
+    font-weight: 400;
+    color: black;
+    text-transform: uppercase;
+    font-style: italic;
   }
 }
