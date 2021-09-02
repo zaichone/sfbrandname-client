@@ -7,66 +7,52 @@ function BrandList() {
 
             <div className="brand odd">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
-
-                    <a href="#">A Link</a>
+                    <strong>3.1 PHILLIP LIM</strong>
                 </SymmetricalDiv>
             </div>
             <div className="brand even">
                 <SymmetricalDiv className="d-flex flex-column align-items-center">
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>ALAIA</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand odd">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>ALEXANDER<br />
+                        MCQUEEN</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand even">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>ALEXANDER<br />
+                        WANG</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand odd">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>ALICE & OLIVIA</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand even">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>AMIRI</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand odd">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>AQUAZZURA</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
             <div className="brand even">
                 <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                    <strong>A title</strong>
-                    <span>A description</span>
+                    <strong>AUDEMARS<br />
+                        PIGUET</strong>
 
-                    <a href="#">A Link</a>
                 </SymmetricalDiv>
             </div>
         </section>
