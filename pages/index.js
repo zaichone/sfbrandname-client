@@ -3,9 +3,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Reminder from '../assets/Reminder.jpeg';
 
-import Cta from '../components/Layout/Cta';
-import ServiceList from '../components/Layout/ServiceList';
-import HowItWork from '../components/Layout/HowItWork';
+import Cta from '../components/layout/Cta';
+import ServiceList from '../components/layout/ServiceList';
+import HowItWork from '../components/layout/HowItWork';
 
 export default function Home() {
   return (
