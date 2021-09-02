@@ -5,7 +5,8 @@ import Reminder from '../assets/Reminder.jpeg';
 
 import Cta from '../components/layout/Cta';
 import ServiceList from '../components/layout/ServiceList';
-import HowItWork from '../components/layout/HowItWork';
+import HowItWorkList from '../components/layout/HowItWorkList';
+import LearnMoreBar from '../components/layout/LearnMoreBar';
 
 export default function Home() {
   return (
@@ -42,7 +43,8 @@ Our expert team in designer brands can verify the authenticity of new & pre-owne
       <Cta title="What We Specialist" bg={Reminder}/>
       <ServiceList/>
       <Cta title="How it Work?" bg={Reminder}/>
-      <HowItWork/>
+      <HowItWorkList/>
+      <LearnMoreBar label="LEARN MORE" link="/404/"/>
       <Cta title="Reminder" bg={Reminder}/>
     </div>
   )

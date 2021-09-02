@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import HowItWork1 from '../../assets/image-guideline/1.png';
-import HowItWork2 from '../../assets/image-guideline/2.png';
-import HowItWork3 from '../../assets/image-guideline/3.png';
+import Image1 from '../../assets/image-guideline/1.png';
+import Image2 from '../../assets/image-guideline/2.png';
+import Image3 from '../../assets/image-guideline/3.png';
 import Reminder from '../../assets/Reminder.jpeg';
 import One from '../../assets/1.png';
 import Two from '../../assets/2.png';
@@ -31,7 +31,7 @@ function ImageGuideline() {
                             <div className="card mb-3 w-100">
                                 <div className="row g-0" style={{ background: `url(${One.src})center center no-repeat` }}>
                                     <div className="col-md-6">
-                                        <img src={HowItWork1.src} className="img-fluid" alt="" />
+                                        <img src={Image1.src} className="img-fluid" alt="" />
                                     </div>
                                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                                         <div className="card-body">
@@ -59,7 +59,7 @@ function ImageGuideline() {
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <img src={HowItWork2.src} className="img-fluid" alt="" />
+                                        <img src={Image2.src} className="img-fluid" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ function ImageGuideline() {
                             <div className="card mb-3 w-100">
                                 <div className="row g-0" style={{ background: `url(${Three.src})center center no-repeat` }}>
                                     <div className="col-md-6">
-                                        <img src={HowItWork3.src} className="img-fluid" alt="" />
+                                        <img src={Image3.src} className="img-fluid" alt="" />
                                     </div>
                                     <div className="col-md-6 d-flex justify-content-center align-items-center">
                                         <div className="card-body">

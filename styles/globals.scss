@@ -7,7 +7,7 @@ body {
   font-family: "Spartan", sans-serif;
   font-size: 14px;
   font-weight: 300;
-  background: #efefef;
+  background: white;
 }
 
 a {
@@ -35,6 +35,9 @@ a {
   }
   .logo {
     font-size: 24px;
+  }
+  .img-logo{
+    cursor:pointer;
   }
 }
 
@@ -70,6 +73,13 @@ button {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 26px;
+}
+.learn-more{
+  margin-top:85px;
+  margin-bottom:140px;
+  font-size:14px;
+  font-weight:500;
+  a{ padding:15px 45px; background:black; color:white; display:inline-block; }
 }
 
 .register-cover {
@@ -149,14 +159,15 @@ button {
   }
   .learn-more{
     margin-top:85px;
+    margin-bottom:0;
     font-size:14px;
     font-weight:500;
     a{ padding:15px 45px; background:black; color:white; }
   }
 }
-.front-how-it-work{
-  padding: 115px 0 100px;
-  background:#fefefe;
+.how-it-work{
+  padding: 115px 0 0px;
+  background:white;
   .sub-section{
     background:#fefefe;
     border:none;
@@ -276,3 +287,4 @@ footer p {
   font-weight: 500;
   margin-bottom: 0;
 }
+
