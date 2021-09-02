@@ -1,0 +1,66 @@
+[
+    {
+        "title": "CATEGORIES",
+        "menus": [
+            {
+                "label": "Men",
+                "link": "/men/"
+            },
+            {
+                "label": "Women",
+                "link": "/women/"
+            },
+            {
+                "label": "Accessories",
+                "link": "/accessories/"
+            },
+            {
+                "label": "Beauty",
+                "link": "/beauty/"
+            }
+        ]
+    },
+    {
+        "title": "Infomation",
+        "menus": [
+            {
+                "label": "About Us",
+                "link": "/about-us/"
+            },
+            {
+                "label": "Contact Us",
+                "link": "/contact-us/"
+            },
+            {
+                "label": "Blog",
+                "link": "/blog/"
+            },
+            {
+                "label": "FAQs",
+                "link": "/faqs/"
+            }
+        ]
+    },
+    {
+        "title": "Useful links",
+        "menus": [
+            {
+                "label": "Terms & Conditions",
+                "link": "/terms-conditions/"
+            },
+            {
+                "label": "Returns & Exchanges",
+                "link": "/returns-exchanges/"
+            },
+            {
+                "label": "Shipping & Delivery",
+                "link": "/shipping-delivery/"
+            },
+            {
+                "label": "Privacy Policy",
+                "link": "/privacy-policy/"
+            }
+        ]
+    }
+    
+]
