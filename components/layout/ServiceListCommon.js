@@ -3,15 +3,15 @@ import services from './serviceList.json';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function ServiceList() {
+function ServiceListCommon() {
     console.log(services);
 
     return (
-        <section className="front-services">
+        <section className="services">
             <div className="container">
                 <div className="row d-flex justify-content-between">
                     {services.map((service, index) =>
-                        <div className="col-12 col-sm-4 d-flex justify-content-center align-items-center" key={index}>
+                        <div className="col-6 col-sm d-flex justify-content-center align-items-center" key={index}>
 
                             <div className="card">
                                 <img src={`/assets/${service.title}.png`} className="card-img-top" alt={service.title} />
@@ -23,7 +23,7 @@ function ServiceList() {
                         </div>
                     )
                     }
-                     <div className="col-12 text-center learn-more"><Link href="/branding/">LEARN MORE</Link></div>
+                    
                 </div>
                 
             </div>
@@ -32,4 +32,4 @@ function ServiceList() {
     )
 }
 
-export default ServiceList
+export default ServiceListCommon

@@ -198,7 +198,7 @@ button {
   padding: 115px 0 0px;
   background:white;
   .page-description{
-    margin:30px 0 80px;
+    margin:0px 0 80px;
   }
   .sub-section{
     background:#fafafa;
@@ -288,3 +288,58 @@ footer p {
   margin-bottom: 0;
 }
 
+.services {
+  padding: 55px 0 100px;
+  background:white;
+  .card {
+    border:none;
+    background:transparent;
+    
+    img {
+      width: initial !important;
+      height: auto;
+      max-width:100%;
+      background:url('../assets/Circle.png')center center no-repeat;
+      background-size:cover;
+    }
+    .card-title{
+      font-size:18px;
+      font-weight:400;
+      text-transform:none;
+    }
+  }
+  .learn-more{
+    margin-top:85px;
+    margin-bottom:0;
+    font-size:14px;
+    font-weight:500;
+    a{ padding:15px 45px; background:black; color:white; }
+  }
+}
+
+.search-bar{
+  background:#F6F6F6;
+  padding:70px 120px;
+  input{
+    background:white;
+  }
+}
+
+.brands{
+  background:white;
+  padding:0px 0px 120px;
+  display:grid;
+  grid-template-columns:auto auto auto auto auto;
+  .brand{
+    min-height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    &.odd{
+      background:#F8F8F8;
+    }
+    &.even{
+      background:white;
+    }
+  }
+}

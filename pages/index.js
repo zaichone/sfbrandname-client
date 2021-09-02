@@ -44,7 +44,7 @@ Our expert team in designer brands can verify the authenticity of new & pre-owne
       <ServiceList/>
       <Cta title="How it Work?" bg={Reminder}/>
       <HowItWorkList/>
-      <LearnMoreBar label="LEARN MORE" link="/404/"/>
+      <LearnMoreBar label="LEARN MORE" link="/how-it-work/"/>
       <Cta title="Reminder" bg={Reminder}/>
     </div>
   )
