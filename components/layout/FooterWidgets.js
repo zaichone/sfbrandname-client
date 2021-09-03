@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import menus from './footerMenus.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMapMarker, faClock, faPhone } from '@fortawesome/free-solid-svg-icons';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import RoomIcon from '@material-ui/icons/Room';
