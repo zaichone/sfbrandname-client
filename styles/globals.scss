@@ -57,6 +57,16 @@ a {
     cursor: pointer;
   }
   .nav-item{ margin-right:4rem; }
+  button{
+    color: white;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    text-transform:none;
+    padding:0;
+    &:hover{
+      color:white;
+    }
+  }
 }
 
 .cover {
@@ -478,3 +488,10 @@ footer p {
     font-style: italic;
   }
 }
+
+
+.sidebar{
+  background:#F6F6F6;
+}
+
+.profile-details{ background:white; }

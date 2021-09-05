@@ -6,8 +6,11 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 config.autoAddCss = false
 
+import {AuthProvider} from '../src/hooks/auth';
+import AuthStateChanged from '../src/service/onAuthStateChanged';
+
 function MyApp({ Component, pageProps }) {
-  return <Layout><Component {...pageProps} /></Layout>
+  return <AuthProvider><AuthStateChanged><Layout><Component {...pageProps} /></Layout></AuthStateChanged></AuthProvider>
 }
 
 export default MyApp
