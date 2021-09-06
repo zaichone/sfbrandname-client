@@ -26,7 +26,14 @@ export function AuthProvider(props) {
         return auth.signInWithEmailAndPassword(email, password)
     }
 
-    const value = { user, error, loginWithGoogle, login, logout, setUser };
+    function signUp(email, password, firstName, lastName){
+        console.log("🚀 ~ file: auth.js ~ line 30 ~ signUp ~ email", email)
+        console.log('signUp is working')
+        return AuthService.signUp(email, password,firstName, lastName);
+        //return auth.createUserWithEmailAndPassword(email, password).then((user) => { console.log(user); });
+    }
+
+    const value = { user, error, loginWithGoogle, login, logout, setUser, signUp };
 
     return <authContext.Provider value={value} {...props} />;
 

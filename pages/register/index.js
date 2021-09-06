@@ -1,7 +1,36 @@
 import Head from 'next/head'
 import Link from 'next/link';
+import React, { useState } from "react";
+import { useRouter } from 'next/router';
+import { Alert } from 'react-bootstrap';
+
+import { auth } from "../../src/config/firebase";
+import useAuth from '../../src/hooks/auth';
 
 function Register() {
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const { user, signUp } = useAuth();
+    async function handleSubmit(e) {
+        const { firstName, lastName, email, password, confirmPassword } = e.target.elements;
+        e.preventDefault();
+        console.log('submitting');
+
+        if (password.value !== confirmPassword.value) {
+            return setError("Passwords do not match")
+        }
+
+        try {
+            setError("")
+            setLoading(true)
+            await signUp(email.value, password.value, firstName.value, lastName.value);
+            router.push("/")
+        } catch {
+            setError("Failed to create an account")
+        }
+
+        setLoading(false)
+    }
     return (
         <div>
             <Head>
@@ -16,33 +45,34 @@ function Register() {
                     <div className="row">
                         <div className="col-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
                             <h1 className="mt-5">CREATE ACCOUNT</h1>
-                            <form className="w-100 mt-3">
+                            {error && <Alert variant="danger">{error}</Alert>}
+                            <form className="w-100 mt-3" onSubmit={handleSubmit}>
                                 <div className="mb-3">
 
-                                    <input type="text" className="form-control" id="firstName" placeholder="First Name" />
+                                    <input type="text" className="form-control" name="firstName" placeholder="First Name" />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="text" className="form-control" id="lastName" placeholder="Last Name" />
+                                    <input type="text" className="form-control" name="lastName" placeholder="Last Name" />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+                                    <input type="email" className="form-control" name="email" placeholder="Enter your email" />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="password" className="form-control " id="password" placeholder="Password" />
+                                    <input type="password" className="form-control " name="password" placeholder="Password" />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="confirmPassword" className="form-control " id="confirmPassword" placeholder="Confirm Password" />
+                                    <input type="confirmPassword" className="form-control " name="confirmPassword" placeholder="Confirm Password" />
                                 </div>
                                 <div className="mb-5">
                                     <div className="row">
                                         <div className="form-check col-5">
-                                            <input className="form-check-input" type="checkbox" value="" id="keepMeSignedIn" checked />
+                                            <input className="form-check-input" type="checkbox" value="" name="keepMeSignedIn" checked />
                                             <label className="form-check-label" htmlFor="keepMeSignedIn">
-                                            I Agree To Platform
+                                                I Agree To Platform
                                             </label>
                                         </div>
 
@@ -52,7 +82,7 @@ function Register() {
                                     </div>
                                 </div>
                                 <div className="mb-3 text-center">
-                                    <button type="submit" className="mb-3">Create Account</button>
+                                    <button type="submit" className="mb-3" disabled={loading}>Create Account</button>
                                 </div>
                             </form>
                             <p className="register-text text-center">Already have an account?<Link href="/sign-in/">Login</Link></p>
