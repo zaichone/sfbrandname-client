@@ -28,9 +28,9 @@ function Account() {
                     <div className="container-fluid gx-0">
                         <div className="row align-items-start">
                             <div className="col-12 col-sm-3">
-                                <div className="sidebar">
+                                <div className="sidebar text-center">
                                     <div className="card">
-                                        <img src={avatar.src} className="card-img-top" alt="..." />
+                                        <img src={avatar.src} style={{}}/>
                                         
                                         <ul className="list-group list-group-flush">
                                             <li className="list-group-item">Account</li>

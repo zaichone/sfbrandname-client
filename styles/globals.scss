@@ -492,6 +492,10 @@ footer p {
 
 .sidebar{
   background:#F6F6F6;
+  .card{
+    align-items: center;
+    img{ width:initial!important; max-width:300px; }
+  }
 }
 
 .profile-details{ background:white; }

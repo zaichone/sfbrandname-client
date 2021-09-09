@@ -8,9 +8,9 @@ import { auth } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
 function Register() {
-    const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const { user, signUp } = useAuth();
+    const { user, signUp, error, setError } = useAuth();
+    console.log("🚀 ~ file: index.js ~ line 14 ~ Register ~ signUp", signUp)
     async function handleSubmit(e) {
         const { firstName, lastName, email, password, confirmPassword } = e.target.elements;
         e.preventDefault();
@@ -70,7 +70,7 @@ function Register() {
                                 <div className="mb-5">
                                     <div className="row">
                                         <div className="form-check col-5">
-                                            <input className="form-check-input" type="checkbox" value="" name="keepMeSignedIn" checked />
+                                            <input className="form-check-input" type="checkbox" value="" name="keepMeSignedIn" />
                                             <label className="form-check-label" htmlFor="keepMeSignedIn">
                                                 I Agree To Platform
                                             </label>

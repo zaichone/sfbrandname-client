@@ -1,30 +1,31 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 
 import { auth } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
-function SignIn({ history }) {
-    const { user, loginWithGoogle, login } = useAuth();
+function SignIn({  }) {
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const { user, login } = useAuth();
     console.log("🚀 ~ file: index.js ~ line 10 ~ SignIn ~ user", user)
     const router = useRouter()
-    const handleLogin = useCallback(
-        async event => {
-            event.preventDefault();
-            const { email, password } = event.target.elements;
-            try {
-                await auth
-                    .signInWithEmailAndPassword(email.value, password.value);
-
-                router.push("/account");
-            } catch (error) {
-                alert(error);
-            }
-        },
-        [history]
-    );
+    async function handleSubmit(event){
+        event.preventDefault();
+        const { email, password } = event.target.elements;
+        try {
+            setError("")
+            setLoading(true)
+            await login(email.value, password.value)
+            router.push("/")
+          } catch {
+            setError("Failed to log in")
+          }
+      
+          setLoading(false)
+    }
 
     if (user) {
         return router.push('/');
@@ -43,7 +44,7 @@ function SignIn({ history }) {
                     <div className="row">
                         <div className="col-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
                             <h1 className="mt-5">Sign In</h1>
-                            <form onSubmit={handleLogin} className="w-100 mt-5">
+                            <form onSubmit={handleSubmit} className="w-100 mt-5">
                                 <div className="mb-4">
 
                                     <input type="email" className="form-control" id="email" name="email" placeholder="Enter your email" />
@@ -55,7 +56,7 @@ function SignIn({ history }) {
                                 <div className="mb-5">
                                     <div className="row">
                                         <div className="form-check col-6">
-                                            <input className="form-check-input" type="checkbox" value="" id="keepMeSignedIn" checked />
+                                            <input className="form-check-input" type="checkbox" value="" id="keepMeSignedIn" />
                                             <label className="form-check-label" htmlFor="keepMeSignedIn">
                                                 Keep me signed in
                                             </label>
