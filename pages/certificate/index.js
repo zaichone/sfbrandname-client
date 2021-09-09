@@ -23,11 +23,11 @@ function Certificate() {
 
                             <div className="card w-100">
                                 <div className="row g-0">
-                                    <div className="col-md-3">
+                                    <div className="col-md-3 col-lg-2">
                                         <img src={qr.src} className="img-fluid" alt="" />
                                     </div>
-                                    <div className="col-md-9 d-flex justify-content-center align-items-center">
-                                        <div className="card-body">
+                                    <div className="col-md-9 col-lg-10 d-flex justify-content-center align-items-center">
+                                        <div className="card-body px-5">
                                             <h5 className="card-title mb-3">SUPER AUTHENTIC QUALIFIED<CheckCircleIcon fontSize="large" style={{ color:'teal' }}/></h5>
                                             <table>
                                                 <tr>
