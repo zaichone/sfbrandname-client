@@ -8,8 +8,8 @@ import useAuth from '../../src/hooks/auth';
 function Header() {
 
     const { user, loginWithGoogle, login, logout } = useAuth();
-    console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ login", login)
-    console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ user", user)
+    //console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ login", login)
+    //console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ user", user)
     const router = useRouter()
 
     async function signOut() {

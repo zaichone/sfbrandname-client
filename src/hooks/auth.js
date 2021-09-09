@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 //import { AuthService } from "../service/AuthService";
-import {auth} from '../config/firebase';
+import {auth, firestore} from '../config/firebase';
 import { useRouter } from 'next/router';
 
 const authContext = createContext();
@@ -22,19 +22,37 @@ export function AuthProvider(props) {
     const logout = async () => {
         await auth.logout();
         setUser(null);
+        window.location.reload();   
     }
 
     function login(email, password) {
-        console.log('hire');
         auth.signInWithEmailAndPassword(email, password)
+       
         router.push('/account/')
     }
 
-    function signUp(email, password, firstName, lastName){
+    async function signUp(email, password, firstName, lastName){
         console.log("🚀 ~ file: auth.js ~ line 30 ~ signUp ~ email", email)
         console.log('signUp is working')
-        return auth.signUp(email, password).then((user) => { console.log(user); });
-        //return auth.createUserWithEmailAndPassword(email, password).then((user) => { console.log(user); });
+        //auth.createUserWithEmailAndPassword(email, password).then((user) => { console.log(user); });
+        try {
+            const res = await auth.createUserWithEmailAndPassword(email, password);
+            const user = res.user;
+            await firestore.collection("members").doc(user.uid).set({
+              authProvider: "local",
+              email,
+              firstName,
+              lastName,
+              userRole:'client'
+            });
+            alert('Sing up sucess');
+            router.push('/account/')
+          } catch (err) {
+            console.error(err);
+            setError(err.message);
+            alert(err.message);
+        }
+        
     }
 
     const value = { user, error, setError, login, logout, setUser, signUp };

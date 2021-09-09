@@ -8,9 +8,8 @@ import { auth } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
 function Register() {
-    const [loading, setLoading] = useState(false)
-    const { user, signUp, error, setError } = useAuth();
-    console.log("🚀 ~ file: index.js ~ line 14 ~ Register ~ signUp", signUp)
+  const [loading, setLoading] = useState(false)
+    const { signUp, error, setError } = useAuth();
     async function handleSubmit(e) {
         const { firstName, lastName, email, password, confirmPassword } = e.target.elements;
         e.preventDefault();
@@ -19,22 +18,14 @@ function Register() {
         if (password.value !== confirmPassword.value) {
             return setError("Passwords do not match")
         }
-
-        try {
-            setError("")
-            setLoading(true)
-            await signUp(email.value, password.value, firstName.value, lastName.value);
-            router.push("/")
-        } catch {
-            setError("Failed to create an account")
-        }
+        signUp(email.value, password.value, firstName.value, lastName.value);
 
         setLoading(false)
     }
     return (
         <div>
             <Head>
-                <title>SF Brandname - Services</title>
+                <title>SF Brandname - Create Account</title>
                 <meta name="description" content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า" />
                 <meta name="keyword" content="ร้านแบรนด์เนมมือสอง ราคาดี, ร้านรับซื้อขายของแบรนด์เนมมือสอง, ร้านรับซื้อกระเป๋าแบรนด์เนมมือสอง, ร้านรับซื้อฝากขายแบรนด์เนมแท้, ร้านรับซื้อและฝากขายแบรนด์เนม, ร้านรับซื้อและฝากขายแบรนด์เนม มือสอง, ร้านรับซื้อ-ฝากขายกระเป๋าแบรนด์เนม, ร้านฝากขายกระเป๋าแบรนด์เนม, ร้านขายสินค้าแบรนด์เนมมือสอง ให้ราคาสูง, ร้านจำนำกระเป๋าแบรนด์เนม
 "/>
@@ -65,7 +56,7 @@ function Register() {
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="confirmPassword" className="form-control " name="confirmPassword" placeholder="Confirm Password" />
+                                    <input type="password" className="form-control " name="confirmPassword" placeholder="Confirm Password" />
                                 </div>
                                 <div className="mb-5">
                                     <div className="row">
