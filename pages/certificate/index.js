@@ -50,6 +50,9 @@ function Certificate() {
                                         The starting price for all authentication services is $30.20, including an official authentication certificate in PDF format that determines whether the goods is ‘Authentic’ or ‘Fake’ based on the pictures you submitted. We will send authentication results to your email and it will appear in your account as well. Our team of experts will verify your goods within 12-24 hours after receiving all needed pictures.
                                         </p>
                                     </div>
+                                    <div className="col-12 mb-5">
+                                        <button>certificate</button>
+                                    </div>
 
                                 </div>
                             </div>
