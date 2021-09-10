@@ -18,10 +18,10 @@ function Authentication() {
     console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
     const router = useRouter();
     const [info, setInfo] = useState('');
-    const [brand, setBrand] = useState('1');
-    const [name, setName] = useState('Test');
-    const [clientName, setClientName] = useState('John');
-    const [category, setCategory] = useState('1');
+    const [brand, setBrand] = useState('SF');
+    const [name, setName] = useState('John');
+    const [clientName, setClientName] = useState('SF');
+    const [category, setCategory] = useState('Watches');
     const tasksRef = firestore.collection('tasks');
     async function goNext(e){
         e.preventDefault();
@@ -100,6 +100,10 @@ function Authentication() {
             timestamp:new Date().getTime(),
             status:'In Progress'
         });
+    }
+    if(!user){
+        alert('Please login');
+        router.push('/sign-in/');
     }
     return (
         <div>
