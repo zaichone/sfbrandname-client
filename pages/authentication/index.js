@@ -14,38 +14,83 @@ const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function Authentication() {
     const [info, setInfo] = useState('');
-    const [brand, setBrand] = useState();
+    const [brand, setBrand] = useState('1');
     const [name, setName] = useState();
     const [clientName, setClientName] = useState();
     const [category, setCategory] = useState();
     const tasksRef = firestore.collection('tasks');
-    function goNext(e){
+    async function goNext(e){
         e.preventDefault();
-        const { brand, name, clientName, category } = e.target.elements;
-        if(brand.value == '0'){
+        //const { brand, name, clientName, category } = e.target.elements;
+        if(brand == '0'){
             alert('Please select Brand ');
         }
-        if(name.value == ''){
+        if(name == ''){
             alert('Please insert Name ');
         }
-        if(clientName.value == ''){
+        if(clientName == ''){
             alert('Please insert Client Name ');
         }
-        if(category.value == '0'){
+        if(category == '0'){
             alert('Please select Category');
         }
-        setInfo({
-            brand:brand.value,
-            name:name.value,
-            clientName:clientName.value,
-            category:category.value,
-            timestamp:new Date().getTime()
-        });
+        
         console.log(info)
-        tasksRef.add(info).then((taskRef) => {
+        window.localStorage.setItem('taskInfo', JSON.stringify(info));
+        await tasksRef.add(info).then((taskRef) => {
             console.log(taskRef.id);
+            window.localStorage.setItem('taskId', taskRef.id);
+            
         });
         console.log('go next');
+    }
+    function handleBrandChange(e){
+        let text = e.target.value;
+        setBrand(text);
+        console.log(text);
+        setInfo({
+            brand:brand,
+            name:name,
+            clientName:clientName,
+            category:category,
+            timestamp:new Date().getTime()
+        });
+    }   
+    function handleNameChange(e){
+        let text = e.target.value;
+        setName(text);
+        console.log(text);
+        setInfo({
+            brand:brand,
+            name:name,
+            clientName:clientName,
+            category:category,
+            timestamp:new Date().getTime()
+        });
+    } 
+    function handleClientNameChange(e){
+        let text = e.target.value;
+        setClientName(text);
+        console.log(text);
+        setInfo({
+            brand:brand,
+            name:name,
+            clientName:clientName,
+            category:category,
+            timestamp:new Date().getTime()
+        });
+    }
+    function handleCategoryChange(e){
+        let text = e.target.value;
+        setCategory(text);
+        console.log(text);
+        setInfo({
+            brand:brand,
+            name:name,
+            clientName:clientName,
+            category:category,
+            timestamp:new Date().getTime()
+        });
     }
     return (
         <div>
@@ -76,8 +121,8 @@ function Authentication() {
                                     <form onSubmit={goNext}>
                                         <div className="mb-3">
                                             <h3>Brand <InfoIcon/></h3>
-                                            <select className="form-select" name="brand">
-                                                <option selected value='0'></option>
+                                            <select className="form-select" name="brand" onChange={handleBrandChange} value={brand}>
+                                                
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -85,16 +130,16 @@ function Authentication() {
                                         </div>
                                         <div className="mb-3">
                                             <h3>Name <InfoIcon/></h3>
-                                            <input type="text" className="form-control" name="name" placeholder="" />
+                                            <input type="text" className="form-control" name="name" onChange={handleNameChange} />
                                         </div>
                                         <div className="mb-3">
                                             <h3>Client Name <InfoIcon/></h3>
-                                            <input type="text" className="form-control" name="clientName" placeholder="" />
+                                            <input type="text" className="form-control" name="clientName" onChange={handleClientNameChange}/>
                                         </div>
                                         <div className="mb-3">
                                             <h3>Category <InfoIcon/></h3>
-                                            <select className="form-select" name="category">
-                                                <option selected value="0"></option>
+                                            <select className="form-select" name="category" defaultValue={'0'} onChange={handleCategoryChange}>
+                                                <option value="0"></option>
                                                 {
                                                     categories.map((cat, index) => 
                                                         <option value={cat} key={index}>{cat}</option>
