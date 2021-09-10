@@ -5,6 +5,7 @@ import cover from '../../assets/account/cover.png';
 import One from '../../assets/1.png';
 import InfoIcon from '@material-ui/icons/Info';
 
+import { useRouter } from 'next/router';
 import {useState} from 'react';
 
 import { auth, firestore } from "../../src/config/firebase";
@@ -13,11 +14,12 @@ import useAuth from '../../src/hooks/auth';
 const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function Authentication() {
+    const router = useRouter();
     const [info, setInfo] = useState('');
     const [brand, setBrand] = useState('1');
-    const [name, setName] = useState();
-    const [clientName, setClientName] = useState();
-    const [category, setCategory] = useState();
+    const [name, setName] = useState('');
+    const [clientName, setClientName] = useState('');
+    const [category, setCategory] = useState('0');
     const tasksRef = firestore.collection('tasks');
     async function goNext(e){
         e.preventDefault();
@@ -43,6 +45,7 @@ function Authentication() {
             
         });
         console.log('go next');
+        router.push('/authentication/upload-pictures/')
     }
     function handleBrandChange(e){
         let text = e.target.value;
@@ -95,7 +98,7 @@ function Authentication() {
     return (
         <div>
             <Head>
-                <title>SF Brandname - Certificate</title>
+                <title>SF Brandname - Authentication</title>
                 <meta name="description" content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า" />
                 <meta name="keyword" content="ร้านแบรนด์เนมมือสอง ราคาดี, ร้านรับซื้อขายของแบรนด์เนมมือสอง, ร้านรับซื้อกระเป๋าแบรนด์เนมมือสอง, ร้านรับซื้อฝากขายแบรนด์เนมแท้, ร้านรับซื้อและฝากขายแบรนด์เนม, ร้านรับซื้อและฝากขายแบรนด์เนม มือสอง, ร้านรับซื้อ-ฝากขายกระเป๋าแบรนด์เนม, ร้านฝากขายกระเป๋าแบรนด์เนม, ร้านขายสินค้าแบรนด์เนมมือสอง ให้ราคาสูง, ร้านจำนำกระเป๋าแบรนด์เนม
 "/>
