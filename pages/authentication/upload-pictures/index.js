@@ -5,6 +5,8 @@ import cover from '../../../assets/account/cover.png';
 import Two from '../../../assets/2.png';
 import InfoIcon from '@material-ui/icons/Info';
 
+import SymmetricalDiv from '../../../components/layout/SymmetricalDiv';
+
 import { useRouter } from 'next/router';
 import {useState} from 'react';
 
@@ -42,12 +44,53 @@ function UploadPicutres() {
                             <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                                 <div className="details">
                                     <p>Please note: all images are required. Click to upload or drag & drop to each example image.<Link href="/image-guideline/">Image Guideline</Link></p>
-                                    <form>
-                                        
-                                        <div className="mb-3 mt-5">
+                                    
+                                        <div className="row">
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Front</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Logo</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Made In Tag</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Serial Number / Date Code</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Hardware Engraving</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            <div className="col-4 text-center mt-5">
+                                                <h3>Additional Image (Optional)</h3>
+                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5">
+                                                   <i>Click to Add Image</i>
+                                                </SymmetricalDiv>
+                                            </div>
+                                            
+                                            <div className="col-12 mb-3 mt-5">
                                             <button>Next</button>
                                         </div>
-                                    </form>
+                                            
+                                        </div>
+                                        
+                                        
+                                    
                                 </div>
                             </div>
                         </div>
