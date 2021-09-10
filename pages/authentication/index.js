@@ -14,12 +14,14 @@ import useAuth from '../../src/hooks/auth';
 const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function Authentication() {
+    const { user, login, logout } = useAuth();
+    console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
     const router = useRouter();
     const [info, setInfo] = useState('');
     const [brand, setBrand] = useState('1');
-    const [name, setName] = useState('');
-    const [clientName, setClientName] = useState('');
-    const [category, setCategory] = useState('0');
+    const [name, setName] = useState('Test');
+    const [clientName, setClientName] = useState('John');
+    const [category, setCategory] = useState('1');
     const tasksRef = firestore.collection('tasks');
     async function goNext(e){
         e.preventDefault();
@@ -56,7 +58,8 @@ function Authentication() {
             name:name,
             clientName:clientName,
             category:category,
-            timestamp:new Date().getTime()
+            timestamp:new Date().getTime(),
+            status:'In Progress'
         });
     }   
     function handleNameChange(e){
@@ -68,7 +71,8 @@ function Authentication() {
             name:name,
             clientName:clientName,
             category:category,
-            timestamp:new Date().getTime()
+            timestamp:new Date().getTime(),
+            status:'In Progress'
         });
     } 
     function handleClientNameChange(e){
@@ -80,7 +84,8 @@ function Authentication() {
             name:name,
             clientName:clientName,
             category:category,
-            timestamp:new Date().getTime()
+            timestamp:new Date().getTime(),
+            status:'In Progress'
         });
     }
     function handleCategoryChange(e){
@@ -92,7 +97,8 @@ function Authentication() {
             name:name,
             clientName:clientName,
             category:category,
-            timestamp:new Date().getTime()
+            timestamp:new Date().getTime(),
+            status:'In Progress'
         });
     }
     return (
