@@ -17,6 +17,9 @@ const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function UploadPicutres() {
     const router = useRouter()
+    function goNext(){
+        router.push('/authentication/almost-done/')
+    }
     return (
         <div>
             <Head>
@@ -84,7 +87,7 @@ function UploadPicutres() {
                                             </div>
                                             
                                             <div className="col-12 mb-3 mt-5">
-                                            <button>Next</button>
+                                            <button onClick={goNext}>Next</button>
                                         </div>
                                             
                                         </div>
