@@ -4,14 +4,17 @@ import PagtTitle from '../../components/layout/PageTitle';
 import cover from '../../assets/account/cover.png';
 import avatar from '../../assets/account/avatar.png';
 
+import { useRouter } from 'next/router';
+
 import { auth } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
 function Account() {
     const { user, login, logout } = useAuth();
-    console.log("🚀 ~ file: index.js ~ line 11 ~ Account ~ user", user)
-    async function signOut() {
-        await auth.signOut();
+    const router = useRouter()
+    //console.log("🚀 ~ file: index.js ~ line 11 ~ Account ~ user", user)
+    if (!user) {
+        return router.push('/sign-in/');
     }
     return (
         <div>
@@ -26,8 +29,8 @@ function Account() {
 
                 <section>
                     <div className="container-fluid gx-0">
-                        <div className="row align-items-start">
-                            <div className="col-12 col-sm-3">
+                        <div className="row">
+                            <div className="col-12 col-sm-3 col-md-2">
                                 <div className="sidebar text-center">
                                     <div className="card">
                                         <img src={avatar.src} style={{}}/>
@@ -35,14 +38,14 @@ function Account() {
                                         <ul className="list-group list-group-flush">
                                             <li className="list-group-item">Account</li>
                                             <li className="list-group-item">History</li>
-                                            <li className="list-group-item">Sign Out</li>
+                                            <li className="list-group-item"><button onClick={logout}>Sign Out</button></li>
                                         </ul>
                                         
                                     </div>
                                 </div>
 
                             </div>
-                            <div className="col-12 col-sm-9">
+                            <div className="col-12 col-sm-9 col-md-10">
                                 <div className="profile-details">
                                     <h3>Account</h3>
                                 </div>

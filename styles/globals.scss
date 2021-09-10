@@ -8,7 +8,7 @@ body {
   font-size: 14px;
   font-weight: 300;
   background: white;
-  color:black;
+  color: black;
 }
 strong {
   font-weight: bold;
@@ -56,15 +56,17 @@ a {
   .img-logo {
     cursor: pointer;
   }
-  .nav-item{ margin-right:4rem; }
-  button{
+  .nav-item {
+    margin-right: 4rem;
+  }
+  button {
     color: white;
     font-size: 12px;
     font-family: "Poppins", sans-serif;
-    text-transform:none;
-    padding:0;
-    &:hover{
-      color:white;
+    text-transform: none;
+    padding: 0;
+    &:hover {
+      color: white;
     }
   }
 }
@@ -337,7 +339,7 @@ button {
 .footer-widgets {
   padding: 40px 0px;
   background: white;
-  font-size:12px;
+  font-size: 12px;
   h3 {
     text-transform: uppercase;
     font-size: 12px;
@@ -440,31 +442,33 @@ footer p {
   }
   .premium-plus {
     background: #f6f6f6;
-    padding-bottom:170px;
+    padding-bottom: 170px;
     .sub-section {
-      background-position:right bottom;
-      background-size:100%;
-      background-repeat:no-repeat;
+      background-position: right bottom;
+      background-size: 100%;
+      background-repeat: no-repeat;
       .card {
-        margin-bottom:55px;
-        padding:60px 0;
-        background:transparent;
-        border:none;
+        margin-bottom: 55px;
+        padding: 60px 0;
+        background: transparent;
+        border: none;
         h5 {
           font-size: 25px;
           font-weight: 400;
-          text-transform:uppercase;
-          color:black;
+          text-transform: uppercase;
+          color: black;
         }
         p {
           font-size: 12px;
-          color:black;
-          margin-top:10px;
+          color: black;
+          margin-top: 10px;
         }
         .price {
           font-size: 28px;
         }
-        .card-body{ padding:0; }
+        .card-body {
+          padding: 0;
+        }
       }
     }
   }
@@ -489,13 +493,31 @@ footer p {
   }
 }
 
-
-.sidebar{
-  background:#F6F6F6;
-  .card{
+.sidebar {
+  background: #f7f7f7;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  height:100%;
+  .card {
     align-items: center;
-    img{ width:initial!important; max-width:300px; }
+    background: transparent;
+    border: none;
+    img {
+      width: initial !important;
+      max-width: 300px;
+    }
   }
 }
 
-.profile-details{ background:white; }
+.details {
+  background: white;
+  padding-top: 50px;
+  padding-bottom: 300px;
+  padding-left:90px;
+  form{ max-width:50%;}
+  h3{
+    font-size:14px;
+    font-weight:300;
+    svg{ color:#f2c53d; }
+  }
+}
