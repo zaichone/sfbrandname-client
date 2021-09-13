@@ -1,12 +1,37 @@
+import {useState, useEffect} from 'react';
 import Head from 'next/head'
 import Link from 'next/link';
 import PagtTitle from '../../components/layout/PageTitle';
 import Heading from '../../components/layout/Heading';
 import cover from '../../assets/certificate/cover.png';
-import qr from '../../assets/certificate/qr.png';
+import thumb from '../../assets/my-order/thumb.png';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import OrderFilter from '../../components/layout/OrderFilter';
+
+import { firestore } from '../../src/config/firebase';
 
 function MyOrder() {
+    const [orders, setOrders] = useState();
+    const [clientId, setClientId] = useState('');
+    useEffect(() => {
+        const _clientId = window.localStorage.getItem('clientId');
+        setClientId(_clientId);
+        const ordersRef = firestore.collection('tasks').where('clientId', '==', _clientId).orderBy('timestamp', 'asc');
+        const unsubscribe = ordersRef
+            .onSnapshot((snapshot) => {
+                const data = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                console.log('orders data', data)
+                setOrders(data);
+            });
+        return () => unsubscribe();
+    }, []);
+
+    function showDate(time){
+        console.log(time);
+    }
     return (
         <div>
             <Head>
@@ -22,11 +47,33 @@ function MyOrder() {
                     <div className="container-fluid">
                         <div className="row">
                             
-                            <div className="col-12 col-sm-12">
-                                <div className="details">
-                                    <form>
-                                        
-                                    </form>
+                            <div className="col-12 col-sm-12 gx-0">
+                                <OrderFilter/>
+                                <div className="orders">
+                                    {
+                                        orders?.map((order, index) => 
+                                        <div className="order row" key={order.id}>
+                                            <div className="col-12 col-sm-2">
+                                                <img src={thumb.src}/>
+                                            </div>
+                                            <div className="col-12 col-sm-4 d-flex flex-column justify-content-center align-items-start">
+                                                <h3 className="order-title">{order.name} - {order.brand}</h3>
+                                                
+                                                <h4 className="date">{new Date(order.timestamp).toLocaleString()}</h4>
+                                                <h4 className="orderId"><strong>Order ID:</strong> {order.id}</h4>
+                                            </div>
+                                            <div className="col-12 col-sm-2 d-flex align-items-center">
+                                                <CheckCircleIcon style={{ color:'teal', fontSize:'2rem', marginRight:10}}/>{order.status}
+                                            </div>
+                                            
+                                            <div className="col-12 col-sm-4 d-flex justify-content-end align-items-center">
+                                                <button className="detail-btn">Detail</button>
+                                                <button className="doc-btn">Document</button>
+                                                <button className="more-btn">More</button>
+                                            </div>
+                                        </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

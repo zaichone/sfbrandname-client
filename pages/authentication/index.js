@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import Head from 'next/head'
 import Link from 'next/link';
 import PagtTitle from '../../components/layout/PageTitle';
@@ -6,7 +7,6 @@ import One from '../../assets/1.png';
 import InfoIcon from '@material-ui/icons/Info';
 
 import { useRouter } from 'next/router';
-import {useState} from 'react';
 
 import { auth, firestore } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
@@ -23,6 +23,8 @@ function Authentication() {
     const [clientName, setClientName] = useState('SF');
     const [category, setCategory] = useState('Watches');
     const tasksRef = firestore.collection('tasks');
+    const [brands, setBrands] = useState();
+    console.log("🚀 ~ file: index.js ~ line 27 ~ Authentication ~ brands", brands)
     async function goNext(e){
         e.preventDefault();
         //const { brand, name, clientName, category } = e.target.elements;
@@ -106,6 +108,17 @@ function Authentication() {
             status:'In Progress'
         });
     }
+    useEffect(() => {
+        firestore.collection("brands").get().then((querySnapshot) => {
+            let data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({id:doc.id, name:doc.data()});
+                
+                console.log(doc.id, " => ", doc.data());
+            });
+            setBrands(data);
+        });
+    },[]);
     if(!user){
         alert('Please login');
         router.push('/sign-in/');
@@ -140,10 +153,11 @@ function Authentication() {
                                         <div className="mb-3">
                                             <h3>Brand <InfoIcon/></h3>
                                             <select className="form-select" name="brand" onChange={handleBrandChange} value={brand}>
-                                                
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {
+                                                    brands?.map((brand, index) => 
+                                                        <option value={brand.id} key={brand.id}>{brand.name.brandName}</option>
+                                                    )
+                                                }
                                             </select>
                                         </div>
                                         <div className="mb-3">
