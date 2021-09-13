@@ -550,26 +550,79 @@ footer p {
   padding: 45px 30px 300px;
   .order {
     border: 1px solid black;
-    padding:16px 32px;
-    margin-bottom:20px;
-    .order-title{
-      font-size:12px; font-weight:400;
-      text-transform:initial;
+    padding: 16px 32px;
+    margin-bottom: 20px;
+    .order-title {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: initial;
     }
-    .date{ font-weight:300;  font-size:12px;}
-    .orderId{ font-weight:300;  font-size:12px;}
-    .detail-btn, .doc-btn, .more-btn{
-      padding:5px 20px;
-      margin-left:16px;
-      font-size:10px;
-      font-weight:500;
-      background:#E5E5E5;
-      color:black;
+    .date {
+      font-weight: 300;
+      font-size: 12px;
     }
-    .more-btn{
-      background:#121212;
-      color:white;
-      a{ color:white; }
+    .orderId {
+      font-weight: 300;
+      font-size: 12px;
+    }
+    .detail-btn,
+    .doc-btn,
+    .more-btn {
+      padding: 5px 20px;
+      margin-left: 16px;
+      font-size: 10px;
+      font-weight: 500;
+      background: #e5e5e5;
+      color: black;
+    }
+    .more-btn {
+      background: #121212;
+      color: white;
+      a {
+        color: white;
+      }
+    }
+  }
+}
+
+.page-content {
+  .nav-tabs {
+    .nav-item {
+      background: #e5e5e5;
+      margin-right: 0;
+      padding: 20px 45px;
+      border: none;
+      font-size: 12px;
+      font-weight: 300;
+      &.active {
+        background: #f7f7f7;
+      }
+    }
+  }
+  .tab-content {
+    background: #f7f7f7;
+    padding: 45px 45px 150px;
+    .tab-title{
+      font-size:18px;
+      font-weight:400;
+    }
+    p{
+      font-size:14px;
+      font-weight:300;
+    }
+    .chatBox{
+      border:1px solid black;
+      min-height:350px;
+      width:50%;
+      background:white;
+      position:relative;
+      .input-bar{
+        position:absolute;
+        bottom:0;
+        left:0;
+        border-top:1px solid black;
+        input{ background:white; }
+      }
     }
   }
 }

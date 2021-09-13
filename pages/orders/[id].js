@@ -6,6 +6,8 @@ import PagtTitle from '../../components/layout/PageTitle';
 import Heading from '../../components/layout/Heading';
 import cover from '../../assets/certificate/cover.png';
 import {Tabs, Tab, Modal, Row, Button, Col, Form, Card, Container} from "react-bootstrap";
+import TelegramIcon from '@material-ui/icons/Telegram';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 function OrderDetail() {
     const router = useRouter()
@@ -20,9 +22,8 @@ function OrderDetail() {
 "/>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="page-services">
+            <main className="page-services page-content">
                 <PagtTitle title="Order Detail" bg={cover} />
-                <h2> order: {id}</h2>
                 <section>
                     <div className="container-fluid">
                         <div className="row">
@@ -31,16 +32,24 @@ function OrderDetail() {
                             <Tabs defaultActiveKey="home" 
                                id="orderDetails">
                              <Tab eventKey="home" title="Item Info">
-                                 <h1>Item Info</h1>
+                                 <h3 className="tab-title">General Information</h3>
                              </Tab>
                              <Tab eventKey="servives" title="Servives">
                                  <h1>Servives</h1>
                              </Tab>
                              <Tab eventKey="message" title="Message">
-                                 <h1>Message</h1>
+                                 <h3 className="tab-title">Have something in mind ?</h3>
+                                 <p>Chat with us, let’s see anything we can help.</p>
+                                 <div className="chatBox">
+                                 <div className="input-group input-bar">
+                            <input type="text" className="form-control" placeholder="What help do you need from us?" />
+                            <button className="btn" type="button" id="button-addon2"><AttachFileIcon/></button>
+                            <button className="btn" type="button" id="button-addon2"><TelegramIcon/></button>
+                        </div>
+                                 </div>
                              </Tab>
                              <Tab eventKey="transaction" title="Transaction">
-                                 <h1>Transaction</h1>
+                                 <h3 className="tab-title">General Information</h3>
                              </Tab>
                          </Tabs>
                                
