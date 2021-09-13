@@ -26,8 +26,8 @@ export function AuthProvider(props) {
         router.push('/sign-in/')
     }
 
-    function login(email, password) {
-        auth.signInWithEmailAndPassword(email, password)
+    async function login(email, password) {
+        await auth.signInWithEmailAndPassword(email, password)
         router.push('/account/')
     }
 

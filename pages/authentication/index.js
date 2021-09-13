@@ -44,6 +44,7 @@ function Authentication() {
         await tasksRef.add(info).then((taskRef) => {
             console.log(taskRef.id);
             window.localStorage.setItem('taskId', taskRef.id);
+            window.localStorage.setItem('clientId', user.uid);
             
         });
         console.log('go next');
@@ -54,6 +55,7 @@ function Authentication() {
         setBrand(text);
         console.log(text);
         setInfo({
+            clientId:user.uid,
             brand:brand,
             name:name,
             clientName:clientName,
@@ -67,6 +69,7 @@ function Authentication() {
         setName(text);
         console.log(text);
         setInfo({
+            clientId:user.uid,
             brand:brand,
             name:name,
             clientName:clientName,
@@ -80,6 +83,7 @@ function Authentication() {
         setClientName(text);
         console.log(text);
         setInfo({
+            clientId:user.uid,
             brand:brand,
             name:name,
             clientName:clientName,
@@ -93,6 +97,7 @@ function Authentication() {
         setCategory(text);
         console.log(text);
         setInfo({
+            clientId:user.uid,
             brand:brand,
             name:name,
             clientName:clientName,
