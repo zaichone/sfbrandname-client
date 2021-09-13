@@ -36,6 +36,8 @@ function OrderDetail() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('submiting')
+        if(!text){ return }
+        if(message && text){
         await MesagesRef.add(message)
             .then(function () {
                 console.log("Document successfully written Text!", new Date().toISOString());
@@ -44,7 +46,7 @@ function OrderDetail() {
                 console.error("Error writing document: ", error);
             });
         setText('');
-
+        }
     }
     useEffect(() => {
         const _clientId = window.localStorage.getItem('clientId');
