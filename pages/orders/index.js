@@ -10,7 +10,7 @@ import OrderFilter from '../../components/layout/OrderFilter';
 
 import { firestore } from '../../src/config/firebase';
 
-function MyOrder() {
+function Order() {
     const [orders, setOrders] = useState();
     const [clientId, setClientId] = useState('');
     useEffect(() => {
@@ -67,9 +67,9 @@ function MyOrder() {
                                             </div>
                                             
                                             <div className="col-12 col-sm-4 d-flex justify-content-end align-items-center">
-                                                <button className="detail-btn">Detail</button>
+                                                <button className="detail-btn"><Link href={`/orders/${order.id}`} >Detail</Link></button>
                                                 <button className="doc-btn">Document</button>
-                                                <button className="more-btn"><Link href="/authentication/" >More</Link></button>
+                                                <button className="more-btn"><Link href={`/orders/${order.id}`} >More</Link></button>
                                             </div>
                                         </div>
                                         )
@@ -84,4 +84,4 @@ function MyOrder() {
     )
 }
 
-export default MyOrder
+export default Order
