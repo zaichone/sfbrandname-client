@@ -39,10 +39,15 @@ function OrderDetail() {
       </Head>
       <main className="page-authenticate">
         <PageTitle title="Order Detail" bg={cover} />
+    <br/>
 
+
+
+
+     
         <div className="">
         <Container>
-          <Nav variant="tabs" defaultActiveKey="1">
+          <Nav variant="tabs" defaultActiveKey="3">
             <Nav.Item>
               <Nav.Link href="/order-info" eventKey="1">
                 Order Info
@@ -54,73 +59,53 @@ function OrderDetail() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-messages" eventKey="2">
+              <Nav.Link href="/order-messages" eventKey="3">
                 Messages
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-transaction" eventKey="2">
+              <Nav.Link href="/order-transaction" eventKey="4">
                 Transaction Info
               </Nav.Link>
             </Nav.Item>
           </Nav>
 
-          <div>
-            <Row className="mt-3">
-              <Col>
-                <div className="my-3">
-                  <Row className=" mt-5">
-                  <Col className="d-flex ">
-                <h2 className="fs-4 mt-3 mb-2 me-auto">General Information</h2>
-               
-              </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Name</p>
-                    </Col>
-                    <Col>
-                      <p>Pochette</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Brand</p>
-                    </Col>
-                    <Col>
-                      <p>LOUIS VUITTON</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Timestamp</p>
-                    </Col>
-                    <Col>
-                      <p>31/12/2021 21:43</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Order ID</p>
-                    </Col>
-                    <Col>
-                      <p>38052ba2-a640-4207-b533-61f4253bfef9</p>
-                    </Col>
-                  </Row>
-                </div>
+         
+
+          {/* chat box */}
+          <div
+            className="bg-light d-flex flex-column w-100"
+            style={{ height: "24rem" }}
+          >
+            <Row>
+              <Col className="d-flex flex-row align-items-center">
+                <img
+                  src={userIcon}
+                  className="mx-3 my-1"
+                  style={{ width: "2rem", height: "2rem" }}
+                />
+                <span> chat message from customer</span>
               </Col>
             </Row>
-            <Row className=" mt-5">
-            <Col className="d-flex ">
-                <h2 className="fs-4 mt-3 mb-2 me-auto">Product Picture</h2>
-               
+            <Row>
+              <Col className="d-flex flex-row-reverse align-items-center">
+                <img
+                  src={userIcon}
+                  className="mx-3 my-1"
+                  style={{ width: "2rem", height: "2rem" }}
+                />
+                <span> chat message from staff</span>
               </Col>
             </Row>
-            <Row className=" mt-5">
-              
-             
+          </div>
+
+          <div className="bg-light d-flex flex-column w-100">
+            <Row>
+              <Col className="d-flex flex-row align-items-center">
+                <Form.Control type="text" placeholder="chat message" />
+                <Button>send</Button>
+              </Col>
             </Row>
-            
           </div>
         </Container>
         </div>

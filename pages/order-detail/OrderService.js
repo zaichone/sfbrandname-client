@@ -39,10 +39,10 @@ function OrderDetail() {
       </Head>
       <main className="page-authenticate">
         <PageTitle title="Order Detail" bg={cover} />
-
+    <br/>
         <div className="">
         <Container>
-          <Nav variant="tabs" defaultActiveKey="1">
+          <Nav variant="tabs" defaultActiveKey="2">
             <Nav.Item>
               <Nav.Link href="/order-info" eventKey="1">
                 Order Info

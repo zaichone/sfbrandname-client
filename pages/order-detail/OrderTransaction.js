@@ -39,10 +39,15 @@ function OrderDetail() {
       </Head>
       <main className="page-authenticate">
         <PageTitle title="Order Detail" bg={cover} />
+    <br/>
 
+
+
+
+     
         <div className="">
         <Container>
-          <Nav variant="tabs" defaultActiveKey="1">
+          <Nav variant="tabs" defaultActiveKey="4">
             <Nav.Item>
               <Nav.Link href="/order-info" eventKey="1">
                 Order Info
@@ -54,73 +59,46 @@ function OrderDetail() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-messages" eventKey="2">
+              <Nav.Link href="/order-messages" eventKey="3">
                 Messages
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-transaction" eventKey="2">
+              <Nav.Link href="/order-transaction" eventKey="4 ">
                 Transaction Info
               </Nav.Link>
             </Nav.Item>
           </Nav>
 
-          <div>
-            <Row className="mt-3">
-              <Col>
-                <div className="my-3">
-                  <Row className=" mt-5">
-                  <Col className="d-flex ">
+          <div className="mt-5">
+            <Row className="mb-4">
+              <Col className="d-flex ">
                 <h2 className="fs-4 mt-3 mb-2 me-auto">General Information</h2>
-               
-              </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Name</p>
-                    </Col>
-                    <Col>
-                      <p>Pochette</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Brand</p>
-                    </Col>
-                    <Col>
-                      <p>LOUIS VUITTON</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Timestamp</p>
-                    </Col>
-                    <Col>
-                      <p>31/12/2021 21:43</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Order ID</p>
-                    </Col>
-                    <Col>
-                      <p>38052ba2-a640-4207-b533-61f4253bfef9</p>
-                    </Col>
-                  </Row>
-                </div>
+                <Button className="ms-auto">Edit</Button>
               </Col>
             </Row>
-            <Row className=" mt-5">
-            <Col className="d-flex ">
-                <h2 className="fs-4 mt-3 mb-2 me-auto">Product Picture</h2>
-               
-              </Col>
+
+            <Row>
+              <Col className=" col-4">Order</Col>
+              <Col>38052ba2-a640-4207-b533-61f4253bfef9</Col>
             </Row>
-            <Row className=" mt-5">
-              
-             
+            <Row>
+              <div className="col col-4">Submitted</div>
+              <Col>07/07/2021, 2:38 PM</Col>
             </Row>
-            
+            <Row>
+              <div className="col col-4">Services</div>
+              <Col>Basic Authentication, Official Documentation</Col>
+            </Row>
+            <Row>
+              <div className="col col-4">Amount</div>
+              <Col>Amount</Col>
+            </Row>
+
+            <Row>
+              <div className="col col-4">Payment Method</div>
+              <Col>Master Card **** **** **** 3200 ($30)</Col>
+            </Row>
           </div>
         </Container>
         </div>
