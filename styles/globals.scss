@@ -616,6 +616,15 @@ footer p {
       width:50%;
       background:white;
       position:relative;
+      .message-lists{
+        padding:35px;
+        .client{
+          text-align:right;
+        }
+        .staff{
+          text-align:left;
+        }
+      }
       .input-bar{
         position:absolute;
         bottom:0;
