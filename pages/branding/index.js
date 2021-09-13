@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link';
 import PagtTitle from '../../components/layout/PageTitle';
@@ -6,7 +7,23 @@ import SearchBar from '../../components/layout/SearchBar';
 import BrandList from '../../components/layout/BrandList';
 import cover from '../../assets/branding/cover.png';
 
+import { firestore } from '../../src/config/firebase';
+
 function Branding() {
+    const [brands, setBrands] = useState();
+    useEffect(() => {
+        const brandsRef = firestore.collection('brands');
+        const unsubscribe = brandsRef
+            .onSnapshot((snapshot) => {
+                const data = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                console.log('brands data', data)
+                setBrands(data);
+            });
+        return () => unsubscribe();
+    }, []);
     return (
         <div>
             <Head>
@@ -21,13 +38,15 @@ function Branding() {
                 <section className="page-section">
                     <div className="container">
                         <p className="page-description">
-                        Super Authentic offers various services to authenticate your designer brand products - bags, clothings, shoes, accessories, watches, eyewears etc. We have a team of experts to help verify your beloved goods and a customer services team to provide support for you
+                            Super Authentic offers various services to authenticate your designer brand products - bags, clothings, shoes, accessories, watches, eyewears etc. We have a team of experts to help verify your beloved goods and a customer services team to provide support for you
                         </p>
                     </div>
                 </section>
-                <ServiceListCommon/>
-                <SearchBar/>
-                <BrandList/>
+                <ServiceListCommon />
+                <SearchBar />
+                {brands &&
+                    <BrandList brands={brands} />
+                }
             </main>
         </div>
     )

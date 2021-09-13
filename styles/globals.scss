@@ -412,14 +412,18 @@ footer p {
 .brands {
   background: white;
   padding: 0px 0px 120px;
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  display: flex;
+  flex-wrap:wrap;
+  //grid-template-columns: auto auto auto auto auto;
   .brand {
     min-height: 200px;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    width:20%;
+    padding-left:50px;
+    padding-right:50px;
     &.odd {
       background: #f8f8f8;
     }
