@@ -69,7 +69,7 @@ function MyOrder() {
                                             <div className="col-12 col-sm-4 d-flex justify-content-end align-items-center">
                                                 <button className="detail-btn">Detail</button>
                                                 <button className="doc-btn">Document</button>
-                                                <button className="more-btn">More</button>
+                                                <button className="more-btn"><Link href="/authentication/" >More</Link></button>
                                             </div>
                                         </div>
                                         )

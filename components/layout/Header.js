@@ -28,6 +28,7 @@ function Header() {
                 }
                 {user &&
                 <>
+                <li className="nav-item"><Link href="/my-order/" className="nav-link">My Order</Link></li>
                 <li className="nav-item"><Link href="/account/" className="nav-link">My Account</Link></li>
                     <li className="nav-item"><button onClick={signOut} className="nav-link">Sign Out</button></li>
                 </>
