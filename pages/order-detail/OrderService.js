@@ -40,10 +40,15 @@ function OrderDetail() {
       <main className="page-authenticate">
         <PageTitle title="Order Detail" bg={cover} />
     <br/>
-        <div className="">
+
+
+
+
+     
+    <div className="">
         <Container>
           <Nav variant="tabs" defaultActiveKey="2">
-            <Nav.Item>
+          <Nav.Item>
               <Nav.Link href="/order-info" eventKey="1">
                 Order Info
               </Nav.Link>
@@ -54,12 +59,12 @@ function OrderDetail() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-messages" eventKey="2">
+              <Nav.Link href="/order-messages" eventKey="3">
                 Messages
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/order-transaction" eventKey="2">
+              <Nav.Link href="/order-transaction" eventKey="4">
                 Transaction Info
               </Nav.Link>
             </Nav.Item>
@@ -70,62 +75,219 @@ function OrderDetail() {
               <Col>
                 <div className="my-3">
                   <Row className=" mt-5">
-                  <Col className="d-flex ">
-                <h2 className="fs-4 mt-3 mb-2 me-auto">General Information</h2>
-               
-              </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={4}>
-                      <p>Name</p>
-                    </Col>
                     <Col>
-                      <p>Pochette</p>
+                      <p className="h4 mb-4">Services</p>
                     </Col>
                   </Row>
-                  <Row>
+
+                  <Row className="mb-3">
+                    <Col xs={1}>
+                      <span className=" text-success">
+                        <CheckIcon />
+                      </span>
+                    </Col>
                     <Col xs={4}>
-                      <p>Brand</p>
+                      <p>Basic Authentication</p>
                     </Col>
                     <Col>
-                      <p>LOUIS VUITTON</p>
+                      <div className="mb-3">
+                        <Form.Check
+                          inline
+                          label="authentic"
+                          name="group1"
+                          type="checkbox"
+                          id="1"
+                        />
+                        <Form.Check
+                          inline
+                          label="in progress"
+                          name="group1"
+                          type="checkbox"
+                          id="2"
+                        />
+                        <Form.Check
+                          inline
+                          label="counterfeit"
+                          name="group1"
+                          type="checkbox"
+                          id="3"
+                        />
+                        <Form.Check
+                          inline
+                          label="issue"
+                          name="group1"
+                          type="checkbox"
+                          id="4"
+                        />
+                      </div>
                     </Col>
                   </Row>
-                  <Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-success">
+                        <CheckIcon />
+                      </span>
+                    </Col>
                     <Col xs={4}>
-                      <p>Timestamp</p>
+                      <p>Official Documentation</p>
                     </Col>
                     <Col>
-                      <p>31/12/2021 21:43</p>
+                      <span>link: 38052ba2-a640-4207-b533-61f4253bfef9</span>
+                      <Button variant="link">generate</Button>
+                      <Button variant="link">delete</Button>
+
                     </Col>
                   </Row>
-                  <Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
                     <Col xs={4}>
-                      <p>Order ID</p>
+                      <p>Market Valuation</p>
                     </Col>
                     <Col>
-                      <p>38052ba2-a640-4207-b533-61f4253bfef9</p>
+                    <Form.Control type="text" placeholder="market value" />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>Item Identification</p>
+                    </Col>
+                    <Col>
+                    <Form.Control type="text" placeholder="name" />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>Year of Production</p>
+                    </Col>
+                    <Col>
+                    <Form.Control type="text" placeholder="year" />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>Authenticate and Delivery</p>
+                    </Col>
+                    <Col>
+                    <Form.Check
+                          inline
+                          label="Authenticate and Delivery"
+                          name="group1"
+                          type="checkbox"
+                          id="delivery"
+                        />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>Hermès Leather Bag</p>
+                    </Col>
+                    <Col>
+                    <Form.Check
+                          inline
+                          label="Hermès Leather Bag"
+                          name="group1"
+                          type="checkbox"
+                          id="hermes"
+                        />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>Hermès Exotic Leather Bag</p>
+                    </Col>
+                    <Col>
+                    <Form.Check
+                          inline
+                          label="Hermès Exotic Leather Bag"
+                          name="group1"
+                          type="checkbox"
+                          id="hermes-exotic"
+                        />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>2 Hours Turnaround Service</p>
+                    </Col>
+                    <Col>
+                    <Form.Check
+                          inline
+                          label="2 Hours Turnaround Service"
+                          name="group1"
+                          type="checkbox"
+                          id="fastservice"
+                        />
+                    </Col>
+                  </Row>
+
+                  <Row  className="mb-3">
+                    <Col xs={1} className="">
+                      <span className=" text-danger">
+                        <CrossIcon />
+                      </span>
+                    </Col>
+                    <Col xs={4}>
+                      <p>HAC and Delivery</p>
+                    </Col>
+                    <Col>
+                    <Form.Check
+                          inline
+                          label="HAC and Delivery"
+                          name="group1"
+                          type="checkbox"
+                          id="delivery-hardcopy"
+                        />
                     </Col>
                   </Row>
                 </div>
               </Col>
             </Row>
-            <Row className=" mt-5">
-            <Col className="d-flex ">
-                <h2 className="fs-4 mt-3 mb-2 me-auto">Product Picture</h2>
-               
-              </Col>
-            </Row>
-            <Row className=" mt-5">
-              
-             
-            </Row>
-            
           </div>
         </Container>
-        </div>
+      </div>
       </main>
-      
     </div>
   );
 }
