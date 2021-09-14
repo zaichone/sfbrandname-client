@@ -47,6 +47,7 @@ function Authentication() {
             console.log(taskRef.id);
             window.localStorage.setItem('taskId', taskRef.id);
             window.localStorage.setItem('clientId', user.uid);
+            window.localStorage.setItem('category', category);
             
         });
         console.log('go next');

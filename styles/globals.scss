@@ -532,6 +532,9 @@ footer p {
   .image-box {
     background: #f7f7f7;
     border: 1px dashed black;
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
   }
 }
 
@@ -552,6 +555,11 @@ footer p {
     border: 1px solid black;
     padding: 16px 32px;
     margin-bottom: 20px;
+    .order-thumbnail{
+      img{
+        max-width:250px;
+      }
+    }
     .order-title {
       font-size: 12px;
       font-weight: 400;
