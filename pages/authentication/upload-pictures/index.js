@@ -28,6 +28,7 @@ function UploadPicutres() {
     const [imageScrews, setImageScrews] = useState('')
     const [imageLensEngraving, setImageLensEngraving] = useState('')
     const [imageAdditionalImage, setImageAdditionalImage] = useState('')
+    const [featured, setFeatured] = useState();
     const router = useRouter()
 
     useEffect(() => {
@@ -40,7 +41,7 @@ function UploadPicutres() {
         const taskRef = firestore.collection('tasks').doc(taskId);
         taskRef.update({
             images: images,
-            
+            featured:featured
             },{ merge: true})
             .then(() => {}).catch((error) => {});
         router.push('/authentication/almost-done/')
@@ -63,6 +64,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -83,6 +85,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -103,6 +106,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -123,6 +127,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -143,6 +148,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -163,6 +169,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }
@@ -183,6 +190,7 @@ function UploadPicutres() {
                     timestamp:new Date().getTime()
                 });
                 setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
+                setFeatured(downloadURL);
             });
         })
     }

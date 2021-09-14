@@ -59,7 +59,7 @@ function Order() {
                                                     
                                                     <SymmetricalDiv
                                                         className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                        style={{backgroundImage:`url(${order?.images[0]?.imageURL})`, backgroundPosition:'center center',backgroundSize:cover}}
+                                                        style={{backgroundImage:`url(${order?.featured})`, backgroundPosition:'center center',backgroundSize:cover}}
                                                     >
 
                                                     </SymmetricalDiv>

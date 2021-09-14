@@ -27,8 +27,12 @@ export function AuthProvider(props) {
     }
 
     async function login(email, password) {
-        await auth.signInWithEmailAndPassword(email, password)
-        router.push('/account/')
+        
+            await auth.signInWithEmailAndPassword(email, password).then((user) => {
+                console.log("🚀 ~ file: auth.js ~ line 31 ~ awaitauth.signInWithEmailAndPassword ~ user", user)
+
+            });
+
     }
 
     async function signUp(email, password, firstName, lastName) {

@@ -14,6 +14,7 @@ function Header() {
 
     async function signOut() {
         await auth.signOut();
+        window.location.reload(); 
         router.push("/sign-in/");
     }
     return (

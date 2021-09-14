@@ -10,8 +10,8 @@ import { auth } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
 function Account() {
-    const { user, login, logout } = useAuth();
-    console.log("🚀 ~ file: index.js ~ line 14 ~ Account ~ user", user)
+    const { user, logout } = useAuth();
+    //console.log("🚀 ~ file: index.js ~ line 14 ~ Account ~ user", user)
     const router = useRouter()
     //console.log("🚀 ~ file: index.js ~ line 11 ~ Account ~ user", user)
     if (!user) {
