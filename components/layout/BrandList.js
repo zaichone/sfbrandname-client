@@ -8,7 +8,7 @@ function BrandList({ brands }) {
                 brands.map((brand, index) =>
                     <div className={index%2==0? 'brand odd': 'brand even'} key={brand.id}>
                         <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" style={{ width: '100%' }}>
-                            <strong>{brand.brandName}</strong>
+                            <span>{brand.brandName}</span>
                         </SymmetricalDiv>
                     </div>
                 )

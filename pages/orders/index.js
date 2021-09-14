@@ -69,7 +69,7 @@ function Order() {
                                                     <h3 className="order-title">{order.name} - {order.brand}</h3>
 
                                                     <h4 className="date">{new Date(order.timestamp).toLocaleString()}</h4>
-                                                    <h4 className="orderId"><strong>Order ID:</strong> {order.id}</h4>
+                                                    <h4 className="orderId"><span>Order ID:</span> {order.id}</h4>
                                                 </div>
                                                 <div className="col-12 col-sm-2 d-flex align-items-center">
                                                     <CheckCircleIcon style={{ color: 'teal', fontSize: '2rem', marginRight: 10 }} />{order.status}
