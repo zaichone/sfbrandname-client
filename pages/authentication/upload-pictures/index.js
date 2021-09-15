@@ -29,13 +29,16 @@ function UploadPicutres() {
     const [imageLensEngraving, setImageLensEngraving] = useState('')
     const [imageAdditionalImage, setImageAdditionalImage] = useState('')
     const [featured, setFeatured] = useState();
-    const router = useRouter()
+    const router = useRouter();
+    //const { taskId } = router.query;
+    console.log("🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskId", taskId)
 
     useEffect(() => {
         const _clientId = window.localStorage.getItem('clientId');
         setClientId(_clientId);
+        
         const _taskId = window.localStorage.getItem('taskId');
-        setTaskId(_taskId);
+        setTaskId(_taskId); 
     },[]);
     function goNext(){
         const taskRef = firestore.collection('tasks').doc(taskId);

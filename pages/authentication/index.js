@@ -17,6 +17,7 @@ function Authentication() {
     const { user, login, logout } = useAuth();
     console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
     const router = useRouter();
+    const [taskId, setTaskId] = useState();
     const [info, setInfo] = useState('');
     const [brand, setBrand] = useState('SF');
     const [name, setName] = useState('John');
@@ -45,13 +46,17 @@ function Authentication() {
         window.localStorage.setItem('taskInfo', JSON.stringify(info));
         await tasksRef.add(info).then((taskRef) => {
             console.log(taskRef.id);
+            setTaskId(taskRef.id);
             window.localStorage.setItem('taskId', taskRef.id);
             window.localStorage.setItem('clientId', user.uid);
             window.localStorage.setItem('category', category);
             
         });
         console.log('go next');
-        router.push('/authentication/upload-pictures/')
+        router.push({
+            pathname: '/authentication/upload-pictures/',
+          query: { taskId: taskId },
+        })
     }
     function handleBrandChange(e){
         let text = e.target.value;
