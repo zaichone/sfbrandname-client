@@ -6,6 +6,8 @@ import Heading from '../../components/layout/Heading';
 import cover from '../../assets/certificate/cover.png';
 import thumb from '../../assets/my-order/thumb.png';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import InfoIcon from '@material-ui/icons/Info';
+import CancelIcon from '@material-ui/icons/Cancel';
 import OrderFilter from '../../components/layout/OrderFilter';
 
 import SymmetricalDiv from '../../components/layout/SymmetricalDiv';
@@ -38,6 +40,21 @@ function Order() {
     function showDate(time) {
         console.log(time);
     }
+    function showIcon(status) {
+        switch (status) {
+            case 'Authentic':
+                return <CheckCircleIcon style={{ color: 'teal', fontSize: '2rem', marginRight: 10 }} />
+                break;
+            case 'Counterfeit':
+                return <CancelIcon style={{ color: 'orange', fontSize: '2rem', marginRight: 10 }} />
+                break;
+            case 'In Progress':
+                return <InfoIcon style={{ color: '#FFA000', fontSize: '2rem', marginRight: 10 }} />
+                break;
+            default:
+                return <InfoIcon style={{ color: 'red', fontSize: '2rem', marginRight: 10 }} />
+        }
+    }
     return (
         <div>
             <Head>
@@ -54,20 +71,20 @@ function Order() {
                         <div className="row">
 
                             <div className="col-12 col-sm-12 gx-0">
-                                <OrderFilter 
-                                isAuthentic={isAuthentic} setIsAuthentic={setIsAuthentic} 
-                                isCounterfeit={isCounterfeit} setIsCounterfeit={setIsCounterfeit}
-                                isInProgress={isInProgress} setIsInProgress={setIsInProgress}
-                                isNeedAction={isNeedAction} setIsNeedAction={setIsNeedAction}/>
+                                <OrderFilter
+                                    isAuthentic={isAuthentic} setIsAuthentic={setIsAuthentic}
+                                    isCounterfeit={isCounterfeit} setIsCounterfeit={setIsCounterfeit}
+                                    isInProgress={isInProgress} setIsInProgress={setIsInProgress}
+                                    isNeedAction={isNeedAction} setIsNeedAction={setIsNeedAction} />
                                 <div className="orders">
                                     {
                                         orders?.map((order, index) =>
                                             <div className="order row" key={order.id}>
                                                 <div className="col-12 col-sm-2 order-thumbnail">
-                                                    
+
                                                     <SymmetricalDiv
                                                         className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                        style={{backgroundImage:`url(${order?.featured})`, backgroundPosition:'center center',backgroundSize:cover}}
+                                                        style={{ backgroundImage: `url(${order?.featured})`, backgroundPosition: 'center center', backgroundSize: cover }}
                                                     >
 
                                                     </SymmetricalDiv>
@@ -80,7 +97,7 @@ function Order() {
                                                     <h4 className="orderId"><span>Order ID:</span> {order.id}</h4>
                                                 </div>
                                                 <div className="col-12 col-sm-2 d-flex align-items-center">
-                                                    <CheckCircleIcon style={{ color: 'teal', fontSize: '2rem', marginRight: 10 }} />{order.status}
+                                                    {showIcon(order.status)}
                                                 </div>
 
                                                 <div className="col-12 col-sm-4 d-flex justify-content-end align-items-center">
