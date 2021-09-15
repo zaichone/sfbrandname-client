@@ -54,30 +54,30 @@ function Account() {
               </div>
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  <h3>Account</h3>
+                  <h3 className="mt-5 mb-3">Account</h3>
                 </div>
 
                 <div className="">
-                  <div className="row">
-                    <div className="col-3 fw-bold">business name:</div>
+                  <div className="row mb-3">
+                    <div className="col-3">Business name</div>
                     <div className="col">john smith</div>
                   </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">account created</div>
+                  <div className="row mb-3">
+                    <div className="col-3">Account created</div>
                     <div className="col">31/12/2021</div>
                   </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">email</div>
+                  <div className="row mb-3">
+                    <div className="col-3">Email</div>
                     <div className="col">john@example.com</div>
                   </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">Documentation id name</div>
+                  <div className="row mb-3">
+                    <div className="col-3">Documentation id name</div>
                     <div className="col">company name limited</div>
                   </div>
                 </div>
                 <div className="">
-                  <h3>payment detail</h3>
-                  <div className="row">
+                  <h3 className="mt-5 mb-3">payment detail</h3>
+                  <div className="row mb-3">
                     <div className="col-3">john smith</div>
                     <div className="col-6">mastercard **** **** **** 3200</div>
                     <div className="col">edit</div>
@@ -85,13 +85,13 @@ function Account() {
                   </div>
                 </div>
                 <div className="">
-                  <h3>address</h3>
-                  <div className="row">
+                  <h3 className="mt-5 mb-3">address</h3>
+                  <div className="row mb-3">
                     <div className="col-3">
                       <p>
                         john smith
-                        <br/>
-                         333 Moo1,
+                        <br />
+                        333 Moo1,
                         <br />
                         Thasud, Muang,
                         <br />

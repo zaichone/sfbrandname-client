@@ -53,28 +53,30 @@ function index() {
               </div>
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  <h3>History</h3>
+                  <h3 className="mt-5 mb-3">History</h3>
                 </div>
                 <div className="">
                   <p>31/12/2021 12:34 PM</p>
-                  <div className="row">
-                    <div className="col-3">order:</div>
+                  <div className="row mb-3">
+                    <div className="col-2">Order</div>
                     <div className="col">
                       38052ba2-a640-4207-b533-61f4253bfef9
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-3">description</div>
+                  <div className="row mb-3">
+                    <div className="col-2">Description</div>
                     <div className="col">
-                      $30 Basic Authentication $10 Official Documentation
+                      $30 Basic Authentication
+                      <br />
+                      $10 Official Documentation
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-3">total</div>
+                  <div className="row mb-3">
+                    <div className="col-2">Total</div>
                     <div className="col">$30</div>
                   </div>
-                  <div className="row">
-                    <div className="col-3">payment method</div>
+                  <div className="row mb-3">
+                    <div className="col-2">Payment method</div>
                     <div className="col">mastercard **** **** **** 3200</div>
                   </div>
                 </div>
