@@ -8,8 +8,7 @@ import { useRouter } from "next/router";
 
 import { auth } from "../../src/config/firebase";
 import useAuth from "../../src/hooks/auth";
-
-function Account() {
+function index() {
   const { user, login, logout } = useAuth();
   console.log("🚀 ~ file: index.js ~ line 14 ~ Account ~ user", user);
   const router = useRouter();
@@ -20,7 +19,7 @@ function Account() {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Account</title>
+        <title>SF Brandname - History</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
@@ -32,7 +31,7 @@ function Account() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="Account" bg={cover} />
+        <PagtTitle title="History" bg={cover} />
 
         <section>
           <div className="container-fluid gx-0">
@@ -54,50 +53,29 @@ function Account() {
               </div>
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  <h3>Account</h3>
-                </div>
-
-                <div className="">
-                  <div className="row">
-                    <div className="col-3 fw-bold">business name:</div>
-                    <div className="col">john smith</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">account created</div>
-                    <div className="col">31/12/2021</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">email</div>
-                    <div className="col">john@example.com</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-3 fw-bold">Documentation id name</div>
-                    <div className="col">company name limited</div>
-                  </div>
+                  <h3>History</h3>
                 </div>
                 <div className="">
-                  <h3>payment detail</h3>
+                  <p>31/12/2021 12:34 PM</p>
                   <div className="row">
-                    <div className="col-3">john smith</div>
-                    <div className="col-6">mastercard **** **** **** 3200</div>
-                    <div className="col">edit</div>
-                    <div className="col">delete</div>
-                  </div>
-                </div>
-                <div className="">
-                  <h3>address</h3>
-                  <div className="row">
-                    <div className="col-3">
-                      <p>
-                        john smith
-                        <br/>
-                         333 Moo1,
-                        <br />
-                        Thasud, Muang,
-                        <br />
-                        Chiang Rai 57100
-                      </p>
+                    <div className="col-3">order:</div>
+                    <div className="col">
+                      38052ba2-a640-4207-b533-61f4253bfef9
                     </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-3">description</div>
+                    <div className="col">
+                      $30 Basic Authentication $10 Official Documentation
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-3">total</div>
+                    <div className="col">$30</div>
+                  </div>
+                  <div className="row">
+                    <div className="col-3">payment method</div>
+                    <div className="col">mastercard **** **** **** 3200</div>
                   </div>
                 </div>
               </div>
@@ -109,4 +87,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default index;

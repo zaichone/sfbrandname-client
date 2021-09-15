@@ -5,7 +5,7 @@ import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import cover from "../../assets/certificate/cover.png";
-import bagImage from "../../assets/my-order/thumb.png";
+import bagImage from "../../assets/Handbags.png";
 import {
   Tabs,
   Tab,
@@ -19,6 +19,8 @@ import {
 } from "react-bootstrap";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 import { auth, firestore } from "../../src/config/firebase";
 
@@ -100,7 +102,6 @@ function OrderDetail() {
       <main className="page-services page-content">
         <PagtTitle title="Order Detail" bg={cover} />
 
-
         <section>
           <div className="container-fluid">
             <div className="row">
@@ -108,8 +109,7 @@ function OrderDetail() {
                 <Tabs defaultActiveKey="home" id="orderDetails">
                   <Tab eventKey="home" title="Item Info">
                     <h3 className="tab-title">General Information</h3>
-                
-                   
+
                     <Row>
                       <Col xs={4}>
                         <p>Name</p>
@@ -142,101 +142,93 @@ function OrderDetail() {
                         <p>38052ba2-a640-4207-b533-61f4253bfef9</p>
                       </Col>
                     </Row>
-                
-               
-                <Row className=" mt-5">
-                <Col className="d-flex ">
-                  <h2 >Product Picture</h2>
-                </Col>
-              </Row>
-              <Row className=" mt-5">
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Font </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Logo </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Made In Tag </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Serial Number / Date Code</p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Hardware Engraving </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-                <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
-                  <p>Additional Image </p>
-                  <div className="d-flex flex-column align-items-center justify-content-center m-5">
-                  <img src={bagImage.src} alt="" />
-                  </div>
-                </div>
-              </Row>
 
-                
-
-
-
-
-
+                    <Row className=" mt-5">
+                      <Col className="d-flex ">
+                        <h2>Product Picture</h2>
+                      </Col>
+                    </Row>
+                    <Row className=" mt-5">
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Font </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Logo </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Made In Tag </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Serial Number / Date Code</p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Hardware Engraving </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-3 text-center my-3 d-flex flex-column justify-content-center">
+                        <p>Additional Image </p>
+                        <div className="d-flex flex-column align-items-center justify-content-center m-5">
+                          <img src={bagImage.src} alt="" />
+                        </div>
+                      </div>
+                    </Row>
                   </Tab>
-                  <Tab eventKey="servives" title="Servives">
-                    <h1>Servives</h1>
+                  <Tab eventKey="servives" title="Services">
+                    <h1>Services</h1>
                     <Row className="mb-3">
                       <Col xs={1}>
                         <span className=" text-success">
-                          
+                          <CheckCircleIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -279,7 +271,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-success">
-                          
+                          <CheckCircleIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -295,7 +287,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -309,7 +301,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -323,7 +315,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -337,7 +329,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -357,7 +349,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -377,7 +369,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -397,7 +389,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
@@ -417,7 +409,7 @@ function OrderDetail() {
                     <Row className="mb-3">
                       <Col xs={1} className="">
                         <span className=" text-danger">
-                          
+                          <CancelIcon />
                         </span>
                       </Col>
                       <Col xs={4}>
