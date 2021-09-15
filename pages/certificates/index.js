@@ -5,7 +5,7 @@ import Heading from '../../components/layout/Heading';
 import cover from '../../assets/certificate/cover.png';
 import qr from '../../assets/certificate/qr.png';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-function Certificate() {
+function Certificates() {
     return (
         <div>
             <Head>
@@ -65,4 +65,4 @@ function Certificate() {
     )
 }
 
-export default Certificate
+export default Certificates

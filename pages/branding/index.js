@@ -11,6 +11,23 @@ import { firestore } from '../../src/config/firebase';
 
 function Branding() {
     const [brands, setBrands] = useState();
+    const [searchTerm, setSearchTerm] = useState();
+    console.log("🚀 ~ file: index.js ~ line 15 ~ Branding ~ searchTerm", searchTerm)
+
+    function updateBrands(text) {
+        setSearchTerm(text);
+        const filtered = brands.filter((allBrands) => {
+            if (searchTerm == "") {
+                return allBrands;
+            }else if(allBrands.brandName.toLowerCase().includes(text.toLowerCase())){
+                return allBrands;
+            }
+            console.log('allBrands', allBrands);
+            
+        });
+        console.log('brands', filtered)
+        setBrands(filtered);
+    }
     useEffect(() => {
         const brandsRef = firestore.collection('brands');
         const unsubscribe = brandsRef
@@ -43,7 +60,7 @@ function Branding() {
                     </div>
                 </section>
                 <ServiceListCommon />
-                <SearchBar />
+                <SearchBar setSearchTerm={setSearchTerm} updateBrands={updateBrands} />
                 {brands &&
                     <BrandList brands={brands} />
                 }
