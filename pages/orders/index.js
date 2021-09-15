@@ -15,6 +15,10 @@ import { firestore } from '../../src/config/firebase';
 function Order() {
     const [orders, setOrders] = useState();
     const [clientId, setClientId] = useState('');
+    const [isAuthentic, setIsAuthentic] = useState(true);
+    const [isCounterfeit, setIsCounterfeit] = useState(true);
+    const [isInProgress, setIsInProgress] = useState(true);
+    const [isNeedAction, setIsNeedAction] = useState(true);
     useEffect(() => {
         const _clientId = window.localStorage.getItem('clientId');
         setClientId(_clientId);
@@ -50,7 +54,11 @@ function Order() {
                         <div className="row">
 
                             <div className="col-12 col-sm-12 gx-0">
-                                <OrderFilter />
+                                <OrderFilter 
+                                isAuthentic={isAuthentic} setIsAuthentic={setIsAuthentic} 
+                                isCounterfeit={isCounterfeit} setIsCounterfeit={setIsCounterfeit}
+                                isInProgress={isInProgress} setIsInProgress={setIsInProgress}
+                                isNeedAction={isNeedAction} setIsNeedAction={setIsNeedAction}/>
                                 <div className="orders">
                                     {
                                         orders?.map((order, index) =>
