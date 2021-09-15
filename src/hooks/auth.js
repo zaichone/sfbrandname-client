@@ -22,14 +22,16 @@ export function AuthProvider(props) {
     const logout = async () => {
         await auth.signOut();
         setUser(null);
+        //window.location.reload();
+        router.push('/sign-in/');
         window.location.reload();
-        router.push('/sign-in/')
     }
 
     async function login(email, password) {
         
-            await auth.signInWithEmailAndPassword(email, password).then((user) => {
-                console.log("🚀 ~ file: auth.js ~ line 31 ~ awaitauth.signInWithEmailAndPassword ~ user", user)
+        await auth.signInWithEmailAndPassword(email, password).then((user) => {
+                console.log("🚀 ~ file: auth.js ~ line 31 ~ awaitauth.signInWithEmailAndPassword ~ user", user);
+                window.localStorage.setItem('profile', JSON.stringify(user));
 
             });
 

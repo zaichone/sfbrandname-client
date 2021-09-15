@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import { auth, firestore } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
-function Account() {
+function History() {
     const { user, logout } = useAuth();
     const router = useRouter();
     const [profile, setProfile] = useState();
@@ -39,13 +39,13 @@ function Account() {
     return (
         <div>
             <Head>
-                <title>SF Brandname - Account</title>
+                <title>SF Brandname - History</title>
                 <meta name="description" content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า" />
                 <meta name="keyword" content="ร้านแบรนด์เนมมือสอง ราคาดี, ร้านรับซื้อขายของแบรนด์เนมมือสอง, ร้านรับซื้อกระเป๋าแบรนด์เนมมือสอง, ร้านรับซื้อฝากขายแบรนด์เนมแท้, ร้านรับซื้อและฝากขายแบรนด์เนม, ร้านรับซื้อและฝากขายแบรนด์เนม มือสอง, ร้านรับซื้อ-ฝากขายกระเป๋าแบรนด์เนม, ร้านฝากขายกระเป๋าแบรนด์เนม, ร้านขายสินค้าแบรนด์เนมมือสอง ให้ราคาสูง, ร้านจำนำกระเป๋าแบรนด์เนม" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <PagtTitle title="Account" bg={cover} />
+                <PagtTitle title="History" bg={cover} />
 
                 <section>
                     <div className="container-fluid gx-0">
@@ -125,4 +125,4 @@ function Account() {
     )
 }
 
-export default Account
+export default History

@@ -506,6 +506,19 @@ footer p {
     align-items: center;
     background: transparent;
     border: none;
+    ul {
+      background: transparent;
+      .list-group-item {
+        background: transparent;
+        font-weight:400;
+        button{
+          background:transparent;
+          padding:auto;
+          color:black;
+          text-transform:none;
+        }
+      }
+    }
     img {
       width: initial !important;
       max-width: 300px;
@@ -532,9 +545,9 @@ footer p {
   .image-box {
     background: #f7f7f7;
     border: 1px dashed black;
-    background-size:cover;
-    background-position:center center;
-    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -555,9 +568,9 @@ footer p {
     border: 1px solid black;
     padding: 16px 32px;
     margin-bottom: 20px;
-    .order-thumbnail{
-      img{
-        max-width:250px;
+    .order-thumbnail {
+      img {
+        max-width: 250px;
       }
     }
     .order-title {
@@ -610,36 +623,56 @@ footer p {
   .tab-content {
     background: #f7f7f7;
     padding: 45px 45px 150px;
-    .tab-title{
-      font-size:18px;
-      font-weight:400;
+    .tab-title {
+      font-size: 18px;
+      font-weight: 400;
     }
-    p{
-      font-size:14px;
-      font-weight:300;
+    p {
+      font-size: 14px;
+      font-weight: 300;
     }
-    .chatBox{
-      border:1px solid black;
-      min-height:350px;
-      width:50%;
-      background:white;
-      position:relative;
-      .message-lists{
-        padding:35px;
-        .client{
-          text-align:right;
+    .chatBox {
+      border: 1px solid black;
+      min-height: 350px;
+      width: 50%;
+      background: white;
+      position: relative;
+      .message-lists {
+        padding: 35px;
+        .client {
+          text-align: right;
         }
-        .staff{
-          text-align:left;
+        .staff {
+          text-align: left;
         }
       }
-      .input-bar{
-        position:absolute;
-        bottom:0;
-        left:0;
-        border-top:1px solid black;
-        input{ background:white; }
+      .input-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 1px solid black;
+        input {
+          background: white;
+        }
       }
     }
+  }
+}
+
+.profile-details{
+  padding:45px 50px 150px;
+  h3{
+    font-size:18px;
+    font-weight:500;
+  }
+  table{
+    width:70%;
+  }
+  hr{
+    width:25%;
+    margin-top:2rem;
+  }
+  .payment-info{
+    width:70%;
   }
 }
