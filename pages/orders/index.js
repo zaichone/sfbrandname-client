@@ -83,7 +83,7 @@ function Order() {
                                                 <div className="col-12 col-sm-2 order-thumbnail">
 
                                                     <SymmetricalDiv
-                                                        className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
+                                                        className="d-flex flex-column align-items-center justify-content-center image-box"
                                                         style={{ backgroundImage: `url(${order?.featured})`, backgroundPosition: 'center center', backgroundSize: cover }}
                                                     >
 
