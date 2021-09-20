@@ -10,14 +10,35 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 import { useRouter } from "next/router";
 
-import { auth, firestore } from "../../src/config/firebase";
+import { auth, firestore, storage } from "../../src/config/firebase";
 import useAuth from "../../src/hooks/auth";
 
 function Account() {
   const { user, logout } = useAuth();
   const router = useRouter();
   const [profile, setProfile] = useState();
+  const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
 
+  async function uploadAvatar() {
+    const accountRef = firestore.collection("members").doc(user.uid);
+    let storageRef = storage.ref("/account/avatars");
+    let file = document.getElementById("filesAvatar").files[0];
+    const ts = Number(new Date())
+    const uploadName = `${user.uid}_${ts}_${file.name}`
+    let thisRef = storageRef.child(uploadName);
+    await thisRef.put(file).then(function (snapshot) {
+        snapshot.ref.getDownloadURL().then((downloadURL) => {
+            console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
+            setProfileAvatar(downloadURL);
+                console.log("🚀 ~ file: index.js ~ line 38 ~ snapshot.ref.getDownloadURL ~ user.uid", user.uid)
+            accountRef.update({
+              profileAvatar: downloadURL
+          }, { merge: true })
+              .then(() => { }).catch((error) => { });
+        });
+    })
+}
+console.log('profileAvatar', profileAvatar);
   useEffect(() => {
     console.log(user.uid);
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -27,6 +48,7 @@ function Account() {
         if (doc.exists) {
           console.log("Document data:", doc.data());
           setProfile(doc.data());
+          setProfileAvatar(doc.data().profileAvatar);
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -64,8 +86,9 @@ function Account() {
                 <div className="sidebar text-center">
                   <div className="card">
                     <div className="profile-pic">
-                    <img src={avatar.src} className="rounded-circle"/>
-                    <PhotoCameraIcon className="uploadIcon"/>
+                    <img src={profileAvatar? profileAvatar : avatar.src} className="rounded-circle"/>
+                    <PhotoCameraIcon className="uploadIcon"  onClick={() => document.getElementById("filesAvatar").click()}/>
+                    <input style={{ display: "none" }} type="file" onChange={uploadAvatar} id="filesAvatar" name="filesAvatar[]" multiple />
                     </div>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">Account</li>
