@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link';
 import PagtTitle from '../../components/layout/PageTitle';
@@ -11,121 +11,139 @@ import { useRouter } from 'next/router';
 import { auth, firestore } from "../../src/config/firebase";
 import useAuth from '../../src/hooks/auth';
 
-const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
+const categories = ['Eyewear', 'Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function Authentication() {
     const { user, login, logout } = useAuth();
-    console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
+    //console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
     const router = useRouter();
-    const [taskId, setTaskId] = useState();
+    const [orderId, setOrderId] = useState();
     const [info, setInfo] = useState('');
     const [brand, setBrand] = useState('SF');
     const [name, setName] = useState('John');
     const [clientName, setClientName] = useState('SF');
-    const [category, setCategory] = useState('Watches');
+    const [category, setCategory] = useState('');
     const tasksRef = firestore.collection('tasks');
     const [brands, setBrands] = useState();
-    console.log("🚀 ~ file: index.js ~ line 27 ~ Authentication ~ brands", brands)
-    async function goNext(e){
+    //console.log("🚀 ~ file: index.js ~ line 27 ~ Authentication ~ brands", brands)
+    async function goNext(e) {
         e.preventDefault();
-        //const { brand, name, clientName, category } = e.target.elements;
-        if(brand == '0'){
+        const { brand, name, clientName, category } = e.target.elements;
+        console.log("🚀 ~ file: index.js ~ line 32 ~ goNext ~ brand", brand.value)
+        if (brand == '0') {
             alert('Please select Brand ');
         }
-        if(name == ''){
+        if (name == '') {
             alert('Please insert Name ');
         }
-        if(clientName == ''){
+        if (clientName == '') {
             alert('Please insert Client Name ');
         }
-        if(category == '0'){
+        if (category == '0') {
             alert('Please select Category');
         }
-        
-        console.log(info)
-        window.localStorage.setItem('taskInfo', JSON.stringify(info));
-        await tasksRef.add(info).then((taskRef) => {
+        let _info = {
+            clientId: user.uid,
+            brand: brand.value,
+            name: name.value,
+            clientName: clientName.value,
+            category: category.value,
+            timestamp: new Date().getTime(),
+            status: 'In Progress'
+        };
+
+        console.log(_info)
+        window.localStorage.setItem('taskInfo', JSON.stringify(_info));
+        await tasksRef.add(_info).then((taskRef) => {
             console.log(taskRef.id);
-            setTaskId(taskRef.id);
+            setOrderId(taskRef.id);
             window.localStorage.setItem('taskId', taskRef.id);
             window.localStorage.setItem('clientId', user.uid);
             window.localStorage.setItem('category', category);
-            
+
+            router.push({
+                pathname: '/authentication/upload-pictures/',
+                query: { taskId: taskRef.id, category: category.value },
+            })
+
         });
+
         console.log('go next');
+        /*
         router.push({
             pathname: '/authentication/upload-pictures/',
-          query: { taskId: taskId },
+          query: { orderId: orderId, category:category },
         })
+        */
     }
-    function handleBrandChange(e){
+    function handleBrandChange(e) {
         let text = e.target.value;
         setBrand(text);
         console.log(text);
         setInfo({
-            clientId:user.uid,
-            brand:brand,
-            name:name,
-            clientName:clientName,
-            category:category,
-            timestamp:new Date().getTime(),
-            status:'In Progress'
+            clientId: user.uid,
+            brand: brand,
+            name: name,
+            clientName: clientName,
+            category: category,
+            timestamp: new Date().getTime(),
+            status: 'In Progress'
         });
-    }   
-    function handleNameChange(e){
+    }
+    function handleNameChange(e) {
         let text = e.target.value;
         setName(text);
         console.log(text);
         setInfo({
-            clientId:user.uid,
-            brand:brand,
-            name:name,
-            clientName:clientName,
-            category:category,
-            timestamp:new Date().getTime(),
-            status:'In Progress'
+            clientId: user.uid,
+            brand: brand,
+            name: name,
+            clientName: clientName,
+            category: category,
+            timestamp: new Date().getTime(),
+            status: 'In Progress'
         });
-    } 
-    function handleClientNameChange(e){
+    }
+    function handleClientNameChange(e) {
         let text = e.target.value;
         setClientName(text);
         console.log(text);
         setInfo({
-            clientId:user.uid,
-            brand:brand,
-            name:name,
-            clientName:clientName,
-            category:category,
-            timestamp:new Date().getTime(),
-            status:'In Progress'
+            clientId: user.uid,
+            brand: brand,
+            name: name,
+            clientName: clientName,
+            category: category,
+            timestamp: new Date().getTime(),
+            status: 'In Progress'
         });
     }
-    function handleCategoryChange(e){
+    function handleCategoryChange(e) {
         let text = e.target.value;
         setCategory(text);
         console.log(text);
         setInfo({
-            clientId:user.uid,
-            brand:brand,
-            name:name,
-            clientName:clientName,
-            category:category,
-            timestamp:new Date().getTime(),
-            status:'In Progress'
+            clientId: user.uid,
+            brand: brand,
+            name: name,
+            clientName: clientName,
+            category: text,
+            timestamp: new Date().getTime(),
+            status: 'In Progress'
         });
     }
     useEffect(() => {
         firestore.collection("brands").get().then((querySnapshot) => {
             let data = [];
             querySnapshot.forEach((doc) => {
-                data.push({id:doc.id, name:doc.data()});
-                
-                console.log(doc.id, " => ", doc.data());
+                data.push({ id: doc.id, name: doc.data() });
+
+                //console.log(doc.id, " => ", doc.data());
             });
             setBrands(data);
         });
-    },[]);
-    if(!user){
+    }, []);
+    if (!user) {
         alert('Please login');
         router.push('/sign-in/');
     }
@@ -157,33 +175,33 @@ function Authentication() {
                                 <div className="details">
                                     <form onSubmit={goNext}>
                                         <div className="mb-3">
-                                            <h3>Brand <InfoIcon/></h3>
+                                            <h3>Brand <InfoIcon /></h3>
                                             <select className="form-select" name="brand" onChange={handleBrandChange} value={brand}>
                                                 {
-                                                    brands?.map((brand, index) => 
-                                                        <option value={brand.id} key={brand.id}>{brand.name.brandName}</option>
+                                                    brands?.map((brand, index) =>
+                                                        <option value={brand.name.brandName} key={brand.id}>{brand.name.brandName}</option>
                                                     )
                                                 }
                                             </select>
                                         </div>
                                         <div className="mb-3">
-                                            <h3>Name <InfoIcon/></h3>
+                                            <h3>Name <InfoIcon /></h3>
                                             <input type="text" className="form-control" name="name" onChange={handleNameChange} />
                                         </div>
                                         <div className="mb-3">
-                                            <h3>Client Name <InfoIcon/></h3>
-                                            <input type="text" className="form-control" name="clientName" onChange={handleClientNameChange}/>
+                                            <h3>Client Name <InfoIcon /></h3>
+                                            <input type="text" className="form-control" name="clientName" onChange={handleClientNameChange} />
                                         </div>
                                         <div className="mb-3">
-                                            <h3>Category <InfoIcon/></h3>
-                                            <select className="form-select" name="category" defaultValue={'0'} onChange={handleCategoryChange}>
-                                                <option value="0"></option>
+                                            <h3>Category <InfoIcon /></h3>
+                                            <select className="form-select" name="category" onChange={handleCategoryChange} value={category}>
+
                                                 {
-                                                    categories.map((cat, index) => 
+                                                    categories.map((cat, index) =>
                                                         <option value={cat} key={index}>{cat}</option>
                                                     )
                                                 }
-                                                
+
                                             </select>
                                         </div>
                                         <div className="mb-3 mt-5">

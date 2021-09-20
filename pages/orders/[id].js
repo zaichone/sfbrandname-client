@@ -22,15 +22,16 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 
-import { auth, firestore } from "../../src/config/firebase";
+import { auth, firestore, storage } from "../../src/config/firebase";
 
 function OrderDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [clientId, setClientId] = useState();
   const [text, setText] = useState("");
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState();
+  const [image, setImage] = useState();
+  const [message, setMessage] = useState();
+  const [messages, setMessages] = useState([]);
   console.log(clientId);
   const MesagesRef = firestore.collection("messages");
   const handleTextChange = (e) => {
@@ -40,19 +41,43 @@ function OrderDetail() {
     setMessage({
       clientId: clientId,
       taskId: id,
+      type: 'text',
       message: msg,
       owner: "client",
       timestamp: new Date().getTime(),
     });
     console.log("message is", message);
   };
+  const uploadFile = () => {
+    console.log('uploading');
+    let storageRef = storage.ref("/messages/send");
+    let file = document.getElementById("files").files[0];
+    const ts = Number(new Date())
+    const uploadName = `${clientId}_${ts}_${file.name}`
+    let thisRef = storageRef.child(uploadName);
+    thisRef.put(file).then(function (snapshot) {
+      snapshot.ref.getDownloadURL().then((downloadURL) => {
+        setMessage({
+          clientId: clientId,
+          taskId: id,
+          type: 'image',
+          owner: "client",
+          timestamp: new Date().getTime(),
+          imageURL: downloadURL
+        });
+        setImage(downloadURL)
+      });
+    })
+    console.log(message);
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submiting");
-    if (!text) {
+    console.log(message);
+    if (!message) {
       return;
     }
-    if (message && text) {
+    if (message && message.type=='text') {
       await MesagesRef.add(message)
         .then(function () {
           console.log(
@@ -64,6 +89,15 @@ function OrderDetail() {
           console.error("Error writing document: ", error);
         });
       setText("");
+    } else if (message && message.type === 'image') {
+      await MesagesRef.add(message)
+        .then(function () {
+          console.log("Document successfully written Image!", new Date().toISOString());
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+      setImage('');
     }
   };
 
@@ -99,6 +133,13 @@ function OrderDetail() {
     return () => unsubscribe();
   }, []);
 
+  const showMessage = (msg) => {
+    if(msg.type==='text'){
+      return msg.message;
+    }else{
+      return <img src={msg.imageURL} style={{maxWidth:'50%'}}/>;
+    }
+  }
   return (
     <div>
       <Head>
@@ -471,7 +512,7 @@ function OrderDetail() {
                         <div className="message-lists">
                           {messages?.map((msg) => (
                             <p key={msg.id} className={msg.owner}>
-                              {msg.message}
+                              {showMessage(msg)}
                             </p>
                           ))}
                         </div>
@@ -488,7 +529,8 @@ function OrderDetail() {
                             type="button"
                             id="button-addon2"
                           >
-                            <AttachFileIcon />
+                            <input style={{ display: "none" }} type="file" onChange={uploadFile} id="files" name="files[]" multiple />
+                            <AttachFileIcon onClick={() => document.getElementById("files").click()} />
                           </button>
                           <button
                             className="btn"
@@ -498,6 +540,16 @@ function OrderDetail() {
                             <TelegramIcon />
                           </button>
                         </div>
+                        {
+                          image && <img alt="attatch" src={image} style={{
+                            margin: "20px",
+                            width: 'auto',
+                            maxWidth: "250px",
+                            maxHeight: "500px",
+                            border: "1px solid lightgray",
+                            textAlign: "right",
+                          }} />
+                        }
                       </div>
                     </form>
                   </Tab>

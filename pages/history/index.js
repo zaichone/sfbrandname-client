@@ -57,8 +57,8 @@ function History() {
         <PagtTitle title="History" bg={cover} />
 
         <section>
-          <div className="container-fluid gx-0">
-            <div className="row">
+          <div className="container-fluid">
+            <div className="row gx-0">
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">

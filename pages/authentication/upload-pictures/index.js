@@ -7,8 +7,11 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import SymmetricalDiv from '../../../components/layout/SymmetricalDiv';
 
+import Eyewear from '../../../components/uploadForm/Eyewear';
+import Watches from '../../../components/uploadForm/Watches';
+
 import { useRouter } from 'next/router';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import { auth, firestore, storage } from "../../../src/config/firebase";
 import useAuth from '../../../src/hooks/auth';
@@ -16,188 +19,47 @@ import useAuth from '../../../src/hooks/auth';
 const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
 function UploadPicutres() {
-    const [taskId,setTaskId] = useState();
-    const [clientId,setClientId] = useState();
+    const { user } = useAuth();
+    console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user)
+
+    const [clientId, setClientId] = useState(user.uid);
+    const [taskCategory, setTaskCategory] = useState();
     const [imageAttatch, setImageAttatch] = useState({});
     const [owner] = useState('ADMIN');
+    const [featured, setFeatured] = useState('');
     const [images, setImages] = useState([])
-    const [imageFront, setImageFront] = useState('')
-    const [imageLogo, setImageLogo] = useState('')
-    const [imageArmEngravings, setImageArmEngravings] = useState('')
-    const [imageSerialNumber, setImageSerialNumber] = useState('')
-    const [imageScrews, setImageScrews] = useState('')
-    const [imageLensEngraving, setImageLensEngraving] = useState('')
-    const [imageAdditionalImage, setImageAdditionalImage] = useState('')
-    const [featured, setFeatured] = useState();
-    const router = useRouter();
-    //const { taskId } = router.query;
-    console.log("🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskId", taskId)
 
-    useEffect(() => {
-        const _clientId = window.localStorage.getItem('clientId');
-        setClientId(_clientId);
+    const router = useRouter();
+    const { taskId, category } = router.query;
+    console.log("🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskId", taskId)
+    console.log("🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskCategory", taskCategory)
+
+    console.log("images", images);
+
+    function goNext() {
+        console.log('images before update', images);
         
-        const _taskId = window.localStorage.getItem('taskId');
-        setTaskId(_taskId); 
-    },[]);
-    function goNext(){
         const taskRef = firestore.collection('tasks').doc(taskId);
         taskRef.update({
             images: images,
-            featured:featured
-            },{ merge: true})
-            .then(() => {}).catch((error) => {});
+            featured: featured
+        }, { merge: true })
+            .then(() => { }).catch((error) => { });
         router.push('/authentication/almost-done/')
     }
 
-    async function uploadFileFront(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesFront").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageFront({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Front',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
+
+
+    function renderUploadForm(category) {
+        switch (category) {
+            case 'Watches':
+                return <Watches taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
+                break;
+            default:
+                return <Eyewear taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />
+
+        }
     }
-    async function uploadFileLogo(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesLogo").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageLogo({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Logo / Made In',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    async function uploadFileArmEngravings(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesArmEngravings").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageArmEngravings({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Arm Engravings',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    async function uploadFileSerialNumber(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesSerialNumber").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageSerialNumber({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Serial Number',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    async function uploadFileScrews(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesScrews").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageScrews({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Screws',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    async function uploadFileLensEngraving(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesLensEngraving").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageLensEngraving({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Lens Engraving',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    async function uploadFileAdditionalImage(){
-        let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesAdditionalImage").files[0];
-        const ts = Number(new Date())
-        const uploadName = `${clientId}_${ts}_${file.name}`
-        let thisRef = storageRef.child(uploadName);
-        await thisRef.put(file).then(function(snapshot) {
-            snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageAdditionalImage({
-                    taskId: taskId,
-                    clientId: clientId,
-                    label:'Additional Image (Optional)',
-                    imageURL: downloadURL,
-                    timestamp:new Date().getTime()
-                });
-                setImages([imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage]);
-                setFeatured(downloadURL);
-            });
-        })
-    }
-    console.log('images', images)
     return (
         <div>
             <Head>
@@ -211,8 +73,8 @@ function UploadPicutres() {
                 <PagtTitle title="Authentications" bg={cover} />
                 <section>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-12 col-sm-3 col-md-3 col-xxl-2 gx-0">
+                        <div className="row gx-0">
+                            <div className="col-12 col-sm-3 col-md-3 col-xxl-2">
                                 <div className="sidebar">
                                     <div className="card">
                                         <h2>Upload Pictures</h2>
@@ -225,77 +87,25 @@ function UploadPicutres() {
                             <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                                 <div className="details">
                                     <p>Please note: all images are required. Click to upload or drag & drop to each example image.<Link href="/image-guideline/">Image Guideline</Link></p>
-                                    
-                                        <div className="row">
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Front</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5" 
-                                                onClick={()=> document.getElementById("filesFront").click() }
-                                                style={{backgroundImage:`url(${imageFront?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileFront} id="filesFront" name="filesFront[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Logo</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                onClick={()=> document.getElementById("filesLogo").click() }
-                                                style={{backgroundImage:`url(${imageLogo?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileLogo} id="filesLogo" name="filesLogo[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Made In Tag</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                onClick={()=> document.getElementById("filesArmEngravings").click() }
-                                                style={{backgroundImage:`url(${imageArmEngravings?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileArmEngravings} id="filesArmEngravings" name="filesArmEngravings[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Serial Number / Date Code</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                onClick={()=> document.getElementById("filesSerialNumber").click() }
-                                                style={{backgroundImage:`url(${imageSerialNumber?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileSerialNumber} id="filesSerialNumber" name="filesSerialNumber[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Hardware Engraving</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                onClick={()=> document.getElementById("filesScrews").click() }
-                                                style={{backgroundImage:`url(${imageScrews?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileScrews} id="filesScrews" name="filesScrews[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            <div className="col-4 text-center mt-5">
-                                                <h3>Additional Image (Optional)</h3>
-                                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box mt-5"
-                                                onClick={()=> document.getElementById("filesLensEngraving").click() }
-                                                style={{backgroundImage:`url(${imageLensEngraving?.imageURL})`}}
-                                                >
-                                                   <i>Click to Add Image</i>
-                                                   <input style={{display:"none"}} type="file" onChange={uploadFileLensEngraving} id="filesLensEngraving" name="filesEngraving[]" multiple />
-                                                </SymmetricalDiv>
-                                            </div>
-                                            
-                                            <div className="col-12 mb-3 mt-5">
+
+                                    <div className="row">
+                                        {category && renderUploadForm(category)}
+
+
+
+
+
+
+
+
+                                        <div className="col-12 mb-3 mt-5">
                                             <button onClick={goNext}>Next</button>
                                         </div>
-                                            
-                                        </div>
-                                        
-                                        
-                                    
+
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </div>

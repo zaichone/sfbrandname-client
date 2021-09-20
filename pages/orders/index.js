@@ -97,7 +97,7 @@ function Order() {
                                                     <h4 className="orderId"><span>Order ID:</span> {order.id}</h4>
                                                 </div>
                                                 <div className="col-12 col-sm-2 d-flex align-items-center">
-                                                    {showIcon(order.status)}
+                                                    {showIcon(order.status)} {order.status}
                                                 </div>
 
                                                 <div className="col-12 col-sm-4 d-flex justify-content-end align-items-center">
