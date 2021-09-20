@@ -647,12 +647,16 @@ footer p {
       background: white;
       position: relative;
       .message-lists {
-        padding: 35px;
+        padding: 35px 70px;
+        p{ margin-bottom:20px; }
         .client {
           text-align: right;
+          position:relative;
+          .avt-icon{ border-radius:50%; width:30px; height:30px; display:block; position:absolute; right:-40px; bottom:0; background-position:center center; background-size:cover!important; }
         }
         .staff {
           text-align: left;
+          position:relative;
         }
       }
       .input-bar {

@@ -23,8 +23,10 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 
 import { auth, firestore, storage } from "../../src/config/firebase";
+import useAuth from '../../src/hooks/auth';
 
 function OrderDetail() {
+  const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
   const [clientId, setClientId] = useState();
@@ -32,6 +34,10 @@ function OrderDetail() {
   const [image, setImage] = useState();
   const [message, setMessage] = useState();
   const [messages, setMessages] = useState([]);
+
+  const [profile, setProfile] = useState();
+  const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
+
   console.log(clientId);
   const MesagesRef = firestore.collection("messages");
   const handleTextChange = (e) => {
@@ -105,6 +111,23 @@ function OrderDetail() {
   useEffect(() => {
     const _clientId = window.localStorage.getItem("clientId");
     setClientId(_clientId);
+
+    const accountRef = firestore.collection("members").doc(user.uid);
+    accountRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          setProfile(doc.data());
+          setProfileAvatar(doc.data().profileAvatar);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
     const _mesagesRef = firestore
       .collection("messages")
       .where("clientId", "==", _clientId)
@@ -513,7 +536,7 @@ function OrderDetail() {
                           {messages?.map((msg) => (
                             <p key={msg.id} className={msg.owner}>
                               {showMessage(msg)}
-                              
+                              {msg.owner==='client'? <span className="avt-icon" style={{background:`url(${profileAvatar})center center no-repeat`}}></span>:<span className="avt-icon"></span>}
                             </p>
                           ))}
                         </div>
