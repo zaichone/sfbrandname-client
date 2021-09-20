@@ -1,56 +1,48 @@
 import React, { useState } from 'react'
 import UploadFrontImage from './clothing/UploadFrontImage'
 import UploadLogoImage from './clothing/UploadLogoImage'
-import UploadFileArmEngravings from './clothing/UploadFileArmEngravings'
-import UploadFileSerialNumber from './clothing/UploadFileSerialNumber'
-import UploadFileScrews from './clothing/UploadFileScrews'
-import UploadFileLensEngraving from './clothing/UploadFileLensEngraving'
+import UploadFileSideSeamTag from './clothing/UploadFileSideSeamTag'
+import UploadFileButton from './clothing/UploadFileButton'
+import UploadFileZipper from './clothing/UploadFileZipper'
 import UploadFileAdditionalImage from './clothing/UploadFileAdditionalImage'
 
 function Clothing({ taskId, clientId, setFeatured, images, setImages }) {
     const [imageFront, setImageFront] = useState('');
     const [imageLogo, setImageLogo] = useState('');
-    const [imageArmEngravings, setImageArmEngravings] = useState('')
-    const [imageSerialNumber, setImageSerialNumber] = useState('')
-    const [imageScrews, setImageScrews] = useState('')
-    const [imageLensEngraving, setImageLensEngraving] = useState('')
+    const [imageSideSeamTag, setImageSideSeamTag] = useState('')
+    const [imageButton, setImageButton] = useState('')
+    const [imageZipper, setImageZipper] = useState('')
     const [imageAdditionalImage, setImageAdditionalImage] = useState('')
     return (
         <div className="row">
             <UploadFrontImage
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
                 setFeatured={setFeatured} setImageFront={setImageFront} setImageLogo={setImageLogo}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage} />
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage} />
             <UploadLogoImage
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
                 setImageLogo={setImageLogo}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage}
             />
-            <UploadFileArmEngravings
+            <UploadFileSideSeamTag
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
-                setImageArmEngravings={setImageArmEngravings}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
+                setImageSideSeamTag={setImageSideSeamTag}
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage}
             />
-            <UploadFileSerialNumber
+            <UploadFileButton
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
-                setImageSerialNumber={setImageSerialNumber}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
+                setImageButton={setImageButton}
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage}
             />
-            <UploadFileScrews
+            <UploadFileZipper
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
-                setImageScrews={setImageScrews}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
-            />
-
-            <UploadFileLensEngraving
-                taskId={taskId} clientId={clientId} images={images} setImages={setImages}
-                setImageLensEngraving={setImageLensEngraving}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
+                setImageZipper={setImageZipper}
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage}
             />
             <UploadFileAdditionalImage
                 taskId={taskId} clientId={clientId} images={images} setImages={setImages}
                 setImageAdditionalImage={setImageAdditionalImage}
-                imageFront={imageFront} imageLogo={imageLogo} imageArmEngravings={imageArmEngravings} imageSerialNumber={imageSerialNumber} imageScrews={imageScrews} imageLensEngraving={imageLensEngraving} imageAdditionalImage={imageAdditionalImage}
+                imageFront={imageFront} imageLogo={imageLogo} imageSideSeamTag={imageSideSeamTag} imageButton={imageButton} imageZipper={imageZipper} imageAdditionalImage={imageAdditionalImage}
             />
         </div>
     )

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import SymmetricalDiv from '../../layout/SymmetricalDiv';
 import { ContactsOutlined } from '@material-ui/icons';
 
-function UploadFrontImage({taskId, clientId, setImageFront,setFeatured, images, setImages, imageFront,imageLogo,imageArmEngravings,imageSerialNumber,imageScrews,imageLensEngraving,imageAdditionalImage}) {
+function UploadFrontImage({taskId, clientId, setImageFront,setFeatured, images, setImages, imageFront,imageLogo,imageSideSeamTag,imageButton,imageZipper,imageAdditionalImage}) {
 
     async function uploadFileFront() {
         let storageRef = storage.ref("/authen");
@@ -25,7 +25,7 @@ function UploadFrontImage({taskId, clientId, setImageFront,setFeatured, images, 
                     imageURL: downloadURL,
                     timestamp: new Date().getTime()
                 });
-                setImages([imageFront, imageLogo, imageArmEngravings, imageSerialNumber, imageScrews, imageLensEngraving, imageAdditionalImage]);
+                setImages([imageFront, imageLogo, imageSideSeamTag, imageButton, imageZipper, imageAdditionalImage]);
                 setFeatured(downloadURL);
             });
         })

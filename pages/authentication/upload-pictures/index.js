@@ -9,6 +9,10 @@ import SymmetricalDiv from '../../../components/layout/SymmetricalDiv';
 
 import Eyewear from '../../../components/uploadForm/Eyewear';
 import Watches from '../../../components/uploadForm/Watches';
+import Clothing from '../../../components/uploadForm/Clothing';
+import Jewelry from '../../../components/uploadForm/Jewelry';
+import Shoes from '../../../components/uploadForm/Shoes';
+import Bag from '../../../components/uploadForm/Bag';
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -38,7 +42,7 @@ function UploadPicutres() {
 
     function goNext() {
         console.log('images before update', images);
-        
+
         const taskRef = firestore.collection('tasks').doc(taskId);
         taskRef.update({
             images: images,
@@ -54,6 +58,18 @@ function UploadPicutres() {
         switch (category) {
             case 'Watches':
                 return <Watches taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
+                break;
+            case 'Clothing':
+                return <Clothing taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
+                break;
+            case 'Jewelry':
+                return <Jewelry taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
+                break;
+            case 'Shoes':
+                return <Shoes taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
+                break;
+            case 'Bag':
+                return <Bag taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />;
                 break;
             default:
                 return <Eyewear taskId={taskId} clientId={clientId} setFeatured={setFeatured} setImages={setImages} />

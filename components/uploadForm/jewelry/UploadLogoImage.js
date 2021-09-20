@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 import SymmetricalDiv from '../../layout/SymmetricalDiv';
 
-function UploadLogoImage({taskId, clientId , setImageLogo,  images, setImages, imageFront,imageLogo,imageSideSeamTag,imageButton,imageZipper,imageAdditionalImage}) {
+function UploadLogoImage({taskId, clientId , setImageLogo,  images, setImages, imageFront,imageLogo,imageMadeIn,imageSerialNumber,imageHallmark,imageAdditionalImage}) {
     async function uploadFileLogo(){
         let storageRef = storage.ref("/authen");
         let file = document.getElementById("filesLogo").files[0];
@@ -19,17 +19,17 @@ function UploadLogoImage({taskId, clientId , setImageLogo,  images, setImages, i
                 setImageLogo({
                     taskId: taskId,
                     clientId: clientId,
-                    label:'Logo / Made In',
+                    label:'Logo',
                     imageURL: downloadURL,
                     timestamp:new Date().getTime()
                 });
-                setImages([imageFront,imageLogo,imageSideSeamTag,imageButton,imageZipper, imageAdditionalImage]);
+                setImages([imageFront,imageLogo,imageMadeIn,imageSerialNumber,imageHallmark,imageAdditionalImage]);
             });
         })
     }
     return (
         <div className="col-4 text-center mt-4">
-        <h3>Logo/Made In</h3>
+        <h3>Logo</h3>
         <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box"
         onClick={()=> document.getElementById("filesLogo").click() }
         style={{backgroundImage:`url(${imageLogo?.imageURL})`}}

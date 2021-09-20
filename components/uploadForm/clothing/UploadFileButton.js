@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
 import { auth, firestore, storage } from "../../../src/config/firebase";
 import useAuth from '../../../src/hooks/auth';
 
 import { useRouter } from 'next/router';
 
 import SymmetricalDiv from '../../layout/SymmetricalDiv';
+import { ContactsOutlined } from '@material-ui/icons';
 
-function UploadFileAdditionalImage({ taskId, clientId, setImageAdditionalImage, images, setImages, imageFront, imageLogo, imageSideSeamTag, imageButton, imageZipper, imageAdditionalImage }) {
-    async function uploadFileAdditionalImage() {
+function UploadFileButton({ taskId, clientId, setImageButton, images, setImages, imageFront, imageLogo, imageSideSeamTag, imageButton, imageZipper, imageAdditionalImage }) {
+    async function uploadFileButton() {
         let storageRef = storage.ref("/authen");
-        let file = document.getElementById("filesAdditionalImage").files[0];
+        let file = document.getElementById("filesButton").files[0];
         const ts = Number(new Date())
         const uploadName = `${clientId}_${ts}_${file.name}`
         let thisRef = storageRef.child(uploadName);
         await thisRef.put(file).then(function (snapshot) {
             snapshot.ref.getDownloadURL().then((downloadURL) => {
                 console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-                setImageAdditionalImage({
+                setImageButton({
                     taskId: taskId,
                     clientId: clientId,
-                    label: 'Additional Image (Optional)',
+                    label: 'Serial Number',
                     imageURL: downloadURL,
                     timestamp: new Date().getTime()
                 });
@@ -29,16 +29,16 @@ function UploadFileAdditionalImage({ taskId, clientId, setImageAdditionalImage, 
     }
     return (
         <div className="col-4 text-center mt-4">
-            <h3>Additional Image (Optional)</h3>
+            <h3>Button</h3>
             <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center image-box"
-                onClick={() => document.getElementById("filesAdditionalImage").click()}
-                style={{ backgroundImage: `url(${imageAdditionalImage?.imageURL})` }}
+                onClick={() => document.getElementById("filesButton").click()}
+                style={{ backgroundImage: `url(${imageButton?.imageURL})` }}
             >
                 <i>Click to Add Image</i>
-                <input style={{ display: "none" }} type="file" onChange={uploadFileAdditionalImage} id="filesAdditionalImage" name="filesAdditionalImage[]" multiple />
+                <input style={{ display: "none" }} type="file" onChange={uploadFileButton} id="filesButton" name="filesButton[]" multiple />
             </SymmetricalDiv>
         </div>
     )
 }
 
-export default UploadFileAdditionalImage
+export default UploadFileButton

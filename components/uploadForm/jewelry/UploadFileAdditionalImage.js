@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 import SymmetricalDiv from '../../layout/SymmetricalDiv';
 
-function UploadFileAdditionalImage({ taskId, clientId, setImageAdditionalImage, images, setImages, imageFront, imageLogo, imageSideSeamTag, imageButton, imageZipper, imageAdditionalImage }) {
+function UploadFileAdditionalImage({ taskId, clientId, setImageAdditionalImage, images, setImages, imageFront, imageLogo, imageMadeIn, imageSerialNumber, imageHallmark, imageAdditionalImage }) {
     async function uploadFileAdditionalImage() {
         let storageRef = storage.ref("/authen");
         let file = document.getElementById("filesAdditionalImage").files[0];
@@ -23,7 +23,7 @@ function UploadFileAdditionalImage({ taskId, clientId, setImageAdditionalImage, 
                     imageURL: downloadURL,
                     timestamp: new Date().getTime()
                 });
-                setImages([imageFront, imageLogo, imageSideSeamTag, imageButton, imageZipper, imageAdditionalImage]);
+                setImages([imageFront, imageLogo, imageMadeIn, imageSerialNumber, imageHallmark, imageAdditionalImage]);
             });
         })
     }
