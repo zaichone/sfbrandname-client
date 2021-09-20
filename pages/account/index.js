@@ -6,6 +6,7 @@ import cover from "../../assets/account/cover.png";
 import avatar from "../../assets/account/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard } from "@fortawesome/free-brands-svg-icons";
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 import { useRouter } from "next/router";
 
@@ -62,8 +63,10 @@ function Account() {
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <img src={avatar.src} style={{}} />
-
+                    <div className="profile-pic">
+                    <img src={avatar.src} className="rounded-circle"/>
+                    <PhotoCameraIcon className="uploadIcon"/>
+                    </div>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">Account</li>
                       <li className="list-group-item">
