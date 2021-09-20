@@ -235,7 +235,7 @@ function OrderDetail() {
                         <p className="h4">Product Picture</p>
                       </Col>
                     </Row>
-                    <Row className="">
+                    <Row className="gx-5">
                       {orderInfo.featured ? (
                         <Col
                           xs={3}
@@ -251,7 +251,7 @@ function OrderDetail() {
                           <img
                             src={orderInfo.featured && orderInfo.featured}
                             alt=""
-                            style={{ maxWidth: "10rem", maxHeight: "10rem" }}
+                            style={{ maxWidth: "100%", maxHeight: "100%" }}
                             className="mx-auto my-3 border border-dark"
                           />
                         </Col>
@@ -278,8 +278,8 @@ function OrderDetail() {
                                   src={img.imageURL ? img.imageURL : thumbImage}
                                   alt=""
                                   style={{
-                                    maxWidth: "10rem",
-                                    maxHeight: "10rem",
+                                    maxWidth: "100%",
+                                    maxHeight: "100%",
                                   }}
                                   className="mx-auto my-3 border border-dark"
                                 />
@@ -513,6 +513,7 @@ function OrderDetail() {
                           {messages?.map((msg) => (
                             <p key={msg.id} className={msg.owner}>
                               {showMessage(msg)}
+                              
                             </p>
                           ))}
                         </div>
