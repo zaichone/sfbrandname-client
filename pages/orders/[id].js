@@ -114,23 +114,25 @@ function OrderDetail() {
   useEffect(() => {
     const _clientId = window.localStorage.getItem("clientId");
     setClientId(_clientId);
+    if (user) {
 
-    const accountRef = firestore.collection("members").doc(user.uid);
-    accountRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          setProfile(doc.data());
-          setProfileAvatar(doc.data().profileAvatar);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
+      const accountRef = firestore.collection("members").doc(user.uid);
+      accountRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+            setProfile(doc.data());
+            setProfileAvatar(doc.data().profileAvatar);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    }
     const _mesagesRef = firestore
       .collection("messages")
       .where("clientId", "==", _clientId)

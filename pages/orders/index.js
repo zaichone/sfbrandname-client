@@ -13,8 +13,10 @@ import OrderFilter from '../../components/layout/OrderFilter';
 import SymmetricalDiv from '../../components/layout/SymmetricalDiv';
 
 import { firestore } from '../../src/config/firebase';
+import useAuth from "../../src/hooks/auth";
 
 function Order() {
+    const { user } = useAuth();
     const [orders, setOrders] = useState();
     const [clientId, setClientId] = useState('');
     const [isAuthentic, setIsAuthentic] = useState(true);

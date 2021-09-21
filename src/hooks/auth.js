@@ -11,6 +11,7 @@ export default function useAuth() {
 
 export function AuthProvider(props) {
     const [user, setUser] = useState();
+    const [clientId, setClientId] = useState();
     const [error, setError] = useState();
     const router = useRouter()
     /*
@@ -22,6 +23,8 @@ export function AuthProvider(props) {
     const logout = async () => {
         await auth.signOut();
         setUser(null);
+        window.localStorage.removeItem('profile')
+        window.localStorage.removeItem('clientId')
         //window.location.reload();
         //router.push('/sign-in/');
         //window.location.reload();
@@ -31,7 +34,9 @@ export function AuthProvider(props) {
         
         await auth.signInWithEmailAndPassword(email, password).then((user) => {
                 console.log("🚀 ~ file: auth.js ~ line 31 ~ awaitauth.signInWithEmailAndPassword ~ user", user);
-                window.localStorage.setItem('profile', JSON.stringify(user));
+                console.log('uid', auth.currentUser.uid)
+                window.localStorage.setItem('profile', JSON.stringify(auth.currentUser));
+                window.localStorage.setItem('clientId', auth.currentUser.uid);
 
             });
 
@@ -62,7 +67,7 @@ export function AuthProvider(props) {
 
     }
 
-    const value = { user, error, setError, login, logout, setUser, signUp };
+    const value = { user,clientId, error, setError, login, logout, setUser, signUp };
 
     return <authContext.Provider value={value} {...props} />;
 

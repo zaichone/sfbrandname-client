@@ -19,6 +19,7 @@ function SignIn({  }) {
             setError("")
             setLoading(true)
             await login(email.value, password.value)
+            
             router.push("/account/")
           } catch {
             setError("Failed to log in")
