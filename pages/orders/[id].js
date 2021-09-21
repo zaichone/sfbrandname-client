@@ -168,6 +168,10 @@ function OrderDetail() {
       return <img src={msg.imageURL} style={{ maxWidth: "50%" }} />;
     }
   };
+
+  if (!user) {
+    return router.push("/sign-in/");
+  }
   return (
     <div>
       <Head>
