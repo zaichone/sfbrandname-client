@@ -19,12 +19,12 @@ function SignIn({  }) {
             setError("")
             setLoading(true)
             await login(email.value, password.value)
+            console.log('logged in');
             
-            router.push("/account/")
           } catch {
             setError("Failed to log in")
           }
-      
+          //router.push("/services/")
           setLoading(false)
     }
 

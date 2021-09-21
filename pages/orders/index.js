@@ -57,6 +57,9 @@ function Order() {
                 return <InfoIcon style={{ color: 'red', fontSize: '2rem', marginRight: 10 }} />
         }
     }
+    if (!user) {
+        return router.push("/sign-in/");
+    }
     return (
         <div>
             <Head>

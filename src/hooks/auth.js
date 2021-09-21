@@ -26,15 +26,15 @@ export function AuthProvider(props) {
         window.localStorage.removeItem('profile')
         window.localStorage.removeItem('clientId')
         //window.location.reload();
-        //router.push('/sign-in/');
+        router.push('/sign-in/');
         //window.location.reload();
     }
 
     async function login(email, password) {
-        
+
         await auth.signInWithEmailAndPassword(email, password);
-            window.localStorage.setItem('profile', JSON.stringify(auth.currentUser));
-            window.localStorage.setItem('clientId', auth.currentUser.uid);
+        window.localStorage.setItem('profile', JSON.stringify(auth.currentUser));
+        window.localStorage.setItem('clientId', auth.currentUser.uid);
 
     }
 
@@ -63,7 +63,7 @@ export function AuthProvider(props) {
 
     }
 
-    const value = { user,clientId, error, setError, login, logout, setUser, signUp };
+    const value = { user, clientId, error, setError, login, logout, setUser, signUp };
 
     return <authContext.Provider value={value} {...props} />;
 
