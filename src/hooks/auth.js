@@ -23,8 +23,8 @@ export function AuthProvider(props) {
         await auth.signOut();
         setUser(null);
         //window.location.reload();
-        router.push('/sign-in/');
-        window.location.reload();
+        //router.push('/sign-in/');
+        //window.location.reload();
     }
 
     async function login(email, password) {
