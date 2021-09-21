@@ -13,9 +13,9 @@ function Header() {
     const router = useRouter()
 
     async function signOut() {
-        await auth.signOut();
+        await logout();
         window.location.reload(); 
-        router.push("/sign-in/");
+        return router.push("/sign-in/");
     }
     return (
         <header className="d-flex justify-content-between py-3 px-5 top-header">

@@ -26,7 +26,7 @@ export function AuthProvider(props) {
         window.localStorage.removeItem('profile')
         window.localStorage.removeItem('clientId')
         //window.location.reload();
-        router.push('/sign-in/');
+        //router.push('/sign-in/');
         //window.location.reload();
     }
 
