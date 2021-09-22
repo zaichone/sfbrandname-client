@@ -6,17 +6,39 @@ import cover from "../../assets/account/cover.png";
 import avatar from "../../assets/account/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard } from "@fortawesome/free-brands-svg-icons";
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 import { useRouter } from "next/router";
 
-import { auth, firestore } from "../../src/config/firebase";
-import useAuth from "../../src/hooks/auth";
+import { firestore, storage } from "../../src/config/firebase";
+import { withProtected } from "../../src/hook/route";
 
-function History() {
-  const { user, logout } = useAuth();
+function History({auth}) {
+  const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
+  const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
 
+  async function uploadAvatar() {
+    const accountRef = firestore.collection("members").doc(user.uid);
+    let storageRef = storage.ref("/account/avatars");
+    let file = document.getElementById("filesAvatar").files[0];
+    const ts = Number(new Date())
+    const uploadName = `${user.uid}_${ts}_${file.name}`
+    let thisRef = storageRef.child(uploadName);
+    await thisRef.put(file).then(function (snapshot) {
+        snapshot.ref.getDownloadURL().then((downloadURL) => {
+            console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
+            setProfileAvatar(downloadURL);
+                console.log("🚀 ~ file: index.js ~ line 38 ~ snapshot.ref.getDownloadURL ~ user.uid", user.uid)
+            accountRef.update({
+              profileAvatar: downloadURL
+          }, { merge: true })
+              .then(() => { }).catch((error) => { });
+        });
+    })
+}
+console.log('profileAvatar', profileAvatar);
   useEffect(() => {
     console.log(user.uid);
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -26,6 +48,7 @@ function History() {
         if (doc.exists) {
           console.log("Document data:", doc.data());
           setProfile(doc.data());
+          setProfileAvatar(doc.data().profileAvatar);
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -36,9 +59,6 @@ function History() {
       });
   }, []);
 
-  if (!user) {
-    return router.push("/sign-in/");
-  }
   return (
     <div>
       <Head>
@@ -62,7 +82,11 @@ function History() {
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <img src={avatar.src} style={{}} />
+                  <div className="profile-pic">
+                    <img src={profileAvatar? profileAvatar : avatar.src} className="rounded-circle"/>
+                    <PhotoCameraIcon className="uploadIcon"  onClick={() => document.getElementById("filesAvatar").click()}/>
+                    <input style={{ display: "none" }} type="file" onChange={uploadAvatar} id="filesAvatar" name="filesAvatar[]" multiple />
+                    </div>
 
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">Account</li>
@@ -141,4 +165,4 @@ function History() {
   );
 }
 
-export default History;
+export default withProtected(History);
