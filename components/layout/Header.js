@@ -3,19 +3,19 @@ import Logo from '../../assets/Logo.png';
 import { useRouter } from 'next/router';
 
 import { auth } from "../../src/config/firebase";
-import useAuth from '../../src/hooks/auth';
+
+import useAuth from "../../src/hook/auth";
 
 function Header() {
 
-    const { user, loginWithGoogle, login, logout } = useAuth();
-    //console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ login", login)
-    //console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ user", user)
+    const { user, logout } = useAuth();
+    console.log("🚀 ~ file: Header.js ~ line 10 ~ Header ~ user", user)
     const router = useRouter()
 
     async function signOut() {
         await logout();
-        window.location.reload(); 
-        return router.push("/sign-in/");
+        //window.location.reload(); 
+        //return router.push("/sign-in/");
     }
     return (
         <header className="d-flex justify-content-between py-3 px-5 top-header">

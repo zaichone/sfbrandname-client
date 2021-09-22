@@ -13,10 +13,11 @@ import OrderFilter from '../../components/layout/OrderFilter';
 import SymmetricalDiv from '../../components/layout/SymmetricalDiv';
 
 import { firestore } from '../../src/config/firebase';
-import useAuth from "../../src/hooks/auth";
 
-function Order() {
-    const { user } = useAuth();
+import { withProtected } from "../../src/hook/route";
+
+function Order({auth}) {
+    const { user } = auth;
     const [orders, setOrders] = useState();
     const [clientId, setClientId] = useState('');
     const [isAuthentic, setIsAuthentic] = useState(true);
@@ -123,4 +124,4 @@ function Order() {
     )
 }
 
-export default Order
+export default withProtected(Order)

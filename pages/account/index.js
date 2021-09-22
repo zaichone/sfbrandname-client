@@ -10,11 +10,11 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 import { useRouter } from "next/router";
 
-import { auth, firestore, storage } from "../../src/config/firebase";
-import useAuth from "../../src/hooks/auth";
+import { firestore, storage } from "../../src/config/firebase";
+import { withProtected } from "../../src/hook/route";
 
-function Account() {
-  const { user, logout } = useAuth();
+function Account({auth}) {
+  const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
   const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
@@ -167,4 +167,4 @@ console.log('profileAvatar', profileAvatar);
   );
 }
 
-export default Account;
+export default withProtected(Account);

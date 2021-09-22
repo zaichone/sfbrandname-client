@@ -8,13 +8,14 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import { useRouter } from 'next/router';
 
-import { auth, firestore } from "../../src/config/firebase";
-import useAuth from '../../src/hooks/auth';
+import { firestore } from "../../src/config/firebase";
+
+import { withProtected } from "../../src/hook/route";
 
 const categories = ['Eyewear', 'Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
-function Authentication() {
-    const { user, login, logout } = useAuth();
+function Authentication({auth}) {
+    const { user, login, logout } = auth;
     //console.log("🚀 ~ file: index.js ~ line 18 ~ Authentication ~ user", user)
     const router = useRouter();
     const [orderId, setOrderId] = useState();
@@ -218,4 +219,4 @@ function Authentication() {
     )
 }
 
-export default Authentication
+export default withProtected(Authentication)

@@ -3,34 +3,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useContext, useState } from "react";
 
-import { auth } from "../../src/config/firebase";
-import useAuth from '../../src/hooks/auth';
+import { withPublic } from "../../src/hook/route";
 
-function SignIn({  }) {
-    const [error, setError] = useState("")
+function SignIn({ auth }) {
+
     const [loading, setLoading] = useState(false)
-    const { user, login, logout } = useAuth();
+    const { user, loginWithEmailAndPassword, error } = auth;
     console.log("🚀 ~ file: index.js ~ line 10 ~ SignIn ~ user", user)
     const router = useRouter()
-    async function handleSubmit(event){
+    async function handleSubmit(event) {
         event.preventDefault();
         const { email, password } = event.target.elements;
-        try {
-            setError("")
-            setLoading(true)
-            await login(email.value, password.value)
-            console.log('logged in');
-            
-          } catch {
-            setError("Failed to log in")
-          }
-          //router.push("/services/")
-          setLoading(false)
-    }
 
-    if (user) {
-        return router.push('/');
+        await loginWithEmailAndPassword(email.value, password.value)
+        console.log('logged in with user', user);
+
+        setLoading(false)
     }
+    /*
+        if (user) {
+            return router.push('/');
+        } */
     return (
         <div>
             <Head>
@@ -84,4 +77,4 @@ function SignIn({  }) {
     )
 }
 
-export default SignIn
+export default withPublic(SignIn)

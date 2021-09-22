@@ -33,8 +33,12 @@ export function AuthProvider(props) {
     async function login(email, password) {
 
         await auth.signInWithEmailAndPassword(email, password);
+        
+        
+ 
         window.localStorage.setItem('profile', JSON.stringify(auth.currentUser));
         window.localStorage.setItem('clientId', auth.currentUser.uid);
+
 
     }
 

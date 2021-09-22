@@ -17,13 +17,14 @@ import Bag from '../../../components/uploadForm/Bag';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-import { auth, firestore, storage } from "../../../src/config/firebase";
-import useAuth from '../../../src/hooks/auth';
+import { firestore, storage } from "../../../src/config/firebase";
+
+import { withProtected } from "../../src/hook/route";
 
 const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
-function UploadPicutres() {
-    const { user } = useAuth();
+function UploadPicutres({auth}) {
+    const { user } = auth;
     console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user)
 
     const [clientId, setClientId] = useState(user.uid);
@@ -132,4 +133,4 @@ function UploadPicutres() {
     )
 }
 
-export default UploadPicutres
+export default withProtected(UploadPicutres)

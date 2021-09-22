@@ -1,32 +1,34 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/analytics';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-const auth = firebase.auth();
-const AuthService = {
-        loginWithGoogle: async () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        try {
-            const userCred = await firebase.auth().signInWithPopup(provider);
-            return {
-                user: userCred.user,
-            };
-        } catch (e) {
-            return {
-                error: e.message,
-            }
-        }
-    },
-    logout: async () => {
-        await firebase.auth().signOut();
-    },
-    signUp: async (email, password, firstName, lastName) => {
-
-        console.log('here also working')
-        return firebase.auth().createUserWithEmailAndPassword(email, password)
-
-
-    }
-}
-
-export default AuthService;
+export const AuthService = {
+	loginWithGoogle: async () => {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		try {
+			const userCred = await firebase.auth().signInWithPopup(provider);
+			return {
+				user: userCred.user,
+			};
+		} catch (e) {
+			return {
+				error: e.message,
+			};
+		}
+	},
+    loginWithEmailAndPassword: async (email, password) => {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		try {
+			const userCred = await firebase.auth().signInWithEmailAndPassword(email, password);
+			return {
+				user: userCred.user,
+			};
+		} catch (e) {
+			return {
+				error: e.message,
+			};
+		}
+	},
+	logout: async () => {
+		await firebase.auth().signOut();
+	},
+};
