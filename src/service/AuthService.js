@@ -28,6 +28,29 @@ export const AuthService = {
 			};
 		}
 	},
+	signUpWithEmailAndPassword: async (email, password, firstName, lastName) => {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		try {
+			const userCred = await firebase.auth().createUserWithEmailAndPassword(email, password);
+			await firestore.collection("members").doc(userCred.user.uid).set({
+                authProvider: "local",
+                email,
+                firstName,
+                lastName,
+                userRole: 'client',
+                createAt: new Date().getTime(),
+				status:'active'
+            });
+            alert('Sing up sucess');
+			return {
+				user: userCred.user,
+			};
+		} catch (e) {
+			return {
+				error: e.message,
+			};
+		}
+	},
 	logout: async () => {
 		await firebase.auth().signOut();
 	},

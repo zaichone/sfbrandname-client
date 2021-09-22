@@ -22,11 +22,11 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 
-import { auth, firestore, storage } from "../../src/config/firebase";
-import useAuth from "../../src/hooks/auth";
+import { firestore, storage } from "../../src/config/firebase";
+import { withProtected } from "../../src/hook/route";
 
-function OrderDetail() {
-  const { user } = useAuth();
+function OrderDetail({auth}) {
+  const { user } = auth;
   const router = useRouter();
   const { id } = router.query;
   const [clientId, setClientId] = useState();
@@ -819,4 +819,4 @@ function OrderDetail() {
   );
 }
 
-export default OrderDetail;
+export default withProtected(OrderDetail);

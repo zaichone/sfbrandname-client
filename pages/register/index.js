@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import { useRouter } from 'next/router';
 import { Alert } from 'react-bootstrap';
 
-import { auth } from "../../src/config/firebase";
-import useAuth from '../../src/hooks/auth';
+//import { auth } from "../../src/config/firebase";
+import { withPublic } from "../../src/hook/route";
 
-function Register() {
+function Register({auth}) {
   const [loading, setLoading] = useState(false)
-    const { signUp, error, setError } = useAuth();
+    const { signUp, error, setError } = auth
     async function handleSubmit(e) {
         const { firstName, lastName, email, password, confirmPassword } = e.target.elements;
         e.preventDefault();
@@ -88,4 +88,4 @@ function Register() {
     )
 }
 
-export default Register
+export default withPublic(Register)

@@ -23,12 +23,19 @@ export function AuthProvider(props) {
 		setError(error ?? "");
 	};
 
+	const signUp = async (email, password, firstName, lastName) => {
+		const { error, user } = await AuthService.signUpWithEmailAndPassword(email, password, firstName, lastName);
+		setUser(user ?? null);
+		setError(error ?? "");
+		window.location.reload();
+	};
+
 
 	const logout = async () => {
 		await AuthService.logout();
 		setUser(null);
 	};
-	const value = { user, error, loginWithGoogle,loginWithEmailAndPassword, logout, setUser };
+	const value = { user, error, loginWithGoogle,loginWithEmailAndPassword, signUp, logout, setUser };
 
 	return <authContext.Provider value={value} {...props} />;
 }

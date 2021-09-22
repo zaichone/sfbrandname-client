@@ -19,7 +19,7 @@ import { useState, useEffect } from 'react';
 
 import { firestore, storage } from "../../../src/config/firebase";
 
-import { withProtected } from "../../src/hook/route";
+import { withProtected } from "../../../src/hook/route";
 
 const categories = ['Watches', 'Bag', 'Clothing', 'Jewelry', 'Shoes'];
 
