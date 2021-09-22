@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 function ServiceList() {
-    console.log(services);
+    //console.log(services);
 
     return (
         <section className="front-services">
