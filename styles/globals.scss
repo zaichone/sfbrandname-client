@@ -59,6 +59,9 @@ a {
     background: #121212 !important;
     text-transform: none;
     font-size: 14px;
+    @include media(mobile-only) {
+      background:url(../assets/mobile-nav-bg.png)!important;
+    }
   }
   #basic-navbar-nav {
     order: 3;
