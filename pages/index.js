@@ -23,7 +23,7 @@ export default function Home() {
         <div className="container-fluid hero">
           <div className="row pt-5 pb-3 px-5">
             <div className="tagline col-12 col-sm-4 offset-sm-1 d-flex flex-column justify-content-start justify-content-sm-center align-items-center align-items-sm-start">
-              <h1 className="fs-1 fw-normal mb-5">SUPER AUTHENTIC</h1>
+              <h1 className="fw-normal mb-5">SUPER AUTHENTIC</h1>
               <p className="fs-4 mb-5 d-none d-sm-block">
                 
 Our expert team in designer brands can verify the authenticity of new & pre-owned luxury goods. Just within 12-24 hours after uploading your pictures, you’ll receive an authentication result.

@@ -39,10 +39,13 @@ a {
 * {
   box-sizing: border-box;
 }
+.hidden-overflow {
+  overflow: hidden;
+}
 .top-header {
   background: black;
   a {
-    color: white!important;
+    color: white !important;
     font-size: 12px;
     font-family: "Poppins", sans-serif;
     &:hover {
@@ -50,14 +53,16 @@ a {
       text-decoration: none;
     }
   }
-  .navbar{
-    padding-top:0;
-    padding-bottom:0;
-    background:#121212!important;
-    text-transform:none;
-    font-size:14px;
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: #121212 !important;
+    text-transform: none;
+    font-size: 14px;
   }
-  #basic-navbar-nav{ order:3; }
+  #basic-navbar-nav {
+    order: 3;
+  }
   @include media(mobile-only) {
     .navbar-brand {
       order: 2;
@@ -74,9 +79,11 @@ a {
   }
   .nav-link {
     margin-left: 4rem;
-    font-size:14px;
-    font-weight:400;
-    @include media(mobile-only) { margin-left:0; }
+    font-size: 14px;
+    font-weight: 400;
+    @include media(mobile-only) {
+      margin-left: 0;
+    }
   }
   button {
     color: white;
@@ -90,15 +97,20 @@ a {
   }
 }
 
-.hero{
-  @include media(mobile-only){
-    .tagline{
-    min-height:450px;
-    position:relative;
-    .button{
-      position:absolute;
-      bottom:40px;
-    }
+.hero {
+  .tagline{
+    h1{ font-size:32px; }
+  }
+  @include media(mobile-only) {
+    .tagline {
+      min-height: 450px;
+      position: relative;
+      h1{ font-size:32px; }
+
+      .button {
+        position: absolute;
+        bottom: 40px;
+      }
     }
   }
 }
@@ -166,7 +178,7 @@ button {
   background-size: cover;
   background-position: center center;
   @include media(mobile-only) {
-    min-height: 100px;
+    min-height: 80px;
   }
   .cover {
     display: flex;
@@ -252,6 +264,9 @@ button {
       font-size: 18px;
       font-weight: 400;
       text-transform: none;
+      @include media(mobile-only) {
+        font-size: 14px;
+      }
     }
   }
   .learn-more {
@@ -278,6 +293,9 @@ button {
     padding: 120px 0;
     @include media(mobile-only) {
       padding: 50px 0;
+      img {
+        margin-left: -70px;
+      }
     }
     .card {
       background: transparent;
@@ -286,13 +304,18 @@ button {
         font-size: 34px;
         font-weight: 400;
         font-style: italic;
-        @include media(mobile-only){
-          font-size:20px;
+        text-transform:uppercase;
+        @include media(mobile-only) {
+          font-size: 20px;
         }
       }
-      .card-text{
-        width:50%;
-        @include media(mobile-only){ width:100%; font-size:12px; margin-top:30px; }
+      .card-text {
+        width: 50%;
+        @include media(mobile-only) {
+          width: 100%;
+          font-size: 12px;
+          margin-top: 30px;
+        }
       }
       p {
         font-size: 16px;
@@ -302,9 +325,13 @@ button {
   .middle-section {
     background: #fafafa;
     padding: 120px 0 140px;
-    margin-left: 21px;
+
     @include media(mobile-only) {
       padding: 60px 0 70px;
+      img {
+        margin-left: 120px;
+        position: relative;
+      }
     }
   }
   .learn-more {

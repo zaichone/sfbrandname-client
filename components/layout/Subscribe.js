@@ -15,11 +15,11 @@ function Subscribe() {
                         <form className="row subscribe-form mb-3 mb-sm-0">
 
 
-                            <div className="col-12 col-sm-9 mb-3 mb-sm-0">
+                            <div className="col-12 col-sm-9 mb-4 mb-sm-0">
 
                                 <input type="email" className="form-control" name="subscribeEmail" placeholder="Enter your email" />
                             </div>
-                            <div className="col-12 col-sm-3 text-center">
+                            <div className="col-12 col-sm-3 text-center mb-3 mb-sm-0">
                                 <button type="submit" className="btn btn-primary">Join Us</button>
                             </div>
                         </form>
