@@ -7,7 +7,7 @@ function Footer() {
         <>
             <Subscribe />
             <FooterWidgets/>
-            <footer>
+            <footer className="d-none d-sm-block">
                 <Credit />
             </footer>
         </>

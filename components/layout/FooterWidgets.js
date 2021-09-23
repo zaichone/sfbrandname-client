@@ -8,7 +8,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 
 function FooterWidgets() {
     return (
-        <aside className="footer-widgets">
+        <aside className="footer-widgets d-none d-sm-block">
             <div className="container">
                 <div className="row">
                 {menus.map((widget, index) => 

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Logo from '../../assets/Logo.png';
 import { useRouter } from 'next/router';
 
+import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
+
 import { auth } from "../../src/config/firebase";
 
 import useAuth from "../../src/hook/auth";
@@ -18,23 +20,34 @@ function Header() {
         //return router.push("/sign-in/");
     }
     return (
-        <header className="d-flex justify-content-between py-3 px-5 top-header">
-            <Link href="/" passHref className="logo"><img src={Logo.src} className="img-fluid img-logo" alt="SF Brandname" /></Link>
-            <ul className="nav d-flex justify-content-end">
-                <li className="nav-item"><Link href="/how-it-work/" className="nav-link">How it Work</Link></li>
-                <li className="nav-item"><Link href="/services/" className="nav-link">Services</Link></li>
-                <li className="nav-item"><Link href="/authentication/" className="nav-link">Authentication</Link></li>
-                {!user &&
-                    <li className="nav-item"><Link href="/sign-in/" className="nav-link">Sign In</Link></li>
-                }
-                {user &&
-                <>
-                <li className="nav-item"><Link href="/orders/" className="nav-link">My Order</Link></li>
-                <li className="nav-item"><Link href="/account/" className="nav-link">My Account</Link></li>
-                    <li className="nav-item"><button onClick={signOut} className="nav-link">Sign Out</button></li>
-                </>
-                }
-            </ul>
+        <header className="top-header">
+
+
+
+            <Navbar expand="lg" bg="dark" variant="dark">
+                <Container fluid className="justify-content-between py-3 py-sm-0 px-5">
+                    <Navbar.Brand href="/"><img src={Logo.src} className="img-fluid img-logo" alt="SF Brandname" /></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="ms-auto">
+                            <Nav.Link href="/how-it-work/">How it Work</Nav.Link>
+                            <Nav.Link href="/services/">Services</Nav.Link>
+                            <Nav.Link href="/authentication/">Authentication</Nav.Link>
+                            {!user &&
+                                <Nav.Link href="/sign-in/">Sign In</Nav.Link>
+                            }
+                            {user &&
+                                <>
+                                    <Nav.Link href="/orders/">My Order</Nav.Link>
+                                    <Nav.Link href="/account/">My Account</Nav.Link>
+                                    <Nav.Link href="#"><button onClick={signOut}>Sign Out</button></Nav.Link>
+                                </>
+                            }
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </header>
     )
 }

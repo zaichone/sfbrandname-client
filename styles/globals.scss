@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: "Spartan", sans-serif;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   background: white;
   color: black;
 }
@@ -42,12 +42,28 @@ a {
 .top-header {
   background: black;
   a {
-    color: white;
+    color: white!important;
     font-size: 12px;
     font-family: "Poppins", sans-serif;
     &:hover {
       color: white;
       text-decoration: none;
+    }
+  }
+  .navbar{
+    padding-top:0;
+    padding-bottom:0;
+    background:#121212!important;
+    text-transform:none;
+    font-size:14px;
+  }
+  #basic-navbar-nav{ order:3; }
+  @include media(mobile-only) {
+    .navbar-brand {
+      order: 2;
+    }
+    .navbar-toggler {
+      order: 1;
     }
   }
   .logo {
@@ -56,8 +72,11 @@ a {
   .img-logo {
     cursor: pointer;
   }
-  .nav-item {
-    margin-right: 4rem;
+  .nav-link {
+    margin-left: 4rem;
+    font-size:14px;
+    font-weight:400;
+    @include media(mobile-only) { margin-left:0; }
   }
   button {
     color: white;
@@ -71,6 +90,18 @@ a {
   }
 }
 
+.hero{
+  @include media(mobile-only){
+    .tagline{
+    min-height:450px;
+    position:relative;
+    .button{
+      position:absolute;
+      bottom:40px;
+    }
+    }
+  }
+}
 .cover {
   background: url("../assets/Hero.png") center center no-repeat;
   height: 660px;
@@ -134,6 +165,9 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  @include media(mobile-only) {
+    min-height: 100px;
+  }
   .cover {
     display: flex;
     justify-content: center;
@@ -148,6 +182,9 @@ button {
     font-weight: 400;
     color: white;
     text-transform: none;
+    @include media(mobile-only) {
+      font-size: 20px;
+    }
   }
 }
 .page-title {
@@ -232,10 +269,16 @@ button {
 .how-it-work {
   padding: 115px 0 0px;
   background: white;
+  @include media(mobile-only) {
+    padding: 0px 0 0px;
+  }
   .sub-section {
     background: #fefefe;
     border: none;
     padding: 120px 0;
+    @include media(mobile-only) {
+      padding: 50px 0;
+    }
     .card {
       background: transparent;
       border: none;
@@ -243,6 +286,13 @@ button {
         font-size: 34px;
         font-weight: 400;
         font-style: italic;
+        @include media(mobile-only){
+          font-size:20px;
+        }
+      }
+      .card-text{
+        width:50%;
+        @include media(mobile-only){ width:100%; font-size:12px; margin-top:30px; }
       }
       p {
         font-size: 16px;
@@ -253,6 +303,9 @@ button {
     background: #fafafa;
     padding: 120px 0 140px;
     margin-left: 21px;
+    @include media(mobile-only) {
+      padding: 60px 0 70px;
+    }
   }
   .learn-more {
     margin-top: 85px;
@@ -510,25 +563,29 @@ footer p {
       background: transparent;
       .list-group-item {
         background: transparent;
-        font-weight:400;
-        button{
-          background:transparent;
-          padding:auto;
-          color:black;
-          text-transform:none;
+        font-weight: 400;
+        button {
+          background: transparent;
+          padding: auto;
+          color: black;
+          text-transform: none;
         }
       }
     }
-    .profile-pic{
-      position:relative;
-      margin-bottom:50px;
+    .profile-pic {
+      position: relative;
+      margin-bottom: 50px;
       img {
         width: initial !important;
         max-width: 150px;
       }
-      .uploadIcon{ position:absolute; bottom:10%; right:10%; font-size: 2rem;}
+      .uploadIcon {
+        position: absolute;
+        bottom: 10%;
+        right: 10%;
+        font-size: 2rem;
+      }
     }
-    
   }
 }
 
@@ -578,8 +635,8 @@ footer p {
       img {
         max-width: 250px;
       }
-      .image-box{
-        border-radius:50%;
+      .image-box {
+        border-radius: 50%;
       }
     }
     .order-title {
@@ -648,16 +705,38 @@ footer p {
       position: relative;
       .message-lists {
         padding: 35px 70px;
-        p{ margin-bottom:30px; }
+        p {
+          margin-bottom: 30px;
+        }
         .client {
           text-align: right;
-          position:relative;
-          .avt-icon{ border-radius:50%; width:30px; height:30px; display:block; position:absolute; right:-40px; bottom:-5px; background-position:center center; background-size:cover!important; }
+          position: relative;
+          .avt-icon {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            right: -40px;
+            bottom: -5px;
+            background-position: center center;
+            background-size: cover !important;
+          }
         }
         .staff {
           text-align: left;
-          position:relative;
-          .avt-icon{ border-radius:50%; width:30px; height:30px; display:block; position:absolute; left:-40px; bottom:-5px; background-position:center center; background-size:cover!important; }
+          position: relative;
+          .avt-icon {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            left: -40px;
+            bottom: -5px;
+            background-position: center center;
+            background-size: cover !important;
+          }
         }
       }
       .input-bar {
@@ -673,20 +752,20 @@ footer p {
   }
 }
 
-.profile-details{
-  padding:45px 50px 150px;
-  h3{
-    font-size:18px;
-    font-weight:500;
+.profile-details {
+  padding: 45px 50px 150px;
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
   }
-  table{
-    width:70%;
+  table {
+    width: 70%;
   }
-  hr{
-    width:25%;
-    margin-top:2rem;
+  hr {
+    width: 25%;
+    margin-top: 2rem;
   }
-  .payment-info{
-    width:70%;
+  .payment-info {
+    width: 70%;
   }
 }
