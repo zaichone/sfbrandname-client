@@ -46,7 +46,7 @@ function DocumentationList() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 hidden-overflow">
                                 <img src={image2.src} className="img-fluid" alt="" />
                             </div>
                         </div>

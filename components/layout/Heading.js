@@ -2,7 +2,7 @@ import React from 'react'
 
 function Heading({bg, title}) {
     return (
-        <section className="custom-heading" style={{ backgroundImage: `url(${bg.src})` }}>
+        <section className="custom-heading hidden-overflow" style={{ backgroundImage: `url(${bg.src})` }}>
             
             <h1 className="heading">{title}</h1>
          

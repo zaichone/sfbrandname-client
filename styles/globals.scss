@@ -205,6 +205,7 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  
   .cover {
     display: flex;
     justify-content: center;
@@ -219,6 +220,19 @@ button {
     font-weight: 400;
     color: white;
     text-transform: none;
+  }
+  @include media(mobile-only) {
+    min-height: 150px;
+    background:transparent!important;
+    .cover{
+      background:transparent;
+    }
+    .heading{
+      font-size: 26px;
+      font-weight:600;
+      color:black;
+      text-transform:uppercase;
+    }
   }
 }
 .page-second-title {
