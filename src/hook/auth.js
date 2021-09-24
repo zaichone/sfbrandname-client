@@ -4,38 +4,54 @@ import { AuthService } from "../service/AuthService";
 const authContext = createContext();
 
 export default function useAuth() {
-	return useContext(authContext);
+  return useContext(authContext);
 }
 
 export function AuthProvider(props) {
-	const [user, setUser] = useState(null);
-	const [error, setError] = useState("");
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
 
-	const loginWithGoogle = async () => {
-		const { error, user } = await AuthService.loginWithGoogle();
-		setUser(user ?? null);
-		setError(error ?? "");
-	};
+  const loginWithGoogle = async () => {
+    const { error, user } = await AuthService.loginWithGoogle();
+    setUser(user ?? null);
+    setError(error ?? "");
+  };
 
-    const loginWithEmailAndPassword = async (email, password) => {
-		const { error, user } = await AuthService.loginWithEmailAndPassword(email, password);
-		setUser(user ?? null);
-		setError(error ?? "");
-	};
+  const loginWithEmailAndPassword = async (email, password) => {
+    const { error, user } = await AuthService.loginWithEmailAndPassword(
+      email,
+      password
+    );
+    setUser(user ?? null);
+    setError(error ?? "");
+  };
 
-	const signUp = async (email, password, firstName, lastName) => {
-		const { error, user } = await AuthService.signUpWithEmailAndPassword(email, password, firstName, lastName);
-		setUser(user ?? null);
-		setError(error ?? "");
-		window.location.reload();
-	};
+  const signUp = async (email, password, firstName, lastName) => {
+    const { error, user } = await AuthService.signUpWithEmailAndPassword(
+      email,
+      password,
+      firstName,
+      lastName
+    );
+    setUser(user ?? null);
+    setError(error ?? "");
+    window.location.reload();
+  };
 
+  const logout = async () => {
+    await AuthService.logout();
+    setUser(null);
+  };
+  const value = {
+    user,
+    error,
+    setError,
+    loginWithGoogle,
+    loginWithEmailAndPassword,
+    signUp,
+    logout,
+    setUser,
+  };
 
-	const logout = async () => {
-		await AuthService.logout();
-		setUser(null);
-	};
-	const value = { user, error, loginWithGoogle,loginWithEmailAndPassword, signUp, logout, setUser };
-
-	return <authContext.Provider value={value} {...props} />;
+  return <authContext.Provider value={value} {...props} />;
 }
