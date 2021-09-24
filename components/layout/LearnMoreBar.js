@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function LearnMoreBar({label, link, classes}) {
     return (
-        <div className={`"text-center learn-more ${classes}"`}><Link href={link}>{label}</Link></div>
+        <div className={`text-center learn-more ${classes}`}><Link href={link}>{label}</Link></div>
     )
 }
 
