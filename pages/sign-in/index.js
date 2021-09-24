@@ -65,7 +65,7 @@ function SignIn({ auth }) {
                                     <button type="submit" className="mb-3">Login</button>
                                 </div>
                             </form>
-                            <p className="register-text text-center"><Link href="/register/">Don’t have acount, Register here.</Link></p>
+                            <p className="register-text text-center"><Link href="/register/">Don’t have account? Register here.</Link></p>
                         </div>
                         <div className="col-8 p-0">
                             <div className="register-cover"></div>
