@@ -27,7 +27,7 @@ function Order({auth}) {
     useEffect(() => {
         const _clientId = window.localStorage.getItem('clientId');
         setClientId(_clientId);
-        const ordersRef = firestore.collection('tasks').where('clientId', '==', _clientId).orderBy('timestamp', 'asc');
+        const ordersRef = firestore.collection('tasks').where('clientId', '==', user.uid).orderBy('timestamp', 'asc');
         const unsubscribe = ordersRef
             .onSnapshot((snapshot) => {
                 const data = snapshot.docs.map((doc) => ({

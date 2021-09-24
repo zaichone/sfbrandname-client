@@ -60,7 +60,7 @@ a {
     text-transform: none;
     font-size: 14px;
     @include media(mobile-only) {
-      background:url(../assets/mobile-nav-bg.png)!important;
+      background: url(../assets/mobile-nav-bg.png) !important;
     }
   }
   #basic-navbar-nav {
@@ -94,6 +94,7 @@ a {
     font-family: "Poppins", sans-serif;
     text-transform: none;
     padding: 0;
+    background: transparent;
     &:hover {
       color: white;
     }
@@ -101,14 +102,18 @@ a {
 }
 
 .hero {
-  .tagline{
-    h1{ font-size:32px; }
+  .tagline {
+    h1 {
+      font-size: 32px;
+    }
   }
   @include media(mobile-only) {
     .tagline {
       min-height: 450px;
       position: relative;
-      h1{ font-size:32px; }
+      h1 {
+        font-size: 32px;
+      }
 
       .button {
         position: absolute;
@@ -208,7 +213,7 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  
+
   .cover {
     display: flex;
     justify-content: center;
@@ -226,15 +231,15 @@ button {
   }
   @include media(mobile-only) {
     min-height: 150px;
-    background:transparent!important;
-    .cover{
-      background:transparent;
+    background: transparent !important;
+    .cover {
+      background: transparent;
     }
-    .heading{
+    .heading {
       font-size: 26px;
-      font-weight:600;
-      color:black;
-      text-transform:uppercase;
+      font-weight: 600;
+      color: black;
+      text-transform: uppercase;
     }
   }
 }
@@ -321,7 +326,7 @@ button {
         font-size: 34px;
         font-weight: 400;
         font-style: italic;
-        text-transform:uppercase;
+        text-transform: uppercase;
         @include media(mobile-only) {
           font-size: 20px;
         }
@@ -721,7 +726,7 @@ footer p {
     .nav-item {
       background: #e5e5e5;
       margin-right: 0;
-      padding: 20px 45px;
+      padding: 20px 100px;
       border: none;
       font-size: 12px;
       font-weight: 300;
@@ -732,14 +737,15 @@ footer p {
   }
   .tab-content {
     background: #f7f7f7;
-    padding: 45px 45px 150px;
+    padding: 50px 0 150px;
+    font-size: 12px;
     .tab-title {
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 500;
     }
     p {
-      font-size: 14px;
-      font-weight: 300;
+      font-size: 12px;
+      margin-bottom: 2rem;
     }
     .chatBox {
       border: 1px solid black;
@@ -793,6 +799,21 @@ footer p {
         }
       }
     }
+  }
+}
+
+.service-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  margin-bottom: 90px;
+}
+
+.tab-service {
+  span {
+    display: inline-block;
+  }
+  svg {
+    margin-right:34px;
   }
 }
 

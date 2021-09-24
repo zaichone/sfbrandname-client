@@ -25,7 +25,7 @@ function Header() {
 
 
             <Navbar expand="lg" bg="dark" variant="dark">
-                <Container fluid className="justify-content-between py-3 py-sm-0 px-5">
+                <Container className="justify-content-around py-3 py-sm-0">
                     <Navbar.Brand href="/"><img src={Logo.src} className="img-fluid img-logo" alt="SF Brandname" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="position-relative" id="basic-navbar-nav">

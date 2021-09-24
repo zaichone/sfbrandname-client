@@ -16,6 +16,10 @@ import {
   Card,
   Container,
 } from "react-bootstrap";
+
+import SymmetricalDiv from '../../components/layout/SymmetricalDiv';
+import ServiceIcons from '../../components/layout/ServiceIcons';
+
 import TelegramIcon from "@material-ui/icons/Telegram";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 
@@ -169,9 +173,6 @@ function OrderDetail({auth}) {
     }
   };
 
-  if (!user) {
-    return router.push("/sign-in/");
-  }
   return (
     <div>
       <Head>
@@ -190,15 +191,14 @@ function OrderDetail({auth}) {
       <main className="page-services page-content">
         <PagtTitle title="Order Detail" bg={cover} />
         <section>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12 col-sm-12 gx-0">
+        
                 <Tabs defaultActiveKey="home" id="orderDetails">
                   <Tab eventKey="home" title="Item Info">
-                    <h3 className="tab-title">General Information</h3>
+                    <Container>
+                    <h3 className="tab-title mb-5">General Information</h3>
 
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Name</p>
                       </Col>
                       <Col>
@@ -206,7 +206,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Brand</p>
                       </Col>
                       <Col>
@@ -214,7 +214,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Category</p>
                       </Col>
                       <Col>
@@ -222,7 +222,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Timestamp</p>
                       </Col>
                       <Col>
@@ -233,7 +233,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Order ID</p>
                       </Col>
                       <Col>
@@ -241,7 +241,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Client name</p>
                       </Col>
                       <Col>
@@ -249,7 +249,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Client ID</p>
                       </Col>
                       <Col>
@@ -257,7 +257,7 @@ function OrderDetail({auth}) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={2}>
                         <p>Status</p>
                       </Col>
                       <Col>
@@ -267,10 +267,10 @@ function OrderDetail({auth}) {
                     {/* images */}
                     <Row className=" mt-5">
                       <Col xs={4}>
-                        <p className="h4">Product Picture</p>
+                      <h3 className="tab-title">Product Picture</h3>
                       </Col>
                     </Row>
-                    <Row className="gx-5">
+                    <Row className="gx-5 mt-5">
                       {orderInfo.featured ? (
                         <Col
                           xs={3}
@@ -282,13 +282,12 @@ function OrderDetail({auth}) {
                             rel="noreferrer"
                           >
                             <p className="text-center">{"Featured Image"}</p>
+                            <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" 
+                                style={{ width: '100%', background:`url(${orderInfo.featured && orderInfo.featured})center center no-repeat`, border:'1px solid black' }}>
+                                  
+                                  </SymmetricalDiv>
                           </a>
-                          <img
-                            src={orderInfo.featured && orderInfo.featured}
-                            alt=""
-                            style={{ maxWidth: "100%", maxHeight: "100%" }}
-                            className="mx-auto my-3 border border-dark"
-                          />
+                         
                         </Col>
                       ) : null}
                       {orderInfo.images ? (
@@ -300,6 +299,7 @@ function OrderDetail({auth}) {
                                 xs={3}
                                 className="d-flex flex-column justify-content-center mb-3"
                               >
+                                
                                 <a
                                   href={img.imageURL ? img.imageURL : "#"}
                                   target="_blank"
@@ -308,16 +308,13 @@ function OrderDetail({auth}) {
                                   <p className="text-center">
                                     {img.label ? img.label : "(no label)"}
                                   </p>
-                                </a>
-                                <img
-                                  src={img.imageURL ? img.imageURL : thumbImage}
-                                  alt=""
-                                  style={{
-                                    maxWidth: "100%",
-                                    maxHeight: "100%",
-                                  }}
-                                  className="mx-auto my-3 border border-dark"
-                                />
+                                
+                                
+                                <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center" 
+                                style={{ width: '100%', background:`url(${img.imageURL ? img.imageURL : thumbImage})center center no-repeat`, border:'1px solid black' }}>
+                                  
+                                  </SymmetricalDiv>
+                                  </a>
                               </Col>
                             )
                         )
@@ -325,16 +322,17 @@ function OrderDetail({auth}) {
                         <span>no image</span>
                       )}
                     </Row>
+                    </Container>
                   </Tab>
                   {/*//? this part is almost dummy */}
-                  <Tab eventKey="services" title="Services">
-                    <div>
-                      <h3 className="tab-title">Services</h3>
+                  <Tab eventKey="services" title="Services" className="tab-service">
+                    <Container>
+                      <ServiceIcons/>
 
-                      <Row className="py-2  align-items-center">
-                        <Col xs={1}>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4}>
                           {orderInfo.basicAuthen ? (
-                            <span className=" text-success">
+                            <span className="text-success">
                               <CheckCircleIcon />
                             </span>
                           ) : (
@@ -342,95 +340,15 @@ function OrderDetail({auth}) {
                               <CancelIcon />
                             </span>
                           )}
-                        </Col>
-                        <Col xs={4}>
                           <span>Basic Authentication</span>
                         </Col>
                         <Col>
-                          <div className="">
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name="status-authentic"
-                                id="status-authentic"
-                                readOnly
-                                disabled
-                                checked={
-                                  orderInfo.basicAuthen === "authentic" || false
-                                }
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="hardcopyAndDelivery"
-                              >
-                                Authentic
-                              </label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name="status-counterfeit"
-                                id="status-counterfeit"
-                                readOnly
-                                disabled
-                                checked={
-                                  orderInfo.basicAuthen === "counterfeit" ||
-                                  false
-                                }
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="hardcopyAndDelivery"
-                              >
-                                Counterfeit
-                              </label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name="status-inProgress"
-                                id="status-inProgress"
-                                readOnly
-                                disabled
-                                checked={
-                                  orderInfo.basicAuthen === "inProgress" ||
-                                  false
-                                }
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="hardcopyAndDelivery"
-                              >
-                                In progress
-                              </label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                name="status-issue"
-                                id="status-issue"
-                                readOnly
-                                disabled
-                                checked={
-                                  orderInfo.basicAuthen === "issue" || false
-                                }
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="hardcopyAndDelivery"
-                              >
-                                Issue
-                              </label>
-                            </div>
-                          </div>
+                          <span>Includes an official Authentic or Counterfeit determination.</span>
                         </Col>
+                        <Col xs={1} className="text-end"><span className="text-success">Authentic</span></Col>
                       </Row>
-                      <Row className="py-2 mt-3 mb-1 align-items-center">
-                        <Col xs={1} className="">
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
                           {orderInfo.certDocument ? (
                             <span className=" text-success">
                               <CheckCircleIcon />
@@ -440,199 +358,17 @@ function OrderDetail({auth}) {
                               <CancelIcon />
                             </span>
                           )}
-                        </Col>
-                        <Col xs={4}>
+                        
+                        
                           <span>Official Documentation</span>
                         </Col>
                         <Col>
-                          <span>{orderInfo.certDocument || ""}</span>
+                          <span>{orderInfo.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
                         </Col>
+                        <Col xs={1} className="text-end">Document</Col>
                       </Row>
-                      <Row className="py-2 align-items-center">
-                        <Col xs={1}>
-                          {orderInfo.marketValue ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Market Valuation</span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="marketValue"
-                            value={orderInfo.marketValue || ""}
-                            readOnly
-                            disabled
-                          />
-                        </Col>
-                      </Row>
-                      <Row className="py-2 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.itemIdentify ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Item Identification</span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="itemIdentify"
-                            value={orderInfo.itemIdentify || ""}
-                            readOnly
-                            disabled
-                          />
-                        </Col>
-                      </Row>
-                      <Row className="py-2 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.yearProduction ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Year of Production</span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="yearProduction"
-                            value={orderInfo.yearProduction || ""}
-                            readOnly
-                            disabled
-                          />
-                        </Col>
-                      </Row>
-                      <Row className="py-2 mt-3 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.authenAndDelivery ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Authenticate and Delivery</span>
-                        </Col>
-                        <Col>
-                          <div className="form-check form-check-inline">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="authenAndDelivery"
-                              id="authenAndDelivery"
-                              checked={orderInfo.authenAndDelivery || false}
-                              readOnly
-                              disabled
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="authenAndDelivery"
-                            >
-                              Authenticate and Delivery
-                            </label>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="py-2 mt-3 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.hermesLeatherRegular ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Hermès Leather Bag</span>
-                        </Col>
-                        <Col>
-                          <div className="form-check form-check-inline">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="hermesLeatherRegular"
-                              id="hermesLeatherRegular"
-                              checked={orderInfo.hermesLeatherRegular || false}
-                              readOnly
-                              disabled
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="hermesLeatherRegular"
-                            >
-                              Hermès Leather Bag
-                            </label>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="py-2 mt-3 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.hermesLeatherExotic ? (
-                            <span className=" text-success">
-                              <CheckCircleIcon />
-                            </span>
-                          ) : (
-                            <span className=" text-danger">
-                              <CancelIcon />
-                            </span>
-                          )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>Hermès Exotic Leather Bag</span>
-                        </Col>
-                        <Col>
-                          <div className="form-check form-check-inline">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="hermesLeatherExotic"
-                              id="hermesLeatherExotic"
-                              checked={orderInfo.hermesLeatherExotic || false}
-                              readOnly
-                              disabled
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="hermesLeatherExotic"
-                            >
-                              Hermès Exotic Leather Bag
-                            </label>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="py-2 mt-3 align-items-center">
-                        <Col xs={1} className="">
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
                           {orderInfo.fastTurnaround ? (
                             <span className=" text-success">
                               <CheckCircleIcon />
@@ -642,33 +378,17 @@ function OrderDetail({auth}) {
                               <CancelIcon />
                             </span>
                           )}
-                        </Col>
-                        <Col xs={4}>
+                     
                           <span>2 Hours Turnaround Service</span>
                         </Col>
                         <Col>
-                          <div className="form-check form-check-inline">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="fastTurnaround"
-                              id="fastTurnaround"
-                              checked={orderInfo.fastTurnaround || false}
-                              readOnly
-                              disabled
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="fastTurnaround"
-                            >
-                              2 Hours Turnaround Service
-                            </label>
-                          </div>
+                          <span>Do you need a quick result? Just upgrade your order to get the 2-hr authentication service turnaround.</span>
                         </Col>
+                        <Col xs={1} className="text-end">Add</Col>
                       </Row>
-                      <Row className="py-2 mt-3 align-items-center">
-                        <Col xs={1} className="">
-                          {orderInfo.hardcopyAndDelivery ? (
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4}>
+                          {orderInfo.marketValue ? (
                             <span className=" text-success">
                               <CheckCircleIcon />
                             </span>
@@ -677,35 +397,133 @@ function OrderDetail({auth}) {
                               <CancelIcon />
                             </span>
                           )}
-                        </Col>
-                        <Col xs={4}>
-                          <span>HAC and Delivery</span>
+                       
+                          <span>Market Valuation</span>
                         </Col>
                         <Col>
-                          <div className="form-check form-check-inline">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="hardcopyAndDelivery"
-                              id="hardcopyAndDelivery"
-                              checked={orderInfo.hardcopyAndDelivery || false}
-                              readOnly
-                              disabled
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="hardcopyAndDelivery"
-                            >
-                              HAC and Delivery
-                            </label>
-                          </div>
+                          <span>Includes official Style, Size, Material and Color</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.itemIdentify ? (
+                            <span className=" text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                          <span>Item Identification</span>
+                        </Col>
+                        <Col>
+                          <span>Item identification is anaother service that can be added to your order anytime.</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.yearProduction ? (
+                            <span className=" text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                    
+                          <span>Year of Production</span>
+                        </Col>
+                        <Col>
+                          <span>We offer an upgraded service to let you know the year of production of your beloved luxury goods.</span>
                         </Col>
                       </Row>
-                    </div>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.authenAndDelivery ? (
+                            <span className=" text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                    
+                          <span>Authentication certificate card and  delivery</span>
+                        </Col>
+                        <Col>
+                          <span>Super Authentic offers an authenticity card as an upgraded service along with delivery to your door!</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.hermesLeatherRegular ? (
+                            <span className=" text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                        
+                          <span>Hermès Leather Bag</span>
+                        </Col>
+                        <Col>
+                          <span>Thanks to deeper knowledge required and special attention to details, all Hèrmes authentication services will be charged additional fees depending on the type of material/leather used.</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.hermesLeatherExotic ? (
+                            <span className=" text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                        
+                          <span>Hermès Exotic Leather Bag</span>
+                        </Col>
+                        <Col>
+                          <span>Thanks to deeper knowledge required and special attention to details, all Hèrmes authentication services will be charged additional fees depending on the type of material/leather used.</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                      
+                      <Row className="align-items-center mb-5">
+                        <Col xs={4} className="">
+                          {orderInfo.hardcopyAndDelivery ? (
+                            <span className="text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                       
+                          <span>Hard-copy authentication certificate and delivery</span>
+                        </Col>
+                        <Col>
+                          <span>Exact or estimated era of item’s production</span>
+                        </Col>
+                        <Col xs={1} className="text-end">Add</Col>
+                      </Row>
+                    </Container>
                   </Tab>
                   <Tab eventKey="message" title="Message">
+                    <Container>
                     <h3 className="tab-title">Have something in mind ?</h3>
-                    <p>Chat with us, let’s see anything we can help.</p>
+                    <p className="mb-5">Chat with us, let’s see anything we can help.</p>
                     <form
                       onSubmit={(e) => {
                         handleSubmit(e);
@@ -780,39 +598,39 @@ function OrderDetail({auth}) {
                         )}
                       </div>
                     </form>
+                    </Container>
                   </Tab>
 
                   <Tab eventKey="transaction" title="Transaction">
-                    <h3 className="tab-title">Transaction details</h3>
+                    <Container>
+                    <h3 className="tab-title mb-5">General Information</h3>
                     <div>
-                      <Row>
-                        <Col className=" col-4">Order</Col>
+                      <Row className="mb-3">
+                        <Col xs={12} sm={3}>Order</Col>
                         <Col>{orderInfo.id}</Col>
                       </Row>
-                      <Row>
-                        <div className="col col-4">Submitted</div>
+                      <Row className="mb-3">
+                        <Col xs={12} sm={3}>Submitted</Col>
                         <Col>
                           {new Date(orderInfo.timestamp).toLocaleString()}
                         </Col>
                       </Row>
-                      <Row>
-                        <div className="col col-4">Services</div>
+                      <Row className="mb-3">
+                        <Col xs={12} sm={3}>Services</Col>
                         <Col>Basic Authentication, Official Documentation</Col>
                       </Row>
-                      <Row>
-                        <div className="col col-4">Amount</div>
+                      <Row className="mb-3">
+                        <Col xs={12} sm={3}>Amount</Col>
                         <Col>$30</Col>
                       </Row>
-                      <Row>
-                        <div className="col col-4">Payment Method</div>
+                      <Row className="mb-3">
+                        <Col xs={12} sm={3}>Payment Method</Col>
                         <Col>Master Card **** 3200</Col>
                       </Row>
                     </div>
+                    </Container>
                   </Tab>
                 </Tabs>
-              </div>
-            </div>
-          </div>
         </section>
       </main>
     </div>
