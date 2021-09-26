@@ -42,6 +42,18 @@ a {
 .hidden-overflow {
   overflow: hidden;
 }
+.fw-medium {
+  font-weight: 500;
+}
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-extrabold {
+  font-weight: 800;
+}
+.fw-black {
+  font-weight: 900;
+}
 .top-header {
   background: black;
   a {
@@ -604,6 +616,10 @@ footer p {
   padding-top: 50px;
   padding-bottom: 100px;
   height: 100%;
+  @include media(mobile-only) {
+    background-color: transparent;
+    padding-bottom: 50px;
+  }
   .card {
     align-items: center;
     background: transparent;
@@ -624,6 +640,9 @@ footer p {
     .profile-pic {
       position: relative;
       margin-bottom: 50px;
+      @include media(mobile-only) {
+        margin: 0;
+      }
       img {
         width: initial !important;
         max-width: 150px;
@@ -803,45 +822,51 @@ footer p {
 }
 
 .service-icons {
-  width:100%;
+  width: 100%;
   margin-bottom: 90px;
-  .order-progress{
-    list-style-type:none;
-    display:flex;
-    li{
-      display:inline-flex;
+  .order-progress {
+    list-style-type: none;
+    display: flex;
+    li {
+      display: inline-flex;
       width: 208px;
-      height:80px;
-      padding-left:81px;
-      align-items:center;
-      img{ width:18px; height:18px; margin-left:32px; }
-      &.progress-1{
-        background:url(../assets/services/1.png)no-repeat;
+      height: 80px;
+      padding-left: 81px;
+      align-items: center;
+      img {
+        width: 18px;
+        height: 18px;
+        margin-left: 32px;
       }
-      &.progress-1-success{
-        background:url(../assets/services/1-success.png)no-repeat;
+      &.progress-1 {
+        background: url(../assets/services/1.png) no-repeat;
       }
-      &.progress-2{
-        background:url(../assets/services/2.png)no-repeat;
+      &.progress-1-success {
+        background: url(../assets/services/1-success.png) no-repeat;
       }
-      &.progress-2-success{
-        background:url(../assets/services/2-success.png)no-repeat;
+      &.progress-2 {
+        background: url(../assets/services/2.png) no-repeat;
       }
-      &.progress-3{
-        background:url(../assets/services/3.png)no-repeat;
+      &.progress-2-success {
+        background: url(../assets/services/2-success.png) no-repeat;
       }
-      &.progress-3-success{
-        background:url(../assets/services/3-success.png)no-repeat;
+      &.progress-3 {
+        background: url(../assets/services/3.png) no-repeat;
       }
-      &.progress-4{
-        background:url(../assets/services/4.png)no-repeat;
+      &.progress-3-success {
+        background: url(../assets/services/3-success.png) no-repeat;
       }
-      &.progress-4-success{
-        background:url(../assets/services/4-success.png)no-repeat;
+      &.progress-4 {
+        background: url(../assets/services/4.png) no-repeat;
+      }
+      &.progress-4-success {
+        background: url(../assets/services/4-success.png) no-repeat;
       }
     }
-    li:last-child{
-      img{ display:none; }
+    li:last-child {
+      img {
+        display: none;
+      }
     }
   }
 }
@@ -851,12 +876,15 @@ footer p {
     display: inline-block;
   }
   svg {
-    margin-right:34px;
+    margin-right: 34px;
   }
 }
 
 .profile-details {
   padding: 45px 50px 150px;
+  @include media(mobile-only) {
+    padding: 45px 50px;
+  }
   h3 {
     font-size: 18px;
     font-weight: 500;
@@ -869,6 +897,9 @@ footer p {
     margin-top: 2rem;
   }
   .payment-info {
-    width: 70%;
+    width: 100%;
+    @include media(mobile-only) {
+      width: 100%;
+    }
   }
 }
