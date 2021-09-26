@@ -178,7 +178,7 @@ function Authentication({ auth }) {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 col-sm-3 col-md-3 col-xxl-2 gx-0">
-                <div className="sidebar --step-1">
+                <div className="sidebar --step-1  px-5 px-sm-0">
                   <div className="card ">
                     <h2 className="">Basic Information</h2>
                     <p className="">Tell us about your item. </p>

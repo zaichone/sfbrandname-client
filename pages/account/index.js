@@ -96,7 +96,7 @@ function Account({ auth }) {
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <div className="profile-pic">
+                    <div className="profile-pic mx-auto">
                       <img
                         src={profileAvatar ? profileAvatar : avatar.src}
                         className="rounded-circle"

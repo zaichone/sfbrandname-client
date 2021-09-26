@@ -148,7 +148,7 @@ function UploadPicutres({ auth }) {
           <div className="container-fluid">
             <div className="row gx-0">
               <div className="col-12 col-sm-3 col-md-3 col-xxl-2">
-                <div className="sidebar --step-2">
+                <div className="sidebar --step-2  px-5 px-sm-0">
                   <div className="card">
                     <h2>Upload Pictures</h2>
                     <p>Give us some pictures. </p>

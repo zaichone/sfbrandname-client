@@ -41,7 +41,7 @@ function AlmostDone() {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 col-sm-3 col-md-3 col-xxl-2 gx-0">
-                <div className="sidebar --step-3">
+                <div className="sidebar --step-3 px-5 px-sm-0">
                   <div className="card">
                     <h2>Almost Done !</h2>
                     <p>This is the last process. </p>
@@ -81,12 +81,12 @@ function AlmostDone() {
                     </div>
                     <div className="row">
                       <label
-                        className="col-sm-2 col-form-label"
+                        className="col-3 col-form-label"
                         for="ccExpired"
                       >
                         expired
                       </label>
-                      <div className="col-4 gx-0">
+                      <div className="col-3 gx-0">
                         <input
                           type="text"
                           className="form-control"
@@ -95,7 +95,7 @@ function AlmostDone() {
                         />
                       </div>
 
-                      <label className="col-sm-2 col-form-label" for="ccCode">
+                      <label className="col-2 col-form-label" for="ccCode">
                         ccv
                       </label>
 
@@ -108,8 +108,8 @@ function AlmostDone() {
                         />
                       </div>
                     </div>
-                    <div className="row">
-                      <div className=" col mb-3">
+                    <div className="row my-3">
+                      <div className=" col my-3">
                         <h3>Card Holder Name</h3>
                         <input
                           type="text"
