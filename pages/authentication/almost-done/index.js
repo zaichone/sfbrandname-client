@@ -41,11 +41,15 @@ function AlmostDone() {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 col-sm-3 col-md-3 col-xxl-2 gx-0">
-                <div className="sidebar">
+                <div className="sidebar --step-3">
                   <div className="card">
                     <h2>Almost Done !</h2>
                     <p>This is the last process. </p>
-                    <img src={Three.src} className="img-fluid" alt="" />
+                    <img
+                      src={Three.src}
+                      className="img-fluid d-none d-sm-block"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
@@ -60,7 +64,11 @@ function AlmostDone() {
                     <div className="row">
                       <div className="col mb-3">
                         <h3>Card Number</h3>
-
+                        <input
+                          type="text"
+                          className="form-control mb-3"
+                          name="name"
+                        />
                         <FontAwesomeIcon
                           icon={faCcVisa}
                           style={{ fontSize: "2rem", marginRight: "1rem" }}
@@ -69,21 +77,16 @@ function AlmostDone() {
                           icon={faCcMastercard}
                           style={{ fontSize: "2rem" }}
                         />
-
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="name"
-                        />
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-auto">
-                        {" "}
-                        <label for="ccExpired">expired</label>
-                      </div>
-                      <div className="col-auto">
-                        {" "}
+                      <label
+                        className="col-sm-2 col-form-label"
+                        for="ccExpired"
+                      >
+                        expired
+                      </label>
+                      <div className="col-4 gx-0">
                         <input
                           type="text"
                           className="form-control"
@@ -91,12 +94,12 @@ function AlmostDone() {
                           id="ccExpired"
                         />
                       </div>
-                      <div className="col-auto">
-                        {" "}
-                        <label for="ccCode">ccv</label>
-                      </div>
-                      <div className="col-auto">
-                        {" "}
+
+                      <label className="col-sm-2 col-form-label" for="ccCode">
+                        ccv
+                      </label>
+
+                      <div className="col-4 gx-0">
                         <input
                           type="text"
                           className="form-control"

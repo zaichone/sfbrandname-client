@@ -624,6 +624,10 @@ footer p {
     align-items: center;
     background: transparent;
     border: none;
+    @include media(mobile-only) {
+      align-items: flex-start;
+      padding-left: 45px;
+    }
     ul {
       background: transparent;
       .list-group-item {
@@ -656,15 +660,44 @@ footer p {
     }
   }
 }
-
+.sidebar.--step-1 {
+  @include media(mobile-only) {
+    background-image: url("../assets/1.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
+.sidebar.--step-2 {
+  @include media(mobile-only) {
+    background-image: url("../assets/2.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
+.sidebar.--step-3 {
+  @include media(mobile-only) {
+    background-image: url("../assets/3.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
 .details {
   background: white;
   padding-top: 50px;
   padding-bottom: 300px;
   padding-left: 90px;
   padding-right: 90px;
+  @include media(mobile-only) {
+    padding: 30px;
+  }
   form {
     max-width: 50%;
+    @include media(mobile-only) {
+      max-width: 100%;
+    }
   }
   h3 {
     font-size: 14px;
