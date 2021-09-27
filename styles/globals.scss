@@ -794,6 +794,10 @@ footer p {
       &.active {
         background: #f7f7f7;
       }
+      @include media(mobile-only) {
+        width: 25%;
+        padding: 20px;
+      }
     }
   }
   .tab-content {
@@ -814,6 +818,9 @@ footer p {
       width: 50%;
       background: white;
       position: relative;
+      @include media(mobile-only) {
+        width: 100%;
+      }
       .message-lists {
         padding: 35px 70px;
         p {
@@ -875,6 +882,11 @@ footer p {
       height: 80px;
       padding-left: 81px;
       align-items: center;
+      @include media(mobile-only) {
+        width: 108px;
+        height: 40px;
+        padding: 45px;
+      }
       img {
         width: 18px;
         height: 18px;
@@ -882,27 +894,59 @@ footer p {
       }
       &.progress-1 {
         background: url(../assets/services/1.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-1-success {
         background: url(../assets/services/1-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-2 {
         background: url(../assets/services/2.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-2-success {
         background: url(../assets/services/2-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-3 {
         background: url(../assets/services/3.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-3-success {
         background: url(../assets/services/3-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-4 {
         background: url(../assets/services/4.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
       &.progress-4-success {
         background: url(../assets/services/4-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
     }
     li:last-child {
@@ -918,7 +962,7 @@ footer p {
     display: inline-block;
   }
   svg {
-    margin-right: 34px;
+    margin-right: 24px;
   }
 }
 

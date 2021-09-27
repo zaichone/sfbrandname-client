@@ -61,25 +61,24 @@ function Branding() {
       </Head>
       <main>
         <div className="d-none d-sm-block">
-            <PagtTitle title="Our Specialist" bg={cover} />
-            <section className="page-section">
-              <div className="container">
-                <p className="page-description">
-                  Super Authentic offers various services to authenticate your
-                  designer brand products - bags, clothings, shoes, accessories,
-                  watches, eyewears etc. We have a team of experts to help verify
-                  your beloved goods and a customer services team to provide support
-                  for you
-                </p>
-              </div>
-            </section>
+          <PagtTitle title="Our Specialist" bg={cover} />
+          <section className="page-section">
+            <div className="container">
+              <p className="page-description">
+                Super Authentic offers various services to authenticate your
+                designer brand products - bags, clothings, shoes, accessories,
+                watches, eyewears etc. We have a team of experts to help verify
+                your beloved goods and a customer services team to provide
+                support for you
+              </p>
+            </div>
+          </section>
         </div>
         <div className="d-block- d-sm-none">
-                        <PagtTitle title="Branding" bg={cover} />
-
+          <PagtTitle title="Branding" bg={cover} />
         </div>
         <div className="d-none d-sm-block">
-            <ServiceListCommon />
+          <ServiceListCommon />
         </div>
         <div className="d-none d-sm-block">
           <SearchBar

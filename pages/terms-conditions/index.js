@@ -32,7 +32,7 @@ function TermsConditions() {
         </div>
 
         <section>
-          <div className="container mx-4 mt-5">
+          <div className="container px-4 mt-5">
 
             <p>Update 27 july 2021 </p> <br />
             <h2>1.Terms and Conditions</h2> <br />

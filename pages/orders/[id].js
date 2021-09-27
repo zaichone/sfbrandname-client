@@ -17,8 +17,8 @@ import {
   Container,
 } from "react-bootstrap";
 
-import SymmetricalDiv from '../../components/layout/SymmetricalDiv';
-import ServiceIcons from '../../components/layout/ServiceIcons';
+import SymmetricalDiv from "../../components/layout/SymmetricalDiv";
+import ServiceIcons from "../../components/layout/ServiceIcons";
 
 import TelegramIcon from "@material-ui/icons/Telegram";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
@@ -119,7 +119,6 @@ function OrderDetail({ auth }) {
     const _clientId = window.localStorage.getItem("clientId");
     setClientId(_clientId);
     if (user) {
-
       const accountRef = firestore.collection("members").doc(user.uid);
       accountRef
         .get()
@@ -139,7 +138,6 @@ function OrderDetail({ auth }) {
     }
     const _mesagesRef = firestore
       .collection("messages")
-      .where("clientId", "==", _clientId)
       .where("taskId", "==", id)
       .orderBy("timestamp", "asc");
     const unsubscribe = _mesagesRef.onSnapshot((snapshot) => {
@@ -191,14 +189,13 @@ function OrderDetail({ auth }) {
       <main className="page-services page-content">
         <PagtTitle title="Order Detail" bg={cover} />
         <section>
-
           <Tabs defaultActiveKey="home" id="orderDetails">
             <Tab eventKey="home" title="Item Info">
               <Container>
                 <h3 className="tab-title mb-5">General Information</h3>
 
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Name</p>
                   </Col>
                   <Col>
@@ -206,7 +203,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Brand</p>
                   </Col>
                   <Col>
@@ -214,7 +211,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Category</p>
                   </Col>
                   <Col>
@@ -222,7 +219,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Timestamp</p>
                   </Col>
                   <Col>
@@ -233,7 +230,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Order ID</p>
                   </Col>
                   <Col>
@@ -241,7 +238,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Client name</p>
                   </Col>
                   <Col>
@@ -249,7 +246,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Client ID</p>
                   </Col>
                   <Col>
@@ -257,7 +254,7 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={2}>
+                  <Col xs={12} sm={2}>
                     <p>Status</p>
                   </Col>
                   <Col>
@@ -270,10 +267,11 @@ function OrderDetail({ auth }) {
                     <h3 className="tab-title">Product Picture</h3>
                   </Col>
                 </Row>
-                <Row className="gx-5 mt-5">
+                <Row className="gx-0 gx-sm-5 mt-5">
                   {orderInfo.featured ? (
                     <Col
-                      xs={3}
+                      xs={12}
+                      sm={3}
                       className="d-flex flex-column justify-content-center mb-3"
                     >
                       <a
@@ -282,12 +280,17 @@ function OrderDetail({ auth }) {
                         rel="noreferrer"
                       >
                         <p className="text-center">{"Featured Image"}</p>
-                        <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center"
-                          style={{ width: '100%', background: `url(${orderInfo.featured && orderInfo.featured})center center no-repeat`, border: '1px solid black' }}>
-
-                        </SymmetricalDiv>
+                        <SymmetricalDiv
+                          className="d-flex flex-column align-items-center justify-content-center"
+                          style={{
+                            width: "100%",
+                            background: `url(${
+                              orderInfo.featured && orderInfo.featured
+                            })center center no-repeat`,
+                            border: "1px solid black",
+                          }}
+                        ></SymmetricalDiv>
                       </a>
-
                     </Col>
                   ) : null}
                   {orderInfo.images ? (
@@ -296,10 +299,10 @@ function OrderDetail({ auth }) {
                         img && (
                           <Col
                             key={img.timestamp}
-                            xs={3}
+                            xs={12}
+                            sm={3}
                             className="d-flex flex-column justify-content-center mb-3"
                           >
-
                             <a
                               href={img.imageURL ? img.imageURL : "#"}
                               target="_blank"
@@ -309,11 +312,16 @@ function OrderDetail({ auth }) {
                                 {img.label ? img.label : "(no label)"}
                               </p>
 
-
-                              <SymmetricalDiv className="d-flex flex-column align-items-center justify-content-center"
-                                style={{ width: '100%', background: `url(${img.imageURL ? img.imageURL : thumbImage})center center no-repeat`, border: '1px solid black' }}>
-
-                              </SymmetricalDiv>
+                              <SymmetricalDiv
+                                className="d-flex flex-column align-items-center justify-content-center"
+                                style={{
+                                  width: "100%",
+                                  background: `url(${
+                                    img.imageURL ? img.imageURL : thumbImage
+                                  })center center no-repeat`,
+                                  border: "1px solid black",
+                                }}
+                              ></SymmetricalDiv>
                             </a>
                           </Col>
                         )
@@ -327,10 +335,12 @@ function OrderDetail({ auth }) {
             {/*//? this part is almost dummy */}
             <Tab eventKey="services" title="Services" className="tab-service">
               <Container>
-                <ServiceIcons />
+                <div style={{ maxWidth: "100vw" }}>
+                  <ServiceIcons />
+                </div>
 
                 <Row className="align-items-center mb-5">
-                  <Col xs={4}>
+                  <Col xs={12} sm={4}>
                     {orderInfo.basicAuthen ? (
                       <span className="text-success">
                         <CheckCircleIcon />
@@ -342,13 +352,18 @@ function OrderDetail({ auth }) {
                     )}
                     <span>Basic Authentication</span>
                   </Col>
-                  <Col>
-                    <span>Includes an official Authentic or Counterfeit determination.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0" >
+                    <span>
+                      Includes an official Authentic or Counterfeit
+                      determination.
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end"><span className="text-success">Authentic</span></Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    <span className="text-success">Authentic</span>
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.certDocument ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -359,16 +374,20 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
-
                     <span>Official Documentation</span>
                   </Col>
-                  <Col>
-                    <span>{orderInfo.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      {orderInfo.certDocument ||
+                        "Auto Generated Certificate of Authenticity / Written Statement"}
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Document</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Document
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.fastTurnaround ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -381,13 +400,18 @@ function OrderDetail({ auth }) {
 
                     <span>2 Hours Turnaround Service</span>
                   </Col>
-                  <Col>
-                    <span>Do you need a quick result? Just upgrade your order to get the 2-hr authentication service turnaround.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      Do you need a quick result? Just upgrade your order to get
+                      the 2-hr authentication service turnaround.
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4}>
+                  <Col xs={12} sm={4}>
                     {orderInfo.marketValue ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -400,13 +424,17 @@ function OrderDetail({ auth }) {
 
                     <span>Market Valuation</span>
                   </Col>
-                  <Col>
-                    <span>Includes official Style, Size, Material and Color</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      Includes official Style, Size, Material and Color
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.itemIdentify ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -418,13 +446,18 @@ function OrderDetail({ auth }) {
                     )}
                     <span>Item Identification</span>
                   </Col>
-                  <Col>
-                    <span>Item identification is anaother service that can be added to your order anytime.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0"> 
+                    <span>
+                      Item identification is anaother service that can be added
+                      to your order anytime.
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.yearProduction ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -437,12 +470,18 @@ function OrderDetail({ auth }) {
 
                     <span>Year of Production</span>
                   </Col>
-                  <Col>
-                    <span>We offer an upgraded service to let you know the year of production of your beloved luxury goods.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      We offer an upgraded service to let you know the year of
+                      production of your beloved luxury goods.
+                    </span>
+                  </Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.authenAndDelivery ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -453,15 +492,20 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
-                    <span>Authentication certificate card and  delivery</span>
+                    <span>Authentication certificate card and delivery</span>
                   </Col>
-                  <Col>
-                    <span>Super Authentic offers an authenticity card as an upgraded service along with delivery to your door!</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      Super Authentic offers an authenticity card as an upgraded
+                      service along with delivery to your door!
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.hermesLeatherRegular ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -474,13 +518,20 @@ function OrderDetail({ auth }) {
 
                     <span>Hermès Leather Bag</span>
                   </Col>
-                  <Col>
-                    <span>Thanks to deeper knowledge required and special attention to details, all Hèrmes authentication services will be charged additional fees depending on the type of material/leather used.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      Thanks to deeper knowledge required and special attention
+                      to details, all Hèrmes authentication services will be
+                      charged additional fees depending on the type of
+                      material/leather used.
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.hermesLeatherExotic ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
@@ -493,14 +544,21 @@ function OrderDetail({ auth }) {
 
                     <span>Hermès Exotic Leather Bag</span>
                   </Col>
-                  <Col>
-                    <span>Thanks to deeper knowledge required and special attention to details, all Hèrmes authentication services will be charged additional fees depending on the type of material/leather used.</span>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                    <span>
+                      Thanks to deeper knowledge required and special attention
+                      to details, all Hèrmes authentication services will be
+                      charged additional fees depending on the type of
+                      material/leather used.
+                    </span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
 
                 <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
+                  <Col xs={12} sm={4} className="">
                     {orderInfo.hardcopyAndDelivery ? (
                       <span className="text-success">
                         <CheckCircleIcon />
@@ -511,19 +569,25 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
-                    <span>Hard-copy authentication certificate and delivery</span>
+                    <span>
+                      Hard-copy certificate and delivery
+                    </span>
                   </Col>
-                  <Col>
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                     <span>Exact or estimated era of item’s production</span>
                   </Col>
-                  <Col xs={1} className="text-end">Add</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Add
+                  </Col>
                 </Row>
               </Container>
             </Tab>
             <Tab eventKey="message" title="Message">
               <Container>
                 <h3 className="tab-title">Have something in mind ?</h3>
-                <p className="mb-5">Chat with us, let’s see anything we can help.</p>
+                <p className="mb-5">
+                  Chat with us, let’s see anything we can help.
+                </p>
                 <form
                   onSubmit={(e) => {
                     handleSubmit(e);
@@ -555,11 +619,7 @@ function OrderDetail({ auth }) {
                         value={text}
                         onChange={handleTextChange}
                       />
-                      <button
-                        className="btn"
-                        type="button"
-                        id="button-addon2"
-                      >
+                      <button className="btn" type="button" id="button-addon2">
                         <input
                           style={{ display: "none" }}
                           type="file"
@@ -574,11 +634,7 @@ function OrderDetail({ auth }) {
                           }
                         />
                       </button>
-                      <button
-                        className="btn"
-                        type="submit"
-                        id="button-addon2"
-                      >
+                      <button className="btn" type="submit" id="button-addon2">
                         <TelegramIcon />
                       </button>
                     </div>
@@ -606,25 +662,33 @@ function OrderDetail({ auth }) {
                 <h3 className="tab-title mb-5">General Information</h3>
                 <div>
                   <Row className="mb-3">
-                    <Col xs={12} sm={3}>Order</Col>
+                    <Col xs={12} sm={3}>
+                      Order
+                    </Col>
                     <Col>{orderInfo.id}</Col>
                   </Row>
                   <Row className="mb-3">
-                    <Col xs={12} sm={3}>Submitted</Col>
-                    <Col>
-                      {new Date(orderInfo.timestamp).toLocaleString()}
+                    <Col xs={12} sm={3}>
+                      Submitted
                     </Col>
+                    <Col>{new Date(orderInfo.timestamp).toLocaleString()}</Col>
                   </Row>
                   <Row className="mb-3">
-                    <Col xs={12} sm={3}>Services</Col>
+                    <Col xs={12} sm={3}>
+                      Services
+                    </Col>
                     <Col>Basic Authentication, Official Documentation</Col>
                   </Row>
                   <Row className="mb-3">
-                    <Col xs={12} sm={3}>Amount</Col>
+                    <Col xs={12} sm={3}>
+                      Amount
+                    </Col>
                     <Col>$30</Col>
                   </Row>
                   <Row className="mb-3">
-                    <Col xs={12} sm={3}>Payment Method</Col>
+                    <Col xs={12} sm={3}>
+                      Payment Method
+                    </Col>
                     <Col>Master Card **** 3200</Col>
                   </Row>
                 </div>
