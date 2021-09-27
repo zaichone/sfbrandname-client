@@ -331,7 +331,7 @@ function OrderDetail({ auth }) {
 
                 <Row className="align-items-center mb-5">
                   <Col xs={4}>
-                    {orderInfo.basicAuthen ? (
+                    {orderInfo?.orderServices?.basicAuthen ? (
                       <span className="text-success">
                         <CheckCircleIcon />
                       </span>
@@ -349,7 +349,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.certDocument ? (
+                    {orderInfo?.orderServices?.certDocument ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -363,13 +363,13 @@ function OrderDetail({ auth }) {
                     <span>Official Documentation</span>
                   </Col>
                   <Col>
-                    <span>{orderInfo.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
+                    <span>{orderInfo?.orderServices?.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
                   </Col>
                   <Col xs={1} className="text-end">Document</Col>
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.fastTurnaround ? (
+                    {orderInfo?.orderServices?.fastTurnaround ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -388,7 +388,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4}>
-                    {orderInfo.marketValue ? (
+                    {orderInfo?.orderServices?.marketValue ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -407,7 +407,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.itemIdentify ? (
+                    {orderInfo?.orderServices?.itemIdentify ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -425,7 +425,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.yearProduction ? (
+                    {orderInfo?.orderServices?.yearProduction ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -443,7 +443,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.authenAndDelivery ? (
+                    {orderInfo?.orderServices?.authenAndDelivery ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -462,7 +462,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.hermesLeatherRegular ? (
+                    {orderInfo?.orderServices?.hermesLeatherRegular ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -481,7 +481,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.hermesLeatherExotic ? (
+                    {orderInfo?.orderServices?.hermesLeatherExotic ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -501,7 +501,7 @@ function OrderDetail({ auth }) {
 
                 <Row className="align-items-center mb-5">
                   <Col xs={4} className="">
-                    {orderInfo.hardcopyAndDelivery ? (
+                    {orderInfo?.orderServices?.hardcopyAndDelivery ? (
                       <span className="text-success">
                         <CheckCircleIcon />
                       </span>
