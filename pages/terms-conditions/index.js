@@ -25,10 +25,15 @@ function TermsConditions() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="Terms and Conditions" bg={cover} />
-        <PageSecondTitle title="Terms and Conditions" bg={cover2} />
+        <PagtTitle title="Terms and Conditions" bg={cover} className = "d-none d-sm-block"/>
+
+        <div className="d-none d-sm-block">
+          <PageSecondTitle title="Terms and Conditions" bg={cover2} />
+        </div>
+
         <section>
-          <div className="container">
+          <div className="container mx-4 mt-5">
+
             <p>Update 27 july 2021 </p> <br />
             <h2>1.Terms and Conditions</h2> <br />
             <h3>Interpretation and Definitions</h3> <br />
