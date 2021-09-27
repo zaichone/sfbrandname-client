@@ -341,7 +341,7 @@ function OrderDetail({ auth }) {
 
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4}>
-                    {orderInfo.basicAuthen ? (
+                    {orderInfo?.orderServices?.basicAuthen ? (
                       <span className="text-success">
                         <CheckCircleIcon />
                       </span>
@@ -352,7 +352,7 @@ function OrderDetail({ auth }) {
                     )}
                     <span>Basic Authentication</span>
                   </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0" >
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                     <span>
                       Includes an official Authentic or Counterfeit
                       determination.
@@ -364,7 +364,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.certDocument ? (
+                    {orderInfo?.orderServices?.certDocument ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -374,21 +374,17 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
+
                     <span>Official Documentation</span>
                   </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      {orderInfo.certDocument ||
-                        "Auto Generated Certificate of Authenticity / Written Statement"}
-                    </span>
+                  <Col>
+                    <span>{orderInfo?.orderServices?.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
                   </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    Document
-                  </Col>
+                  <Col xs={12} sm={1} className="text-end">Document</Col>
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.fastTurnaround ? (
+                    {orderInfo?.orderServices?.fastTurnaround ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -412,7 +408,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4}>
-                    {orderInfo.marketValue ? (
+                    {orderInfo?.orderServices?.marketValue ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -435,7 +431,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.itemIdentify ? (
+                    {orderInfo?.orderServices?.itemIdentify ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -446,7 +442,7 @@ function OrderDetail({ auth }) {
                     )}
                     <span>Item Identification</span>
                   </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0"> 
+                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                     <span>
                       Item identification is anaother service that can be added
                       to your order anytime.
@@ -458,7 +454,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.yearProduction ? (
+                    {orderInfo?.orderServices?.yearProduction ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -482,7 +478,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.authenAndDelivery ? (
+                    {orderInfo?.orderServices?.authenAndDelivery ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -506,7 +502,7 @@ function OrderDetail({ auth }) {
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.hermesLeatherRegular ? (
+                    {orderInfo?.orderServices?.hermesLeatherRegular ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -531,8 +527,8 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo.hermesLeatherExotic ? (
+                  <Col xs={4} className="">
+                    {orderInfo?.orderServices?.hermesLeatherExotic ? (
                       <span className=" text-success">
                         <CheckCircleIcon />
                       </span>
@@ -559,7 +555,7 @@ function OrderDetail({ auth }) {
 
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
-                    {orderInfo.hardcopyAndDelivery ? (
+                    {orderInfo?.orderServices?.hardcopyAndDelivery ? (
                       <span className="text-success">
                         <CheckCircleIcon />
                       </span>
@@ -569,9 +565,7 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
-                    <span>
-                      Hard-copy certificate and delivery
-                    </span>
+                    <span>Hard-copy certificate and delivery</span>
                   </Col>
                   <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                     <span>Exact or estimated era of item’s production</span>
