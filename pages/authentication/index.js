@@ -43,6 +43,7 @@ function Authentication({auth}) {
         if (category == '0') {
             alert('Please select Category');
         }
+        
         let _info = {
             clientId: user.uid,
             brand: brand.value,
@@ -50,7 +51,19 @@ function Authentication({auth}) {
             clientName: clientName.value,
             category: category.value,
             timestamp: new Date().getTime(),
-            status: 'In Progress'
+            status: 'In Progress',
+            orderServices:{
+                basicAuthen:false,
+                certDocument:false,
+                marketValue:'',
+                itemIdentify:'',
+                yearProduction:'',
+                authenAndDelivery:false,
+                hermesLeatherRegular:false,
+                hermesLeatherExotic:false,
+                fastTurnaround:false,
+                hardcopyAndDelivery:false
+            }
         };
 
         console.log(_info)
