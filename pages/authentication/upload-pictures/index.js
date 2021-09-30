@@ -168,10 +168,10 @@ function UploadPicutres({ auth }) {
                     <Link href="/image-guideline/">Image Guideline</Link>
                   </p>
 
-                  <div className="row">
+                  <div >
                     {category && renderUploadForm(category)}
 
-                    <div className="col-12 mb-3 mt-5">
+                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={goNext}>Next</button>
                     </div>
                   </div>

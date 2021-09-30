@@ -84,7 +84,7 @@ function AlmostDone() {
                         className="col-3 col-form-label"
                         for="ccExpired"
                       >
-                        expired
+                        Expired
                       </label>
                       <div className="col-3 gx-0">
                         <input
@@ -96,10 +96,10 @@ function AlmostDone() {
                       </div>
 
                       <label className="col-2 col-form-label" for="ccCode">
-                        ccv
+                        CCV
                       </label>
 
-                      <div className="col-4 gx-0">
+                      <div className="col-4 ">
                         <input
                           type="text"
                           className="form-control"
@@ -135,7 +135,7 @@ function AlmostDone() {
                   </form>
 
                   <div className="row">
-                    <div className="col-12 mb-3 mt-5">
+                  <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button>Process</button>
                     </div>
                   </div>
