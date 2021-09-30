@@ -53,7 +53,7 @@ function Register({ auth }) {
       <main>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
+            <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
               <h1 className="mt-5">CREATE ACCOUNT</h1>
               {error && <Alert variant="danger">{error}</Alert>}
               <form className="w-100 mt-3" onSubmit={handleSubmit}>
@@ -99,7 +99,7 @@ function Register({ auth }) {
                 </div>
                 <div className="mb-5">
                   <div className="row">
-                    <div className="form-check col-5">
+                    <div className="form-check col-6">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -114,7 +114,7 @@ function Register({ auth }) {
                       </label>
                     </div>
 
-                    <div className="col-7">
+                    <div className="col-6">
                       <p className="forget-password-text ">
                         <Link href="/terms-conditions/">
                           Terms & Conditions
@@ -133,7 +133,7 @@ function Register({ auth }) {
                 Already have an account?<Link href="/sign-in/">Login</Link>
               </p>
             </div>
-            <div className="col-8 p-0">
+            <div className=" d-none d-sm-inline col-sm-8 p-0">
               <div className="register-cover"></div>
             </div>
           </div>

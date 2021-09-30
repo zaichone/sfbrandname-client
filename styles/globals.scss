@@ -42,6 +42,18 @@ a {
 .hidden-overflow {
   overflow: hidden;
 }
+.fw-medium {
+  font-weight: 500;
+}
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-extrabold {
+  font-weight: 800;
+}
+.fw-black {
+  font-weight: 900;
+}
 .top-header {
   background: black;
   a {
@@ -518,12 +530,16 @@ footer p {
   flex-wrap: wrap;
   //grid-template-columns: auto auto auto auto auto;
   .brand {
+    width: 20%;
     min-height: 200px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 20%;
+    @include media(mobile-only) {
+      width: 100%;
+      height: 45px;
+    }
     padding-left: 50px;
     padding-right: 50px;
     &.odd {
@@ -604,10 +620,17 @@ footer p {
   padding-top: 50px;
   padding-bottom: 100px;
   height: 100%;
+  @include media(mobile-only) {
+    background-color: transparent;
+    padding-bottom: 50px;
+  }
   .card {
     align-items: center;
     background: transparent;
     border: none;
+    @include media(mobile-only) {
+      align-items: flex-start;
+    }
     ul {
       background: transparent;
       .list-group-item {
@@ -624,6 +647,9 @@ footer p {
     .profile-pic {
       position: relative;
       margin-bottom: 50px;
+      @include media(mobile-only) {
+        margin: 0;
+      }
       img {
         width: initial !important;
         max-width: 150px;
@@ -637,19 +663,48 @@ footer p {
     }
   }
 }
-
+.sidebar.--step-1 {
+  @include media(mobile-only) {
+    background-image: url("../assets/1.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
+.sidebar.--step-2 {
+  @include media(mobile-only) {
+    background-image: url("../assets/2.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
+.sidebar.--step-3 {
+  @include media(mobile-only) {
+    background-image: url("../assets/3.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+}
 .details {
   background: white;
   padding-top: 50px;
   padding-bottom: 300px;
   padding-left: 90px;
   padding-right: 90px;
+  @include media(mobile-only) {
+    padding: 30px;
+  }
   form {
     max-width: 50%;
+    @include media(mobile-only) {
+      max-width: 100%;
+    }
   }
   h3 {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     svg {
       color: #f2c53d;
     }
@@ -680,9 +735,15 @@ footer p {
     border: 1px solid black;
     padding: 16px 32px;
     margin-bottom: 20px;
+    @include media(mobile-only) {
+      padding: 8px;
+    }
     .order-thumbnail {
       img {
         max-width: 250px;
+        @include media(mobile-only) {
+          max-width: 60px;
+        }
       }
       .image-box {
         border-radius: 50%;
@@ -733,6 +794,10 @@ footer p {
       &.active {
         background: #f7f7f7;
       }
+      @include media(mobile-only) {
+        width: 25%;
+        padding: 20px;
+      }
     }
   }
   .tab-content {
@@ -753,6 +818,9 @@ footer p {
       width: 50%;
       background: white;
       position: relative;
+      @include media(mobile-only) {
+        width: 100%;
+      }
       .message-lists {
         padding: 35px 70px;
         p {
@@ -803,45 +871,88 @@ footer p {
 }
 
 .service-icons {
-  width:100%;
+  width: 100%;
   margin-bottom: 90px;
-  .order-progress{
-    list-style-type:none;
-    display:flex;
-    li{
-      display:inline-flex;
+  .order-progress {
+    list-style-type: none;
+    display: flex;
+    li {
+      display: inline-flex;
       width: 208px;
-      height:80px;
-      padding-left:81px;
-      align-items:center;
-      img{ width:18px; height:18px; margin-left:32px; }
-      &.progress-1{
-        background:url(../assets/services/1.png)no-repeat;
+      height: 80px;
+      padding-left: 81px;
+      align-items: center;
+      @include media(mobile-only) {
+        width: 108px;
+        height: 40px;
+        padding: 45px;
       }
-      &.progress-1-success{
-        background:url(../assets/services/1-success.png)no-repeat;
+      img {
+        width: 18px;
+        height: 18px;
+        margin-left: 32px;
       }
-      &.progress-2{
-        background:url(../assets/services/2.png)no-repeat;
+      &.progress-1 {
+        background: url(../assets/services/1.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
-      &.progress-2-success{
-        background:url(../assets/services/2-success.png)no-repeat;
+      &.progress-1-success {
+        background: url(../assets/services/1-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
-      &.progress-3{
-        background:url(../assets/services/3.png)no-repeat;
+      &.progress-2 {
+        background: url(../assets/services/2.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
-      &.progress-3-success{
-        background:url(../assets/services/3-success.png)no-repeat;
+      &.progress-2-success {
+        background: url(../assets/services/2-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
-      &.progress-4{
-        background:url(../assets/services/4.png)no-repeat;
+      &.progress-3 {
+        background: url(../assets/services/3.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
-      &.progress-4-success{
-        background:url(../assets/services/4-success.png)no-repeat;
+      &.progress-3-success {
+        background: url(../assets/services/3-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+      &.progress-4 {
+        background: url(../assets/services/4.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+      &.progress-4-success {
+        background: url(../assets/services/4-success.png) no-repeat;
+        @include media(mobile-only) {
+          width: 1rem;
+          height: 1rem;
+        }
       }
     }
-    li:last-child{
-      img{ display:none; }
+    li:last-child {
+      img {
+        display: none;
+      }
     }
   }
 }
@@ -851,12 +962,15 @@ footer p {
     display: inline-block;
   }
   svg {
-    margin-right:34px;
+    margin-right: 24px;
   }
 }
 
 .profile-details {
   padding: 45px 50px 150px;
+  @include media(mobile-only) {
+    padding: 45px 50px;
+  }
   h3 {
     font-size: 18px;
     font-weight: 500;
@@ -869,6 +983,9 @@ footer p {
     margin-top: 2rem;
   }
   .payment-info {
-    width: 70%;
+    width: 100%;
+    @include media(mobile-only) {
+      width: 100%;
+    }
   }
 }

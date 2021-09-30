@@ -6,14 +6,14 @@ import cover from "../../assets/account/cover.png";
 import avatar from "../../assets/account/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard } from "@fortawesome/free-brands-svg-icons";
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import { useRouter } from "next/router";
 
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
-function Account({auth}) {
+function Account({ auth }) {
   const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
@@ -23,22 +23,33 @@ function Account({auth}) {
     const accountRef = firestore.collection("members").doc(user.uid);
     let storageRef = storage.ref("/account/avatars");
     let file = document.getElementById("filesAvatar").files[0];
-    const ts = Number(new Date())
-    const uploadName = `${user.uid}_${ts}_${file.name}`
+    const ts = Number(new Date());
+    const uploadName = `${user.uid}_${ts}_${file.name}`;
     let thisRef = storageRef.child(uploadName);
     await thisRef.put(file).then(function (snapshot) {
-        snapshot.ref.getDownloadURL().then((downloadURL) => {
-            console.log("🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL", downloadURL)
-            setProfileAvatar(downloadURL);
-                console.log("🚀 ~ file: index.js ~ line 38 ~ snapshot.ref.getDownloadURL ~ user.uid", user.uid)
-            accountRef.update({
-              profileAvatar: downloadURL
-          }, { merge: true })
-              .then(() => { }).catch((error) => { });
-        });
-    })
-}
-console.log('profileAvatar', profileAvatar);
+      snapshot.ref.getDownloadURL().then((downloadURL) => {
+        console.log(
+          "🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL",
+          downloadURL
+        );
+        setProfileAvatar(downloadURL);
+        console.log(
+          "🚀 ~ file: index.js ~ line 38 ~ snapshot.ref.getDownloadURL ~ user.uid",
+          user.uid
+        );
+        accountRef
+          .update(
+            {
+              profileAvatar: downloadURL,
+            },
+            { merge: true }
+          )
+          .then(() => {})
+          .catch((error) => {});
+      });
+    });
+  }
+  console.log("profileAvatar", profileAvatar);
   useEffect(() => {
     console.log(user.uid);
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -77,20 +88,35 @@ console.log('profileAvatar', profileAvatar);
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="Account" bg={cover} />
+        <PagtTitle title="Account" bg={cover} className="d-none d-sm-block" />
 
         <section>
-          <div className="container-fluid">
+          <div className="">
             <div className="row gx-0">
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <div className="profile-pic">
-                    <img src={profileAvatar? profileAvatar : avatar.src} className="rounded-circle"/>
-                    <PhotoCameraIcon className="uploadIcon"  onClick={() => document.getElementById("filesAvatar").click()}/>
-                    <input style={{ display: "none" }} type="file" onChange={uploadAvatar} id="filesAvatar" name="filesAvatar[]" multiple />
+                    <div className="profile-pic mx-auto">
+                      <img
+                        src={profileAvatar ? profileAvatar : avatar.src}
+                        className="rounded-circle"
+                      />
+                      <PhotoCameraIcon
+                        className="uploadIcon"
+                        onClick={() =>
+                          document.getElementById("filesAvatar").click()
+                        }
+                      />
+                      <input
+                        style={{ display: "none" }}
+                        type="file"
+                        onChange={uploadAvatar}
+                        id="filesAvatar"
+                        name="filesAvatar[]"
+                        multiple
+                      />
                     </div>
-                    <ul className="list-group list-group-flush">
+                    <ul className="list-group list-group-flush d-none d-sm-block">
                       <li className="list-group-item">Account</li>
                       <li className="list-group-item">
                         <Link href="/history/" className="nav-link">
@@ -107,47 +133,58 @@ console.log('profileAvatar', profileAvatar);
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
                   <h3>Account</h3>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Business Name</td>
-                        <td>
-                          {profile?.firstName} {profile?.lastName}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Account Created</td>
-                        <td>
-                          {profile?.firstName} {profile?.lastName}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td>{profile?.email}</td>
-                      </tr>
-                      <tr>
-                        <td>Documentation ID Name</td>
-                        <td>Image Engine Company Limited</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <hr />
-                  <h3 className="mt-5">Payment information</h3>
+                  <div className="row">
+                    <div className="col-12 col-sm-4 fw-medium my-2">
+                      Business Name
+                    </div>
+                    <div className="col-12 col-sm-8 my-2">
+                      {profile?.firstName} {profile?.lastName}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 col-sm-4 fw-medium my-2">
+                      Account Created
+                    </div>
+                    <div className="col-12 col-sm-8 my-2">
+                      {profile?.createAt &&
+                        new Date(profile?.createAt).toLocaleString()}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 col-sm-4 fw-medium my-2">Email</div>
+                    <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 col-sm-4 fw-medium my-2">
+                      Documentation ID Name
+                    </div>
+                    <div className="col-12 col-sm-8 my-2">
+                      Image Engine Company Limited
+                    </div>
+                  </div>
+
+                  <hr className="d-none d-sm-block" />
+
+                  <h3 className="mt-5 mb-3">Payment information</h3>
                   <div className="payment-info">
                     <div className="row">
-                      <div className="col">Pollawat Deeunkong</div>
-                      <div className="col">
+                      <div className="col-12 col-sm-4 my-2">
+                        Pollawat Deeunkong
+                      </div>
+                      <div className="col-3 col-sm-1 my-2">
                         <FontAwesomeIcon
                           icon={faCcMastercard}
                           style={{ fontSize: "2rem" }}
                         />
                       </div>
-                      <div className="col">**** **** **** 3200</div>
-                      <div className="col">Edit Remove</div>
+                      <div className="col-9 col-sm-3  my-2">**** **** **** 3200</div>
+                      <div className="col-12 col-sm-4 my-2">Edit Remove</div>
                     </div>
                   </div>
-                  <hr />
-                  <h3 className="mt-5">Address</h3>
+
+                  <hr className="d-none d-sm-block" />
+                  
+                  <h3 className="mt-5 mb-3">Address</h3>
                   <p>
                     Image Engine Company Limited <br />
                     188/5 Village Number 22 <br />
