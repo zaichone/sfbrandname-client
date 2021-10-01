@@ -1,68 +1,26 @@
+import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import PagtTitle from "../../../components/layout/PageTitle";
 import cover from "../../../assets/account/cover.png";
 import Three from "../../../assets/3.png";
-import paymentQR from "../../../assets/sfbrandnamedotcom.png";
-import SymmetricalDiv from "../../../components/layout/SymmetricalDiv";
+
 
 import { useRouter } from "next/router";
-import { useState } from "react";
 
-import { auth, firestore } from "../../../src/config/firebase";
 
-import { withProtected } from "../../../src/hook/route";
-
-import PaymentReceipt from "../../../components/uploadForm/PaymentReceipt";
-
-function AlmostDone({ auth }) {
-  const { user } = auth;
-  const [clientId] = useState(user.uid);
-
-  const [paymentImage, setPaymentImage] = useState({});
-  const [paymentNote, setPaymentNote] = useState("");
-
+function ThankYouPayment() {
   const router = useRouter();
   const { taskId } = router.query;
-
-  function goNext() {
-    const taskRef = firestore.collection("tasks").doc(taskId);
-    taskRef
-      .update(
-        {
-          paymentImage,
-          paymentNote,
-          paymentTimestamp: new Date().getTime(),
-          paymentMethod: "Bank Transfer",
-          paymentRef: "",
-          paymentStatus: "pending",
-        },
-        { merge: true }
-      )
-      .then(() => {
-        nextPage();
-      })
-      .catch((error) => {});
-  }
-
-  const handleNoteChange = (e) => {
-    let msg = e.target.value;
-    setPaymentNote(msg);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    goNext();
-  };
   function nextPage() {
     router.push({
-      pathname: "/authentication/thank-you",
+      pathname: "/orders/[taskId]",
       query: { taskId },
     });
   }
   return (
     <div>
       <Head>
-        <title>SF Brandname - Authentication - Almost Done</title>
+        <title>SF Brandname - Authentication - Thank You</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
@@ -93,46 +51,13 @@ function AlmostDone({ auth }) {
               </div>
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
-                  <p>
-                    Please note: customer privacy is our top piority, these
-                    informations will be kept in secret.
-                  </p>
-                  <p>supported banks: </p>
-                  <img src={paymentQR.src} />
-                  <p>pay to company account: 123-4567890 </p>
-                  <PaymentReceipt
-                    taskId={taskId}
-                    clientId={clientId}
-                    paymentImage={paymentImage}
-                    setPaymentImage={setPaymentImage}
-                  />
-
-                  <form
-                    onSubmit={(e) => {
-                      handleSubmit(e);
-                    }}
-                  >
-                    <div className="row mt-5">
-                      <div className="col mb-3">
-                        <h3>notes</h3>
-                        <textarea
-                          className="form-control"
-                          id="paymentNote"
-                          name="paymentNote"
-                          value={paymentNote}
-                          onChange={handleNoteChange}
-                        />
-                      </div>
-                    </div>
-                  </form>
+                  <h3 className="fs-3 fw-semibold">Thank you!</h3>
+                  <p>We will check and verify your payment within 2-4 hours. </p>
 
                   <div className="row">
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={goNext}>Submit</button>
-                    </div>
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={nextPage}>
-                        skip to Next page for testing
+                        View Order details
                       </button>
                     </div>
                   </div>
@@ -146,4 +71,4 @@ function AlmostDone({ auth }) {
   );
 }
 
-export default withProtected(AlmostDone);
+export default ThankYouPayment;

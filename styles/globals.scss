@@ -43,16 +43,16 @@ a {
   overflow: hidden;
 }
 .fw-medium {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 .fw-semibold {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 .fw-extrabold {
-  font-weight: 800;
+  font-weight: 800 !important;
 }
 .fw-black {
-  font-weight: 900;
+  font-weight: 900 !important;
 }
 .top-header {
   background: black;
