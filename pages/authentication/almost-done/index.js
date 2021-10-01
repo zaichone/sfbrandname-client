@@ -3,7 +3,6 @@ import Link from "next/link";
 import PagtTitle from "../../../components/layout/PageTitle";
 import cover from "../../../assets/account/cover.png";
 import Three from "../../../assets/3.png";
-import InfoIcon from "@material-ui/icons/Info";
 
 import SymmetricalDiv from "../../../components/layout/SymmetricalDiv";
 
@@ -11,15 +10,33 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { auth, firestore } from "../../../src/config/firebase";
-import useAuth from "../../../src/hooks/auth";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
+import { withProtected } from "../../../src/hook/route";
 
-const categories = ["Watches", "Bag", "Clothing", "Jewelry", "Shoes"];
+import PaymentReceipt from "../../../components/uploadForm/PaymentReceipt";
 
-function AlmostDone() {
+function AlmostDone({ auth }) {
+  const { user } = auth;
+  const [clientId, setClientId] = useState(user.uid);
+
+  const [paymentImage, setPaymentImage] = useState();
+
   const router = useRouter();
+  const { taskId } = router.query;
+
+  function goNext() {
+    const taskRef = firestore.collection("tasks").doc(taskId);
+    taskRef
+      .update(
+        {
+          paymentImage,
+        },
+        { merge: true }
+      )
+      .then(() => {})
+      .catch((error) => {});
+  }
+
   return (
     <div>
       <Head>
@@ -30,8 +47,7 @@ function AlmostDone() {
         />
         <meta
           name="keyword"
-          content="ร้านแบรนด์เนมมือสอง ราคาดี, ร้านรับซื้อขายของแบรนด์เนมมือสอง, ร้านรับซื้อกระเป๋าแบรนด์เนมมือสอง, ร้านรับซื้อฝากขายแบรนด์เนมแท้, ร้านรับซื้อและฝากขายแบรนด์เนม, ร้านรับซื้อและฝากขายแบรนด์เนม มือสอง, ร้านรับซื้อ-ฝากขายกระเป๋าแบรนด์เนม, ร้านฝากขายกระเป๋าแบรนด์เนม, ร้านขายสินค้าแบรนด์เนมมือสอง ให้ราคาสูง, ร้านจำนำกระเป๋าแบรนด์เนม
-"
+          content="ร้านแบรนด์เนมมือสอง ราคาดี, ร้านรับซื้อขายของแบรนด์เนมมือสอง, ร้านรับซื้อกระเป๋าแบรนด์เนมมือสอง, ร้านรับซื้อฝากขายแบรนด์เนมแท้, ร้านรับซื้อและฝากขายแบรนด์เนม, ร้านรับซื้อและฝากขายแบรนด์เนม มือสอง, ร้านรับซื้อ-ฝากขายกระเป๋าแบรนด์เนม, ร้านฝากขายกระเป๋าแบรนด์เนม, ร้านขายสินค้าแบรนด์เนมมือสอง ให้ราคาสูง, ร้านจำนำกระเป๋าแบรนด์เนม"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -57,86 +73,31 @@ function AlmostDone() {
                 <div className="details">
                   <p>
                     Please note: customer privacy is our top piority, these
-                    informations will be kept in secret.
+                    informations will be kept in secret. hello this is supposed
+                    to be upload form page
                   </p>
-
+                  <PaymentReceipt
+                    taskId={taskId}
+                    clientId={clientId}
+                    paymentImage={paymentImage}
+                    setPaymentImage={setPaymentImage}
+                  />
                   <form>
                     <div className="row">
                       <div className="col mb-3">
-                        <h3>Card Number</h3>
+                        <h3>notes</h3>
                         <input
-                          type="text"
+                          type="textarea"
                           className="form-control mb-3"
                           name="name"
                         />
-                        <FontAwesomeIcon
-                          icon={faCcVisa}
-                          style={{ fontSize: "2rem", marginRight: "1rem" }}
-                        />
-                        <FontAwesomeIcon
-                          icon={faCcMastercard}
-                          style={{ fontSize: "2rem" }}
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <label
-                        className="col-3 col-form-label"
-                        for="ccExpired"
-                      >
-                        Expired
-                      </label>
-                      <div className="col-3 gx-0">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="ccExpired"
-                          id="ccExpired"
-                        />
-                      </div>
-
-                      <label className="col-2 col-form-label" for="ccCode">
-                        CCV
-                      </label>
-
-                      <div className="col-4 ">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="ccCode"
-                          id="ccCode"
-                        />
-                      </div>
-                    </div>
-                    <div className="row my-3">
-                      <div className=" col my-3">
-                        <h3>Card Holder Name</h3>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="clientName"
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col">
-                        <div className="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="ccRemember"
-                          />
-                          <label class="form-check-label" for="ccRemember">
-                            Save as main payment option
-                          </label>
-                        </div>
                       </div>
                     </div>
                   </form>
 
                   <div className="row">
                   <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button>Process</button>
+                      <button onClick={goNext}>Next</button>
                     </div>
                   </div>
                 </div>
@@ -149,4 +110,4 @@ function AlmostDone() {
   );
 }
 
-export default AlmostDone;
+export default withProtected(AlmostDone);
