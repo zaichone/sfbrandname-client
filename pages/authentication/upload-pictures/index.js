@@ -61,6 +61,10 @@ function UploadPicutres({ auth }) {
       )
       .then(() => {})
       .catch((error) => {});
+    router.push({
+      pathname: "/authentication/almost-done/",
+      query: { taskId },
+    });
   }
 
   function nextPage() {
@@ -181,7 +185,9 @@ function UploadPicutres({ auth }) {
                       <button onClick={goNext}>Next</button>
                     </div>
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPage}>skip to Next page for testing</button>
+                      <button onClick={nextPage}>
+                        skip to Next page for testing
+                      </button>
                     </div>
                   </div>
                 </div>
