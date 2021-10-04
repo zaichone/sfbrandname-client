@@ -94,11 +94,14 @@ function AlmostDone({ auth }) {
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
                   <p>
-                    Please note: customer privacy is our top piority, these
+                    Please note: customer privacy is our top priority, these
                     informations will be kept in secret.
                   </p>
-                  <p>supported banks: </p>
-                  <img src={paymentQR.src} />
+                  <div className="row">
+                    <div className="col-12 mt-4 mb-5 d-flex justify-content-center justify-content-sm-start">
+                      <img src={paymentQR.src} />
+                    </div>
+                  </div>
                   <p>pay to company account: 123-4567890 </p>
                   <PaymentReceipt
                     taskId={taskId}
@@ -114,7 +117,7 @@ function AlmostDone({ auth }) {
                   >
                     <div className="row mt-5">
                       <div className="col mb-3">
-                        <h3>notes</h3>
+                        <h3>Notes</h3>
                         <textarea
                           className="form-control"
                           id="paymentNote"
@@ -130,7 +133,6 @@ function AlmostDone({ auth }) {
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={goNext}>Submit</button>
                     </div>
-
                   </div>
                 </div>
               </div>
