@@ -683,7 +683,19 @@ function OrderDetail({ auth }) {
                     <Col xs={12} sm={3}>
                       Payment Method
                     </Col>
-                    <Col>Master Card **** 3200</Col>
+                    <Col>{orderInfo.paymentMethod}</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment reference
+                    </Col>
+                    <Col>{orderInfo.paymentRef}</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment status
+                    </Col>
+                    <Col>{orderInfo.paymentStatus}</Col>
                   </Row>
                 </div>
               </Container>

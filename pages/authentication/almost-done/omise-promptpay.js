@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import Head from "next/head";
 import Script from "next/script";
 import PagtTitle from "../../../components/layout/PageTitle";
@@ -8,45 +10,69 @@ import { useRouter } from "next/router";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard, faCcVisa } from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
 
 const categories = ["Watches", "Bag", "Clothing", "Jewelry", "Shoes"];
 
-const handleOmise = (e) => {
-  OmiseCard.configure({
-    publicKey: process.env.NEXT_PUBLIC_OMISE_PUBLIC_KEY,
-    image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
-    frameLabel: "SF Brandname",
-  });
-
-  var button = document.querySelector("#checkoutButton");
-  var form = document.querySelector("#checkoutForm");
-
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-    OmiseCard.open({
-      amount: 12345,
-      currency: "THB",
-      defaultPaymentMethod: "credit_card",
-      otherPaymentMethods:
-        "bill_payment_tesco_lotus,rabbit_linepay,truemoney",
-      onCreateTokenSuccess: (nonce) => {
-        if (nonce.startsWith("tokn_")) {
-          window.alert(`${nonce}`);
-          form.omiseToken.value = nonce;
-        } else {
-          window.alert(`${nonce}`);
-
-          form.omiseSource.value = nonce;
-        }
-        form.submit();
-      },
-    });
-  });
-  console.log(`handleOmise: `, OmiseCard);
-};
-
 function AlmostDone() {
   const router = useRouter();
+  const { taskId } = router.query;
+
+  const [chargeInfo, setChargeInfo] = useState({});
+
+  const createCharge = (e) => {
+    const options = {
+      method: "POST",
+      url: "http://localhost:3000/api/charge",
+      headers: { "user-agent": "vscode-restclient" },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setChargeInfo(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  // useEffect(async () => {
+  //   const options = {
+  //     method: "GET",
+  //     url: "http://localhost:3000/api/charges/chrg_test_5pe1gqpyxrmasyupx32",
+  //     headers: { "user-agent": "vscode-restclient" },
+  //   };
+
+  //   try {
+  //     const response = await axios.request(options);
+  //     console.log(response.data);
+  //     setOrderInfo(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, []);
+
+  const handleOmise = (e) => {
+    Omise.setPublicKey(process.env.NEXT_PUBLIC_OMISE_PUBLIC_KEY);
+
+    var button = document.querySelector("#checkoutButton");
+    var form = document.querySelector("#checkoutForm");
+
+    button.addEventListener("click", (event) => {
+      window.alert(`calling createcharge`);
+      createCharge();
+    });
+  };
+
+  function nextPage() {
+    router.push({
+      pathname: "/authentication/thank-you",
+      query: { taskId },
+    });
+  }
+
   return (
     <div>
       {/* SEO head */}
@@ -92,23 +118,32 @@ function AlmostDone() {
               </div>
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
+                  {JSON.stringify(chargeInfo) || "Loading..."}
+                  <h2>omise promptpay</h2>
                   <p>
                     Please note: customer privacy is our top piority, these
                     informations will be kept in secret.
                   </p>
 
+
+                  {JSON.stringify(
+                    chargeInfo.source.scannable_code.image.download_uri
+                  ) || "Loading..."}
+
+                  
                   <form id="checkoutForm" method="POST">
+                    {/* <form id="checkoutForm" method="POST" action="/api/charge"> */}
                     <input type="hidden" name="omiseToken" />
                     <input type="hidden" name="omiseSource" />
-                    <button type="submit" id="checkoutButton">
-                      Checkout with Omise
-                    </button>
+                    <input type="hidden" name="taskId" />
                   </form>
-
-                  <div className="row">
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button>Process</button>
-                    </div>
+                  <button onClick={handleOmise} id="checkoutButton">
+                    Checkout with Omise
+                  </button>
+                  <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
+                    <button onClick={nextPage}>
+                      skip to Next page for testing
+                    </button>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,44 @@
+
+# this file is to be used with REST Client vscode extension
+# dont forget to replace key
+
+curl https://api.omise.co/charges \
+  -u skey_test_5pddhjrygnomviktrg7:
+
+###
+# create a promptpay payment source
+curl https://api.omise.co/sources \
+  -X POST \
+  -u pkey_test_5pddhjrygfkrtamf67n: \
+  -d "amount=56789" \
+  -d "currency=thb" \
+  -d "type=promptpay"
+
+###
+# 
+
+curl https://api.omise.co/charges \
+  -u skey_test_5pddhjrygnomviktrg7: \
+  -d "amount=56789" \
+  -d "currency=thb" \
+  -d "source=src_test_5pe1g0ucgpzixquar1q"
+
+###
+# create charge and source directly
+curl https://api.omise.co/charges \
+  -u skey_test_5pddhjrygnomviktrg7: \
+  -d "amount=56789" \
+  -d "currency=THB" \
+  -d "source[type]=promptpay" \
+
+###
+# view charge 
+curl https://api.omise.co/charges/chrg_test_5pe1gqpyxrmasyupx32 \
+  -u skey_test_5pddhjrygnomviktrg7:
+
+###
+# view charge but local
+GET http://localhost:3000/api/charges/chrg_test_5pe1gqpyxrmasyupx32
+###
+# call new charge
+POST http://localhost:3000/api/charge

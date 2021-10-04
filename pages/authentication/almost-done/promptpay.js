@@ -7,15 +7,17 @@ import paymentQR from "../../../assets/sfbrandnamedotcom.png";
 import SymmetricalDiv from "../../../components/layout/SymmetricalDiv";
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { auth, firestore } from "../../../src/config/firebase";
 
 import { withProtected } from "../../../src/hook/route";
 
+import { Spinner } from "react-bootstrap";
 import PaymentReceipt from "../../../components/uploadForm/PaymentReceipt";
 
-function AlmostDone({ auth }) {
+function AlmostDone({ auth, data }) {
   const { user } = auth;
   const [clientId] = useState(user.uid);
 
@@ -24,6 +26,24 @@ function AlmostDone({ auth }) {
 
   const router = useRouter();
   const { taskId } = router.query;
+
+  const [orderInfo, setOrderInfo] = useState({});
+
+  useEffect(async () => {
+    const options = {
+      method: "GET",
+      url: "http://localhost:3000/api/charges/chrg_test_5pe1gqpyxrmasyupx32",
+      headers: { "user-agent": "vscode-restclient" },
+    };
+
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      setOrderInfo(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   function goNext() {
     const taskRef = firestore.collection("tasks").doc(taskId);
@@ -34,7 +54,7 @@ function AlmostDone({ auth }) {
           paymentNote,
           paymentTimestamp: new Date().getTime(),
           paymentMethod: "Bank Transfer",
-          paymentRef: "",
+          paymentRef: orderInfo.id,
           paymentStatus: "pending",
         },
         { merge: true }
@@ -53,28 +73,9 @@ function AlmostDone({ auth }) {
     e.preventDefault();
     goNext();
   };
-
-  function nextPageCard() {
+  function nextPage() {
     router.push({
-      pathname: "/authentication/almost-done/creditcard",
-      query: { taskId },
-    });
-  }
-  function nextPagePromptpay() {
-    router.push({
-      pathname: "/authentication/almost-done/promptpay",
-      query: { taskId },
-    });
-  }
-  function nextPageOmiseCard() {
-    router.push({
-      pathname: "/authentication/almost-done/omise-card",
-      query: { taskId },
-    });
-  }
-  function nextPageOmisePromptpay() {
-    router.push({
-      pathname: "/authentication/almost-done/omise-promptpay",
+      pathname: "/authentication/thank-you",
       query: { taskId },
     });
   }
@@ -116,34 +117,55 @@ function AlmostDone({ auth }) {
                     Please note: customer privacy is our top piority, these
                     informations will be kept in secret.
                   </p>
+                  <p></p>
 
-
-                  <div className="row">
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPageCard}>pay with card</button>
+                  {orderInfo?.image ? (
+                    <img src={orderInfo.image} style={{ maxWidth: "18rem" }} />
+                  ) : (
+                    <div>
+                      Loading... <Spinner animation="border" />
                     </div>
-                  </div>
+                  )}
+
+                  <span>{orderInfo.id}</span>
+                  <hr className="col-6" />
+                  <h3>Upload Receipt</h3>
+                  <PaymentReceipt
+                    taskId={taskId}
+                    clientId={clientId}
+                    paymentImage={paymentImage}
+                    setPaymentImage={setPaymentImage}
+                  />
+
+                  <form
+                    onSubmit={(e) => {
+                      handleSubmit(e);
+                    }}
+                  >
+                    <div className="row mt-5">
+                      <div className="col mb-3">
+                        <h3>notes</h3>
+                        <textarea
+                          className="form-control"
+                          id="paymentNote"
+                          name="paymentNote"
+                          value={paymentNote}
+                          onChange={handleNoteChange}
+                        />
+                      </div>
+                    </div>
+                  </form>
+
                   <div className="row">
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPagePromptpay}>
-                        pay with promptpay
+                      <button onClick={goNext}>Submit</button>
+                    </div>
+                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
+                      <button onClick={nextPage}>
+                        skip to Next page for testing
                       </button>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPageOmiseCard}>omise card</button>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPageOmisePromptpay}>
-                        omise promptpay
-                      </button>
-                    </div>
-                  </div>
-
-
                 </div>
               </div>
             </div>
