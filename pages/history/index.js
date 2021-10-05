@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
-import cover from "../../assets/account/cover.png";
+import cover from "../../assets/cover/HistoryMyorder.jpg";
 import avatar from "../../assets/account/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcMastercard } from "@fortawesome/free-brands-svg-icons";
@@ -73,7 +73,7 @@ function History({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - History</title>
+        <title>Super Authenticate - History</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

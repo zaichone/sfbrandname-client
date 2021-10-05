@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
-import cover from "../../assets/certificate/cover.png";
+import cover from "../../assets/cover/HistoryMyorder.jpg";
 import thumb from "../../assets/my-order/thumb.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import InfoIcon from "@material-ui/icons/Info";
@@ -82,7 +82,7 @@ function Order({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - My Order</title>
+        <title>Super Authenticate - My Order</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

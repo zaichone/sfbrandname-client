@@ -10,11 +10,14 @@ import HowItWorkList from "../../components/layout/HowItWorkList";
 import DocumentationList from "../../components/layout/DocumentationList";
 import LearnMoreBar from "../../components/layout/LearnMoreBar";
 
+import HowItWorkBG from "../../assets/cover/Howitwork.jpg"
+import DocumentationBG from "../../assets/cover/Documentation.jpg"
+
 function HowItWork() {
   return (
     <div>
       <Head>
-        <title>SF Brandname - How It Work</title>
+        <title>Super Authenticate - How It Work</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
@@ -27,9 +30,9 @@ function HowItWork() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="How It Work" bg={Reminder} />
+        <PagtTitle title="How It Work" bg={HowItWorkBG} />
         <HowItWorkList />
-        <Cta title="Documentation" bg={Reminder} />
+        <Cta title="Documentation" bg={DocumentationBG} />
         <DocumentationList />
         <LearnMoreBar label="MORE DETAIL" link="/404/" />
       </main>

@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
-import cover from "../../assets/certificate/cover.png";
+import cover from "../../assets/cover/Order.jpg";
 import {
   Tabs,
   Tab,
@@ -174,7 +174,7 @@ function OrderDetail({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Order Detail</title>
+        <title>Super Authenticate - Order Detail</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
@@ -284,9 +284,9 @@ function OrderDetail({ auth }) {
                           className="d-flex flex-column align-items-center justify-content-center"
                           style={{
                             width: "100%",
-                            background: `url(${
+                            background: `url('${
                               orderInfo.featured && orderInfo.featured
-                            })center center no-repeat`,
+                            }')center center no-repeat`,
                             border: "1px solid black",
                           }}
                         ></SymmetricalDiv>
@@ -316,9 +316,9 @@ function OrderDetail({ auth }) {
                                 className="d-flex flex-column align-items-center justify-content-center"
                                 style={{
                                   width: "100%",
-                                  background: `url(${
+                                  background: `url('${
                                     img.imageURL ? img.imageURL : thumbImage
-                                  })center center no-repeat`,
+                                  }')center center no-repeat`,
                                   border: "1px solid black",
                                 }}
                               ></SymmetricalDiv>
@@ -332,7 +332,6 @@ function OrderDetail({ auth }) {
                 </Row>
               </Container>
             </Tab>
-            {/*//? this part is almost dummy */}
             <Tab eventKey="services" title="Services" className="tab-service">
               <Container>
                 <div style={{ maxWidth: "100vw" }}>
@@ -374,13 +373,17 @@ function OrderDetail({ auth }) {
                       </span>
                     )}
 
-
                     <span>Official Documentation</span>
                   </Col>
                   <Col>
-                    <span>{orderInfo?.orderServices?.certDocument || 'Auto Generated Certificate of Authenticity / Written Statement'}</span>
+                    <span>
+                      {orderInfo?.orderServices?.certDocument ||
+                        "Auto Generated Certificate of Authenticity / Written Statement"}
+                    </span>
                   </Col>
-                  <Col xs={12} sm={1} className="text-end">Document</Col>
+                  <Col xs={12} sm={1} className="text-end">
+                    Document
+                  </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
                   <Col xs={12} sm={4} className="">
@@ -659,7 +662,7 @@ function OrderDetail({ auth }) {
                     <Col xs={12} sm={3}>
                       Order
                     </Col>
-                    <Col>{orderInfo.id}</Col>
+                    <Col>{orderInfo?.id}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
@@ -684,6 +687,67 @@ function OrderDetail({ auth }) {
                       Payment Method
                     </Col>
                     <Col>Master Card **** 3200</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment Status
+                    </Col>
+                    <Col>{orderInfo?.paymentStatus}</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment Method
+                    </Col>
+                    <Col>{orderInfo?.paymentMethod}</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment Timestamp
+                    </Col>
+                    <Col>
+                      {new Date(orderInfo?.paymentTimestamp).toLocaleString()}
+                    </Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment Reference
+                    </Col>
+                    <Col>{orderInfo?.paymentRef}</Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col xs={12} sm={3}>
+                      Payment Note
+                    </Col>
+                    <Col>{orderInfo?.paymentNote}</Col>
+                  </Row>
+                  <Row>
+                    {orderInfo?.paymentImage ? (
+                      <Col
+                        xs={3}
+                        className="d-flex flex-column justify-content-center mb-3"
+                      >
+                        <a
+                          href={
+                            orderInfo?.paymentImage
+                              ? orderInfo?.paymentImage
+                              : ""
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <p className="text-center">{"Payment Image"}</p>
+                          <img
+                            src={orderInfo?.paymentImage}
+                            className="d-flex flex-column align-items-center justify-content-center"
+                            style={{
+                              width: "100%",
+                              border: "1px solid black",
+                            }}
+                            alt=""
+                          />
+                        </a>
+                      </Col>
+                    ) : null}
                   </Row>
                 </div>
               </Container>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
-import cover from "../../assets/account/cover.png";
+import cover from "../../assets/cover/Authentic.jpg";
 import One from "../../assets/1.png";
 import InfoIcon from "@material-ui/icons/Info";
 
@@ -173,7 +173,7 @@ function Authentication({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Authentication</title>
+        <title>Super Authenticate - Authentication</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

@@ -2,14 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
-import cover from "../../assets/certificate/cover.png";
+import cover from "../../assets/cover/Certificate.jpg";
 import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 function Certificates() {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Certificate</title>
+        <title>Super Authenticate - Certificate</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
@@ -50,7 +50,9 @@ function Certificates() {
                         />
                       </h5>
                       <div className="row">
-                        <p className="col-12 col-sm-4 fw-bold">Product Name: </p>
+                        <p className="col-12 col-sm-4 fw-bold">
+                          Product Name:{" "}
+                        </p>
                         <p className="col-12 col-sm-8">
                           Louis Vuitton - Pochette
                         </p>
@@ -62,7 +64,9 @@ function Certificates() {
                         </p>
                       </div>
                       <div className="row">
-                        <p className="col-12 col-sm-4 fw-bold">Serial Number: </p>
+                        <p className="col-12 col-sm-4 fw-bold">
+                          Serial Number:{" "}
+                        </p>
                         <p className="col-12 col-sm-8">
                           38052ba2-a640-4207-b533-61f4253bfef9
                         </p>

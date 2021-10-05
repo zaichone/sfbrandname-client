@@ -5,7 +5,7 @@ import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
 
-import cover from "../../assets/services/cover.png";
+import cover from "../../assets/cover/Service.jpg";
 import featured from "../../assets/services/featured.png";
 import premium from "../../assets/services/Premium+.png";
 import upgrade from "../../assets/services/Upgrade+.png";
@@ -14,7 +14,7 @@ function Services() {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Services</title>
+        <title>Super Authenticate - Services</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

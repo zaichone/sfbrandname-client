@@ -2,6 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Reminder from "../assets/Reminder.jpeg";
+import SpecialistBG from "../assets/cover/WhatweSpecialist.jpg"
+import HowItWorkBG from "../assets/cover/Howitwork.jpg"
+import ReminderBG from "../assets/cover/Extra.jpg"
+
 
 import Cta from "../components/layout/Cta";
 import ServiceList from "../components/layout/ServiceList";
@@ -13,7 +17,7 @@ export default function Home() {
     <div>
       <Head>
         <title>
-          SF Brandname ร้านแบรนด์เนมมือสอง ให้ราคาดี คุยง่าย สินค้าคุณภาพ
+          Super Authenticate
         </title>
         <meta
           name="description"
@@ -49,16 +53,16 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Cta title="What We Specialist" bg={Reminder} />
+      <Cta title="What We Specialist" bg={SpecialistBG} />
       <ServiceList />
-      <Cta title="How it Work?" bg={Reminder} />
+      <Cta title="How it Work?" bg={HowItWorkBG} />
       <HowItWorkList />
       <LearnMoreBar
         label="LEARN MORE"
         link="/how-it-work/"
         classes="d-none d-sm-block"
       />
-      <Cta title="Reminder" bg={Reminder} classes="d-none d-sm-block" />
+      <Cta title="Reminder" bg={ReminderBG} classes="d-none d-sm-block" />
     </div>
   );
 }
