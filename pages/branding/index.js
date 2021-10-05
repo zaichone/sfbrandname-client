@@ -5,7 +5,7 @@ import PagtTitle from "../../components/layout/PageTitle";
 import ServiceListCommon from "../../components/layout/ServiceListCommon";
 import SearchBar from "../../components/layout/SearchBar";
 import BrandList from "../../components/layout/BrandList";
-import cover from "../../assets/branding/cover.png";
+import cover from "../../assets/cover/WhatweSpecialist.jpg";
 
 import { firestore } from "../../src/config/firebase";
 

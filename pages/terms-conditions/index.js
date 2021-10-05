@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import PagtTitle from "../../components/layout/PageTitle";
 import PageSecondTitle from "../../components/layout/PageSecondTitle";
-import cover from "../../assets/terms-conditions/cover.png";
+import cover from "../../assets/cover/Service.jpg";
 import cover2 from "../../assets/terms-conditions/cover2.png";
 // import LearnMoreBar from "../../components/layout/LearnMoreBar";
 

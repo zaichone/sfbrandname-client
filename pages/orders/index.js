@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
-import cover from "../../assets/certificate/cover.png";
+import cover from "../../assets/cover/HistoryMyorder.jpg";
 import thumb from "../../assets/my-order/thumb.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import InfoIcon from "@material-ui/icons/Info";

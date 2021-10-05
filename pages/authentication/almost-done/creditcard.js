@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../../components/layout/PageTitle";
-import cover from "../../../assets/account/cover.png";
+import cover from "../../../assets/cover/Authentic.jpg";
 import Three from "../../../assets/3.png";
 import InfoIcon from "@material-ui/icons/Info";
 

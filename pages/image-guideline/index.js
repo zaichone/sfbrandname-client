@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image1 from "../../assets/image-guideline/1.png";
 import Image2 from "../../assets/image-guideline/2.png";
 import Image3 from "../../assets/image-guideline/3.png";
-import Reminder from "../../assets/Reminder.jpeg";
+import Cover from "../../assets/cover/ImageGuide.jpg";
 import One from "../../assets/1.png";
 import Two from "../../assets/2.png";
 import Three from "../../assets/3.png";
@@ -26,8 +26,8 @@ function ImageGuideline() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="Image Guideline" bg={Reminder} />
-        <div className="container">
+        <PagtTitle title="Image Guideline" bg={Cover} />
+        <div className="container mt-5">
           <p className="page-description">
             You don’t have to be a professional in taking pictures. Simply take
             clear, close-up pictures of all required angles of your goods with

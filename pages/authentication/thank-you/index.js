@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import PagtTitle from "../../../components/layout/PageTitle";
-import cover from "../../../assets/account/cover.png";
+import cover from "../../../assets/cover/Authentic.jpg";
 import Three from "../../../assets/3.png";
 
 

@@ -5,7 +5,7 @@ import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
 
-import cover from "../../assets/services/cover.png";
+import cover from "../../assets/cover/Service.jpg";
 import featured from "../../assets/services/featured.png";
 import premium from "../../assets/services/Premium+.png";
 import upgrade from "../../assets/services/Upgrade+.png";

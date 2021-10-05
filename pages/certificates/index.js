@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
-import cover from "../../assets/certificate/cover.png";
+import cover from "../../assets/cover/Certificate.jpg";
 import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 function Certificates() {

@@ -10,6 +10,9 @@ import HowItWorkList from "../../components/layout/HowItWorkList";
 import DocumentationList from "../../components/layout/DocumentationList";
 import LearnMoreBar from "../../components/layout/LearnMoreBar";
 
+import HowItWorkBG from "../../assets/cover/Howitwork.jpg"
+import DocumentationBG from "../../assets/cover/Documentation.jpg"
+
 function HowItWork() {
   return (
     <div>
@@ -27,9 +30,9 @@ function HowItWork() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="How It Work" bg={Reminder} />
+        <PagtTitle title="How It Work" bg={HowItWorkBG} />
         <HowItWorkList />
-        <Cta title="Documentation" bg={Reminder} />
+        <Cta title="Documentation" bg={DocumentationBG} />
         <DocumentationList />
         <LearnMoreBar label="MORE DETAIL" link="/404/" />
       </main>
