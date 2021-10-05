@@ -17,7 +17,7 @@ export default function Home() {
     <div>
       <Head>
         <title>
-          SF Brandname ร้านแบรนด์เนมมือสอง ให้ราคาดี คุยง่าย สินค้าคุณภาพ
+          Super Authenticate
         </title>
         <meta
           name="description"

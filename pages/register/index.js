@@ -38,7 +38,7 @@ function Register({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - Create Account</title>
+        <title>Super Authenticate - Create Account</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

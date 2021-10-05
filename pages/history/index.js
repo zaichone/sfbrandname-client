@@ -73,7 +73,7 @@ function History({ auth }) {
   return (
     <div>
       <Head>
-        <title>SF Brandname - History</title>
+        <title>Super Authenticate - History</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"

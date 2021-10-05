@@ -17,7 +17,7 @@ function HowItWork() {
   return (
     <div>
       <Head>
-        <title>SF Brandname - How It Work</title>
+        <title>Super Authenticate - How It Work</title>
         <meta
           name="description"
           content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
