@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }) {
       </Script>
       <AuthProvider>
         <AuthStateChanged>
+        
           <Layout>
             <Component {...pageProps} />
           </Layout>

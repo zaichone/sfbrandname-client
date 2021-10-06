@@ -17,6 +17,8 @@ import Bag from "../../../components/uploadForm/Bag";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
+import commerce from '../../../src/store/commerce';
+
 import { firestore, storage } from "../../../src/config/firebase";
 
 import { withProtected } from "../../../src/hook/route";
@@ -27,6 +29,10 @@ function UploadPicutres({ auth }) {
   const { user } = auth;
   console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
 
+  const [basicAuthen, setBasicAuthen] = useState();
+  const [productId] = useState('prod_p6dP5g0E73ln7k');
+  const [cartId, setCartId] = useState();
+
   const [clientId, setClientId] = useState(user.uid);
   const [taskCategory, setTaskCategory] = useState();
   const [imageAttatch, setImageAttatch] = useState({});
@@ -36,19 +42,20 @@ function UploadPicutres({ auth }) {
 
   const router = useRouter();
   const { taskId, category } = router.query;
-  console.log(
-    "🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskId",
-    taskId
-  );
-  console.log(
-    "🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskCategory",
-    taskCategory
-  );
 
   console.log("images", images);
 
-  function goNext() {
+  useEffect(() => {
+    //const productId = 'prod_p6dP5g0E73ln7k';
+    commerce.products.retrieve(productId).then(product => setBasicAuthen(product));
+    commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
+
+  }, [])
+
+  async function goNext() {
     console.log("images before update", images);
+
+    //await commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
     const taskRef = firestore.collection("tasks").doc(taskId);
     taskRef
@@ -59,12 +66,13 @@ function UploadPicutres({ auth }) {
         },
         { merge: true }
       )
-      .then(() => {})
-      .catch((error) => {});
+      .then(() => { })
+      .catch((error) => { });
+    
     router.push({
-      pathname: "/authentication/almost-done/",
-      query: { taskId },
-    });
+      pathname: "/authentication/select-services/",
+      query: { taskId:taskId, cartId:cartId },
+    }); 
   }
 
   function nextPage() {

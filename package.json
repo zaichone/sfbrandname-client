@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-do-expressions": "^7.14.5",
+    "@chec/commerce.js": "^2.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/utils": "^4.11.2",
     "bootstrap": "^5.0.0-beta3",
     "dotenv": "^10.0.0",
     "firebase": "^9.0.1",

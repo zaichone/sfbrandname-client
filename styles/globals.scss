@@ -39,14 +39,14 @@ a {
 * {
   box-sizing: border-box;
 }
-.form-check .form-check-input{
-  border-radius:0;
-  box-shadow:none;
+.form-check .form-check-input {
+  border-radius: 0;
+  box-shadow: none;
 }
 .form-check-input:checked[type="checkbox"] {
   border-radius: 0px;
   &:focus {
-    box-shadow: none!important;
+    box-shadow: none !important;
     border-radius: 0px;
   }
 }
@@ -111,8 +111,8 @@ a {
       margin-left: 0;
     }
     @include media(wider) {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
   }
   button {
@@ -166,7 +166,7 @@ button {
 .button,
 button {
   text-transform: uppercase;
-  padding: 15px 45px;
+  padding: 15px 65px;
   color: white;
   background: black;
   display: inline-block;
@@ -713,6 +713,7 @@ footer p {
   }
   form {
     max-width: 50%;
+    
     @include media(mobile-only) {
       max-width: 100%;
     }
@@ -730,6 +731,15 @@ footer p {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+  }
+  .form-check {
+    .form-check-label {
+      margin-left: 20px;
+    }
+    margin-bottom:30px;
+  }
+  .service{
+    .price{ float:right; }
   }
 }
 
