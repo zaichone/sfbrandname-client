@@ -58,7 +58,7 @@ function UploadPicutres({ auth }) {
     //await commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
     const taskRef = firestore.collection("tasks").doc(taskId);
-    taskRef
+    await taskRef
       .update(
         {
           images: images,
@@ -68,10 +68,10 @@ function UploadPicutres({ auth }) {
       )
       .then(() => { })
       .catch((error) => { });
-    
+     
     router.push({
       pathname: "/authentication/select-services/",
-      query: { taskId:taskId, cartId:cartId },
+      query: { taskId:taskId},
     }); 
   }
 

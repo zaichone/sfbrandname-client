@@ -29,20 +29,18 @@ function SelectServices({ auth }) {
   const { user } = auth;
 
   const [products, setProducts] = useState();
-  console.log(
-    "🚀 ~ file: index.js ~ line 32 ~ SelectServices ~ products",
-    products
-  );
+  const [productId] = useState('prod_bO6J5apeYPoEjp');
+  const [cartId, setCartId] = useState();
 
   const router = useRouter();
-  const { taskId, cartId } = router.query;
+  const { taskId } = router.query;
 
   async function handleSelectingServices() {
     console.log("Selecting");
     router.push({
       pathname: "/authentication/billing/",
-      query: { taskId:taskId, cartId:cartId },
-    }); 
+      query: { taskId: taskId, cartId: cartId },
+    });
   }
   useEffect(() => {
     async function initData() {
@@ -52,18 +50,11 @@ function SelectServices({ auth }) {
         return a.sort_order - b.sort_order;
       });
       setProducts(products);
+      commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
+
+
     }
     initData();
-    /*
-        commerce.products.list().then(response => {
-            
-            const sortedProduct = await response.data.sort((a,b) =>{
-                return a.sort_order - b.sort_order;
-            });
-            setProducts(sortedProduct);
-        }); */
-    //commerce.products.retrieve(productId).then(product => setBasicAuthen(product));
-    //commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
   }, []);
   return (
     <div>
