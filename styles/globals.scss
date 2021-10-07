@@ -110,6 +110,10 @@ a {
     @include media(mobile-only) {
       margin-left: 0;
     }
+    @include media(wide) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
     @include media(wider) {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
@@ -717,12 +721,14 @@ footer p {
     @include media(mobile-only) {
       max-width: 100%;
     }
+    .form-control, .form-select{ border:1px solid black;}
   }
   h3 {
     font-size: 14px;
     font-weight: 400;
     svg {
       color: #f2c53d;
+      margin-left:10px;
     }
   }
   .image-box {
@@ -741,6 +747,7 @@ footer p {
   .service{
     .price{ float:right; }
   }
+  .form-footer{ margin-top:75px; }
 }
 
 .filter-bar {

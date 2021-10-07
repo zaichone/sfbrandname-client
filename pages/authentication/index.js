@@ -206,7 +206,7 @@ function Authentication({ auth }) {
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
                   <form onSubmit={goNext}>
-                    <div className="mb-4">
+                    <div className="mb-5">
                       <h3>
                         Brand <InfoIcon />
                       </h3>
@@ -223,7 +223,7 @@ function Authentication({ auth }) {
                         ))}
                       </select>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-5">
                       <h3>
                         Name <InfoIcon />
                       </h3>
@@ -234,7 +234,7 @@ function Authentication({ auth }) {
                         onChange={handleNameChange}
                       />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-5">
                       <h3>
                         Client Name <InfoIcon />
                       </h3>
@@ -245,7 +245,7 @@ function Authentication({ auth }) {
                         onChange={handleClientNameChange}
                       />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-5">
                       <h3>
                         Category <InfoIcon />
                       </h3>
@@ -262,7 +262,7 @@ function Authentication({ auth }) {
                         ))}
                       </select>
                     </div>
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
+                    <div className="form-footer d-flex justify-content-center justify-content-sm-start">
                       <button>Next</button>
                     </div>
                   </form>

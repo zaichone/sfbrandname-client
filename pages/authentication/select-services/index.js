@@ -110,6 +110,7 @@ function SelectServices({ auth }) {
                             type="checkbox"
                             value=""
                             id={`${product.id}-check`}
+                            name={`${product.id}-check`}
                           />
                           <label
                             className="form-check-label"

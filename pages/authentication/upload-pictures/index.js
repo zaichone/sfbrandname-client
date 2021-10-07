@@ -27,10 +27,10 @@ const categories = ["Watches", "Bag", "Clothing", "Jewelry", "Shoes"];
 
 function UploadPicutres({ auth }) {
   const { user } = auth;
-  console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
+  //console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
 
   const [basicAuthen, setBasicAuthen] = useState();
-  const [productId] = useState('prod_p6dP5g0E73ln7k');
+  const [productId] = useState('prod_bO6J5apeYPoEjp');
   const [cartId, setCartId] = useState();
 
   const [clientId, setClientId] = useState(user.uid);
@@ -46,7 +46,7 @@ function UploadPicutres({ auth }) {
   console.log("images", images);
 
   useEffect(() => {
-    //const productId = 'prod_p6dP5g0E73ln7k';
+    //const productId = 'prod_bO6J5apeYPoEjp';
     commerce.products.retrieve(productId).then(product => setBasicAuthen(product));
     commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
@@ -186,14 +186,14 @@ function UploadPicutres({ auth }) {
                     <Link href="/image-guideline/">Image Guideline</Link>
                   </p>
 
-                  <div>
+                  <div className="mb-5">
                     {category && renderUploadForm(category)}
 
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
+                    
+                  </div>
+                  <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={goNext}>Next</button>
                     </div>
-
-                  </div>
                 </div>
               </div>
             </div>
