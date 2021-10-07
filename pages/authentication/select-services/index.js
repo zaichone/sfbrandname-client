@@ -39,6 +39,10 @@ function SelectServices({ auth }) {
 
   async function handleSelectingServices() {
     console.log("Selecting");
+    router.push({
+      pathname: "/authentication/billing/",
+      query: { taskId:taskId, cartId:cartId },
+    }); 
   }
   useEffect(() => {
     async function initData() {
