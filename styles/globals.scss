@@ -181,6 +181,11 @@ button {
   }
 }
 
+// override bootstrap button class
+.btn{
+  padding: 15px 65px;
+}
+
 .page-title {
   text-transform: uppercase;
   font-weight: 600;
