@@ -17,6 +17,8 @@ import Bag from "../../../components/uploadForm/Bag";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
+import commerce from "../../../src/store/commerce";
+
 import { firestore, storage } from "../../../src/config/firebase";
 
 import { withProtected } from "../../../src/hook/route";
@@ -25,7 +27,11 @@ const categories = ["Watches", "Bag", "Clothing", "Jewelry", "Shoes"];
 
 function UploadPicutres({ auth }) {
   const { user } = auth;
-  console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
+  //console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
+
+  const [basicAuthen, setBasicAuthen] = useState();
+  const [basicAuthenProductId] = useState("prod_bO6J5apeYPoEjp");
+  const [cartId, setCartId] = useState();
 
   const [clientId, setClientId] = useState(user.uid);
   const [taskCategory, setTaskCategory] = useState();
@@ -47,7 +53,56 @@ function UploadPicutres({ auth }) {
 
   console.log("images", images);
 
-  function goNext() {
+  useEffect(() => {
+    // retrieve cart
+    commerce.cart
+      .retrieve()
+      .then((cart) => console.log(`retrieve cart: `, cart));
+
+    // [for debugging] empty a cart
+    // commerce.cart.empty().then((response) => console.log(response));
+
+    // get cart content
+    commerce.cart.contents().then((items) => {
+      if (items === undefined || items.length == 0) {
+        console.log(`cart is empty! should add item now`);
+        commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+          setCartId(json.cart.id);
+          console.log(`item added!`)
+        });
+      } else {
+        console.log(`cart has content: `, items);
+        items.forEach((item) => {
+          if (item.product_id === basicAuthenProductId && item.quantity === 1) {
+            console.log(
+              `found previous basicauth product at:`,
+              item.id,
+              `but already at 1`
+            );
+          }
+          if (item.product_id === basicAuthenProductId && item.quantity > 1) {
+            console.log(`found previous basicauth product at:`, item.id);
+            commerce.cart
+              .update(item.id, { quantity: 1 })
+              .then((response) =>
+                console.log(`force change quantity to 1: `, response)
+              );
+            commerce.cart
+              .contents()
+              .then((items) => console.log(`check cart items again: `, items));
+          }
+        });
+      }
+    });
+
+    // commerce.products
+    //   .retrieve(productId)
+    //   .then((product) => setBasicAuthen(product));
+
+    console.log(`cartId: `, cartId);
+  }, []);
+
+  async function goNext() {
     console.log("images before update", images);
 
     const taskRef = firestore.collection("tasks").doc(taskId);
@@ -61,9 +116,10 @@ function UploadPicutres({ auth }) {
       )
       .then(() => {})
       .catch((error) => {});
+
     router.push({
-      pathname: "/authentication/almost-done/",
-      query: { taskId },
+      pathname: "/authentication/select-services/",
+      query: { taskId: taskId, cartId: cartId },
     });
   }
 
@@ -180,11 +236,9 @@ function UploadPicutres({ auth }) {
 
                   <div>
                     {category && renderUploadForm(category)}
-
-                    <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={goNext}>Next</button>
-                    </div>
-
+                  </div>
+                  <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
+                    <button onClick={goNext}>Next</button>
                   </div>
                 </div>
               </div>
