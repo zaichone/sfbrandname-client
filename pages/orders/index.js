@@ -29,7 +29,7 @@ function Order({ auth }) {
     setClientId(_clientId);
     const ordersRef = firestore
       .collection("tasks")
-      .where("clientId", "==", user.uid)
+      .where("clientId", "==", user.uid).where("orderServices.basicAuthen", "==", true)
       .orderBy("timestamp", "asc");
     const unsubscribe = ordersRef.onSnapshot((snapshot) => {
       const data = snapshot.docs.map((doc) => ({
@@ -123,7 +123,7 @@ function Order({ auth }) {
                           }}
                         ></SymmetricalDiv>
                       </div>
-                      <div className="col-8 col-sm-4 d-flex flex-column justify-content-center align-items-start">
+                      <div className="col-8 col-sm-4 px-5 d-flex flex-column justify-content-center align-items-start">
                         <h3 className="order-title">
                           {order.name} - {order.brand}
                         </h3>

@@ -39,6 +39,17 @@ a {
 * {
   box-sizing: border-box;
 }
+.form-check .form-check-input {
+  border-radius: 0;
+  box-shadow: none;
+}
+.form-check-input:checked[type="checkbox"] {
+  border-radius: 0px;
+  &:focus {
+    box-shadow: none !important;
+    border-radius: 0px;
+  }
+}
 .hidden-overflow {
   overflow: hidden;
 }
@@ -99,9 +110,13 @@ a {
     @include media(mobile-only) {
       margin-left: 0;
     }
-    @include media(wider){
-      padding-top:2rem;
-      padding-bottom:2rem;
+    @include media(wide) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    @include media(wider) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
   }
   button {
@@ -155,7 +170,7 @@ button {
 .button,
 button {
   text-transform: uppercase;
-  padding: 15px 45px;
+  padding: 15px 65px;
   color: white;
   background: black;
   display: inline-block;
@@ -238,7 +253,6 @@ button {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.2);
-    
   }
   .heading {
     font-size: 80px;
@@ -703,15 +717,18 @@ footer p {
   }
   form {
     max-width: 50%;
+    
     @include media(mobile-only) {
       max-width: 100%;
     }
+    .form-control, .form-select{ border:1px solid black;}
   }
   h3 {
     font-size: 14px;
     font-weight: 400;
     svg {
       color: #f2c53d;
+      margin-left:10px;
     }
   }
   .image-box {
@@ -721,6 +738,16 @@ footer p {
     background-position: center center;
     background-repeat: no-repeat;
   }
+  .form-check {
+    .form-check-label {
+      margin-left: 20px;
+    }
+    margin-bottom:30px;
+  }
+  .service{
+    .price{ float:right; }
+  }
+  .form-footer{ margin-top:75px; }
 }
 
 .filter-bar {

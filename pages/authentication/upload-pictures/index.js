@@ -42,14 +42,6 @@ function UploadPicutres({ auth }) {
 
   const router = useRouter();
   const { taskId, category } = router.query;
-  console.log(
-    "🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskId",
-    taskId
-  );
-  console.log(
-    "🚀 ~ file: index.js ~ line 34 ~ UploadPicutres ~ taskCategory",
-    taskCategory
-  );
 
   console.log("images", images);
 
@@ -104,6 +96,8 @@ function UploadPicutres({ auth }) {
 
   async function goNext() {
     console.log("images before update", images);
+
+    //await commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
     const taskRef = firestore.collection("tasks").doc(taskId);
     taskRef
@@ -234,7 +228,7 @@ function UploadPicutres({ auth }) {
                     <Link href="/image-guideline/">Image Guideline</Link>
                   </p>
 
-                  <div>
+                  <div className="mb-5">
                     {category && renderUploadForm(category)}
                   </div>
                   <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
