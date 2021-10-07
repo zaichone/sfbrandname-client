@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import PagtTitle from "../../components/layout/PageTitle";
+import PageTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import cover from "../../assets/cover/HistoryMyorder.jpg";
 import thumb from "../../assets/my-order/thumb.png";

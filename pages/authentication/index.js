@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import PagtTitle from "../../components/layout/PageTitle";
+import PageTitle from "../../components/layout/PageTitle";
 import cover from "../../assets/cover/Authentic.jpg";
 import One from "../../assets/1.png";
 import InfoIcon from "@material-ui/icons/Info";
@@ -166,10 +166,7 @@ function Authentication({ auth }) {
         setBrands(data);
       });
   }, []);
-  if (!user) {
-    alert("Please login");
-    router.push("/sign-in/");
-  }
+
   return (
     <div>
       <Head>
@@ -186,7 +183,7 @@ function Authentication({ auth }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-authenticate">
-        <PagtTitle title="Authenticate" bg={cover} />
+        <PageTitle title="Authenticate" bg={cover} />
         <section>
           <div className="container-fluid">
             <div className="row">
