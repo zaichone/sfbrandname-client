@@ -681,8 +681,8 @@ footer p {
       }
       .uploadIcon {
         position: absolute;
-        bottom: 10%;
-        right: 10%;
+        bottom: 18%;
+        right: 20%;
         font-size: 2rem;
       }
     }
@@ -788,6 +788,9 @@ footer p {
 
 .orders {
   padding: 45px 30px 300px;
+  @include media(mobile-only) {
+    padding: 45px 30px 45px;
+  }
   .order {
     border: 1px solid black;
     padding: 16px 32px;
