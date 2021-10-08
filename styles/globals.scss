@@ -772,6 +772,18 @@ footer p {
   .form-control {
     background: white;
   }
+  @include media(mobile-only) {
+    .input-group {
+     
+      .form-control {
+       
+      }
+      button {
+       
+        
+      }
+    }
+  }
 }
 
 .orders {
@@ -952,12 +964,12 @@ footer p {
       align-items: center;
       li {
         flex-grow: 1;
-        padding:0;
+        padding: 0;
         a {
           padding: 5px 10px;
-          width:100%;
-          &.active{
-            padding:5px 10px;
+          width: 100%;
+          &.active {
+            padding: 5px 10px;
           }
         }
       }
