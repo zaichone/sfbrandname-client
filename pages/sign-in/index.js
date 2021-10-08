@@ -44,27 +44,34 @@ function SignIn({ auth }) {
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
               <h1 className="mt-5">Sign In</h1>
               <form onSubmit={handleSubmit} className="w-100 mt-5">
-                <div className="mb-4">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                  />
+
+                <div className="row mb-4">
+                  <div className="col">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Enter your email"
+                    />
+                  </div>
                 </div>
-                <div className="mb-5">
-                  <input
-                    type="password"
-                    className="form-control "
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                  />
+
+                <div className="row mb-5">
+                  <div className="col">
+                    <input
+                      type="password"
+                      className="form-control "
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                    />
+                  </div>
                 </div>
-                <div className="mb-5">
-                  <div className="row">
-                    <div className="form-check col-6 ">
+
+                <div className="row mb-5">
+                  <div className="col">
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -78,18 +85,20 @@ function SignIn({ auth }) {
                         Keep me signed in
                       </label>
                     </div>
-
-                    <div className="col-6">
-                      <p className="forget-password-text text-end">
-                        <Link href="/forget-password/">Forget Password</Link>
-                      </p>
-                    </div>
+                  </div>
+                  <div className="col">
+                    <p className="forget-password-text text-end">
+                      <Link href="/forget-password/">Forget Password</Link>
+                    </p>
                   </div>
                 </div>
-                <div className="mb-3">
-                  <button type="submit" className="mb-3">
-                    Login
-                  </button>
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <button type="submit" className="mb-3">
+                      Login
+                    </button>
+                  </div>
                 </div>
               </form>
               <p className="register-text text-center">

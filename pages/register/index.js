@@ -57,49 +57,64 @@ function Register({ auth }) {
               <h1 className="mt-5">CREATE ACCOUNT</h1>
               {error && <Alert variant="danger">{error}</Alert>}
               <form className="w-100 mt-3" onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    placeholder="First Name"
-                  />
+                <div className="row mb-3">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="firstName"
+                      placeholder="First Name"
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    placeholder="Last Name"
-                  />
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="lastName"
+                      placeholder="Last Name"
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    placeholder="Enter your email"
-                  />
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      placeholder="Enter your email"
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    className="form-control "
-                    name="password"
-                    placeholder="Password"
-                  />
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    className="form-control "
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                  />
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                    />
+                  </div>
                 </div>
-                <div className="mb-5">
-                  <div className="row">
-                    <div className="form-check col-6">
+
+                <div className="row my-5">
+                  <div className="col">
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -113,20 +128,20 @@ function Register({ auth }) {
                         I Agree To Platform
                       </label>
                     </div>
-
-                    <div className="col-6">
-                      <p className="forget-password-text ">
-                        <Link href="/terms-conditions/">
-                          Terms & Conditions
-                        </Link>
-                      </p>
-                    </div>
+                  </div>
+                  <div className="col">
+                    <p className="forget-password-text">
+                      <Link href="/terms-conditions/">Terms & Conditions</Link>
+                    </p>
                   </div>
                 </div>
-                <div className="mb-3 text-center">
-                  <button type="submit" className="mb-3" disabled={loading}>
-                    Create Account
-                  </button>
+
+                <div className="row mb-3">
+                  <div className="col text-center">
+                    <button type="submit" className="mb-3" disabled={loading}>
+                      Create Account
+                    </button>
+                  </div>
                 </div>
               </form>
               <p className="register-text text-center">

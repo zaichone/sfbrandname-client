@@ -406,7 +406,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -429,7 +429,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -452,7 +452,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -476,7 +476,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -500,7 +500,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -526,7 +526,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
                 <Row className="align-items-center mb-5">
@@ -552,7 +552,7 @@ function OrderDetail({ auth }) {
                     </span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
 
@@ -574,7 +574,7 @@ function OrderDetail({ auth }) {
                     <span>Exact or estimated era of item’s production</span>
                   </Col>
                   <Col xs={12} sm={1} className="text-end">
-                    Add
+                    <a href="/authentication/select-services">Add</a>
                   </Col>
                 </Row>
               </Container>

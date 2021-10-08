@@ -29,7 +29,7 @@ import Bag from "../../../components/uploadForm/Bag";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-import commerce from '../../../src/store/commerce';
+import commerce from "../../../src/store/commerce";
 
 import { firestore, storage } from "../../../src/config/firebase";
 
@@ -129,4 +129,4 @@ function Billing({ auth }) {
     )
 }
 
-export default withProtected(Billing)
+export default withProtected(Billing);

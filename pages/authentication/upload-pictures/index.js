@@ -17,7 +17,7 @@ import Bag from "../../../components/uploadForm/Bag";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-import commerce from '../../../src/store/commerce';
+import commerce from "../../../src/store/commerce";
 
 import { firestore, storage } from "../../../src/config/firebase";
 
@@ -30,7 +30,7 @@ function UploadPicutres({ auth }) {
   //console.log("🚀 ~ file: index.js ~ line 23 ~ UploadPicutres ~ user", user);
 
   const [basicAuthen, setBasicAuthen] = useState();
-  const [productId] = useState('prod_bO6J5apeYPoEjp');
+  const [basicAuthenProductId] = useState("prod_bO6J5apeYPoEjp");
   const [cartId, setCartId] = useState();
 
   const [clientId, setClientId] = useState(user.uid);
@@ -46,15 +46,69 @@ function UploadPicutres({ auth }) {
   console.log("images", images);
 
   useEffect(() => {
-    //const productId = 'prod_bO6J5apeYPoEjp';
-    commerce.products.retrieve(productId).then(product => setBasicAuthen(product));
-    commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
+    // retrieve cart
+    commerce.cart.retrieve().then((cart) => {
+      // console.log(`retrieve cart: `, cart);
+      setCartId(cart.id);
+    });
 
-  }, [])
+    // [for debugging] empty a cart
+    // commerce.cart.empty().then((response) => console.log(response));
+
+    // get cart content
+    commerce.cart.contents().then((items) => {
+      if (items === undefined || items.length == 0) {
+        // console.log(`cart is empty! should add item now`);
+        commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+          // console.log(`item added!`);
+        });
+      } else {
+        // console.log(`cart already have content: `, items);
+
+        if (items.find((item) => item["product_id"] === basicAuthenProductId)) {
+          // console.log(`found item, do nothing`);
+        } else {
+          {
+            // console.log(
+            //   `[addtocart] ${basicAuthenProductId} not found in cart! should add item now`
+            // );
+            commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+              // console.log(`item added!`);
+            });
+          }
+        }
+
+        items.forEach((item) => {
+          if (item.product_id === basicAuthenProductId && item.quantity === 1) {
+            // console.log(
+            //   `found previous basicauth product at:`,
+            //   item.id,
+            //   `but quantity is already at 1`
+            // );
+          }
+          if (item.product_id === basicAuthenProductId && item.quantity > 1) {
+            // console.log(`found more than 1 basicauth product at:`, item.id);
+            commerce.cart
+              .update(item.id, { quantity: 1 })
+              // .then((response) =>
+                // console.log(`force change quantity to 1: `, response)
+              // )
+              ;
+          }
+        });
+      }
+    });
+
+    // commerce.products
+    //   .retrieve(productId)
+    //   .then((product) => setBasicAuthen(product));
+
+    console.log(`cartId: `, cartId);
+  }, []);
 
   async function goNext() {
     console.log("images before update", images);
-
+    console.log(`cartId: `, cartId);
     //await commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
     const taskRef = firestore.collection("tasks").doc(taskId);
@@ -66,21 +120,19 @@ function UploadPicutres({ auth }) {
         },
         { merge: true }
       )
-      .then(() => { })
-      .catch((error) => { });
-     
+      .then(() => {})
+      .catch((error) => {});
+
     router.push({
       pathname: "/authentication/select-services/",
-      query: { taskId:taskId},
-    }); 
-  }
-
-  function nextPage() {
-    router.push({
-      pathname: "/authentication/almost-done/",
-      query: { taskId },
+      query: { taskId: taskId },
     });
   }
+
+  router.push({
+    pathname: "/authentication/select-services/",
+    query: { taskId: taskId, cartId: cartId },
+  });
 
   function renderUploadForm(category) {
     switch (category) {
@@ -145,6 +197,7 @@ function UploadPicutres({ auth }) {
         );
     }
   }
+
   return (
     <div>
       <Head>
@@ -188,12 +241,10 @@ function UploadPicutres({ auth }) {
 
                   <div className="mb-5">
                     {category && renderUploadForm(category)}
-
-                    
                   </div>
                   <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={goNext}>Next</button>
-                    </div>
+                    <button onClick={goNext}>Next</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,5 +254,4 @@ function UploadPicutres({ auth }) {
     </div>
   );
 }
-
 export default withProtected(UploadPicutres);
