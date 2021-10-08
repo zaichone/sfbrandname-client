@@ -78,18 +78,18 @@ function SelectServices({ auth }) {
     async function initCartData() {
       // always call retrieve cart to ensure that cart exists
       commerce.cart.retrieve().then((cart) => {
-        console.log(`retrieve cart: `, cart);
+        // console.log(`retrieve cart: `, cart);
         setCartId(cart.id);
       });
 
       const cartItemsList = await commerce.cart.contents();
-      console.log(
-        `🚀 ~ file: index.js ~ line 61 ~ initCartData ~ cartitems`,
-        cartItemsList
-      );
+      // console.log(
+      //   `🚀 ~ file: index.js ~ line 61 ~ initCartData ~ cartitems`,
+      //   cartItemsList
+      // );
       cartItemsList.forEach((item) => {
         if (cart.find((thing) => thing === item.product_id)) {
-          console.log(`item already in cart array`);
+          // console.log(`item already in cart array`);
         } else {
           cart.push(item.product_id);
         }
@@ -115,29 +115,29 @@ function SelectServices({ auth }) {
     setLockButton(true);
     setNotificationText("Adding item to cart... please wait");
 
-    console.log(`addtocart`, targetId);
+    // console.log(`addtocart`, targetId);
     await commerce.cart.contents().then((items) => {
       if (items === undefined || items.length == 0) {
-        console.log(`[addtocart] cart is empty! should add item now`);
+        // console.log(`[addtocart] cart is empty! should add item now`);
         commerce.cart.add(targetId, 1).then((json) => {
-          console.log(`item added!`);
+          // console.log(`item added!`);
           cart.push(targetId);
           setLockButton(false);
           setNotificationText("Item added!");
           clearNotification();
         });
       } else {
-        console.log(`[addtocart] cart has content: `, items);
+        // console.log(`[addtocart] cart has content: `, items);
 
         if (items.find((item) => item["product_id"] === targetId)) {
-          console.log(`found item`);
+          // console.log(`found item`);
         } else {
           {
-            console.log(
-              `[addtocart] ${targetId} not found in cart! should add item now`
-            );
+            // console.log(
+            //   `[addtocart] ${targetId} not found in cart! should add item now`
+            // );
             commerce.cart.add(targetId, 1).then((json) => {
-              console.log(`item added!`);
+              // console.log(`item added!`);
               cart.push(targetId);
               setLockButton(false);
               setNotificationText("Item added!");
@@ -150,18 +150,19 @@ function SelectServices({ auth }) {
           if (item.product_id === targetId && item.quantity === 1) {
             setLockButton(false);
             setNotificationText("Item added!");
-            console.log(
-              `[addtocart] found previous ${item.product_id} and quantity is already 1`
-            );
+            // console.log(
+            //   `[addtocart] found previous ${item.product_id} and quantity is already 1`
+            // );
           } else if (item.product_id === targetId && item.quantity > 1) {
-            console.log(
-              `[addtocart] found previous ${item.product_id} but quantity is over 1, forcing quantity now...`
-            );
+            // console.log(
+            //   `[addtocart] found previous ${item.product_id} but quantity is over 1, forcing quantity now...`
+            // );
             commerce.cart
               .update(item.product_id, { quantity: 1 })
-              .then((response) =>
-                console.log(`force change quantity to 1: `, response)
-              );
+              // .then((response) =>
+              //   console.log(`force change quantity to 1: `, response)
+              // )
+              ;
             setLockButton(false);
             setNotificationText("Item added!");
             clearNotification();
@@ -175,11 +176,13 @@ function SelectServices({ auth }) {
     setLockButton(true);
     setNotificationText("Removing item from cart...");
 
-    console.log(`removeFromcart`, targetId);
+    // console.log(`removeFromcart`, targetId);
     await commerce.cart.contents().then((items) => {
       let targetItem = items.find((item) => item["product_id"] === targetId);
       if (targetItem) {
-        commerce.cart.remove(targetItem.id).then(console.log(`removed item`));
+        commerce.cart.remove(targetItem.id)
+        // .then(console.log(`removed item`))
+        ;
         cart.filter((e) => e !== targetItem);
       }
       setLockButton(false);

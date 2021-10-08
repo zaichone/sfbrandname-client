@@ -48,50 +48,52 @@ function UploadPicutres({ auth }) {
   useEffect(() => {
     // retrieve cart
     commerce.cart.retrieve().then((cart) => {
-      console.log(`retrieve cart: `, cart);
+      // console.log(`retrieve cart: `, cart);
       setCartId(cart.id);
     });
+
     // [for debugging] empty a cart
     // commerce.cart.empty().then((response) => console.log(response));
 
     // get cart content
     commerce.cart.contents().then((items) => {
       if (items === undefined || items.length == 0) {
-        console.log(`cart is empty! should add item now`);
+        // console.log(`cart is empty! should add item now`);
         commerce.cart.add(basicAuthenProductId, 1).then((json) => {
-          console.log(`item added!`);
+          // console.log(`item added!`);
         });
       } else {
-        console.log(`cart already have content: `, items);
+        // console.log(`cart already have content: `, items);
 
         if (items.find((item) => item["product_id"] === basicAuthenProductId)) {
-          console.log(`found item, do nothing`);
+          // console.log(`found item, do nothing`);
         } else {
           {
-            console.log(
-              `[addtocart] ${basicAuthenProductId} not found in cart! should add item now`
-            );
+            // console.log(
+            //   `[addtocart] ${basicAuthenProductId} not found in cart! should add item now`
+            // );
             commerce.cart.add(basicAuthenProductId, 1).then((json) => {
-              console.log(`item added!`);
+              // console.log(`item added!`);
             });
           }
         }
 
         items.forEach((item) => {
           if (item.product_id === basicAuthenProductId && item.quantity === 1) {
-            console.log(
-              `found previous basicauth product at:`,
-              item.id,
-              `but quantity is already at 1`
-            );
+            // console.log(
+            //   `found previous basicauth product at:`,
+            //   item.id,
+            //   `but quantity is already at 1`
+            // );
           }
           if (item.product_id === basicAuthenProductId && item.quantity > 1) {
-            console.log(`found more than 1 basicauth product at:`, item.id);
+            // console.log(`found more than 1 basicauth product at:`, item.id);
             commerce.cart
               .update(item.id, { quantity: 1 })
-              .then((response) =>
-                console.log(`force change quantity to 1: `, response)
-              );
+              // .then((response) =>
+                // console.log(`force change quantity to 1: `, response)
+              // )
+              ;
           }
         });
       }
