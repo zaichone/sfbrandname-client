@@ -39,7 +39,7 @@ function SelectServices({ auth }) {
   // );
 
   const router = useRouter();
-  const { taskId, cartId } = router.query;
+  const { taskId } = router.query;
 
   async function handleSelectingServices() {
     console.log("Selecting");
