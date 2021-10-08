@@ -95,7 +95,7 @@ function Order({ auth }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services">
-        <PagtTitle title="My Order" bg={cover} />
+        <PageTitle title="My Order" bg={cover} />
         <section>
           <div className="container-fluid">
             <div className="row">
