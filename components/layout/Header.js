@@ -21,7 +21,7 @@ function Header() {
   return (
     <header className="top-header">
       <Navbar expand="lg" bg="dark" variant="dark">
-        <Container className="justify-content-around justify-content-sm-between py-3 py-sm-0">
+        <Container className="justify-content-between justify-content-sm-between py-3 py-sm-0">
           <Navbar.Brand href="/">
             <img
               src={Logo.src}

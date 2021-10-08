@@ -92,6 +92,7 @@ a {
   @include media(mobile-only) {
     .navbar-brand {
       order: 2;
+      margin-right: 0;
     }
     .navbar-toggler {
       order: 1;
@@ -838,9 +839,15 @@ footer p {
       &.active {
         background: #f7f7f7;
       }
-      @include media(mobile-only) {
-        width: 25%;
-        padding: 20px;
+    }
+    @include media(mobile-only) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .nav-item {
+        padding: 5px 10px;
+        border-radius: 0px;
+        flex-grow: 1;
       }
     }
   }
@@ -937,6 +944,22 @@ footer p {
         border: none;
         font-size: 12px;
         font-weight: 300;
+      }
+    }
+    @include media(mobile-only) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li {
+        flex-grow: 1;
+        padding:0;
+        a {
+          padding: 5px 10px;
+          width:100%;
+          &.active{
+            padding:5px 10px;
+          }
+        }
       }
     }
   }
