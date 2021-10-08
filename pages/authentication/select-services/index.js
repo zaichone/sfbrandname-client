@@ -30,6 +30,7 @@ function SelectServices({ auth }) {
 
   const [products, setProducts] = useState();
   const [cart, setCart] = useState([]);
+  const [cartId, setCartId] = useState("");
   const [notificationText, setNotificationText] = useState("");
   const [lockButton, setLockButton] = useState(false);
 
@@ -78,8 +79,9 @@ function SelectServices({ auth }) {
       // always call retrieve cart to ensure that cart exists
       commerce.cart.retrieve().then((cart) => {
         console.log(`retrieve cart: `, cart);
+        setCartId(cart.id)
       });
-      
+
       const cartItemsList = await commerce.cart.contents();
       console.log(
         `🚀 ~ file: index.js ~ line 61 ~ initCartData ~ cartitems`,

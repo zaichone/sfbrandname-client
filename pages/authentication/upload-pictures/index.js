@@ -118,20 +118,19 @@ function UploadPicutres({ auth }) {
         },
         { merge: true }
       )
-      .then(() => { })
-      .catch((error) => { });
-     
-    router.push({
-      pathname: "/authentication/select-services/",
-      query: { taskId:taskId},
-    }); 
-  }
+      .then(() => {})
+      .catch((error) => {});
 
     router.push({
       pathname: "/authentication/select-services/",
-      query: { taskId: taskId, cartId: cartId },
+      query: { taskId: taskId },
     });
   }
+
+  router.push({
+    pathname: "/authentication/select-services/",
+    query: { taskId: taskId, cartId: cartId },
+  });
 
   function renderUploadForm(category) {
     switch (category) {
@@ -196,6 +195,7 @@ function UploadPicutres({ auth }) {
         );
     }
   }
+
   return (
     <div>
       <Head>
@@ -252,5 +252,4 @@ function UploadPicutres({ auth }) {
     </div>
   );
 }
-
 export default withProtected(UploadPicutres);
