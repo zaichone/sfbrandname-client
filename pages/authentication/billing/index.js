@@ -49,7 +49,7 @@ function Billing({ auth }) {
     async function handleConfirm() {
         console.log("Confirm");
         router.push({
-            pathname: "/authentication/payment-confirmation/",
+            pathname: "/authentication/almost-done/",
             query: { taskId: taskId, cartId: cartId },
         });
     }
@@ -106,7 +106,7 @@ function Billing({ auth }) {
                                     {
                                     items && items.map((item, index) => 
                                     <tr key={item.id}>
-                                        <td>{index}</td>
+                                        <td>{index+1}</td>
                                         <td>{item.name}</td>
                                         <td>{item.price.formatted_with_symbol}</td>
                                     </tr>

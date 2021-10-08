@@ -187,7 +187,7 @@ function OrderDetail({ auth }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services page-content">
-        <PagtTitle title="Order Detail" bg={cover} />
+        <PageTitle title="Order Detail" bg={cover} />
         <section>
           <Tabs defaultActiveKey="home" id="orderDetails">
             <Tab eventKey="home" title="Item Info">
