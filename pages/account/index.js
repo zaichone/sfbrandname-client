@@ -105,7 +105,7 @@ function Account({ auth }) {
                           background: `url('${profileAvatar
                             }')center center no-repeat`,
                           border: "1px solid black",
-                          backgroundSize:'cover'
+                          
                         }}
                       ></SymmetricalDiv>
 

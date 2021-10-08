@@ -672,6 +672,7 @@ footer p {
     .profile-pic {
       position: relative;
       margin-bottom: 50px;
+      > div{ background-size:cover!important; }
       @include media(mobile-only) {
         margin: 0;
       }
