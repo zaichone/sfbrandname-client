@@ -182,7 +182,7 @@ button {
 }
 
 // override bootstrap button class
-.btn{
+.btn {
   padding: 15px 65px;
 }
 
@@ -594,7 +594,7 @@ footer p {
       background-size: 100%;
       background-repeat: no-repeat;
       .card {
-        margin-bottom: 55px;
+        margin: 45px 0;
         padding: 60px 0;
         background: transparent;
         border: none;
@@ -911,7 +911,9 @@ footer p {
         }
       }
     }
-    .th{ text-transform:none; }
+    .th {
+      text-transform: none;
+    }
   }
   .order-nav {
     list-style-type: none;
@@ -938,7 +940,7 @@ footer p {
       }
     }
   }
-  .billing-details{
+  .billing-details {
     background: #f7f7f7;
     padding: 60px 0 150px;
     font-size: 12px;

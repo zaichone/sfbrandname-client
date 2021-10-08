@@ -72,8 +72,9 @@ function Services() {
           </div>
         </div>
 
+        {/* mobile only small header */}
         <div className="d-block d-sm-none">
-          <Cta title="PREMIUM+" bg={Reminder} />
+          <Cta title="PREMIUM+" bg={cover} />
         </div>
 
         <section className="premium-plus">
@@ -85,10 +86,6 @@ function Services() {
             className="sub-section"
             style={{ backgroundImage: `url(${upgrade.src})` }}
           >
-
-
-
-
             <div className="container">
               <div className="row">
                 <div className="col-12 col-sm-12">
@@ -184,7 +181,9 @@ function Services() {
                       </div>
                       <div className="col-9 col-md-8">
                         <div className="card-body">
-                          <h5 className="card-title">AuthenticatE and delivery</h5>
+                          <h5 className="card-title">
+                            AuthenticatE and delivery
+                          </h5>
                           <p className="card-text">
                             Super Authentic offers an authenticity card as an
                             upgraded service along with delivery to your door!
@@ -227,7 +226,9 @@ function Services() {
                       </div>
                       <div className="col-9 col-md-8">
                         <div className="card-body">
-                          <h5 className="card-title">Hermès exotic leather bag</h5>
+                          <h5 className="card-title">
+                            Hermès exotic leather bag
+                          </h5>
                           <p className="card-text">
                             Thanks to deeper knowledge required and special
                             attention to details, all Hèrmes authentication

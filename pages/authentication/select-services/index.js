@@ -79,7 +79,7 @@ function SelectServices({ auth }) {
       // always call retrieve cart to ensure that cart exists
       commerce.cart.retrieve().then((cart) => {
         console.log(`retrieve cart: `, cart);
-        setCartId(cart.id)
+        setCartId(cart.id);
       });
 
       const cartItemsList = await commerce.cart.contents();
@@ -241,24 +241,28 @@ function SelectServices({ auth }) {
                   <div className="mt-5">
                     {products ? (
                       products.map((product) => (
-                        <div className="form-check service" key={product.id}>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id={`${product.id}-check`}
-                            name={`${product.id}`}
-                            defaultChecked={checkboxInCart(product.id)}
-                            onChange={handleProductToggle}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor={`${product.id}-check`}
-                          >
-                            {product.name}
-                          </label>
-                          <span className="price">
-                            {product.price.formatted_with_symbol}
-                          </span>
+                        <div className="row" key={product.id}>
+                          <div className="col-9 form-check service">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              id={`${product.id}-check`}
+                              name={`${product.id}`}
+                              defaultChecked={checkboxInCart(product.id)}
+                              onChange={handleProductToggle}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor={`${product.id}-check`}
+                            >
+                              {product.name}
+                            </label>
+                          </div>
+                          <div className="col-3">
+                            <span className="price">
+                              {product.price.formatted_with_symbol}
+                            </span>
+                          </div>
                         </div>
                       ))
                     ) : (
