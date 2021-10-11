@@ -1,9 +1,22 @@
 import Head from "next/head";
 import Link from "next/link";
-import PagtTitle from "../../components/layout/PageTitle";
+import PageTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
+import {
+  Tabs,
+  Tab,
+  Modal,
+  Row,
+  Button,
+  Col,
+  Form,
+  Card,
+  Container,
+  Accordion
+} from "react-bootstrap";
+
 
 import cover from "../../assets/cover/Service.jpg";
 import featured from "../../assets/services/featured.png";
@@ -18,6 +31,7 @@ import commerce from "../../src/store/commerce";
 
 function Services() {
   const [products, setProducts] = useState();
+  const { innerWidth: width, innerHeight: height } = window;
 
   useEffect(() => {
     async function initShopData() {
@@ -48,7 +62,7 @@ function Services() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services">
-        <PagtTitle title="Services" bg={cover} className=" d-none d-sm-block" />
+        <PageTitle title="Services" bg={cover} className=" d-none d-sm-block" />
         <section className="service-featured d-none d-sm-block">
           <div className="sub-section">
             <div className="container">
@@ -110,27 +124,47 @@ function Services() {
             <div className="container">
               <div className="row">
                 <div className="col-12 col-sm-12">
-                  {products && products.map((product) =>
-                    <div className="card">
-                      <div className="row g-0">
-                        <div className="col-3 col-md-4 text-center">
-                          <span className="price">{product.price.formatted_with_symbol}</span>
-                        </div>
-                        <div className="col-9 col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <p className="card-text">
-                              {ReactHtmlParser(product.description)}
-                            </p>
+                  <div className="d-none d-sm-block">
+                    {products?.map((product, ind) =>
+                      <div className="card" key={product.id}>
+                        <div className="row g-0">
+                          <div className="col-3 col-md-4 text-center">
+                            <span className="price">{product.price.formatted_with_symbol}</span>
+                          </div>
+                          <div className="col-9 col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title">{product.name}</h5>
+                              <div className="card-text">
+                                {ReactHtmlParser(product.description)}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    )}
+                  </div>
+                  <div className="d-block d-sm-none">
+
+                    <div className="accordion" id="accordionExample">
+                      {products?.map((product, index) =>
+
+                        <div className="accordion-item" key={product.id}>
+                          <h2 className="accordion-header" id={`heading-${product.id}`}>
+                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-${product.id}`} aria-expanded="true" aria-controls={`collapse-${product.id}`}>
+                              {product.name}
+                            </button>
+                          </h2>
+                          <div id={`collapse-${product.id}`} className="accordion-collapse collapse" aria-labelledby={`heading-${product.id}`}data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                              {product.description}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
 
 
-                  
-              
                 </div>
               </div>
             </div>
