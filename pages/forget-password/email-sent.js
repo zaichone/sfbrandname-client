@@ -5,7 +5,7 @@ import React, { useCallback, useContext, useState } from "react";
 
 import { withPublic } from "../../src/hook/route";
 
-function ResetPassword({ auth }) {
+function ResetPasswordSent({ auth }) {
   const { loginWithEmailAndPassword } = auth;
   const router = useRouter();
   async function handleSubmit(event) {
@@ -34,30 +34,21 @@ function ResetPassword({ auth }) {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-center ">
-              <h1 className="">Reset password</h1>
-              <form className="w-100">
+              <h1 className="">Done!</h1>
+              <div className="w-100">
                 <div className="row my-5">
                   <div className="col">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      name="email"
-                      placeholder="Enter your email"
-                    />
+                    <p>
+                      Email has been sent.
+                      Please check your email for more detail.
+                    </p>
                   </div>
                 </div>
 
-                <div className="row my-5">
-                  <div className="col">
-                    <button type="submit" className="mb-3">
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </form>
+              
+              </div>
               <p className="register-text text-center">
-                <Link href="/sign-in/">Sign in here.</Link>
+                <Link href="/sign-in/" className="btn btn-primary">Sign in here.</Link>
               </p>
             </div>
             <div className=" d-none d-sm-inline col-sm-8 p-0">
@@ -70,4 +61,4 @@ function ResetPassword({ auth }) {
   );
 }
 
-export default withPublic(ResetPassword);
+export default withPublic(ResetPasswordSent);

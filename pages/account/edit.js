@@ -57,7 +57,7 @@ function Account({ auth }) {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log("profile:", doc.data());
+          console.log("Document data:", doc.data());
           setProfile(doc.data());
           setProfileAvatar(doc.data().profileAvatar);
         } else {
@@ -73,6 +73,11 @@ function Account({ auth }) {
   if (!user) {
     return router.push("/sign-in/");
   }
+  const [allowEdit, setAllowEdit] = useState(false);
+  function toggleEdit() {
+    setAllowEdit(!allowEdit);
+  }
+
   return (
     <div>
       <Head>
@@ -93,7 +98,6 @@ function Account({ auth }) {
         <section>
           <div className="">
             <div className="row gx-0">
-              {/* left side column with profile picture */}
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
@@ -131,76 +135,146 @@ function Account({ auth }) {
                   </div>
                 </div>
               </div>
-              {/* main column wit profile data */}
               <div className="col-12 col-sm-9 col-md-10">
-                <div className="profile-details">
-                  <form>
-
-                    
-                    </form>
-                  <h3>Account</h3>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Business Name
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      {profile?.firstName} {profile?.lastName}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Account Created
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      {profile?.createAt &&
-                        new Date(profile?.createAt).toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">Email</div>
-                    <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Documentation ID Name
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      Image Engine Company Limited
-                    </div>
-                  </div>
-
-                  <hr className="d-none d-sm-block" />
-
-                  <h3 className="mt-5 mb-3">Payment information</h3>
-                  <div className="payment-info">
-                    <div className="row">
-                      <div className="col-12 col-sm-4 my-2">
-                        Pollawat Deeunkong
+                {" "}
+                <button className="btn btn-primary" onClick={toggleEdit}>
+                  toggle edit
+                </button>
+                <form>
+                  <div className="profile-details">
+                    <h3>Account</h3>
+                    <div className="row" hidden={allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium my-2">
+                        Business Name
                       </div>
-                      <div className="col-3 col-sm-1 my-2">
-                        <FontAwesomeIcon
-                          icon={faCcMastercard}
-                          style={{ fontSize: "2rem" }}
+                      <div className="col-12 col-sm-8 my-2">
+                        {profile?.firstName} {profile?.lastName}
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-2 fw-medium col-form-label">
+                        First Name
+                      </div>
+                      <div className="col-4">
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="firstName"
+                          name="firstName"
+                          placeholder="First Name"
+                          defaultValue={profile?.firstName}
                         />
                       </div>
-                      <div className="col-9 col-sm-3  my-2">**** **** **** 3200</div>
-                      <div className="col-12 col-sm-4 my-2">Edit Remove</div>
+
+                      <div className="col-2 fw-medium col-form-label">
+                        Last Name
+                      </div>
+                      <div className="col-4">
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="lastName"
+                          name="lastName"
+                          placeholder="First Name"
+                          defaultValue={profile?.lastName}
+                        />
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Documentation ID name
+                      </div>
+                      <div className="col-12 col-sm-8 my-2" hidden={allowEdit}>
+                        {profile?.documentName}
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="documentName"
+                          name="documentName"
+                          placeholder="First Name"
+                          defaultValue={profile?.documentName}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row" hidden={allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium my-2">
+                        Documentation ID name
+                      </div>
+                      <div className="col-12 col-sm-8 my-2">
+                        {profile?.documentName}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-sm-4 fw-medium my-2">
+                        Email
+                      </div>
+                      <div className="col-12 col-sm-8 my-2">
+                        {profile?.email}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-sm-4 fw-medium my-2">
+                        Account Created
+                      </div>
+                      <div className="col-12 col-sm-8 my-2">
+                        {profile?.createAt &&
+                          new Date(profile?.createAt).toLocaleString()}
+                      </div>
+                    </div>
+                    <hr className="d-none d-sm-block" />
+                    <h3 className="mt-5 mb-3">Payment information</h3>
+                    <div className="payment-info">
+                      <div className="row">
+                        <div className="col-12 col-sm-4 my-2">
+                          Pollawat Deeunkong
+                        </div>
+                        <div className="col-3 col-sm-1 my-2">
+                          <FontAwesomeIcon
+                            icon={faCcMastercard}
+                            style={{ fontSize: "2rem" }}
+                          />
+                        </div>
+                        <div className="col-9 col-sm-3  my-2">
+                          **** **** **** 3200
+                        </div>
+                        <div className="col-12 col-sm-4 my-2">Edit Remove</div>
+                      </div>
+                    </div>
+                    <hr className="d-none d-sm-block" />
+                    <h3 className="mt-5 mb-3">Address</h3>
+                    <p hidden={allowEdit}>{profile?.address}</p>
+                    <div className="col" hidden={!allowEdit}>
+                      <textarea
+                        readOnly={!allowEdit}
+                        className={
+                          allowEdit ? "form-control" : "form-control-plaintext"
+                        }
+                        id="documentName"
+                        name="documentName"
+                        placeholder="First Name"
+                        defaultValue={profile?.address}
+                      />
                     </div>
                   </div>
-
-                  <hr className="d-none d-sm-block" />
-                  
-                  <h3 className="mt-5 mb-3">Address</h3>
-                  <p>
-                    Image Engine Company Limited <br />
-                    188/5 Village Number 22 <br />
-                    Sub. Roubwieng Area Muang
-                    <br />
-                    City Chiang Rai Country Thailand
-                    <br />
-                    Protal Code 57000
-                  </p>
-                </div>
+                </form>
               </div>
             </div>
           </div>
