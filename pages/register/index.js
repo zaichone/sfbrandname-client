@@ -5,11 +5,37 @@ import { useRouter } from "next/router";
 import { Alert } from "react-bootstrap";
 
 //import { auth } from "../../src/config/firebase";
+
+import useAuth from "../../src/hooks/auth";
 import { withPublic } from "../../src/hook/route";
 
 function Register({ auth }) {
   const [loading, setLoading] = useState(false);
-  const { signUp, error, setError } = auth;
+  const signUp = useAuth();
+  const [error, setError] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [confirmPasswordCheck, setConfirmPasswordCheck] = useState(false);
+
+  const [pwdCheck, setPwdCheck] = useState(false);
+  const [pwdCheckUpper, setPwdCheckUpper] = useState(false);
+  const [pwdCheckLower, setPwdCheckLower] = useState(false);
+  const [pwdCheckNumber, setPwdCheckNumber] = useState(false);
+  const [pwdCheckSpecial, setPwdCheckSpecial] = useState(false);
+  const [pwdCheckLength, setPwdCheckLength] = useState(false);
+
+  // master checker that allow signup
+  const passwordRegex = new RegExp(
+    /^(?=[^A-Z\s]*[A-Z])(?=[^a-z\s]*[a-z])(?=[^\d\s]*\d)(?=\w*[\W_])\S{8,}$/gm
+  );
+
+  // just condition display
+  const uppercaseRegex = new RegExp(/^(?=[^A-Z\s]*[A-Z])\S{0,}$/gm);
+  const lowercaseRegex = new RegExp(/^(?=[^a-z\s]*[a-z])\S{0,}$/gm);
+  const numberRegex = new RegExp(/^(?=[^\d\s]*\d)\S{0,}$/gm);
+  const specialRegex = new RegExp(/^(?=\w*[\W_])\S{0,}$/gm);
+  const lengthRegex = new RegExp(/^.{8,}$/gm);
+
   async function handleSubmit(e) {
     const {
       firstName,
@@ -22,19 +48,44 @@ function Register({ auth }) {
     e.preventDefault();
     console.log("submitting");
 
-    // password check not match
-    if (password.value !== confirmPassword.value) {
-      return setError("Passwords do not match");
+    // password not pass requirement
+    if (!pwdCheck) {
+      setError("Passwords not pass requirements\n");
     }
+
+    // password check not match
+    if (!confirmPasswordCheck) {
+      return setError("Confirm Passwords do not match\n");
+    }
+
     // T&C is accepted?
-    if (keepMeSignedIn.checked) {
-      signUp(email.value, password.value, firstName.value, lastName.value);
+    if (!keepMeSignedIn.checked) {
+      return setError("You have to accept Terms & Conditions to sign up.\n");
     } else {
-      return setError("You have to accept Terms & Conditions to sign up.");
+      window.alert(`calling signup`);
+      // signUp(email.value, password.value, firstName.value, lastName.value);
     }
 
     setLoading(false);
   }
+
+  function handlePasswordChange(e) {
+    let pwd = e.target.value;
+    setPassword(pwd);
+
+    setPwdCheck(passwordRegex.test(pwd));
+    setPwdCheckUpper(uppercaseRegex.test(pwd));
+    setPwdCheckLower(lowercaseRegex.test(pwd));
+    setPwdCheckNumber(numberRegex.test(pwd));
+    setPwdCheckSpecial(specialRegex.test(pwd));
+    setPwdCheckLength(lengthRegex.test(pwd));
+  }
+
+  function handleConfirmPassword(e) {
+    let confirmPwd = e.target.value;
+    setConfirmPasswordCheck(password === confirmPwd);
+  }
+
   return (
     <div>
       <Head>
@@ -64,6 +115,7 @@ function Register({ auth }) {
                       className="form-control"
                       name="firstName"
                       placeholder="First Name"
+                      required
                     />
                   </div>
                 </div>
@@ -75,6 +127,7 @@ function Register({ auth }) {
                       className="form-control"
                       name="lastName"
                       placeholder="Last Name"
+                      required
                     />
                   </div>
                 </div>
@@ -86,6 +139,7 @@ function Register({ auth }) {
                       className="form-control"
                       name="email"
                       placeholder="Enter your email"
+                      required
                     />
                   </div>
                 </div>
@@ -97,6 +151,8 @@ function Register({ auth }) {
                       className="form-control"
                       name="password"
                       placeholder="Password"
+                      onChange={handlePasswordChange}
+                      required
                     />
                   </div>
                 </div>
@@ -108,7 +164,63 @@ function Register({ auth }) {
                       className="form-control"
                       name="confirmPassword"
                       placeholder="Confirm Password"
+                      onChange={handleConfirmPassword}
+                      required
                     />
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <div className="col">
+                    <p>Password requirements:</p>
+                    <p>
+                      {pwdCheckLength ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      At least 8 characters long
+                    </p>
+                    <p>
+                      {pwdCheckUpper ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      At least 1 uppercase character
+                    </p>
+                    <p>
+                      {pwdCheckLower ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      At least 1 lowercase character
+                    </p>
+                    <p>
+                      {pwdCheckNumber ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      At least 1 number
+                    </p>
+                    <p>
+                      {pwdCheckSpecial ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      At least 1 special character
+                    </p>
+                    <p>
+                      {confirmPasswordCheck ? (
+                        <span>&#10003;</span>
+                      ) : (
+                        <span>&#8226;</span>
+                      )}{" "}
+                      Confirm password is match
+                    </p>
                   </div>
                 </div>
 
@@ -138,7 +250,11 @@ function Register({ auth }) {
 
                 <div className="row mb-3">
                   <div className="col text-center">
-                    <button type="submit" className="mb-3" disabled={loading}>
+                    <button
+                      type="submit"
+                      className="btn btn-primary mb-3"
+                      disabled={loading}
+                    >
                       Create Account
                     </button>
                   </div>
