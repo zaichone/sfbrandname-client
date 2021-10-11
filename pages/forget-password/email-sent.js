@@ -34,9 +34,9 @@ function ResetPasswordSent({ auth }) {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-center ">
-              <h1 className="">Done!</h1>
+              <h1 className="">DONE!</h1>
               <div className="w-100">
-                <div className="row my-5">
+                <div className="row my-3">
                   <div className="col">
                     <p>
                       Email has been sent.
@@ -44,12 +44,16 @@ function ResetPasswordSent({ auth }) {
                     </p>
                   </div>
                 </div>
-
-              
               </div>
-              <p className="register-text text-center">
-                <Link href="/sign-in/" className="btn btn-primary">Sign in here.</Link>
-              </p>
+              <div className="row my-2">
+                  <div className="col">
+                    <button type="submit" className="mb-3">
+                      BACK
+                    </button>
+                  </div>
+                </div>
+              
+              
             </div>
             <div className=" d-none d-sm-inline col-sm-8 p-0">
               <div className="register-cover"></div>

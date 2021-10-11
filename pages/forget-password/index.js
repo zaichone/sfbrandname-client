@@ -34,7 +34,7 @@ function ResetPassword({ auth }) {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-center ">
-              <h1 className="">Reset password</h1>
+              <h1 className="">RECOVERY PASSWORD </h1>
               <form className="w-100">
                 <div className="row my-5">
                   <div className="col">
@@ -56,8 +56,8 @@ function ResetPassword({ auth }) {
                   </div>
                 </div>
               </form>
-              <p className="register-text text-center">
-                <Link href="/sign-in/">Sign in here.</Link>
+              <p className="register-text ">
+                <Link href="/sign-in/" className="btn btn-primary">Back to Log in</Link>
               </p>
             </div>
             <div className=" d-none d-sm-inline col-sm-8 p-0">
