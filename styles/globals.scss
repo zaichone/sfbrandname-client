@@ -672,6 +672,7 @@ footer p {
     .profile-pic {
       position: relative;
       margin-bottom: 50px;
+      > div{ background-size:cover!important; }
       @include media(mobile-only) {
         margin: 0;
       }
@@ -681,8 +682,8 @@ footer p {
       }
       .uploadIcon {
         position: absolute;
-        bottom: 10%;
-        right: 10%;
+        bottom: 18%;
+        right: 20%;
         font-size: 2rem;
       }
     }
@@ -772,10 +773,25 @@ footer p {
   .form-control {
     background: white;
   }
+  @include media(mobile-only) {
+    .input-group {
+     
+      .form-control {
+       
+      }
+      button {
+       
+        
+      }
+    }
+  }
 }
 
 .orders {
   padding: 45px 30px 300px;
+  @include media(mobile-only) {
+    padding: 45px 30px 45px;
+  }
   .order {
     border: 1px solid black;
     padding: 16px 32px;
@@ -952,12 +968,12 @@ footer p {
       align-items: center;
       li {
         flex-grow: 1;
-        padding:0;
+        padding: 0;
         a {
           padding: 5px 10px;
-          width:100%;
-          &.active{
-            padding:5px 10px;
+          width: 100%;
+          &.active {
+            padding: 5px 10px;
           }
         }
       }

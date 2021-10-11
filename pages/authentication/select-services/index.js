@@ -28,6 +28,8 @@ const categories = ["Watches", "Bag", "Clothing", "Jewelry", "Shoes"];
 function SelectServices({ auth }) {
   const { user } = auth;
 
+  const [basicAuthenProductId] = useState("prod_bO6J5apeYPoEjp");
+  const [productId] = useState('prod_bO6J5apeYPoEjp');
   const [products, setProducts] = useState();
   const [cart, setCart] = useState([]);
   const [cartId, setCartId] = useState("");
@@ -61,6 +63,49 @@ function SelectServices({ auth }) {
       setLockButton(false);
     }
     initShopData();
+    // get cart content
+    commerce.cart.contents().then((items) => {
+      if (items === undefined || items.length == 0) {
+        // console.log(`cart is empty! should add item now`);
+        commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+          // console.log(`item added!`);
+        });
+      } else {
+        // console.log(`cart already have content: `, items);
+
+        if (items.find((item) => item["product_id"] === basicAuthenProductId)) {
+          // console.log(`found item, do nothing`);
+        } else {
+          {
+            // console.log(
+            //   `[addtocart] ${basicAuthenProductId} not found in cart! should add item now`
+            // );
+            commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+              // console.log(`item added!`);
+            });
+          }
+        }
+
+        items.forEach((item) => {
+          if (item.product_id === basicAuthenProductId && item.quantity === 1) {
+            // console.log(
+            //   `found previous basicauth product at:`,
+            //   item.id,
+            //   `but quantity is already at 1`
+            // );
+          }
+          if (item.product_id === basicAuthenProductId && item.quantity > 1) {
+            // console.log(`found more than 1 basicauth product at:`, item.id);
+            commerce.cart
+              .update(item.id, { quantity: 1 })
+              // .then((response) =>
+                // console.log(`force change quantity to 1: `, response)
+              // )
+              ;
+          }
+        });
+      }
+    });
 
     /*
         commerce.products.list().then(response => {

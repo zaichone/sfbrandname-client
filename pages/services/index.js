@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-
 import Head from "next/head";
 import Link from "next/link";
-
 import PagtTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
@@ -13,18 +10,14 @@ import featured from "../../assets/services/featured.png";
 import premium from "../../assets/services/Premium+.png";
 import upgrade from "../../assets/services/Upgrade+.png";
 
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import ReactHtmlParser from 'react-html-parser';
+
 import commerce from "../../src/store/commerce";
 
-import useWindowDimensions from "../../src/util/useWindowDimemsions";
-
 function Services() {
-  const [excludedProductId] = useState([
-    "prod_bO6J5apeYPoEjp",
-    "prod_A12Jwre87dlPjn",
-  ]);
   const [products, setProducts] = useState();
-
-  const { screenWidth } = useWindowDimensions();
 
   useEffect(() => {
     async function initShopData() {
@@ -33,170 +26,12 @@ function Services() {
       products.sort((a, b) => {
         return a.sort_order - b.sort_order;
       });
-
-      let filteredProducts = products.filter(
-        (item) => !excludedProductId.includes(item["id"])
-      );
-
-      setProducts(filteredProducts);
+      setProducts(products);
     }
     initShopData();
+
   }, []);
-
-  const ServiceList = () => (
-    <>
-      {/* tablet+ */}
-      <PagtTitle title="Services" bg={cover} className=" d-none d-sm-block" />
-      <section className="service-featured d-none d-sm-block">
-        <div className="sub-section">
-          <div className="container">
-            <div className="card w-100">
-              <div className="row g-0">
-                <div className="col-md-6">
-                  <img src={featured.src} className="img-fluid" alt="" />
-                </div>
-                <div className="col-md-6 d-flex justify-content-center align-items-center">
-                  <div className="card-body">
-                    <h5 className="card-title mb-3">Authentic vs. Fake</h5>
-                    <p className="card-text w-100">
-                      The starting price for all authentication services is
-                      $30.20, including an official authentication certificate
-                      in PDF format that determines whether the goods is
-                      ‘Authentic’ or ‘Fake’ based on the pictures you submitted.
-                      We will send authentication results to your email and it
-                      will appear in your account as well. Our team of experts
-                      will verify your goods within 12-24 hours after receiving
-                      all needed pictures.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="premium-plus">
-        <div className="d-none d-sm-block">
-          <Heading title="Premium+" bg={premium} />
-        </div>
-
-        <div
-          className="sub-section"
-          style={{ backgroundImage: `url(${upgrade.src})` }}
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-sm-12">
-                {products ? (
-                  products.map((product) => (
-                    <div className="card" key={product.id}>
-                      <div className="row g-0">
-                        <div className="col-3 col-md-4 text-center">
-                          <span className="price">
-                            {product.price.formatted_with_symbol.slice(0, -3)}
-                          </span>
-                        </div>
-                        <div className="col-9 col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <div
-                              className="card-text"
-                              dangerouslySetInnerHTML={{
-                                __html: product.description,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="row">
-                    <div className="col d-flex justify-content-center">
-                      <p className="mx-auto">Loading Services...</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-
-  const ServiceListMobile = () => (
-    <>
-      {/* mobile only hero header */}
-      <div className="container-fluid hero d-block d-sm-none">
-        <div className="row pt-5 pb-3 px-5">
-          <div className="tagline col-12 col-sm-4 offset-sm-1 d-flex flex-column justify-content-start justify-content-sm-center align-items-center align-items-sm-start">
-            <h1 className="fw-normal mb-5 me-auto d-block d-sm-none">
-              SERVICE
-            </h1>
-
-            <p className="d-block d-sm-none">
-              Authenticate any luxury product on your finger tip.
-            </p>
-            <a className="button d-block d-sm-none">Only $30</a>
-          </div>
-        </div>
-      </div>
-
-      {/* mobile only small header */}
-      <div className="d-block d-sm-none">
-        <Cta title="PREMIUM+" bg={cover} />
-      </div>
-      <section className="premium-plus">
-        <div className="d-none d-sm-block">
-          <Heading title="Premium+" bg={premium} />
-        </div>
-
-        <div
-          className="sub-section"
-          style={{ backgroundImage: `url(${upgrade.src})` }}
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-sm-12">
-                {products ? (
-                  products.map((product) => (
-                    <div className="card" key={product.id}>
-                      <div className="row g-0">
-                        <div className="col-3 col-md-4 text-center">
-                          <span className="price">
-                            {product.price.formatted_with_symbol.slice(0, -3)}
-                          </span>
-                        </div>
-                        <div className="col-9 col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <div
-                              className="card-text"
-                              dangerouslySetInnerHTML={{
-                                __html: product.description,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="row">
-                    <div className="col d-flex justify-content-center">
-                      <p className="mx-auto">Loading Services...</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-
+  console.log(products)
   return (
     <div>
       <Head>
@@ -213,7 +48,94 @@ function Services() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services">
-        {screenWidth > 592 ? <ServiceList /> : <ServiceListMobile />}
+        <PagtTitle title="Services" bg={cover} className=" d-none d-sm-block" />
+        <section className="service-featured d-none d-sm-block">
+          <div className="sub-section">
+            <div className="container">
+              <div className="card w-100">
+                <div className="row g-0">
+                  <div className="col-md-6">
+                    <img src={featured.src} className="img-fluid" alt="" />
+                  </div>
+                  <div className="col-md-6 d-flex justify-content-center align-items-center">
+                    <div className="card-body">
+                      <h5 className="card-title mb-3">Authentic vs. Fake</h5>
+                      <p className="card-text w-100">
+                        The starting price for all authentication services is
+                        $30.20, including an official authentication certificate
+                        in PDF format that determines whether the goods is
+                        ‘Authentic’ or ‘Fake’ based on the pictures you
+                        submitted. We will send authentication results to your
+                        email and it will appear in your account as well. Our
+                        team of experts will verify your goods within 12-24
+                        hours after receiving all needed pictures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="container-fluid hero d-block d-sm-none">
+          <div className="row pt-5 pb-3 px-5">
+            <div className="tagline col-12 col-sm-4 offset-sm-1 d-flex flex-column justify-content-start justify-content-sm-center align-items-center align-items-sm-start">
+              <h1 className="fw-normal mb-5 me-auto d-block d-sm-none">
+                SERVICE
+              </h1>
+
+              <p className="d-block d-sm-none">
+                Authenticate any luxury product on your finger tip.
+              </p>
+              <a className="button d-block d-sm-none">Only $30</a>
+            </div>
+          </div>
+        </div>
+
+        {/* mobile only small header */}
+        <div className="d-block d-sm-none">
+          <Cta title="PREMIUM+" bg={cover} />
+        </div>
+
+        <section className="premium-plus">
+          <div className="d-none d-sm-block">
+            <Heading title="Premium+" bg={premium} />
+          </div>
+
+          <div
+            className="sub-section"
+            style={{ backgroundImage: `url(${upgrade.src})` }}
+          >
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-sm-12">
+                  {products && products.map((product) =>
+                    <div className="card">
+                      <div className="row g-0">
+                        <div className="col-3 col-md-4 text-center">
+                          <span className="price">{product.price.formatted_with_symbol}</span>
+                        </div>
+                        <div className="col-9 col-md-8">
+                          <div className="card-body">
+                            <h5 className="card-title">{product.name}</h5>
+                            <p className="card-text">
+                              {ReactHtmlParser(product.description)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+
+                  
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );

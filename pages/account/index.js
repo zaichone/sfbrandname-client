@@ -10,6 +10,7 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import { useRouter } from "next/router";
 
+import SymmetricalDiv from "../../components/layout/SymmetricalDiv";
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
@@ -17,7 +18,7 @@ function Account({ auth }) {
   const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
-  const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
+  const [profileAvatar, setProfileAvatar] = useState(avatar.src);
 
   async function uploadAvatar() {
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -44,8 +45,8 @@ function Account({ auth }) {
             },
             { merge: true }
           )
-          .then(() => {})
-          .catch((error) => {});
+          .then(() => { })
+          .catch((error) => { });
       });
     });
   }
@@ -97,11 +98,18 @@ function Account({ auth }) {
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <div className="profile-pic mx-auto">
-                      <img
-                        src={profileAvatar ? profileAvatar : avatar.src}
-                        className="rounded-circle"
-                      />
+                    <div className="profile-pic" style={{width:'100%', padding:'0px 20%'}}>
+                      <SymmetricalDiv
+                        className="rounded-circle d-block"
+                        style={{
+                          width: "100%",
+                          background: `url('${profileAvatar
+                            }')center center no-repeat`,
+                          border: "1px solid black",
+                          
+                        }}
+                      ></SymmetricalDiv>
+
                       <PhotoCameraIcon
                         className="uploadIcon"
                         onClick={() =>
@@ -175,7 +183,7 @@ function Account({ auth }) {
                   <div className="payment-info">
                     <div className="row">
                       <div className="col-12 col-sm-4 my-2">
-                        Pollawat Deeunkong
+                        {profile?.firstName} {profile?.lastName}
                       </div>
                       <div className="col-3 col-sm-1 my-2">
                         <FontAwesomeIcon
@@ -184,22 +192,34 @@ function Account({ auth }) {
                         />
                       </div>
                       <div className="col-9 col-sm-3  my-2">**** **** **** 3200</div>
-                      <div className="col-12 col-sm-4 my-2">Edit Remove</div>
+                      <div className="col-12 col-sm-4 my-2"></div>
                     </div>
                   </div>
 
                   <hr className="d-none d-sm-block" />
-                  
+
                   <h3 className="mt-5 mb-3">Address</h3>
-                  <p>
-                    Image Engine Company Limited <br />
-                    188/5 Village Number 22 <br />
-                    Sub. Roubwieng Area Muang
-                    <br />
-                    City Chiang Rai Country Thailand
-                    <br />
-                    Protal Code 57000
-                  </p>
+                  <div className="payment-info">
+                    <div className="row">
+                      <div className="col-12 col-sm-8 my-2">
+                        <p>
+                          Image Engine Company Limited <br />
+                          188/5 Village Number 22 <br />
+                          Sub. Roubwieng Area Muang
+                          <br />
+                          City Chiang Rai Country Thailand
+                          <br />
+                          Protal Code 57000
+                        </p>
+                      </div>
+                      <div className="col-12 col-sm-4 my-2 text-end justify-content-start align-items-end">
+                        <button>Edit</button>
+
+                      </div>
+
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
