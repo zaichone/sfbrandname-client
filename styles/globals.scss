@@ -1105,3 +1105,9 @@ footer p {
     }
   }
 }
+
+.--recovery-password-container{
+  @include media(mobile-only) {
+    min-height: 80vh;
+  }
+}

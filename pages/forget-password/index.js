@@ -6,6 +6,8 @@ import React, { useCallback, useContext, useState } from "react";
 import { withPublic } from "../../src/hook/route";
 
 function ResetPassword({ auth }) {
+
+  //! pending function to be hook with auth
   const { loginWithEmailAndPassword } = auth;
   const router = useRouter();
   async function handleSubmit(event) {
@@ -33,9 +35,9 @@ function ResetPassword({ auth }) {
       <main>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-center ">
-              <h1 className="">RECOVERY PASSWORD </h1>
-              <form className="w-100">
+            <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-evenly justify-content-sm-center --recovery-password-container">
+              <h1 className="text-center text-sm-start">RECOVERY PASSWORD </h1>
+              <form className="w-100 ">
                 <div className="row my-5">
                   <div className="col">
                     <input
@@ -48,15 +50,16 @@ function ResetPassword({ auth }) {
                   </div>
                 </div>
 
-                <div className="row my-5">
-                  <div className="col">
-                    <button type="submit" className="mb-3">
+                <div className="row my-5 ">
+                  <div className="col d-flex justify-content-center justify-content-sm-start">
+                    <button type="submit" className="mb-3 ">
                       Submit
                     </button>
                   </div>
                 </div>
+
               </form>
-              <p className="register-text ">
+              <p className="register-text text-center text-sm-start">
                 <Link href="/sign-in/" className="btn btn-primary">Back to Log in</Link>
               </p>
             </div>
