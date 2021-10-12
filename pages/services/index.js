@@ -1,9 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
-import PagtTitle from "../../components/layout/PageTitle";
+import PageTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 import cover from "../../assets/cover/Service.jpg";
 import featured from "../../assets/services/featured.png";
@@ -18,6 +25,7 @@ import commerce from "../../src/store/commerce";
 
 function Services() {
   const [products, setProducts] = useState();
+  const { innerWidth: width, innerHeight: height } = window;
 
   useEffect(() => {
     async function initShopData() {
@@ -48,7 +56,7 @@ function Services() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services">
-        <PagtTitle title="Services" bg={cover} className=" d-none d-sm-block" />
+        <PageTitle title="Services" bg={cover} className=" d-none d-sm-block" />
         <section className="service-featured d-none d-sm-block">
           <div className="sub-section">
             <div className="container">
@@ -110,27 +118,49 @@ function Services() {
             <div className="container">
               <div className="row">
                 <div className="col-12 col-sm-12">
-                  {products && products.map((product) =>
-                    <div className="card">
-                      <div className="row g-0">
-                        <div className="col-3 col-md-4 text-center">
-                          <span className="price">{product.price.formatted_with_symbol}</span>
-                        </div>
-                        <div className="col-9 col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <p className="card-text">
-                              {ReactHtmlParser(product.description)}
-                            </p>
+                  <div className="d-none d-sm-block">
+                    {products?.map((product, ind) =>
+                      <div className="card" key={product.id}>
+                        <div className="row g-0">
+                          <div className="col-3 col-md-4 text-center">
+                            <span className="price">{product.price.formatted_with_symbol}</span>
+                          </div>
+                          <div className="col-9 col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title">{product.name}</h5>
+                              <div className="card-text">
+                                {ReactHtmlParser(product.description)}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    )}
+                  </div>
+                  <div className="d-block d-sm-none">
+
+                    <div id="servicesAccordion">
+                      {products?.map((product, index) =>
+                        <Accordion key={product.id}>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                          >
+                            <Typography className="acc-title"><span className="price">${product.price.raw}</span>{product.name}</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <div>
+                             {ReactHtmlParser(product.description)}
+                            </div>
+                          </AccordionDetails>
+                        </Accordion>
+                      )}
                     </div>
-                  )}
+
+                  </div>
 
 
-                  
-              
                 </div>
               </div>
             </div>

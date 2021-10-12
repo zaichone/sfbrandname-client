@@ -590,6 +590,9 @@ footer p {
   .premium-plus {
     background: #f6f6f6;
     padding-bottom: 170px;
+    @include media(mobile-only) {
+      padding-bottom: 50px;
+    }
     .sub-section {
       background-position: right bottom;
       background-size: 100%;
@@ -616,6 +619,17 @@ footer p {
         .card-body {
           padding: 0;
         }
+      }
+    }
+  }
+  #servicesAccordion {
+    margin-top: 40px;
+    button {
+      text-transform: none;
+    }
+    .acc-title {
+      .price{
+        margin-right:30px;
       }
     }
   }
@@ -672,7 +686,9 @@ footer p {
     .profile-pic {
       position: relative;
       margin-bottom: 50px;
-      > div{ background-size:cover!important; }
+      > div {
+        background-size: cover !important;
+      }
       @include media(mobile-only) {
         margin: 0;
       }
@@ -775,13 +791,9 @@ footer p {
   }
   @include media(mobile-only) {
     .input-group {
-     
       .form-control {
-       
       }
       button {
-       
-        
       }
     }
   }
