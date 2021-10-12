@@ -4,18 +4,12 @@ import PageTitle from "../../components/layout/PageTitle";
 import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
-import {
-  Tabs,
-  Tab,
-  Modal,
-  Row,
-  Button,
-  Col,
-  Form,
-  Card,
-  Container,
-  Accordion
-} from "react-bootstrap";
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 import cover from "../../assets/cover/Service.jpg";
@@ -145,23 +139,25 @@ function Services() {
                   </div>
                   <div className="d-block d-sm-none">
 
-                    <div className="accordion" id="accordionExample">
+                    <div id="servicesAccordion">
                       {products?.map((product, index) =>
-
-                        <div className="accordion-item" key={product.id}>
-                          <h2 className="accordion-header" id={`heading-${product.id}`}>
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-${product.id}`} aria-expanded="true" aria-controls={`collapse-${product.id}`}>
-                              {product.name}
-                            </button>
-                          </h2>
-                          <div id={`collapse-${product.id}`} className="accordion-collapse collapse" aria-labelledby={`heading-${product.id}`}data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                              {product.description}
+                        <Accordion key={product.id}>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                          >
+                            <Typography className="acc-title"><span className="price">${product.price.raw}</span>{product.name}</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <div>
+                             {ReactHtmlParser(product.description)}
                             </div>
-                          </div>
-                        </div>
+                          </AccordionDetails>
+                        </Accordion>
                       )}
                     </div>
+
                   </div>
 
 
