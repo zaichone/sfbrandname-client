@@ -459,11 +459,23 @@ button {
         color: white;
       }
     }
+    input{
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      width:70%;
+      padding:10px;
+    }
     button {
       background: black;
       color: white;
       border: 1px solid white;
+      float:right;
     }
+    @include media(mobile-only) {
+      input{ width:100%; display:block; margin-bottom:20px; }
+      button{ width:100%; display:block; margin-bottom:30px; }
+    }
+
   }
   .socials {
     .nav-item {
