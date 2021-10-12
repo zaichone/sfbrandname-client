@@ -34,7 +34,6 @@ gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
           <Layout>
             <Component {...pageProps} />
             <CookieConsent
-              debug={true}
               location="bottom"
               buttonText="Accept"
               disableButtonStyles={true}
