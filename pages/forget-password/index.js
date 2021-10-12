@@ -7,7 +7,7 @@ import { withPublic } from "../../src/hook/route";
 
 function ResetPassword({ auth }) {
 
-  //! pending function to be hook with auth
+  //! pending function to be hook with auth send verification
   const { loginWithEmailAndPassword } = auth;
   const router = useRouter();
   async function handleSubmit(event) {

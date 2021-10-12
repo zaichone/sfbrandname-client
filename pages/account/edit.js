@@ -135,8 +135,7 @@ function Account({ auth }) {
                   </div>
                 </div>
               </div>
-              <div className="col-12 col-sm-9 col-md-10">
-                {" "}
+              <div className="col-12 col-sm-6 col-md-8">
                 <button className="btn btn-primary" onClick={toggleEdit}>
                   toggle edit
                 </button>
@@ -260,18 +259,109 @@ function Account({ auth }) {
                     </div>
                     <hr className="d-none d-sm-block" />
                     <h3 className="mt-5 mb-3">Address</h3>
-                    <p hidden={allowEdit}>{profile?.address}</p>
-                    <div className="col" hidden={!allowEdit}>
-                      <textarea
-                        readOnly={!allowEdit}
-                        className={
-                          allowEdit ? "form-control" : "form-control-plaintext"
-                        }
-                        id="documentName"
-                        name="documentName"
-                        placeholder="First Name"
-                        defaultValue={profile?.address}
-                      />
+                    <div className="row" hidden={allowEdit}>
+                      {profile?.shippingAddress?.name}
+                      {profile?.shippingAddress?.phone}
+                      {profile?.shippingAddress?.lineOne}
+                      {profile?.shippingAddress?.lineTwo}
+                      {profile?.shippingAddress?.zipCode}
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Name
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="addressName"
+                          name="addressName"
+                          defaultValue={profile?.shippingAddress?.name}
+                        />
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Phone number
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="addressPhone"
+                          name="addressPhone"
+                          defaultValue={profile?.shippingAddress?.phone}
+                        />
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Address Line 1
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="addressLineOne"
+                          name="addressLineOne"
+                          placeholder="House Number, Building/Street name"
+                          defaultValue={profile?.shippingAddress?.lineOne}
+                        />
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Address Line 2
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="addressLineTwo"
+                          name="addressLineTwo"
+                          placeholder="City, Province"
+                          defaultValue={profile?.shippingAddress?.lineTwo}
+                        />
+                      </div>
+                    </div>
+                    <div className="row" hidden={!allowEdit}>
+                      <div className="col-12 col-sm-4 fw-medium col-form-label">
+                        Zip code
+                      </div>
+                      <div className="col" hidden={!allowEdit}>
+                        <input
+                          type="text"
+                          readOnly={!allowEdit}
+                          className={
+                            allowEdit
+                              ? "form-control"
+                              : "form-control-plaintext"
+                          }
+                          id="addressZipCode"
+                          name="addressZipCode"
+                          defaultValue={profile?.shippingAddress?.zipCode}
+                        />
+                      </div>
                     </div>
                   </div>
                 </form>
