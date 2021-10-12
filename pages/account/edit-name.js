@@ -14,18 +14,15 @@ import SymmetricalDiv from "../../components/layout/SymmetricalDiv";
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
-function AccountEditAddress({ auth }) {
+function AccountEditName({ auth }) {
   const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
   const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
 
-  const [shippingAddress, setShippingAddress] = useState();
-  const [addressName, setAddressName] = useState();
-  const [addressPhone, setAddressPhone] = useState();
-  const [addressLineOne, setAddressLineOne] = useState();
-  const [addressLineTwo, setAddressLineTwo] = useState();
-  const [addressZipCode, setAddressZipCode] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [documentName, setDocumentName] = useState();
 
   useEffect(() => {
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -36,13 +33,9 @@ function AccountEditAddress({ auth }) {
           console.log("Document data:", doc.data());
           setProfile(doc.data());
           setProfileAvatar(doc.data().profileAvatar);
-
-          setShippingAddress(doc.data().shippingAddress);
-          setAddressName(doc.data().shippingAddress.name);
-          setAddressPhone(doc.data().shippingAddress.phone);
-          setAddressLineOne(doc.data().shippingAddress.lineOne);
-          setAddressLineTwo(doc.data().shippingAddress.lineTwo);
-          setAddressZipCode(doc.data().shippingAddress.zipCode);
+          setFirstName(doc.data().firstName);
+          setLastName(doc.data().lastName);
+          setDocumentName(doc.data().documentName);
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -53,50 +46,20 @@ function AccountEditAddress({ auth }) {
       });
   }, []);
 
-  function handleNameChanges(e) {
+  function handleFirstNameChanges(e) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
-    setAddressName(value);
-    setShippingAddress({
-      ...shippingAddress,
-      name: value,
-    });
+    setFirstName(value);
   }
-  function handlePhoneChanges(e) {
+  function handleLastNameChanges(e) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
-    setAddressPhone(value);
-    setShippingAddress({
-      ...shippingAddress,
-      phone: value,
-    });
+    setLastName(value);
   }
-  function handleLineOneChanges(e) {
+  function handleDocumentNameChanges(e) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
-    setAddressLineOne(value);
-    setShippingAddress({
-      ...shippingAddress,
-      lineOne: value,
-    });
-  }
-  function handleLineTwoChanges(e) {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setAddressLineTwo(value);
-    setShippingAddress({
-      ...shippingAddress,
-      lineTwo: value,
-    });
-  }
-  function handleZipCodeChanges(e) {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setAddressZipCode(value);
-    setShippingAddress({
-      ...shippingAddress,
-      zipCode: value,
-    });
+    setDocumentName(value);
   }
 
   async function handleSubmit(e) {
@@ -105,9 +68,9 @@ function AccountEditAddress({ auth }) {
     try {
       const reference = firestore.collection("members").doc(user.uid);
       await reference
-        .set({ shippingAddress: shippingAddress }, { merge: true })
+        .set({ firstName, lastName, documentName }, { merge: true })
         .then(() => {
-          window.alert(`Edited address successfully!`);
+          window.alert(`Edited name successfully!`);
           router.back();
         });
     } catch {}
@@ -179,80 +142,51 @@ function AccountEditAddress({ auth }) {
                     <div className="row mt-5">
                       <div className="col">
                         <label htmlFor="addressName" className="form-label">
-                          Name
+                          First Name
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="addressName"
-                          name="addressName"
-                          defaultValue={addressName}
-                          onChange={handleNameChanges}
+                          id="firstName"
+                          name="firstName"
+                          defaultValue={firstName}
+                          onChange={handleFirstNameChanges}
                         />
                       </div>
                     </div>
+
                     <div className="row mt-3">
                       <div className="col">
                         <label htmlFor="addressPhone" className="form-label">
-                          Phone Number
+                          Last Name
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="addressPhone"
-                          name="addressPhone"
-                          defaultValue={addressPhone}
-                          onChange={handlePhoneChanges}
+                          id="lastName"
+                          name="lastName"
+                          defaultValue={lastName}
+                          onChange={handleLastNameChanges}
                         />
                       </div>
                     </div>
-                    <div className="row mt-5">
-                      <div className="col">
-                        <label htmlFor="addressLineOne" className="form-label">
-                          Address Line 1
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="addressLineOne"
-                          name="addressLineOne"
-                          placeholder="House Number, Building/Street name"
-                          defaultValue={addressLineOne}
-                          onChange={handleLineOneChanges}
-                        />
-                      </div>
-                    </div>
+
                     <div className="row mt-3">
                       <div className="col">
-                        <label htmlFor="addressLineTwo" className="form-label">
-                          Address Line 2
+                        <label htmlFor="addressPhone" className="form-label">
+                          Documentation name
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="addressLineTwo"
-                          name="addressLineTwo"
-                          placeholder="City, Province"
-                          defaultValue={addressLineTwo}
-                          onChange={handleLineTwoChanges}
+                          id="documentName"
+                          name="documentName"
+                          defaultValue={documentName}
+                          onChange={handleDocumentNameChanges}
                         />
                       </div>
                     </div>
-                    <div className="row mt-3">
-                      <div className="col">
-                        <label htmlFor="addressName" className="form-label">
-                          Zip code
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="addressZipCode"
-                          name="addressZipCode"
-                          defaultValue={addressZipCode}
-                          onChange={handleZipCodeChanges}
-                        />
-                      </div>
-                    </div>
+
                     <div className="row mt-5">
                       <div className="col">
                         <button className="btn btn-primary" type="submit">
@@ -271,4 +205,4 @@ function AccountEditAddress({ auth }) {
   );
 }
 
-export default withProtected(AccountEditAddress);
+export default withProtected(AccountEditName);
