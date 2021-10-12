@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { Alert } from "react-bootstrap";
 
@@ -9,10 +9,15 @@ import { Alert } from "react-bootstrap";
 import useAuth from "../../src/hooks/auth";
 import { withPublic } from "../../src/hook/route";
 
+import { Overlay, Button, OverlayTrigger, Popover } from "react-bootstrap";
+
 function Register({ auth }) {
   const [loading, setLoading] = useState(false);
   const signUp = useAuth();
   const [error, setError] = useState("");
+
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   const [password, setPassword] = useState("");
   const [confirmPasswordCheck, setConfirmPasswordCheck] = useState(false);
@@ -62,8 +67,8 @@ function Register({ auth }) {
     if (!keepMeSignedIn.checked) {
       return setError("You have to accept Terms & Conditions to sign up.\n");
     } else {
-      window.alert(`calling signup`);
-      // signUp(email.value, password.value, firstName.value, lastName.value);
+      // window.alert(`calling signup`);
+      signUp(email.value, password.value, firstName.value, lastName.value);
     }
 
     setLoading(false);
@@ -85,6 +90,44 @@ function Register({ auth }) {
     let confirmPwd = e.target.value;
     setConfirmPasswordCheck(password === confirmPwd);
   }
+
+  const PasswordRequirementsPop = (props) => (
+    <>
+      <div className="row mb-3 bg-light">
+        <div className="col">
+          <p>Password requirements:</p>
+          <p>
+            {pwdCheckLength ? <span>&#10003;</span> : <span>&#8226;</span>} At
+            least 8 characters long
+          </p>
+          <p>
+            {pwdCheckUpper ? <span>&#10003;</span> : <span>&#8226;</span>} At
+            least 1 uppercase character
+          </p>
+          <p>
+            {pwdCheckLower ? <span>&#10003;</span> : <span>&#8226;</span>} At
+            least 1 lowercase character
+          </p>
+          <p>
+            {pwdCheckNumber ? <span>&#10003;</span> : <span>&#8226;</span>} At
+            least 1 number
+          </p>
+          <p>
+            {pwdCheckSpecial ? <span>&#10003;</span> : <span>&#8226;</span>} At
+            least 1 special character
+          </p>
+          <p>
+            {confirmPasswordCheck ? (
+              <span>&#10003;</span>
+            ) : (
+              <span>&#8226;</span>
+            )}{" "}
+            Confirm password is match
+          </p>
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <div>
@@ -119,7 +162,6 @@ function Register({ auth }) {
                     />
                   </div>
                 </div>
-
                 <div className="row mb-3">
                   <div className="col">
                     <input
@@ -131,7 +173,6 @@ function Register({ auth }) {
                     />
                   </div>
                 </div>
-
                 <div className="row mb-3">
                   <div className="col">
                     <input
@@ -143,7 +184,6 @@ function Register({ auth }) {
                     />
                   </div>
                 </div>
-
                 <div className="row mb-3">
                   <div className="col">
                     <input
@@ -156,7 +196,6 @@ function Register({ auth }) {
                     />
                   </div>
                 </div>
-
                 <div className="row mb-3">
                   <div className="col">
                     <input
@@ -171,56 +210,36 @@ function Register({ auth }) {
                 </div>
 
                 <div className="row mb-3">
-                  <div className="col">
-                    <p>Password requirements:</p>
-                    <p>
-                      {pwdCheckLength ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      At least 8 characters long
-                    </p>
-                    <p>
-                      {pwdCheckUpper ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      At least 1 uppercase character
-                    </p>
-                    <p>
-                      {pwdCheckLower ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      At least 1 lowercase character
-                    </p>
-                    <p>
-                      {pwdCheckNumber ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      At least 1 number
-                    </p>
-                    <p>
-                      {pwdCheckSpecial ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      At least 1 special character
-                    </p>
-                    <p>
-                      {confirmPasswordCheck ? (
-                        <span>&#10003;</span>
-                      ) : (
-                        <span>&#8226;</span>
-                      )}{" "}
-                      Confirm password is match
-                    </p>
+                  <div className="col text-center">
+                    <div
+                      className="btn btn-link mx-auto"
+                      ref={target}
+                      onClick={() => setShow(!show)}
+                    >
+                      Password requirements
+                    </div>
+                    <Overlay
+                      target={target.current}
+                      show={show}
+                      placement="bottom"
+                    >
+                      {({
+                        placement,
+                        arrowProps,
+                        show: _show,
+                        popper,
+                        ...props
+                      }) => (
+                        <div
+                          {...props}
+                          style={{
+                            ...props.style,
+                          }}
+                        >
+                          <PasswordRequirementsPop />
+                        </div>
+                      )}
+                    </Overlay>
                   </div>
                 </div>
 
@@ -247,7 +266,6 @@ function Register({ auth }) {
                     </p>
                   </div>
                 </div>
-
                 <div className="row mb-3">
                   <div className="col text-center">
                     <button
