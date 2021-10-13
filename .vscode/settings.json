@@ -14,12 +14,12 @@
         "titleBar.activeForeground": "#15202b",
         "titleBar.inactiveBackground": "#daf7a699",
         "titleBar.inactiveForeground": "#15202b99",
+        "sash.hoverBorder": "#edfbd5",
+        "statusBarItem.remoteBackground": "#daf7a6",
+        "statusBarItem.remoteForeground": "#15202b",
         "editorGroup.border": "#edfbd5",
         "panel.border": "#edfbd5",
-        "sash.hoverBorder": "#edfbd5",
-        "sideBar.border": "#edfbd5",
-        "statusBarItem.remoteBackground": "#daf7a6",
-        "statusBarItem.remoteForeground": "#15202b"
+        "sideBar.border": "#edfbd5"
     },
     "peacock.color": "#DAF7A6"
 }

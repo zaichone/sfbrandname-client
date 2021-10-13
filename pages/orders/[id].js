@@ -26,6 +26,8 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 
+import commerce from "../../src/store/commerce";
+
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
@@ -170,6 +172,22 @@ function OrderDetail({ auth }) {
       return <img src={msg.imageURL} style={{ maxWidth: "50%" }} />;
     }
   };
+
+  // get shop items
+
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    async function initShopData() {
+      const { data: products } = await commerce.products.list();
+      // console.log("🚀 ~ file: index.js ~ line 43 ~ initData ~ data", products);
+      products.sort((a, b) => {
+        return a.sort_order - b.sort_order;
+      });
+      setProducts(products);
+    }
+    initShopData();
+  }, []);
 
   return (
     <div>
@@ -338,245 +356,43 @@ function OrderDetail({ auth }) {
                   <ServiceIcons />
                 </div>
 
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4}>
-                    {orderInfo?.orderServices?.basicAuthen ? (
-                      <span className="text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-                    <span>Basic Authentication</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Includes an official Authentic or Counterfeit
-                      determination.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <span className="text-success">Authentic</span>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.certDocument ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Official Documentation</span>
-                  </Col>
-                  <Col>
-                    <span>
-                      {orderInfo?.orderServices?.certDocument ||
-                        "Auto Generated Certificate of Authenticity / Written Statement"}
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    Document
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.fastTurnaround ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>2 Hours Turnaround Service</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Do you need a quick result? Just upgrade your order to get
-                      the 2-hr authentication service turnaround.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4}>
-                    {orderInfo?.orderServices?.marketValue ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Market Valuation</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Includes official Style, Size, Material and Color
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.itemIdentify ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-                    <span>Item Identification</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Item identification is anaother service that can be added
-                      to your order anytime.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.yearProduction ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Year of Production</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      We offer an upgraded service to let you know the year of
-                      production of your beloved luxury goods.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.authenAndDelivery ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Authentication certificate card and delivery</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Super Authentic offers an authenticity card as an upgraded
-                      service along with delivery to your door!
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.hermesLeatherRegular ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Hermès Leather Bag</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Thanks to deeper knowledge required and special attention
-                      to details, all Hèrmes authentication services will be
-                      charged additional fees depending on the type of
-                      material/leather used.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mb-5">
-                  <Col xs={4} className="">
-                    {orderInfo?.orderServices?.hermesLeatherExotic ? (
-                      <span className=" text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Hermès Exotic Leather Bag</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>
-                      Thanks to deeper knowledge required and special attention
-                      to details, all Hèrmes authentication services will be
-                      charged additional fees depending on the type of
-                      material/leather used.
-                    </span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
-
-                <Row className="align-items-center mb-5">
-                  <Col xs={12} sm={4} className="">
-                    {orderInfo?.orderServices?.hardcopyAndDelivery ? (
-                      <span className="text-success">
-                        <CheckCircleIcon />
-                      </span>
-                    ) : (
-                      <span className=" text-danger">
-                        <CancelIcon />
-                      </span>
-                    )}
-
-                    <span>Hard-copy certificate and delivery</span>
-                  </Col>
-                  <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
-                    <span>Exact or estimated era of item’s production</span>
-                  </Col>
-                  <Col xs={12} sm={1} className="text-end">
-                    <a href="/authentication/select-services">Add</a>
-                  </Col>
-                </Row>
+                {products ? (
+                  products.map((product) => (
+                    <>
+                      <Row className="align-items-center mb-5">
+                        <Col xs={12} sm={4}>
+                          {orderInfo?.orderServices?.[product.sku] ? (
+                            <span className="text-success">
+                              <CheckCircleIcon />
+                            </span>
+                          ) : (
+                            <span className=" text-danger">
+                              <CancelIcon />
+                            </span>
+                          )}
+                          <span>{product.name}</span>
+                        </Col>
+                        <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
+                          <div
+                            className="card-text"
+                            dangerouslySetInnerHTML={{
+                              __html: product.description,
+                            }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={1} className="text-end">
+                          <a href="/authentication/select-services">Add</a>
+                        </Col>
+                      </Row>
+                    </>
+                  ))
+                ) : (
+                  <div className="row">
+                    <div className="col d-flex justify-content-center">
+                      <p className="mx-auto">Loading Services...</p>
+                    </div>
+                  </div>
+                )}
               </Container>
             </Tab>
             <Tab eventKey="message" title="Message">

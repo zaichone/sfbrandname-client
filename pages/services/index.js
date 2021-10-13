@@ -5,12 +5,13 @@ import Heading from "../../components/layout/Heading";
 import Cta from "../../components/layout/Cta";
 import Reminder from "../../assets/Reminder.jpeg";
 
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import { styled } from "@mui/material/styles";
+import MuiAccordion from "@mui/material/Accordion";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import cover from "../../assets/cover/Service.jpg";
 import featured from "../../assets/services/featured.png";
@@ -19,13 +20,23 @@ import upgrade from "../../assets/services/Upgrade+.png";
 
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from "react-html-parser";
 
 import commerce from "../../src/store/commerce";
 
 function Services() {
   const [products, setProducts] = useState();
   const { innerWidth: width, innerHeight: height } = window;
+
+  const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+    border: `none`,
+    backgroundColor: `transparent`,
+    "&:before": {
+      display: "none",
+    },
+  }));
 
   useEffect(() => {
     async function initShopData() {
@@ -37,9 +48,8 @@ function Services() {
       setProducts(products);
     }
     initShopData();
-
   }, []);
-  console.log(products)
+  console.log(products);
   return (
     <div>
       <Head>
@@ -119,11 +129,13 @@ function Services() {
               <div className="row">
                 <div className="col-12 col-sm-12">
                   <div className="d-none d-sm-block">
-                    {products?.map((product, ind) =>
+                    {products?.map((product, ind) => (
                       <div className="card" key={product.id}>
                         <div className="row g-0">
                           <div className="col-3 col-md-4 text-center">
-                            <span className="price">{product.price.formatted_with_symbol}</span>
+                            <span className="price">
+                              {product.price.formatted_with_symbol}
+                            </span>
                           </div>
                           <div className="col-9 col-md-8">
                             <div className="card-body">
@@ -135,32 +147,31 @@ function Services() {
                           </div>
                         </div>
                       </div>
-                    )}
+                    ))}
                   </div>
                   <div className="d-block d-sm-none">
-
                     <div id="servicesAccordion">
-                      {products?.map((product, index) =>
+                      {products?.map((product, index) => (
                         <Accordion key={product.id}>
                           <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                           >
-                            <Typography className="acc-title"><span className="price">${product.price.raw}</span>{product.name}</Typography>
+                            <Typography className="acc-title">
+                              <span className="price">
+                                ${product.price.raw}
+                              </span>
+                              {product.name}
+                            </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <div>
-                             {ReactHtmlParser(product.description)}
-                            </div>
+                            <div>{ReactHtmlParser(product.description)}</div>
                           </AccordionDetails>
                         </Accordion>
-                      )}
+                      ))}
                     </div>
-
                   </div>
-
-
                 </div>
               </div>
             </div>

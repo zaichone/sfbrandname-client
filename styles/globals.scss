@@ -459,23 +459,30 @@ button {
         color: white;
       }
     }
-    input{
+    input {
       background: rgba(255, 255, 255, 0.2);
       color: white;
-      width:70%;
-      padding:10px;
+      width: 70%;
+      padding: 10px;
     }
     button {
       background: black;
       color: white;
       border: 1px solid white;
-      float:right;
+      float: right;
     }
     @include media(mobile-only) {
-      input{ width:100%; display:block; margin-bottom:20px; }
-      button{ width:100%; display:block; margin-bottom:30px; }
+      input {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+      button {
+        width: 100%;
+        display: block;
+        margin-bottom: 30px;
+      }
     }
-
   }
   .socials {
     .nav-item {
@@ -640,8 +647,8 @@ footer p {
       text-transform: none;
     }
     .acc-title {
-      .price{
-        margin-right:30px;
+      .price {
+        margin-right: 30px;
       }
     }
   }
@@ -1128,4 +1135,15 @@ footer p {
       width: 100%;
     }
   }
+}
+
+.--recovery-password-container {
+  @include media(mobile-only) {
+    min-height: 80vh;
+  }
+}
+
+// override mui theme
+.MuiTypography-root {
+  font-family: "Spartan", sans-serif !important;
 }
