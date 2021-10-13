@@ -11,9 +11,7 @@ function AuthServiceVerifyEmail(props) {
   let user = props.auth.user;
   let actionCode = props.actionCode;
   const router = useRouter();
-  const [buttonLock, setButtonLock] = useState(false);
   const [notification, setNotification] = useState("");
-  // console.log(`email: `, user.email, `emailVerified: `, user.emailVerified);
 
   async function verifyEmail(actionCode) {
     await firebaseAuth
