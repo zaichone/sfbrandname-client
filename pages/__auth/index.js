@@ -3,31 +3,35 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useContext, useState } from "react";
 
+import { auth as firebaseAuth } from "../../src/config/firebase";
+
 import { withProtected } from "../../src/hook/route";
 
-function VerifyEmail({ auth }) {
+import AuthServiceVerifyEmail from "./AuthServiceVerifyEmail";
+
+function AuthService({ auth }) {
   const { user } = auth;
   const router = useRouter();
+  const { mode, oobCode } = router.query;
   const [buttonLock, setButtonLock] = useState(false);
   const [notification, setNotification] = useState("");
   // console.log(`email: `, user.email, `emailVerified: `, user.emailVerified);
 
-  async function handleSendVerifyEmail(e) {
-    e.preventDefault();
-    setButtonLock(true);
-    // window.alert(`mail sent`)
-    await user
-      .sendEmailVerification()
-      .then(function () {
-        // Verification email sent.
-
-        setNotification("Verification Email has been sent! Check your inbox.");
-      })
-      .catch(function (error) {
-        // Error occurred. Inspect error.code.
-        setNotification("An error happened. Please contact staff.");
-        console.error(error);
-      });
+  function renderAuthService(mode) {
+    // Handle the user management action.
+    switch (mode) {
+      case "resetPassword":
+        // Display reset password handler and UI.
+        return <>pending function</>;
+      case "recoverEmail":
+        // Display email recovery handler and UI.
+        return <>pending function</>;
+      case "verifyEmail":
+        // Display email verification handler and UI.
+        return <AuthServiceVerifyEmail actionCode={oobCode} />;
+      default:
+        return <>pending empty mode?</>;
+    }
   }
 
   return (
@@ -49,43 +53,7 @@ function VerifyEmail({ auth }) {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-evenly justify-content-sm-center --recovery-password-container">
-              <h1 className="text-center text-sm-start">Verify email </h1>
-              <div className="w-100 ">
-                <div className="row my-5">
-                  <div className="col">
-                    {notification && (
-                      <div className="alert alert-primary" role="alert">
-                        {notification}
-                      </div>
-                    )}
-                    {!user.emailVerified ? (
-                      <div>{user.email} is verified! Thank you.</div>
-                    ) : (
-                      <div>
-                        {user.email} is not verified. click the button to send
-                        verification email
-                        <div className="row my-5 ">
-                          <div className="col d-flex justify-content-center justify-content-sm-start">
-                            <button
-                              type="submit"
-                              className="btn btn-primary mb-3 "
-                              disabled={buttonLock}
-                              onClick={handleSendVerifyEmail}
-                            >
-                              Submit
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <p className="register-text text-center text-sm-start">
-                <Link href="/account/" className="btn btn-primary">
-                  Back to Account
-                </Link>
-              </p>
+              {renderAuthService(mode)}
             </div>
             <div className=" d-none d-sm-inline col-sm-8 p-0">
               <div className="register-cover"></div>
@@ -97,4 +65,4 @@ function VerifyEmail({ auth }) {
   );
 }
 
-export default withProtected(VerifyEmail);
+export default withProtected(AuthService);
