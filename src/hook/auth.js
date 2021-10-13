@@ -42,6 +42,12 @@ export function AuthProvider(props) {
     await AuthService.logout();
     setUser(null);
   };
+
+  const sendPasswordResetEmail = async (email) =>{
+    await AuthService.sendPasswordResetEmail(email);
+   
+    setError(error ?? "");
+  }
   const value = {
     user,
     error,
@@ -50,6 +56,7 @@ export function AuthProvider(props) {
     loginWithEmailAndPassword,
     signUp,
     logout,
+    sendPasswordResetEmail,
     setUser,
   };
 
