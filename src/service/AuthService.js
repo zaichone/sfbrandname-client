@@ -46,11 +46,14 @@ export const AuthService = {
           email,
           firstName,
           lastName,
-          displayName: firstName + " " + lastName,
+          documentName: firstName + " " + lastName,
           userRole: "client",
           createAt: new Date().getTime(),
           status: "active",
         });
+      await userCred.user.updateProfile({
+        displayName: firstName + " " + lastName,
+      });
       alert("Sign up success!");
       return {
         user: userCred.user,
