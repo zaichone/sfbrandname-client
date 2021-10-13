@@ -54,4 +54,15 @@ export const AuthService = {
 	logout: async () => {
 		await firebase.auth().signOut();
 	},
+	sendPasswordResetEmail: async (email) => {
+		try {
+			const userCred = await firebase.auth().sendPasswordResetEmail(email);
+            console.log("🚀 ~ file: AuthService.js ~ line 60 ~ sendPasswordResetEmail: ~ userCred", userCred)
+			
+		} catch (e) {
+			return {
+				error: e.message,
+			};
+		}
+	},
 };

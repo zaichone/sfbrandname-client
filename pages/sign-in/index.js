@@ -19,10 +19,6 @@ function SignIn({ auth }) {
 
     setLoading(false);
   }
-  /*
-        if (user) {
-            return router.push('/');
-        } */
   return (
     <div>
       <Head>
