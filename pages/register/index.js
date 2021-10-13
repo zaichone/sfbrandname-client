@@ -13,7 +13,7 @@ import { Overlay, Button, OverlayTrigger, Popover } from "react-bootstrap";
 
 function Register({ auth }) {
   const [loading, setLoading] = useState(false);
-  const signUp = useAuth();
+  const { signUp } = auth;
   const [error, setError] = useState("");
 
   const [show, setShow] = useState(false);

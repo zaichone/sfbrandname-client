@@ -1,3 +1,5 @@
+// this file is actively used, the other one isnt
+
 import { createContext, useContext, useState } from "react";
 import { AuthService } from "../service/AuthService";
 
@@ -42,6 +44,7 @@ export function AuthProvider(props) {
     await AuthService.logout();
     setUser(null);
   };
+
   const value = {
     user,
     error,
