@@ -102,7 +102,9 @@ function AlmostDone({ auth }) {
                       <img src={paymentQR.src} />
                     </div>
                   </div>
-                  <p>pay to company account: 123-4567890 </p>
+                  <h4>pay to company account: 061 8 57211 0 </h4>
+                  <h4>Kasikorn Bank</h4>
+                  <h4>บจก. เอสดับเบิ้ลยู 2019</h4>
                   <PaymentReceipt
                     taskId={taskId}
                     clientId={clientId}
