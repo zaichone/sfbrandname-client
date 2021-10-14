@@ -5,7 +5,7 @@ import React, { useCallback, useContext, useState } from "react";
 
 import { withPublic } from "../../src/hook/route";
 
-import { auth } from "../../../src/config/firebase";
+import { auth } from "../../src/config/firebase";
 
 function Action() {
     const router = useRouter();
