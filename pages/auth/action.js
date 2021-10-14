@@ -8,6 +8,15 @@ import { withPublic } from "../../src/hook/route";
 function Action() {
     const router = useRouter();
     const { mode, oobCode, apiKey } = router.query;
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const { password, confirmPassword } = event.target.elements;
+
+        //await sendPasswordResetEmail(email.value);
+        console.log("reseting password");
+        setNoti('Your new password is updated')
+        setLoading(false);
+    }
     return (
         <div>
             <Head>
@@ -57,7 +66,7 @@ function Action() {
                                 <div className="row mb-3">
                                     <div className="col">
                                         <button type="submit" className="mb-3">
-                                            Send me the Email
+                                            Save Password
                                         </button>
                                     </div>
                                 </div>
