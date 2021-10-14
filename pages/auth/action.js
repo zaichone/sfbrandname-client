@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useContext, useState } from "react";
 
+import { Alert } from "react-bootstrap";
+
 import { withPublic } from "../../src/hook/route";
 
 import { auth } from "../../src/config/firebase";
@@ -10,6 +12,7 @@ import { auth } from "../../src/config/firebase";
 function Action() {
     const router = useRouter();
     const { mode, oobCode, apiKey } = router.query;
+    const [loading, setLoading] = useState(false);
     const [noti, setNoti] = useState();
     const [error, setError] = useState();
     async function handleSubmit(event) {
