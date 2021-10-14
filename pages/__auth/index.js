@@ -8,9 +8,9 @@ import { auth as firebaseAuth } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
 import AuthServiceVerifyEmail from "./AuthServiceVerifyEmail";
+import AuthServiceResetPassword from "./AuthServiceResetPassword";
 
-function AuthService({ auth }) {
-  const { user } = auth;
+function AuthService() {
   const router = useRouter();
   const { mode, oobCode } = router.query;
   const [buttonLock, setButtonLock] = useState(false);
@@ -22,15 +22,15 @@ function AuthService({ auth }) {
     switch (mode) {
       case "resetPassword":
         // Display reset password handler and UI.
-        return <>pending function</>;
+        return <AuthServiceResetPassword actionCode={oobCode} />;
       case "recoverEmail":
         // Display email recovery handler and UI.
-        return <>pending function</>;
+        return <>Pending Function</>;
       case "verifyEmail":
         // Display email verification handler and UI.
         return <AuthServiceVerifyEmail actionCode={oobCode} />;
       default:
-        return <>pending empty mode?</>;
+        return <>Invalid link.</>;
     }
   }
 
@@ -65,4 +65,4 @@ function AuthService({ auth }) {
   );
 }
 
-export default withProtected(AuthService);
+export default AuthService;

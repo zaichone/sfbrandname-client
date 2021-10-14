@@ -9,7 +9,7 @@ import { Alert } from "react-bootstrap";
 import useAuth from "../../src/hooks/auth";
 import { withPublic } from "../../src/hook/route";
 
-import { Overlay, Button, OverlayTrigger, Popover } from "react-bootstrap";
+import { Overlay } from "react-bootstrap";
 
 function Register({ auth }) {
   const [loading, setLoading] = useState(false);
