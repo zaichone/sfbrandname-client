@@ -93,36 +93,70 @@ function Register({ auth }) {
 
   const PasswordRequirementsPop = (props) => (
     <>
-      <div className="row mb-3 bg-light">
+      <div className="row p-3 bg-light" {...props}>
         <div className="col">
           <p>Password requirements:</p>
           <p>
-            {pwdCheckLength ? <span>&#10003;</span> : <span>&#8226;</span>} At
-            least 8 characters long
+            {pwdCheckLength ? (
+              <span className="text-black">
+                &#10003; At least 8 characters long
+              </span>
+            ) : (
+              <span className="text-danger">
+                &#8226; At least 8 characters long
+              </span>
+            )}
           </p>
           <p>
-            {pwdCheckUpper ? <span>&#10003;</span> : <span>&#8226;</span>} At
-            least 1 uppercase character
+            {pwdCheckUpper ? (
+              <span className="text-black">
+                &#10003; At least 1 uppercase character
+              </span>
+            ) : (
+              <span className="text-danger">
+                &#8226; At least 1 uppercase character
+              </span>
+            )}
           </p>
           <p>
-            {pwdCheckLower ? <span>&#10003;</span> : <span>&#8226;</span>} At
-            least 1 lowercase character
+            {pwdCheckLower ? (
+              <span className="text-black">
+                &#10003; At least 1 lowercase character
+              </span>
+            ) : (
+              <span className="text-danger">
+                &#8226; At least 1 lowercase character
+              </span>
+            )}
           </p>
           <p>
-            {pwdCheckNumber ? <span>&#10003;</span> : <span>&#8226;</span>} At
-            least 1 number
+            {pwdCheckNumber ? (
+              <span className="text-black">&#10003; At least 1 number</span>
+            ) : (
+              <span className="text-danger">&#8226; At least 1 number</span>
+            )}
           </p>
           <p>
-            {pwdCheckSpecial ? <span>&#10003;</span> : <span>&#8226;</span>} At
-            least 1 special character
+            {pwdCheckSpecial ? (
+              <span className="text-black">
+                &#10003; At least 1 special character
+              </span>
+            ) : (
+              <span className="text-danger">
+                &#8226; At least 1 special character
+              </span>
+            )}
           </p>
           <p>
             {confirmPasswordCheck ? (
-              <span>&#10003;</span>
+              <span className="text-black">
+                &#10003; Confirm password is match
+              </span>
             ) : (
-              <span>&#8226;</span>
-            )}{" "}
-            Confirm password is match
+              <span className="text-danger">
+                &#8226; Confirm password is match
+              </span>
+            )}
           </p>
         </div>
       </div>

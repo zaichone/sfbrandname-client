@@ -20,7 +20,6 @@ function VerifyEmail({ auth }) {
       .sendEmailVerification()
       .then(function () {
         // Verification email sent.
-
         setNotification("Verification Email has been sent! Check your inbox.");
       })
       .catch(function (error) {
@@ -58,7 +57,7 @@ function VerifyEmail({ auth }) {
                         {notification}
                       </div>
                     )}
-                    {!user.emailVerified ? (
+                    {user.emailVerified ? (
                       <div>{user.email} is verified! Thank you.</div>
                     ) : (
                       <div>
