@@ -14,6 +14,10 @@ import SymmetricalDiv from "../../components/layout/SymmetricalDiv";
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
+import { Alert } from "react-bootstrap";
+import ErrorIcon from "@material-ui/icons/Error";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+
 function Account({ auth }) {
   const { user, logout } = auth;
   const router = useRouter();
@@ -143,6 +147,20 @@ function Account({ auth }) {
               {/* main column wit profile data */}
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
+                  {user.emailVerified ? (
+                    <></>
+                  ) : (
+                    <div className="row mb-3">
+                      <div className="col-12 col-sm-6">
+                        <Alert variant="danger">
+                          Your Email is not verified.
+                          <Alert.Link href="/verify-email/">
+                            Verify your email here.
+                          </Alert.Link>
+                        </Alert>
+                      </div>
+                    </div>
+                  )}
                   <div className="row mt-3 mb-3">
                     <div className="col-auto">
                       <h3 className="">Account</h3>
@@ -151,11 +169,6 @@ function Account({ auth }) {
                       <a href="/account/edit-name" className="me-3">
                         Edit
                       </a>
-                      {user.emailVerified ? (
-                        <></>
-                      ) : (
-                        <a href="/verify-email/">Verify Email</a>
-                      )}
                     </div>
                   </div>
                   <div className="row">
@@ -177,7 +190,28 @@ function Account({ auth }) {
                   </div>
                   <div className="row">
                     <div className="col-12 col-sm-4 fw-medium my-2">
-                      Email {user.emailVerified ? <></> : <>(Not verified)</>}
+                      Email{" "}
+                      {user.emailVerified ? (
+                        <>
+                          <CheckCircleOutlineIcon
+                            style={{
+                              color: "teal",
+                              fontSize: "1rem",
+                            }}
+                          />
+                          Verified
+                        </>
+                      ) : (
+                        <>
+                          <ErrorIcon
+                            style={{
+                              color: "red",
+                              fontSize: "1rem",
+                            }}
+                          />
+                          <a href="/verify-email/">Not verified</a>
+                        </>
+                      )}
                     </div>
                     <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
                   </div>

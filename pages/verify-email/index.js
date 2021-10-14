@@ -61,8 +61,9 @@ function VerifyEmail({ auth }) {
                       <div>{user.email} is verified! Thank you.</div>
                     ) : (
                       <div>
-                        {user.email} is not verified. click the button to send
-                        verification email
+                        {user.email} is not verified.
+                        <br />
+                        Click the button below to send verification email.
                         <div className="row my-5 ">
                           <div className="col d-flex justify-content-center justify-content-sm-start">
                             <button
