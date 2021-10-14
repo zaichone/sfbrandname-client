@@ -173,7 +173,7 @@ button {
 .button,
 button {
   text-transform: uppercase;
-  // padding: 10px 65px;
+  padding: 10px 65px;
   color: white;
   background: black;
   display: inline-block;
@@ -185,9 +185,9 @@ button {
 }
 
 // override bootstrap button class
-// .btn {
-//   padding: 10px;
-// }
+.btn {
+  padding: 10px 65px;
+}
 
 .page-title {
   text-transform: uppercase;

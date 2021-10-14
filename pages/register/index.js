@@ -20,6 +20,7 @@ function Register({ auth }) {
   const target = useRef(null);
 
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [confirmPasswordCheck, setConfirmPasswordCheck] = useState(false);
 
   const [pwdCheck, setPwdCheck] = useState(false);
@@ -42,6 +43,7 @@ function Register({ auth }) {
   const lengthRegex = new RegExp(/^.{8,}$/gm);
 
   async function handleSubmit(e) {
+    e.preventDefault();
     const {
       firstName,
       lastName,
@@ -50,14 +52,15 @@ function Register({ auth }) {
       confirmPassword,
       keepMeSignedIn,
     } = e.target.elements;
-    e.preventDefault();
     console.log("submitting");
 
+    setPwdCheck(passwordRegex.test(password));
     // password not pass requirement
     if (!pwdCheck) {
       setError("Passwords not pass requirements\n");
     }
 
+    setConfirmPasswordCheck(password === confirmPassword);
     // password check not match
     if (!confirmPasswordCheck) {
       return setError("Confirm Passwords do not match\n");
@@ -66,7 +69,9 @@ function Register({ auth }) {
     // T&C is accepted?
     if (!keepMeSignedIn.checked) {
       return setError("You have to accept Terms & Conditions to sign up.\n");
-    } else {
+    }
+
+    if (pwdCheck && confirmPasswordCheck && keepMeSignedIn.checked) {
       // window.alert(`calling signup`);
       signUp(email.value, password.value, firstName.value, lastName.value);
     }
@@ -84,10 +89,13 @@ function Register({ auth }) {
     setPwdCheckNumber(numberRegex.test(pwd));
     setPwdCheckSpecial(specialRegex.test(pwd));
     setPwdCheckLength(lengthRegex.test(pwd));
+    setConfirmPasswordCheck(pwd === passwordConfirm);
   }
 
   function handleConfirmPassword(e) {
     let confirmPwd = e.target.value;
+    setPasswordConfirm(confirmPwd);
+
     setConfirmPasswordCheck(password === confirmPwd);
   }
 
