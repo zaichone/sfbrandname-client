@@ -5,12 +5,17 @@ import React, { useCallback, useContext, useState } from "react";
 
 import { withPublic } from "../../src/hook/route";
 
+import { auth } from "../../../src/config/firebase";
+
 function Action() {
     const router = useRouter();
     const { mode, oobCode, apiKey } = router.query;
+    const [noti, setNoti] = useState();
+    const [error, setError] = useState();
     async function handleSubmit(event) {
         event.preventDefault();
         const { password, confirmPassword } = event.target.elements;
+        
 
         //await sendPasswordResetEmail(email.value);
         console.log("reseting password");
@@ -20,7 +25,7 @@ function Action() {
     return (
         <div>
             <Head>
-                <title>Super Authenticate - Sign In</title>
+                <title>Super Authenticate - Actions</title>
                 <meta
                     name="description"
                     content="มองหาร้านแบรนด์เนมมือสองที่ให้ราคาดี ของแท้ คุณภาพสวย ต้องที่ SF Brandname เท่านั้น เราให้บริการแบบครบวงจร ตั้งแต่ขายสินค้า รับซื้อ และทำสปากระเป๋า"
