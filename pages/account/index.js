@@ -143,13 +143,19 @@ function Account({ auth }) {
               {/* main column wit profile data */}
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  
                   <div className="row mt-3 mb-3">
                     <div className="col-auto">
                       <h3 className="">Account</h3>
                     </div>
                     <div className="col-auto text-end justify-content-start align-items-end">
-                      <a href="/account/edit-name">Edit</a>
+                      <a href="/account/edit-name" className="me-3">
+                        Edit
+                      </a>
+                      {user.emailVerified ? (
+                        <></>
+                      ) : (
+                        <a href="/verify-email/">Verify Email</a>
+                      )}
                     </div>
                   </div>
                   <div className="row">
@@ -170,7 +176,9 @@ function Account({ auth }) {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">Email</div>
+                    <div className="col-12 col-sm-4 fw-medium my-2">
+                      Email {user.emailVerified ? <></> : <>(Not verified)</>}
+                    </div>
                     <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
                   </div>
                   <div className="row">
