@@ -10,14 +10,19 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import { useRouter } from "next/router";
 
+import SymmetricalDiv from "../../components/layout/SymmetricalDiv";
 import { firestore, storage } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
+
+import { Alert } from "react-bootstrap";
+import ErrorIcon from "@material-ui/icons/Error";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
 function History({ auth }) {
   const { user, logout } = auth;
   const router = useRouter();
   const [profile, setProfile] = useState();
-  const [profileAvatar, setProfileAvatar] = useState(profile?.profileAvatar);
+  const [profileAvatar, setProfileAvatar] = useState(avatar.src);
 
   async function uploadAvatar() {
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -57,7 +62,7 @@ function History({ auth }) {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          console.log("profile:", doc.data());
           setProfile(doc.data());
           setProfileAvatar(doc.data().profileAvatar);
         } else {
@@ -70,6 +75,9 @@ function History({ auth }) {
       });
   }, []);
 
+  if (!user) {
+    return router.push("/sign-in/");
+  }
   return (
     <div>
       <Head>
@@ -85,19 +93,28 @@ function History({ auth }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PagtTitle title="History" bg={cover} />
+        <PagtTitle title="History" bg={cover} className="d-none d-sm-block" />
 
         <section>
           <div className="">
             <div className="row gx-0">
+              {/* left side column with profile picture */}
               <div className="col-12 col-sm-3 col-md-2">
                 <div className="sidebar text-center">
                   <div className="card">
-                    <div className="profile-pic mx-auto">
-                      <img
-                        src={profileAvatar ? profileAvatar : avatar.src}
-                        className="rounded-circle"
-                      />
+                    <div
+                      className="profile-pic"
+                      style={{ width: "100%", padding: "0px 20%" }}
+                    >
+                      <SymmetricalDiv
+                        className="rounded-circle d-block"
+                        style={{
+                          width: "100%",
+                          background: `url('${profileAvatar}')center center no-repeat`,
+                          border: "1px solid black",
+                        }}
+                      ></SymmetricalDiv>
+
                       <PhotoCameraIcon
                         className="uploadIcon"
                         onClick={() =>
@@ -113,9 +130,12 @@ function History({ auth }) {
                         multiple
                       />
                     </div>
-
-                    <ul className="list-group list-group-flush  d-none d-sm-block">
-                      <li className="list-group-item">Account</li>
+                    <ul className="list-group list-group-flush d-none d-sm-block">
+                      <li className="list-group-item">
+                        <Link href="/account/" className="nav-link">
+                          Account
+                        </Link>
+                      </li>
                       <li className="list-group-item">
                         <Link href="/history/" className="nav-link">
                           History
@@ -128,10 +148,33 @@ function History({ auth }) {
                   </div>
                 </div>
               </div>
-
+              {/* main column wit profile data */}
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  <h3>Account</h3>
+                  {user.emailVerified ? (
+                    <></>
+                  ) : (
+                    <div className="row mb-3">
+                      <div className="col-12 col-sm-6">
+                        <Alert variant="danger">
+                          Your Email is not verified.
+                          <Alert.Link href="/verify-email/">
+                            Verify your email here.
+                          </Alert.Link>
+                        </Alert>
+                      </div>
+                    </div>
+                  )}
+                  <div className="row mt-3 mb-3">
+                    <div className="col-auto">
+                      <h3 className="">Account</h3>
+                    </div>
+                    <div className="col-auto text-end justify-content-start align-items-end">
+                      <a href="/account/edit-name" className="me-3">
+                        Edit
+                      </a>
+                    </div>
+                  </div>
                   <div className="row">
                     <div className="col-12 col-sm-4 fw-medium my-2">
                       Business Name
@@ -150,7 +193,30 @@ function History({ auth }) {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">Email</div>
+                    <div className="col-12 col-sm-4 fw-medium my-2">
+                      Email{" "}
+                      {user.emailVerified ? (
+                        <>
+                          <CheckCircleOutlineIcon
+                            style={{
+                              color: "teal",
+                              fontSize: "1rem",
+                            }}
+                          />
+                          Verified
+                        </>
+                      ) : (
+                        <>
+                          <ErrorIcon
+                            style={{
+                              color: "red",
+                              fontSize: "1rem",
+                            }}
+                          />
+                          <a href="/verify-email/">Not verified</a>
+                        </>
+                      )}
+                    </div>
                     <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
                   </div>
                   <div className="row">
@@ -158,7 +224,7 @@ function History({ auth }) {
                       Documentation ID Name
                     </div>
                     <div className="col-12 col-sm-8 my-2">
-                      Image Engine Company Limited
+                      {profile?.documentName}
                     </div>
                   </div>
 
@@ -168,7 +234,7 @@ function History({ auth }) {
                   <div className="payment-info">
                     <div className="row">
                       <div className="col-12 col-sm-4 my-2">
-                        Pollawat Deeunkong
+                        {profile?.firstName} {profile?.lastName}
                       </div>
                       <div className="col-3 col-sm-1 my-2">
                         <FontAwesomeIcon
@@ -176,26 +242,45 @@ function History({ auth }) {
                           style={{ fontSize: "2rem" }}
                         />
                       </div>
-                      <div className="col-9 col-sm-3  my-2">**** **** **** 3200</div>
-                      <div className="col-12 col-sm-4 my-2">Edit Remove</div>
+                      <div className="col-9 col-sm-3  my-2">
+                        **** **** **** 3200
+                      </div>
+                      <div className="col-12 col-sm-4 my-2"></div>
                     </div>
                   </div>
 
                   <hr className="d-none d-sm-block" />
-                  
-                  <h3 className="mt-5 mb-3">Address</h3>
-                  <p>
-                    Image Engine Company Limited <br />
-                    188/5 Village Number 22 <br />
-                    Sub. Roubwieng Area Muang
-                    <br />
-                    City Chiang Rai Country Thailand
-                    <br />
-                    Protal Code 57000
-                  </p>
+                  <div className="row mt-5 mb-3">
+                    <div className="col-auto">
+                      <h3 className="">Address</h3>
+                    </div>
+                    <div className="col-auto text-end justify-content-start align-items-end">
+                      <a href="/account/edit-address">Edit</a>
+                    </div>
+                  </div>
+                  <div className="payment-info">
+                    <div className="row">
+                      <div className="col-12 col-sm-8 my-2">
+                        {!!!profile?.shippingAddress?.name &&
+                          !!!profile?.shippingAddress?.phone &&
+                          !!!profile?.shippingAddress?.lineOne &&
+                          !!!profile?.shippingAddress?.lineTwo &&
+                          !!!profile?.shippingAddress?.zipCode && (
+                            <p>
+                              Address is empty.{" "}
+                              <a href="/account/edit-address">Add now.</a>
+                            </p>
+                          )}
+                        <p>{profile?.shippingAddress?.name}</p>
+                        <p>{profile?.shippingAddress?.phone}</p>
+                        <p>{profile?.shippingAddress?.lineOne}</p>
+                        <p>{profile?.shippingAddress?.lineTwo}</p>
+                        <p>{profile?.shippingAddress?.zipCode}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
         </section>

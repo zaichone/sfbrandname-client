@@ -196,7 +196,8 @@ function Account({ auth }) {
                           <CheckCircleOutlineIcon
                             style={{
                               color: "teal",
-                              fontSize: "1rem",
+                              fontSize: "1.5rem",
+                              margin: "5px 10px",
                             }}
                           />
                           Verified
@@ -206,7 +207,8 @@ function Account({ auth }) {
                           <ErrorIcon
                             style={{
                               color: "red",
-                              fontSize: "1rem",
+                              fontSize: "1.5rem",
+                              margin: "0px 5px",
                             }}
                           />
                           <a href="/verify-email/">Not verified</a>
