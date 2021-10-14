@@ -45,11 +45,12 @@ function Action() {
             }).catch((error) => {
               // Error occurred during confirmation. The code might have expired or the
               // password is too weak.
-              setError(error)
+              setError(error);
             });
           }).catch((error) => {
             // Invalid or expired action code. Ask user to try to reset the password
             // again.
+            setError(error);
           });
         setNoti('Your new password was updated')
         setLoading(false);
