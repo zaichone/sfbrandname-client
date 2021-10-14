@@ -45,32 +45,32 @@ function AuthServiceResetPassword() {
         }
 
         if (pwdCheck && confirmPasswordCheck) {
-          setNoti(`password good`);
+          setNoti(`Updating password...`);
+          // Save the new password.
+          auth
+            .confirmPasswordReset(oobCode, newPassword)
+            .then((resp) => {
+              console.log(
+                "🚀 ~ file: action.js ~ line 35 ~ auth.confirmPasswordReset ~ resp",
+                resp
+              );
+              // Password reset has been confirmed and new password updated.
+              setNoti("Your new password was updated");
+
+              // TODO: Display a link back to the app, or sign-in the user directly
+              // if the page belongs to the same domain as the app:
+              // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+
+              // TODO: If a continue URL is available, display a button which on
+              // click redirects the user back to the app via continueUrl with
+              // additional state determined from that URL's parameters.
+            })
+            .catch((error) => {
+              // Error occurred during confirmation. The code might have expired or the
+              // password is too weak.
+              setError(error);
+            });
         }
-        // Save the new password.
-        auth
-          .confirmPasswordReset(oobCode, newPassword)
-          .then((resp) => {
-            console.log(
-              "🚀 ~ file: action.js ~ line 35 ~ auth.confirmPasswordReset ~ resp",
-              resp
-            );
-            // Password reset has been confirmed and new password updated.
-            setNoti("Your new password was updated");
-
-            // TODO: Display a link back to the app, or sign-in the user directly
-            // if the page belongs to the same domain as the app:
-            // auth.signInWithEmailAndPassword(accountEmail, newPassword);
-
-            // TODO: If a continue URL is available, display a button which on
-            // click redirects the user back to the app via continueUrl with
-            // additional state determined from that URL's parameters.
-          })
-          .catch((error) => {
-            // Error occurred during confirmation. The code might have expired or the
-            // password is too weak.
-            setError(error);
-          });
       })
       .catch((error) => {
         // Invalid or expired action code. Ask user to try to reset the password
@@ -205,7 +205,7 @@ function AuthServiceResetPassword() {
           <div className="col">
             <input
               type="password"
-              className="form-control "
+              className="form-control"
               id="password"
               name="password"
               placeholder="Password"
