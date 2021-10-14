@@ -163,15 +163,17 @@ a {
 input {
   border: none;
 }
+
 button {
   text-transform: uppercase;
   background: #121212;
   color: white;
 }
+
 .button,
 button {
   text-transform: uppercase;
-  padding: 10px 65px;
+  // padding: 10px 65px;
   color: white;
   background: black;
   display: inline-block;
@@ -183,9 +185,9 @@ button {
 }
 
 // override bootstrap button class
-.btn {
-  padding: 10px 65px;
-}
+// .btn {
+//   padding: 10px;
+// }
 
 .page-title {
   text-transform: uppercase;
@@ -874,15 +876,50 @@ footer p {
   }
 }
 
+.order-details {
+  .nav-tabs {
+    background: white;
+    margin: 0;
+    .nav-item {
+      margin-right: 0px !important;
+      border: 0;
+      border-radius: 0;
+      .nav-link {
+        background: #e5e5e5;
+        border: 0;
+        border-radius: 0;
+        padding: 20px 45px;
+        &.active {
+          background: #f6f6f6;
+          border: 0;
+        }
+      }
+    }
+  }
+  .tab-pane {
+    background: #f6f6f6;
+    padding: 50px 80px 150px;
+  }
+}
+
 .page-content {
   .nav-tabs {
     .nav-item {
       background: #e5e5e5;
       margin-right: 0;
-      padding: 20px 100px;
       border: none;
       font-size: 12px;
       font-weight: 300;
+      .nav-link {
+        background: #e5e5e5;
+        border: 0;
+        border-radius: 0;
+        padding: 20px 45px;
+        &.active {
+          background: #f7f7f7;
+          border: 0;
+        }
+      }
       &.active {
         background: #f7f7f7;
       }
@@ -892,7 +929,6 @@ footer p {
       justify-content: space-between;
       align-items: center;
       .nav-item {
-        padding: 5px 10px;
         border-radius: 0px;
         flex-grow: 1;
       }
