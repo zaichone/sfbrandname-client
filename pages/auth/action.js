@@ -32,6 +32,7 @@ function Action() {
         
             // Save the new password.
             auth.confirmPasswordReset(oobCode, newPassword).then((resp) => {
+              console.log("🚀 ~ file: action.js ~ line 35 ~ auth.confirmPasswordReset ~ resp", resp)
               // Password reset has been confirmed and new password updated.
         
               // TODO: Display a link back to the app, or sign-in the user directly
@@ -50,7 +51,7 @@ function Action() {
             // Invalid or expired action code. Ask user to try to reset the password
             // again.
           });
-        setNoti('Your new password is updated')
+        setNoti('Your new password was updated')
         setLoading(false);
     }
     return (
