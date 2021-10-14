@@ -63,4 +63,4 @@ function AuthServiceVerifyEmail(props) {
   );
 }
 
-export default withProtected(AuthServiceVerifyEmail);
+export default AuthServiceVerifyEmail;
