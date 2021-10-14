@@ -8,7 +8,6 @@ import { auth as firebaseAuth } from "../../src/config/firebase";
 import { withProtected } from "../../src/hook/route";
 
 function AuthServiceVerifyEmail(props) {
-  let user = props.auth.user;
   let actionCode = props.actionCode;
   const router = useRouter();
   const [notification, setNotification] = useState("");
@@ -40,24 +39,14 @@ function AuthServiceVerifyEmail(props) {
                 {notification}
               </div>
             )}
-            {user.emailVerified ? (
-              <div>{user.email} has been verified! Thank you.</div>
-            ) : (
-              <div>{user.email} is not verified</div>
-            )}
+            <div>Your email has been verified! Thank you.</div>
           </div>
         </div>
       </div>
       <p className="register-text text-center text-sm-start">
-        {user.emailVerified ? (
-          <Link href="/account/" className="btn btn-primary">
-            Back to Account page.
-          </Link>
-        ) : (
-          <Link href="/verify-email/" className="btn btn-primary">
-            Send another verification email.
-          </Link>
-        )}
+        <Link href="/account/" className="btn btn-primary">
+          Back to Account page.
+        </Link>
       </p>
     </>
   );
