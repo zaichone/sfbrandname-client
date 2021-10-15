@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
@@ -18,6 +19,7 @@ import { withProtected } from "../../src/hook/route";
 
 function Order({ auth }) {
   const { user } = auth;
+  const router = useRouter();
   const [orders, setOrders] = useState();
   const [clientId, setClientId] = useState("");
   const [isAuthentic, setIsAuthentic] = useState(true);
@@ -144,7 +146,10 @@ function Order({ auth }) {
                         <button className="detail-btn">
                           <Link href={`/orders/${order.id}`}>Detail</Link>
                         </button>
-                        <button className="doc-btn">Document</button>
+                        <button className="doc-btn" onClick={() => { if(!order.paymentConfirmed){ router.push({
+      pathname: "/authentication/thank-you",
+      query: { taskId:order.id }
+    });} }}>Document</button>
                         <button className="more-btn">
                           <Link href={`/orders/${order.id}`}>More</Link>
                         </button>
