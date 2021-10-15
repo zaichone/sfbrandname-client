@@ -97,6 +97,7 @@ function Authentication({ auth }) {
         })
         */
   }
+  
   function handleBrandChange(e) {
     let text = e.target.value;
     setBrand(text);

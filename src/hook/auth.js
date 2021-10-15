@@ -37,7 +37,7 @@ export function AuthProvider(props) {
     );
     setUser(user ?? null);
     setError(error ?? "");
-    window.location.reload();
+    //window.location.reload();
   };
 
   const logout = async () => {

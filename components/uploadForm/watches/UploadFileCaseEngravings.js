@@ -69,6 +69,7 @@ function UploadFileCaseEngravings({
           name="filesCaseEngravings[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageCaseEngravings?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

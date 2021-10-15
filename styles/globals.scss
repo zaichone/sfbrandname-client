@@ -773,6 +773,11 @@ footer p {
     .form-control,
     .form-select {
       border: 1px solid black;
+      
+    }
+    .form-select{
+      padding-left:10px!important;
+      option{padding:5px 0; }
     }
   }
   h3 {
@@ -786,9 +791,20 @@ footer p {
   .image-box {
     background: #f7f7f7;
     border: 1px dashed black;
-    background-size: cover;
-    background-position: center center;
+    
+    
+    position:relative;
+    .box-cover{
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      position:absolute;
+      z-index:99;
+      background-size: cover;
+      background-position: center center;
     background-repeat: no-repeat;
+    }
   }
   .form-check {
     .form-check-label {

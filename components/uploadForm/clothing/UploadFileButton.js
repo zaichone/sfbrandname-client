@@ -66,6 +66,7 @@ function UploadFileButton({
           name="filesButton[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageButton?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

@@ -29,7 +29,7 @@ function Order({ auth }) {
     setClientId(_clientId);
     const ordersRef = firestore
       .collection("tasks")
-      .where("clientId", "==", user.uid).where("paymentConfirmed", "==", true)
+      .where("clientId", "==", user.uid)
       .orderBy("timestamp", "asc");
     const unsubscribe = ordersRef.onSnapshot((snapshot) => {
       const data = snapshot.docs.map((doc) => ({
@@ -132,7 +132,7 @@ function Order({ auth }) {
                           {new Date(order.timestamp).toLocaleString()}
                         </h4>
                         <h4 className="orderId d-none d-sm-inline">
-                          <span>Order ID:</span> {order.id}
+                          <span>Order ID:</span> {order?.customId}
                         </h4>
                       </div>
 

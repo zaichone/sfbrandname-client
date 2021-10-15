@@ -69,6 +69,7 @@ function UploadFileArmEngravings({
           name="filesArmEngravings[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageArmEngravings?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

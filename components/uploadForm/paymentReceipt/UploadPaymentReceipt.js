@@ -36,7 +36,7 @@ function UploadFilePaymentReceipt({
           name="filesPaymentImage[]"
           multiple
         />
-      </div>
+        <div className="box-cover" style={{ backgroundImage: `url(${paymentImage})` }}></div>
     </div>
   );
 }

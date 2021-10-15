@@ -66,6 +66,7 @@ function UploadFileHallmark({
           name="filesHallmark[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageHallmark?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

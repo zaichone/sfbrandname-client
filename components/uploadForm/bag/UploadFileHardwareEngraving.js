@@ -68,6 +68,7 @@ function UploadFileHardwareEngraving({
           name="filesHardwareEngraving[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageHardwareEngraving?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

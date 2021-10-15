@@ -12,10 +12,12 @@ function ThankYouPayment() {
   const router = useRouter();
   const { taskId } = router.query;
   function nextPage() {
+    /*
     router.push({
       pathname: "/orders/[taskId]",
       query: { taskId },
-    });
+    }); */
+    router.push('/orders/')
   }
   return (
     <div>
@@ -31,24 +33,18 @@ function ThankYouPayment() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="page-authenticate">
+      <main className="page-content">
         <PagtTitle title="Authentications" bg={cover} />
         <section>
-          <div className="container-fluid">
+          <ul className="order-nav">
+    <li><a>Item Info</a></li>
+    <li><a>Services</a></li>
+    <li><a>Messages</a></li>
+    <li><a className="active">Transaction</a></li>
+          </ul>
+          <div className="container">
             <div className="row">
-              <div className="col-12 col-sm-3 col-md-3 col-xxl-2 gx-0">
-                <div className="sidebar --step-3 px-5 px-sm-0">
-                  <div className="card">
-                    <h2>Almost Done !</h2>
-                    <p>This is the last process. </p>
-                    <img
-                      src={Three.src}
-                      className="img-fluid d-none d-sm-block"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
+              
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
                   <h3 className="fs-3 fw-semibold">Thank you!</h3>
@@ -57,7 +53,7 @@ function ThankYouPayment() {
                   <div className="row">
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={nextPage}>
-                        View Order details
+                        Back
                       </button>
                     </div>
                   </div>

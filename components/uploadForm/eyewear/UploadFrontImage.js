@@ -74,6 +74,7 @@ function UploadFrontImage({
           name="filesFront[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageFront?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

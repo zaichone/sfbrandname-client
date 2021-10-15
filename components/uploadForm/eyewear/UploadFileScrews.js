@@ -68,6 +68,7 @@ function UploadFileScrews({
           name="filesScrews[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageScrews?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

@@ -55,7 +55,7 @@ function UploadFileAdditionalImage({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesAdditionalImage").click()}
-        style={{ backgroundImage: `url('${imageAdditionalImage?.imageURL}')` }}
+        
       >
         <i>Click to Add Image</i>
         <input
@@ -66,6 +66,7 @@ function UploadFileAdditionalImage({
           name="filesAdditionalImage[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageAdditionalImage?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );

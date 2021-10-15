@@ -66,6 +66,7 @@ function UploadFileZipper({
           name="filesZipper[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageZipper?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );
