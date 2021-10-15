@@ -206,7 +206,7 @@ function Authentication({ auth }) {
                   <form onSubmit={goNext}>
                     <div className="mb-5">
                       <h3>
-                        Brand <InfoIcon />
+                        Brand
                       </h3>
                       <select
                         className="form-select"
@@ -223,7 +223,7 @@ function Authentication({ auth }) {
                     </div>
                     <div className="mb-5">
                       <h3>
-                        Name <InfoIcon />
+                        Name
                       </h3>
                       <input
                         type="text"
@@ -234,7 +234,7 @@ function Authentication({ auth }) {
                     </div>
                     <div className="mb-5">
                       <h3>
-                        Client Name <InfoIcon />
+                        Client Name
                       </h3>
                       <input
                         type="text"
@@ -245,7 +245,7 @@ function Authentication({ auth }) {
                     </div>
                     <div className="mb-5">
                       <h3>
-                        Category <InfoIcon />
+                        Category
                       </h3>
                       <select
                         className="form-select"
