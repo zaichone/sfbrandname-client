@@ -55,7 +55,6 @@ function UploadFileZipper({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesZipper").click()}
-        style={{ backgroundImage: `url('${imageZipper?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

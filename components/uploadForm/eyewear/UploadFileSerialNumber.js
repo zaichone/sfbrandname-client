@@ -57,7 +57,6 @@ function UploadFileSerialNumber({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesSerialNumber").click()}
-        style={{ backgroundImage: `url('${imageSerialNumber?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

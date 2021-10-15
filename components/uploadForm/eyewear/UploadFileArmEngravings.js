@@ -58,7 +58,6 @@ function UploadFileArmEngravings({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesArmEngravings").click()}
-        style={{ backgroundImage: `url('${imageArmEngravings?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

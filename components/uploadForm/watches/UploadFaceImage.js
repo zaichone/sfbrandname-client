@@ -57,7 +57,6 @@ function UploadFaceImage({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesFace").click()}
-        style={{ backgroundImage: `url('${imageFace?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input
