@@ -123,7 +123,7 @@ function AlmostDone({ auth }) {
                   </div>
 
                   <div className="row">
-                    <div className="col-auto">
+                    <div className="col">
                       <PaymentReceipt
                         taskId={taskId}
                         clientId={clientId}
