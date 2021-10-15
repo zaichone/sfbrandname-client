@@ -768,6 +768,11 @@ footer p {
     .form-control,
     .form-select {
       border: 1px solid black;
+      
+    }
+    .form-select{
+      padding-left:10px!important;
+      option{padding:5px 0; }
     }
   }
   h3 {

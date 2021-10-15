@@ -29,7 +29,7 @@ function Order({ auth }) {
     setClientId(_clientId);
     const ordersRef = firestore
       .collection("tasks")
-      .where("clientId", "==", user.uid).where("paymentConfirmed", "==", true)
+      .where("clientId", "==", user.uid)
       .orderBy("timestamp", "asc");
     const unsubscribe = ordersRef.onSnapshot((snapshot) => {
       const data = snapshot.docs.map((doc) => ({
