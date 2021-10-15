@@ -25,7 +25,11 @@ function UploadFilePaymentReceipt({
       <div
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesPaymentImage").click()}
-        style={{ backgroundImage: `url("${paymentImage}")`, width:"10rem", height:"10rem" }}
+        style={{
+          backgroundImage: `url("${paymentImage}")`,
+          width: "10rem",
+          height: "10rem",
+        }}
       >
         <i>Click to Add Image</i>
         <input
@@ -36,7 +40,11 @@ function UploadFilePaymentReceipt({
           name="filesPaymentImage[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${paymentImage})` }}></div>
+        <div
+          className="box-cover"
+          style={{ backgroundImage: `url(${paymentImage})` }}
+        ></div>
+      </div>
     </div>
   );
 }
