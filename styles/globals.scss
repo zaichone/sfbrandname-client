@@ -122,7 +122,6 @@ a {
   }
   button {
     color: white;
-    font-size: 12px;
     font-family: "Poppins", sans-serif;
     text-transform: none;
     padding: 0;
@@ -810,14 +809,14 @@ footer p {
   .form-control {
     background: white;
   }
-  @include media(mobile-only) {
-    .input-group {
-      .form-control {
-      }
-      button {
-      }
-    }
-  }
+  // @include media(mobile-only) {
+  //   .input-group {
+  //     .form-control {
+  //     }
+  //     button {
+  //     }
+  //   }
+  // }
 }
 
 .orders {
