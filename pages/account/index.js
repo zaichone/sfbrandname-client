@@ -193,6 +193,7 @@ function Account({ auth }) {
                       Email{" "}
                       {user.emailVerified ? (
                         <>
+                          Verified{" "}
                           <CheckCircleOutlineIcon
                             style={{
                               color: "teal",
@@ -200,10 +201,10 @@ function Account({ auth }) {
                               margin: "5px 10px",
                             }}
                           />
-                          Verified
                         </>
                       ) : (
                         <>
+                          <a href="/verify-email/">Not verified</a>
                           <ErrorIcon
                             style={{
                               color: "red",
@@ -211,7 +212,6 @@ function Account({ auth }) {
                               margin: "0px 5px",
                             }}
                           />
-                          <a href="/verify-email/">Not verified</a>
                         </>
                       )}
                     </div>
