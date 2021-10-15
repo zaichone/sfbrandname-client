@@ -122,13 +122,15 @@ function AlmostDone({ auth }) {
                     </div>
                   </div>
 
-                  <div style={{ width: "10rem", height: "10rem" }}>
-                    <PaymentReceipt
-                      taskId={taskId}
-                      clientId={clientId}
-                      paymentImage={paymentImage}
-                      setPaymentImage={setPaymentImage}
-                    />
+                  <div className="row">
+                    <div className="col-auto">
+                      <PaymentReceipt
+                        taskId={taskId}
+                        clientId={clientId}
+                        paymentImage={paymentImage}
+                        setPaymentImage={setPaymentImage}
+                      />
+                    </div>
                   </div>
 
                   <form
