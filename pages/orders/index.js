@@ -132,7 +132,7 @@ function Order({ auth }) {
                           {new Date(order.timestamp).toLocaleString()}
                         </h4>
                         <h4 className="orderId d-none d-sm-inline">
-                          <span>Order ID:</span> {order.id}
+                          <span>Order ID:</span> {order?.customId}
                         </h4>
                       </div>
 

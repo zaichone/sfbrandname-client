@@ -43,26 +43,19 @@ function UploadPicutres({ auth }) {
   const router = useRouter();
   const { taskId, category } = router.query;
 
-  console.log("images", images);
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-  useEffect(() => {
-    /*
-    commerce.cart.retrieve().then((cart) => {
-      // console.log(`retrieve cart: `, cart);
-      setCartId(cart.id);
-    }); */
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
 
-    // [for debugging] empty a cart
-    // commerce.cart.empty().then((response) => console.log(response));
-
-    
-
-    // commerce.products
-    //   .retrieve(productId)
-    //   .then((product) => setBasicAuthen(product));
-
-    console.log(`cartId: `, cartId);
-  }, []);
+    return [year, month, day].join('-');
+}
 
   async function goNext() {
     console.log("images before update", images);
@@ -75,6 +68,7 @@ function UploadPicutres({ auth }) {
         {
           images: images,
           featured: featured,
+          customId: formatDate(Date.now())+'-'+taskId
         },
         { merge: true }
       )

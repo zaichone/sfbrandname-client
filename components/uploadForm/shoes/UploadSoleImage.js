@@ -66,6 +66,7 @@ function UploadSoleImage({
           name="filesSole[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageSole?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );
