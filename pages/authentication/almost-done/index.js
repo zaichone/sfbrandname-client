@@ -100,29 +100,37 @@ function AlmostDone({ auth }) {
                     informations will be kept in secret.
                   </p>
                   <div className="row my-5">
-                    <div className="col-auto d-flex justify-content-center justify-content-sm-start align-items-center">
+                    <div className="col-12 col-sm-auto d-flex justify-content-center justify-content-sm-start align-items-center">
                       <div
                         style={{
-                          minWidth: "5rem",
-                          minHeight: "5rem",
+                          minWidth: "7rem",
+                          minHeight: "7rem",
                         }}
                       >
                         <KBankLogo />
                       </div>
-                    </div>{" "}
-                    <div className="col">
-                      <p className="fs-3">061-8-57211-0</p>
-                      <p className="fs-4">ธนาคารกสิกรไทย</p>
-                      <p className="fs-4">ชื่อบัญชี บจก. เอสดับเบิ้ลยู 2019</p>
+                    </div>
+                    <div className="col-12 col-sm-auto">
+                      <p className="fs-4 my-2">061-8-57211-0</p>
+                      <p className="fs-4 my-2">Kasikorn Bank</p>
+                      <p className="fs-6 my-2">ธนาคารกสิกรไทย</p>
+
+                      <p className="fs-4 my-2">
+                        SW Corporation company Limited.
+                      </p>
+                      <p className="fs-6 my-2">บจก. เอสดับเบิ้ลยู 2019</p>
                     </div>
                   </div>
 
-                  <PaymentReceipt
-                    taskId={taskId}
-                    clientId={clientId}
-                    paymentImage={paymentImage}
-                    setPaymentImage={setPaymentImage}
-                  />
+                  <div style={{ width: "10rem", height: "10rem" }}>
+                    <PaymentReceipt
+                      taskId={taskId}
+                      clientId={clientId}
+                      paymentImage={paymentImage}
+                      setPaymentImage={setPaymentImage}
+                    />
+                  </div>
+
                   <form
                     onSubmit={(e) => {
                       handleSubmit(e);
