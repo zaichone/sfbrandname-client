@@ -65,7 +65,7 @@ function UploadFileSerialNumber({
           name="filesSerialNumber[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageSerialNumber?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageSerialNumber?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

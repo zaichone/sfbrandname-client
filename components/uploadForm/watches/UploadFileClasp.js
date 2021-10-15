@@ -67,7 +67,7 @@ function UploadFileClasp({
           name="filesAdditionalImage[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageClasp?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageClasp?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

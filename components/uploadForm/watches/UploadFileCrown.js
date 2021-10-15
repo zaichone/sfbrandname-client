@@ -67,7 +67,7 @@ function UploadFileCrown({
           name="filesCrown[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageCrown?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageCrown?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

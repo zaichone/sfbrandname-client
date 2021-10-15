@@ -66,7 +66,7 @@ function UploadFileMadeIn({
           name="filesMadeIn[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageMadeIn?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageMadeIn?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );
