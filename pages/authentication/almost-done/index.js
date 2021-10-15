@@ -113,12 +113,9 @@ function AlmostDone({ auth }) {
                     <div className="col-12 col-sm-auto">
                       <p className="fs-4 my-2">061-8-57211-0</p>
                       <p className="fs-4 my-2">Kasikorn Bank</p>
-                      <p className="fs-6 my-2">ธนาคารกสิกรไทย</p>
-
                       <p className="fs-4 my-2">
                         SW Corporation company Limited.
                       </p>
-                      <p className="fs-6 my-2">บจก. เอสดับเบิ้ลยู 2019</p>
                     </div>
                   </div>
 
