@@ -41,13 +41,30 @@ function Billing({ auth }) {
     const { user } = auth;
 
     const [items, setItems] = useState();
+    //console.log("🚀 ~ file: index.js ~ line 44 ~ Billing ~ items", items)
     const [cart, setCart] = useState();
+    console.log("🚀 ~ file: index.js ~ line 46 ~ Billing ~ cart", cart)
 
     const router = useRouter();
     const { taskId, cartId } = router.query;
 
+    const transactionRef = firestore.collection("transactions");
+
     async function handleConfirm() {
         console.log("Confirm");
+        let transactionData = {
+            clientId:user.uid,
+            taskId,
+            cartId,
+            items:cart.line_items,
+            subtotal:cart.subtotal,
+            timestamp: new Date().getTime(),
+            paymentMethod:'Bank Transfer'
+        }
+        await transactionRef.add(transactionData).then((transactionRef) => {
+            console.log(transactionRef.id);
+
+        });
         router.push({
             pathname: "/authentication/almost-done/",
             query: { taskId: taskId, cartId: cartId },
@@ -55,8 +72,8 @@ function Billing({ auth }) {
     }
     useEffect(() => {
         async function initData() {
-            commerce.cart.contents().then((items) => { 
-                console.log(items); setItems(items); 
+            commerce.cart.contents().then((items) => {
+                console.log(items); setItems(items);
                 //let price = items?.reduce((a, b) => a.price.raw + b.price.raw, 0);
                 //setPrice(price)
             });
@@ -104,13 +121,13 @@ function Billing({ auth }) {
                                 </thead>
                                 <tbody>
                                     {
-                                    items && items.map((item, index) => 
-                                    <tr key={item.id}>
-                                        <td>{index+1}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.price.formatted_with_symbol}</td>
-                                    </tr>
-                                    )
+                                        items && items.map((item, index) =>
+                                            <tr key={item.id}>
+                                                <td>{index + 1}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.price.formatted_with_symbol}</td>
+                                            </tr>
+                                        )
                                     }
                                 </tbody>
                             </Table>
