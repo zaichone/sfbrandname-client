@@ -312,7 +312,6 @@ button {
   .card {
     border: none;
     background: transparent;
-
     img {
       width: initial !important;
       height: auto;
@@ -320,10 +319,17 @@ button {
       background: url("../assets/Circle.png") center center no-repeat;
       background-size: cover;
     }
+    .card-footer {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
     .card-title {
       font-size: 18px;
       font-weight: 400;
       text-transform: none;
+      margin: 0;
       @include media(mobile-only) {
         font-size: 14px;
       }
