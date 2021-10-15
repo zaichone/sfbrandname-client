@@ -66,6 +66,7 @@ function UploadFileAdditionalImage({
           name="filesAdditionalImage[]"
           multiple
         />
+        <div className="box-cover" style={{ backgroundImage: `url(${imageAdditionalImage?.imageURL})` }}></div>
       </SymmetricalDiv>
     </div>
   );
