@@ -52,9 +52,11 @@ function Billing({ auth }) {
 
     async function handleConfirm() {
         console.log("Confirm");
+        let taskCustomId = window.localStorage.getItem("customId");
         let transactionData = {
             clientId:user.uid,
             taskId,
+            taskCustomId:taskCustomId,
             cartId,
             items:cart.line_items,
             subtotal:cart.subtotal,

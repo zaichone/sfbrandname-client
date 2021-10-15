@@ -1192,6 +1192,18 @@ footer p {
       width: 100%;
     }
   }
+  .transaction{
+    width:60%;
+    table{
+      
+        td{
+          padding:5px 0;
+          font-size:12px;
+        }
+      
+    }
+    hr{ width:50%;}
+  }
 }
 
 .--recovery-password-container {

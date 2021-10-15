@@ -72,7 +72,7 @@ function UploadPicutres({ auth }) {
         },
         { merge: true }
       )
-      .then(() => {})
+      .then(() => { window.localStorage.setItem("customId", formatDate(Date.now())+'-'+taskId); })
       .catch((error) => {});
 
     router.push({
