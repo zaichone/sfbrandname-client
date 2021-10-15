@@ -24,6 +24,9 @@ function History({ auth }) {
   const [profile, setProfile] = useState();
   const [profileAvatar, setProfileAvatar] = useState(avatar.src);
 
+  const [transactions, setTransactions] = useState();
+  console.log("🚀 ~ file: index.js ~ line 28 ~ History ~ transactions", transactions)
+
   async function uploadAvatar() {
     const accountRef = firestore.collection("members").doc(user.uid);
     let storageRef = storage.ref("/account/avatars");
@@ -33,15 +36,16 @@ function History({ auth }) {
     let thisRef = storageRef.child(uploadName);
     await thisRef.put(file).then(function (snapshot) {
       snapshot.ref.getDownloadURL().then((downloadURL) => {
-        console.log(
+        /*console.log(
           "🚀 ~ file: index.js ~ line 44 ~ snapshot.ref.getDownloadURL ~ downloadURL",
           downloadURL
-        );
+        ); */
         setProfileAvatar(downloadURL);
+        /*
         console.log(
           "🚀 ~ file: index.js ~ line 38 ~ snapshot.ref.getDownloadURL ~ user.uid",
           user.uid
-        );
+        ); */
         accountRef
           .update(
             {
@@ -49,12 +53,21 @@ function History({ auth }) {
             },
             { merge: true }
           )
-          .then(() => {})
-          .catch((error) => {});
+          .then(() => { })
+          .catch((error) => { });
       });
     });
   }
-  console.log("profileAvatar", profileAvatar);
+  function intersperse(arr, sep) {
+    if (arr.length === 0) {
+        return [];
+    }
+
+    return arr.slice(1).reduce(function(xs, x, i) {
+        return xs.concat([sep, x]);
+    }, [arr[0]]);
+}
+  //console.log("profileAvatar", profileAvatar);
   useEffect(() => {
     console.log(user.uid);
     const accountRef = firestore.collection("members").doc(user.uid);
@@ -73,11 +86,21 @@ function History({ auth }) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
+
+    firestore
+      .collection("transactions").where("clientId", "==", user.uid)
+      .get()
+      .then((querySnapshot) => {
+        let tdata = [];
+        querySnapshot.forEach((doc) => {
+          tdata.push({ id: doc.id, data: doc.data() });
+
+          //console.log(doc.id, " => ", doc.data());
+        });
+        setTransactions(tdata);
+      });
   }, []);
 
-  if (!user) {
-    return router.push("/sign-in/");
-  }
   return (
     <div>
       <Head>
@@ -151,133 +174,31 @@ function History({ auth }) {
               {/* main column wit profile data */}
               <div className="col-12 col-sm-9 col-md-10">
                 <div className="profile-details">
-                  {user.emailVerified ? (
-                    <></>
-                  ) : (
-                    <div className="row mb-3">
-                      <div className="col-12 col-sm-6">
-                        <Alert variant="danger">
-                          Your Email is not verified.
-                          <Alert.Link href="/verify-email/">
-                            Verify your email here.
-                          </Alert.Link>
-                        </Alert>
-                      </div>
-                    </div>
-                  )}
+
                   <div className="row mt-3 mb-3">
                     <div className="col-auto">
-                      <h3 className="">Account</h3>
+                      <h3 className="">History</h3>
                     </div>
-                    <div className="col-auto text-end justify-content-start align-items-end">
-                      <a href="/account/edit-name" className="me-3">
-                        Edit
-                      </a>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Business Name
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      {profile?.firstName} {profile?.lastName}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Account Created
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      {profile?.createAt &&
-                        new Date(profile?.createAt).toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Email{" "}
-                      {user.emailVerified ? (
-                        <>
-                          <CheckCircleOutlineIcon
-                            style={{
-                              color: "teal",
-                              fontSize: "1rem",
-                            }}
-                          />
-                          Verified
-                        </>
-                      ) : (
-                        <>
-                          <ErrorIcon
-                            style={{
-                              color: "red",
-                              fontSize: "1rem",
-                            }}
-                          />
-                          <a href="/verify-email/">Not verified</a>
-                        </>
-                      )}
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">{profile?.email}</div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 fw-medium my-2">
-                      Documentation ID Name
-                    </div>
-                    <div className="col-12 col-sm-8 my-2">
-                      {profile?.documentName}
-                    </div>
-                  </div>
 
-                  <hr className="d-none d-sm-block" />
-
-                  <h3 className="mt-5 mb-3">Payment information</h3>
-                  <div className="payment-info">
-                    <div className="row">
-                      <div className="col-12 col-sm-4 my-2">
-                        {profile?.firstName} {profile?.lastName}
-                      </div>
-                      <div className="col-3 col-sm-1 my-2">
-                        <FontAwesomeIcon
-                          icon={faCcMastercard}
-                          style={{ fontSize: "2rem" }}
-                        />
-                      </div>
-                      <div className="col-9 col-sm-3  my-2">
-                        **** **** **** 3200
-                      </div>
-                      <div className="col-12 col-sm-4 my-2"></div>
-                    </div>
                   </div>
-
-                  <hr className="d-none d-sm-block" />
-                  <div className="row mt-5 mb-3">
-                    <div className="col-auto">
-                      <h3 className="">Address</h3>
-                    </div>
-                    <div className="col-auto text-end justify-content-start align-items-end">
-                      <a href="/account/edit-address">Edit</a>
-                    </div>
-                  </div>
-                  <div className="payment-info">
-                    <div className="row">
-                      <div className="col-12 col-sm-8 my-2">
-                        {!!!profile?.shippingAddress?.name &&
-                          !!!profile?.shippingAddress?.phone &&
-                          !!!profile?.shippingAddress?.lineOne &&
-                          !!!profile?.shippingAddress?.lineTwo &&
-                          !!!profile?.shippingAddress?.zipCode && (
-                            <p>
-                              Address is empty.{" "}
-                              <a href="/account/edit-address">Add now.</a>
-                            </p>
-                          )}
-                        <p>{profile?.shippingAddress?.name}</p>
-                        <p>{profile?.shippingAddress?.phone}</p>
-                        <p>{profile?.shippingAddress?.lineOne}</p>
-                        <p>{profile?.shippingAddress?.lineTwo}</p>
-                        <p>{profile?.shippingAddress?.zipCode}</p>
+                  <div className="row">
+                    {transactions?.map((ts) =>
+                    <div className="transaction">
+                      <table class="">
+                        <tbody>
+                          <tr><td cosspan="2">{new Date(ts?.data.timestamp).toLocaleString()}</td></tr>
+                          <tr><td>Order:</td><td>{ts?.data.taskCustomId}</td></tr>
+                          <tr>
+                            <td>Description:</td>
+                            <td>{intersperse(ts?.data.items.map((item, index) => item.name ), ',')}</td>
+                          </tr>
+                        <tr><td>Total: </td><td>{ts.data.subtotal.formatted_with_symbol}</td></tr>
+                        <tr><td>Payment Method:</td><td>{ts.data.paymentMethod}</td></tr>
+                        </tbody>
+                      </table>
+                      <hr/>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

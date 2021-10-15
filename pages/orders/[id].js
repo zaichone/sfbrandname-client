@@ -155,6 +155,7 @@ function OrderDetail({ auth }) {
 
   // get order info
   const [orderInfo, setOrderInfo] = useState({});
+  console.log("🚀 ~ file: [id].js ~ line 158 ~ OrderDetail ~ orderInfo", orderInfo)
 
   useEffect(() => {
     const reference = firestore.collection("tasks").doc(id);
@@ -188,7 +189,12 @@ function OrderDetail({ auth }) {
     }
     initShopData();
   }, []);
-
+  if (!orderInfo.paymentConfirmed) {
+    router.push({
+      pathname: "/authentication/thank-you",
+      query: { taskId:id }
+    });
+  }
   return (
     <div>
       <Head>
@@ -302,9 +308,8 @@ function OrderDetail({ auth }) {
                           className="d-flex flex-column align-items-center justify-content-center"
                           style={{
                             width: "100%",
-                            background: `url('${
-                              orderInfo.featured && orderInfo.featured
-                            }')center center no-repeat`,
+                            background: `url('${orderInfo.featured && orderInfo.featured
+                              }')center center no-repeat`,
                             border: "1px solid black",
                           }}
                         ></SymmetricalDiv>
@@ -334,9 +339,8 @@ function OrderDetail({ auth }) {
                                 className="d-flex flex-column align-items-center justify-content-center"
                                 style={{
                                   width: "100%",
-                                  background: `url('${
-                                    img.imageURL ? img.imageURL : thumbImage
-                                  }')center center no-repeat`,
+                                  background: `url('${img.imageURL ? img.imageURL : thumbImage
+                                    }')center center no-repeat`,
                                   border: "1px solid black",
                                 }}
                               ></SymmetricalDiv>
