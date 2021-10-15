@@ -55,7 +55,6 @@ function UploadFileHallmark({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesHallmark").click()}
-        style={{ backgroundImage: `url(${imageHallmark?.imageURL})` }}
       >
         <i>Click to Add Image</i>
         <input

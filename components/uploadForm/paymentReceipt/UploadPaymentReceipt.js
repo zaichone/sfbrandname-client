@@ -1,3 +1,4 @@
+import { width } from "dom-helpers";
 import { storage } from "../../../src/config/firebase";
 import SymmetricalDiv from "../../layout/SymmetricalDiv";
 
@@ -22,10 +23,10 @@ function UploadFilePaymentReceipt({
   return (
     <div className="col-12 col-sm-4 text-center mt-4">
       <h3>Payment Receipt</h3>
-      <SymmetricalDiv
+      <div
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesPaymentImage").click()}
-        style={{ backgroundImage: `url("${paymentImage}")` }}
+        style={{ width: "15rem", height: "15rem" }}
       >
         <i>Click to Add Image</i>
         <input
@@ -36,8 +37,11 @@ function UploadFilePaymentReceipt({
           name="filesPaymentImage[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${paymentImage})` }}></div>
-      </SymmetricalDiv>
+        <div
+          className="box-cover"
+          style={{ backgroundImage: `url('${paymentImage}')` }}
+        ></div>
+      </div>
     </div>
   );
 }

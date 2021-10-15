@@ -55,7 +55,6 @@ function UploadFileInsole({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesInsole").click()}
-        style={{ backgroundImage: `url(${imageInsole?.imageURL})` }}
       >
         <i>Click to Add Image</i>
         <input

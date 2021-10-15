@@ -1,9 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import PagtTitle from "../../../components/layout/PageTitle";
 import cover from "../../../assets/cover/Authentic.jpg";
 import Three from "../../../assets/3.png";
 import paymentQR from "../../../assets/sfbrandnamedotcom.png";
+import KBankLogo from "../../../assets/KBankLogo";
 import SymmetricalDiv from "../../../components/layout/SymmetricalDiv";
 
 import { useRouter } from "next/router";
@@ -97,20 +99,39 @@ function AlmostDone({ auth }) {
                     Please note: customer privacy is our top priority, these
                     informations will be kept in secret.
                   </p>
-                  <div className="row">
-                    <div className="col-12 mt-4 mb-5 d-flex justify-content-center justify-content-sm-start">
-                      <img src={paymentQR.src} />
+                  <div className="row my-5">
+                    <div className="col-12 col-sm-auto d-flex justify-content-center justify-content-sm-start align-items-center">
+                      <div
+                        style={{
+                          minWidth: "7rem",
+                          minHeight: "7rem",
+                        }}
+                      >
+                        <KBankLogo />
+                      </div>
+                    </div>
+                    <div className="col-12 col-sm-auto">
+                      <p className="fs-4 my-2">061-8-57211-0</p>
+                      <p className="fs-4 my-2">Kasikorn Bank</p>
+                      <p className="fs-6 my-2">ธนาคารกสิกรไทย</p>
+
+                      <p className="fs-4 my-2">
+                        SW Corporation company Limited.
+                      </p>
+                      <p className="fs-6 my-2">บจก. เอสดับเบิ้ลยู 2019</p>
                     </div>
                   </div>
-                  <h4>pay to company account: 061 8 57211 0 </h4>
-                  <h4>Kasikorn Bank</h4>
-                  <h4>บจก. เอสดับเบิ้ลยู 2019</h4>
-                  <PaymentReceipt
-                    taskId={taskId}
-                    clientId={clientId}
-                    paymentImage={paymentImage}
-                    setPaymentImage={setPaymentImage}
-                  />
+
+                  <div className="row">
+                    <div className="col">
+                      <PaymentReceipt
+                        taskId={taskId}
+                        clientId={clientId}
+                        paymentImage={paymentImage}
+                        setPaymentImage={setPaymentImage}
+                      />
+                    </div>
+                  </div>
 
                   <form
                     onSubmit={(e) => {
@@ -130,7 +151,6 @@ function AlmostDone({ auth }) {
                       </div>
                     </div>
                   </form>
-
                   <div className="row">
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
                       <button onClick={goNext}>Submit</button>

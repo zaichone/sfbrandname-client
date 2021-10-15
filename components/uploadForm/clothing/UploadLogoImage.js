@@ -55,7 +55,6 @@ function UploadLogoImage({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesLogo").click()}
-        style={{ backgroundImage: `url(${imageLogo?.imageURL})` }}
       >
         <i>Click to Add Image</i>
         <input

@@ -57,7 +57,6 @@ function UploadFileCrown({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesCrown").click()}
-        style={{ backgroundImage: `url(${imageCrown?.imageURL})` }}
       >
         <i>Click to Add Image</i>
         <input

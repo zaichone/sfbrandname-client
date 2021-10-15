@@ -57,7 +57,6 @@ function UploadFileLensEngraving({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesLensEngraving").click()}
-        style={{ backgroundImage: `url(${imageLensEngraving?.imageURL})` }}
       >
         <i>Click to Add Image</i>
         <input
