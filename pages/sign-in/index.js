@@ -18,7 +18,9 @@ function SignIn({ auth }) {
     console.log("logged in with user", user);
 
     setLoading(false);
+    console.log(error);
   }
+
   return (
     <div>
       <Head>
@@ -39,6 +41,11 @@ function SignIn({ auth }) {
           <div className="row">
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
               <h1 className="mt-5">Sign In</h1>
+              {error && (
+                      <div className="alert alert-danger" role="alert">
+                        {error}
+                      </div>
+                    )}
               <form onSubmit={handleSubmit} className="w-100 mt-5">
 
                 <div className="row mb-4">

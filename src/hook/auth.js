@@ -25,7 +25,7 @@ export function AuthProvider(props) {
       password
     );
     setUser(user ?? null);
-    setError(error ?? "");
+    setError(error ?? null);
   };
 
   const signUp = async (email, password, firstName, lastName) => {
