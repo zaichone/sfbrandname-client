@@ -18,7 +18,22 @@ function SignIn({ auth }) {
     console.log("logged in with user", user);
 
     setLoading(false);
-    console.log(error);
+    console.log('error', error);
+  }
+
+  function handleError(err) {
+    switch (err) {
+      case 'auth/invalid-email':
+        return 'Invalid Email';
+      case 'auth/user-disabled':
+        return 'Your user was disabled';
+      case 'auth/user-not-found':
+        return 'User Not Found';
+      case 'auth/wrong-password':
+        return 'Wrong Password';
+      default:
+        return 'Something wrong, Try again';
+    }
   }
 
   return (
@@ -42,10 +57,10 @@ function SignIn({ auth }) {
             <div className="col-12 col-sm-4 px-xl-4 px-xxl-5 py-5 d-flex flex-column justify-content-around">
               <h1 className="mt-5">Sign In</h1>
               {error && (
-                      <div className="alert alert-danger" role="alert">
-                        {error}
-                      </div>
-                    )}
+                <div className="alert alert-danger" role="alert">
+                  {handleError(error)}
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="w-100 mt-5">
 
                 <div className="row mb-4">
