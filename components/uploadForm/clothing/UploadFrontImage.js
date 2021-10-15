@@ -61,7 +61,7 @@ function UploadFrontImage({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesFront").click()}
-        style={{ backgroundImage: `url(${imageFront?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageFront?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

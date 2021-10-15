@@ -56,7 +56,7 @@ function UploadFileMadeIn({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesMadeIn").click()}
-        style={{ backgroundImage: `url(${imageMadeIn?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageMadeIn?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

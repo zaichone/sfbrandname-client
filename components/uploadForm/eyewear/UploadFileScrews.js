@@ -57,7 +57,7 @@ function UploadFileScrews({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesScrews").click()}
-        style={{ backgroundImage: `url(${imageScrews?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageScrews?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

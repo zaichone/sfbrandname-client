@@ -57,7 +57,7 @@ function UploadFileHardwareEngraving({
         onClick={() =>
           document.getElementById("filesHardwareEngraving").click()
         }
-        style={{ backgroundImage: `url(${imageHardwareEngraving?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageHardwareEngraving?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

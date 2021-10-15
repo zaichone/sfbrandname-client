@@ -55,7 +55,7 @@ function UploadFileButton({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesButton").click()}
-        style={{ backgroundImage: `url(${imageButton?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageButton?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input

@@ -232,16 +232,7 @@ function Account({ auth }) {
                   <div className="payment-info">
                     <div className="row">
                       <div className="col-12 col-sm-4 my-2">
-                        {profile?.firstName} {profile?.lastName}
-                      </div>
-                      <div className="col-3 col-sm-1 my-2">
-                        <FontAwesomeIcon
-                          icon={faCcMastercard}
-                          style={{ fontSize: "2rem" }}
-                        />
-                      </div>
-                      <div className="col-9 col-sm-3  my-2">
-                        **** **** **** 3200
+                        N/A
                       </div>
                       <div className="col-12 col-sm-4 my-2"></div>
                     </div>

@@ -58,7 +58,7 @@ function UploadFileCaseEngravings({
       <SymmetricalDiv
         className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
         onClick={() => document.getElementById("filesCaseEngravings").click()}
-        style={{ backgroundImage: `url(${imageCaseEngravings?.imageURL})` }}
+        style={{ backgroundImage: `url('${imageCaseEngravings?.imageURL}')` }}
       >
         <i>Click to Add Image</i>
         <input
