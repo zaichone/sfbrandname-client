@@ -483,7 +483,7 @@ function OrderDetail({ auth }) {
                     <Col xs={12} sm={3}>
                       Order
                     </Col>
-                    <Col>{orderInfo?.id}</Col>
+                    <Col>{orderInfo?.customId?.toUpperCase()}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
