@@ -153,19 +153,6 @@ function OrderDetail({ auth }) {
     return () => unsubscribe();
   }, []);
 
-  // get order info
-  const [orderInfo, setOrderInfo] = useState({});
-  console.log("🚀 ~ file: [id].js ~ line 158 ~ OrderDetail ~ orderInfo", orderInfo)
-
-  useEffect(() => {
-    const reference = firestore.collection("tasks").doc(id);
-    const unsubscribe = reference.onSnapshot((snapshot) => {
-      const data = snapshot.data();
-      setOrderInfo({ ...data, id: id });
-    });
-    return () => unsubscribe();
-  }, []);
-
   const showMessage = (msg) => {
     if (msg.type === "text") {
       return msg.message;
@@ -189,12 +176,26 @@ function OrderDetail({ auth }) {
     }
     initShopData();
   }, []);
-  if (!orderInfo.paymentConfirmed) {
+
+  // get order info
+  const [orderInfo, setOrderInfo] = useState();
+  console.log("🚀 ~ file: [id].js ~ line 158 ~ OrderDetail ~ orderInfo", orderInfo)
+
+  useEffect(() => {
+    const reference = firestore.collection("tasks").doc(id);
+    const unsubscribe = reference.onSnapshot((snapshot) => {
+      const data = snapshot.data();
+      setOrderInfo({ ...data, id: id });
+    });
+    return () => unsubscribe();
+  }, []);
+  
+  if (orderInfo && !orderInfo?.paymentConfirmed) {
     router.push({
       pathname: "/authentication/thank-you",
       query: { taskId:id }
     });
-  }
+  } 
   return (
     <div>
       <Head>
@@ -223,7 +224,7 @@ function OrderDetail({ auth }) {
                     <p>Name</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.name || "Loading..."}</p>
+                    <p>{orderInfo?.name || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -231,7 +232,7 @@ function OrderDetail({ auth }) {
                     <p>Brand</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.brand || "Loading..."}</p>
+                    <p>{orderInfo?.brand || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -239,7 +240,7 @@ function OrderDetail({ auth }) {
                     <p>Category</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.category || "Loading..."}</p>
+                    <p>{orderInfo?.category || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -248,7 +249,7 @@ function OrderDetail({ auth }) {
                   </Col>
                   <Col>
                     <p>
-                      {new Date(orderInfo.timestamp).toLocaleString() ||
+                      {new Date(orderInfo?.timestamp).toLocaleString() ||
                         "Loading..."}
                     </p>
                   </Col>
@@ -258,7 +259,7 @@ function OrderDetail({ auth }) {
                     <p>Order ID</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.id || "Loading..."}</p>
+                    <p>{orderInfo?.customId?.toUpperCase() || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -266,7 +267,7 @@ function OrderDetail({ auth }) {
                     <p>Client name</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.clientName || "Loading..."}</p>
+                    <p>{orderInfo?.clientName || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -274,7 +275,7 @@ function OrderDetail({ auth }) {
                     <p>Client ID</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.clientId || "Loading..."}</p>
+                    <p>{orderInfo?.clientId || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -282,7 +283,7 @@ function OrderDetail({ auth }) {
                     <p>Status</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.status || "Loading..."}</p>
+                    <p>{orderInfo?.status || "Loading..."}</p>
                   </Col>
                 </Row>
                 {/* images */}
@@ -292,14 +293,14 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row className="gx-0 gx-sm-5 mt-5">
-                  {orderInfo.featured ? (
+                  {orderInfo?.featured ? (
                     <Col
                       xs={12}
                       sm={3}
                       className="d-flex flex-column justify-content-center mb-3"
                     >
                       <a
-                        href={orderInfo.featured ? orderInfo.featured : ""}
+                        href={orderInfo?.featured ? orderInfo?.featured : ""}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -308,7 +309,7 @@ function OrderDetail({ auth }) {
                           className="d-flex flex-column align-items-center justify-content-center"
                           style={{
                             width: "100%",
-                            background: `url('${orderInfo.featured && orderInfo.featured
+                            background: `url('${orderInfo?.featured && orderInfo?.featured
                               }')center center no-repeat`,
                             border: "1px solid black",
                           }}
@@ -316,12 +317,12 @@ function OrderDetail({ auth }) {
                       </a>
                     </Col>
                   ) : null}
-                  {orderInfo.images ? (
-                    orderInfo.images.map(
+                  {orderInfo?.images ? (
+                    orderInfo?.images.map(
                       (img) =>
                         img && (
                           <Col
-                            key={img.timestamp}
+                            key={img?.timestamp}
                             xs={12}
                             sm={3}
                             className="d-flex flex-column justify-content-center mb-3"
@@ -362,7 +363,7 @@ function OrderDetail({ auth }) {
 
                 {products ? (
                   products.map((product) => (
-                    <>
+                    <div key={product.id}>
                       <Row className="align-items-center mb-5">
                         <Col xs={12} sm={4}>
                           {orderInfo?.orderServices?.[product.sku] ? (
@@ -374,7 +375,7 @@ function OrderDetail({ auth }) {
                               <CancelIcon />
                             </span>
                           )}
-                          <span>{product.name}</span>
+                          <span>{product?.name}</span>
                         </Col>
                         <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                           <div
@@ -388,7 +389,7 @@ function OrderDetail({ auth }) {
                           <a href="/authentication/select-services">Add</a>
                         </Col>
                       </Row>
-                    </>
+                    </div>
                   ))
                 ) : (
                   <div className="row">
@@ -488,7 +489,7 @@ function OrderDetail({ auth }) {
                     <Col xs={12} sm={3}>
                       Submitted
                     </Col>
-                    <Col>{new Date(orderInfo.timestamp).toLocaleString()}</Col>
+                    <Col>{new Date(orderInfo?.timestamp).toLocaleString()}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>

@@ -134,7 +134,7 @@ function Order({ auth }) {
                           {new Date(order.timestamp).toLocaleString()}
                         </h4>
                         <h4 className="orderId d-none d-sm-inline">
-                          <span>Order ID:</span> {order?.customId}
+                          <span>Order ID:</span> {order?.customId?.toUpperCase()}
                         </h4>
                       </div>
 

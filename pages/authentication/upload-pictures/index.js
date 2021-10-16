@@ -54,7 +54,7 @@ function UploadPicutres({ auth }) {
     if (day.length < 2) 
         day = '0' + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join('');
 }
 
   async function goNext() {
@@ -68,7 +68,7 @@ function UploadPicutres({ auth }) {
         {
           images: images,
           featured: featured,
-          customId: formatDate(Date.now())+'-'+taskId
+          customId: category.substring(0, 2)+formatDate(Date.now())+'-'+taskId.substring(0, 4)
         },
         { merge: true }
       )
