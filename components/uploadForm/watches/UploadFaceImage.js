@@ -67,7 +67,7 @@ function UploadFaceImage({
           name="filesFace[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageFace?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageFace?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

@@ -65,7 +65,7 @@ function UploadFileInsole({
           name="filesInsole[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageInsole?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageInsole?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

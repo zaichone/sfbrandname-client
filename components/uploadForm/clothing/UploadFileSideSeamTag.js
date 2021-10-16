@@ -66,7 +66,7 @@ function UploadFileSideSeamTag({
           name="filesSideSeamTag[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageSideSeamTag?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageSideSeamTag?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

@@ -67,7 +67,7 @@ function UploadLogoImage({
           name="filesLogo[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageLogo?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageLogo?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );

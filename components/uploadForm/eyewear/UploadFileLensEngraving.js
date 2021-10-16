@@ -67,7 +67,7 @@ function UploadFileLensEngraving({
           name="filesAdditionalImage[]"
           multiple
         />
-        <div className="box-cover" style={{ backgroundImage: `url(${imageLensEngraving?.imageURL})` }}></div>
+        <div className="box-cover" style={{ backgroundImage: `url('${imageLensEngraving?.imageURL}')` }}></div>
       </SymmetricalDiv>
     </div>
   );
