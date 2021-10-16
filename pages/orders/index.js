@@ -119,7 +119,7 @@ function Order({ auth }) {
                         <SymmetricalDiv
                           className="d-flex flex-column align-items-center justify-content-center image-box"
                           style={{
-                            backgroundImage: `url(${order?.featured})`,
+                            backgroundImage: `url('${order?.featured}')`,
                             backgroundPosition: "center center",
                             backgroundSize: cover,
                           }}
@@ -134,7 +134,8 @@ function Order({ auth }) {
                           {new Date(order.timestamp).toLocaleString()}
                         </h4>
                         <h4 className="orderId d-none d-sm-inline">
-                          <span>Order ID:</span> {order?.customId?.toUpperCase()}
+                          <span>Order ID:</span>{" "}
+                          {order?.customId?.toUpperCase()}
                         </h4>
                       </div>
 
@@ -146,10 +147,19 @@ function Order({ auth }) {
                         <button className="detail-btn">
                           <Link href={`/orders/${order.id}`}>Detail</Link>
                         </button>
-                        <button className="doc-btn" onClick={() => { if(!order.paymentConfirmed){ router.push({
-      pathname: "/authentication/thank-you",
-      query: { taskId:order.id }
-    });} }}>Document</button>
+                        <button
+                          className="doc-btn"
+                          onClick={() => {
+                            if (!order.paymentConfirmed) {
+                              router.push({
+                                pathname: "/authentication/thank-you",
+                                query: { taskId: order.id },
+                              });
+                            }
+                          }}
+                        >
+                          Document
+                        </button>
                         <button className="more-btn">
                           <Link href={`/orders/${order.id}`}>More</Link>
                         </button>
