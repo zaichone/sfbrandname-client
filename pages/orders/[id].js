@@ -490,7 +490,9 @@ function OrderDetail({ auth }) {
                     <Col xs={12} sm={3}>
                       Payment Status
                     </Col>
-                    <Col className="text-capitalize">{orderInfo?.paymentStatus}</Col>
+                    <Col className="text-capitalize">
+                      {orderInfo?.paymentStatus}
+                    </Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
