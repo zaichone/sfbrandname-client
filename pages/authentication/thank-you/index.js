@@ -4,9 +4,7 @@ import PagtTitle from "../../../components/layout/PageTitle";
 import cover from "../../../assets/cover/Authentic.jpg";
 import Three from "../../../assets/3.png";
 
-
 import { useRouter } from "next/router";
-
 
 function ThankYouPayment() {
   const router = useRouter();
@@ -17,7 +15,7 @@ function ThankYouPayment() {
       pathname: "/orders/[taskId]",
       query: { taskId },
     }); */
-    router.push('/orders/')
+    router.push("/orders/");
   }
   return (
     <div>
@@ -37,24 +35,33 @@ function ThankYouPayment() {
         <PagtTitle title="Authentications" bg={cover} />
         <section>
           <ul className="order-nav">
-    <li><a>Item Info</a></li>
-    <li><a>Services</a></li>
-    <li><a>Messages</a></li>
-    <li><a className="active">Transaction</a></li>
+            <li>
+              <a>Item Info</a>
+            </li>
+            <li>
+              <a>Services</a>
+            </li>
+            <li>
+              <a>Messages</a>
+            </li>
+            <li>
+              <a className="active">Transaction</a>
+            </li>
           </ul>
           <div className="container">
             <div className="row">
-              
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
-                  <h3 className="fs-3 fw-semibold">We've recieved your pending</h3>
-                  <p>We will check and verify your payment within 2-4 hours. </p>
+                  <h3 className="fs-3 fw-semibold">
+                    We've recieved your payment.
+                  </h3>
+                  <p>
+                    We will check and verify your payment within 2-4 hours.{" "}
+                  </p>
 
                   <div className="row">
                     <div className="col-12 mb-3 mt-5 d-flex justify-content-center justify-content-sm-start">
-                      <button onClick={nextPage}>
-                        Back
-                      </button>
+                      <button onClick={nextPage}>Back</button>
                     </div>
                   </div>
                 </div>
