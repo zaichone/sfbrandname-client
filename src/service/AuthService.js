@@ -27,8 +27,9 @@ export const AuthService = {
         user: userCred.user,
       };
     } catch (e) {
+      
       return {
-        error: e.message,
+        error: e.code,
       };
     }
   },

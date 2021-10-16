@@ -47,7 +47,7 @@ function ThankYouPayment() {
               
               <div className="col-12 col-sm-9 col-md-9 col-xxl-10">
                 <div className="details">
-                  <h3 className="fs-3 fw-semibold">Thank you!</h3>
+                  <h3 className="fs-3 fw-semibold">We've recieved your pending</h3>
                   <p>We will check and verify your payment within 2-4 hours. </p>
 
                   <div className="row">

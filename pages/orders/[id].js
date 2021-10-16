@@ -153,19 +153,6 @@ function OrderDetail({ auth }) {
     return () => unsubscribe();
   }, []);
 
-  // get order info
-  const [orderInfo, setOrderInfo] = useState({});
-  console.log("🚀 ~ file: [id].js ~ line 158 ~ OrderDetail ~ orderInfo", orderInfo)
-
-  useEffect(() => {
-    const reference = firestore.collection("tasks").doc(id);
-    const unsubscribe = reference.onSnapshot((snapshot) => {
-      const data = snapshot.data();
-      setOrderInfo({ ...data, id: id });
-    });
-    return () => unsubscribe();
-  }, []);
-
   const showMessage = (msg) => {
     if (msg.type === "text") {
       return msg.message;
@@ -189,10 +176,27 @@ function OrderDetail({ auth }) {
     }
     initShopData();
   }, []);
-  if (!orderInfo.paymentConfirmed) {
+
+  // get order info
+  const [orderInfo, setOrderInfo] = useState();
+  console.log(
+    "🚀 ~ file: [id].js ~ line 158 ~ OrderDetail ~ orderInfo",
+    orderInfo
+  );
+
+  useEffect(() => {
+    const reference = firestore.collection("tasks").doc(id);
+    const unsubscribe = reference.onSnapshot((snapshot) => {
+      const data = snapshot.data();
+      setOrderInfo({ ...data, id: id });
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (orderInfo && !orderInfo?.paymentConfirmed) {
     router.push({
       pathname: "/authentication/thank-you",
-      query: { taskId:id }
+      query: { taskId: id },
     });
   }
   return (
@@ -223,7 +227,7 @@ function OrderDetail({ auth }) {
                     <p>Name</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.name || "Loading..."}</p>
+                    <p>{orderInfo?.name || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -231,7 +235,7 @@ function OrderDetail({ auth }) {
                     <p>Brand</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.brand || "Loading..."}</p>
+                    <p>{orderInfo?.brand || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -239,7 +243,7 @@ function OrderDetail({ auth }) {
                     <p>Category</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.category || "Loading..."}</p>
+                    <p>{orderInfo?.category || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -248,7 +252,7 @@ function OrderDetail({ auth }) {
                   </Col>
                   <Col>
                     <p>
-                      {new Date(orderInfo.timestamp).toLocaleString() ||
+                      {new Date(orderInfo?.timestamp).toLocaleString() ||
                         "Loading..."}
                     </p>
                   </Col>
@@ -258,7 +262,7 @@ function OrderDetail({ auth }) {
                     <p>Order ID</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.id || "Loading..."}</p>
+                    <p>{orderInfo?.customId?.toUpperCase() || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -266,15 +270,7 @@ function OrderDetail({ auth }) {
                     <p>Client name</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.clientName || "Loading..."}</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12} sm={2}>
-                    <p>Client ID</p>
-                  </Col>
-                  <Col>
-                    <p>{orderInfo.clientId || "Loading..."}</p>
+                    <p>{orderInfo?.clientName || "Loading..."}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -282,7 +278,7 @@ function OrderDetail({ auth }) {
                     <p>Status</p>
                   </Col>
                   <Col>
-                    <p>{orderInfo.status || "Loading..."}</p>
+                    <p>{orderInfo?.status || "Loading..."}</p>
                   </Col>
                 </Row>
                 {/* images */}
@@ -292,14 +288,14 @@ function OrderDetail({ auth }) {
                   </Col>
                 </Row>
                 <Row className="gx-0 gx-sm-5 mt-5">
-                  {orderInfo.featured ? (
+                  {orderInfo?.featured ? (
                     <Col
                       xs={12}
                       sm={3}
                       className="d-flex flex-column justify-content-center mb-3"
                     >
                       <a
-                        href={orderInfo.featured ? orderInfo.featured : ""}
+                        href={orderInfo?.featured ? orderInfo?.featured : ""}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -308,20 +304,21 @@ function OrderDetail({ auth }) {
                           className="d-flex flex-column align-items-center justify-content-center"
                           style={{
                             width: "100%",
-                            background: `url('${orderInfo.featured && orderInfo.featured
-                              }')center center no-repeat`,
+                            background: `url('${
+                              orderInfo?.featured && orderInfo?.featured
+                            }')center center no-repeat`,
                             border: "1px solid black",
                           }}
                         ></SymmetricalDiv>
                       </a>
                     </Col>
                   ) : null}
-                  {orderInfo.images ? (
-                    orderInfo.images.map(
+                  {orderInfo?.images ? (
+                    orderInfo?.images.map(
                       (img) =>
                         img && (
                           <Col
-                            key={img.timestamp}
+                            key={img?.timestamp}
                             xs={12}
                             sm={3}
                             className="d-flex flex-column justify-content-center mb-3"
@@ -339,8 +336,9 @@ function OrderDetail({ auth }) {
                                 className="d-flex flex-column align-items-center justify-content-center"
                                 style={{
                                   width: "100%",
-                                  background: `url('${img.imageURL ? img.imageURL : thumbImage
-                                    }')center center no-repeat`,
+                                  background: `url('${
+                                    img.imageURL ? img.imageURL : thumbImage
+                                  }')center center no-repeat`,
                                   border: "1px solid black",
                                 }}
                               ></SymmetricalDiv>
@@ -362,7 +360,7 @@ function OrderDetail({ auth }) {
 
                 {products ? (
                   products.map((product) => (
-                    <>
+                    <div key={product.id}>
                       <Row className="align-items-center mb-5">
                         <Col xs={12} sm={4}>
                           {orderInfo?.orderServices?.[product.sku] ? (
@@ -374,7 +372,7 @@ function OrderDetail({ auth }) {
                               <CancelIcon />
                             </span>
                           )}
-                          <span>{product.name}</span>
+                          <span>{product?.name}</span>
                         </Col>
                         <Col className="my-3 my-sm-0 ms-2 ms-sm-0">
                           <div
@@ -385,10 +383,14 @@ function OrderDetail({ auth }) {
                           />
                         </Col>
                         <Col xs={12} sm={1} className="text-end">
-                          <a href="/authentication/select-services">Add</a>
+                          {orderInfo?.orderServices?.[product.sku] ? (
+                            <></>
+                          ) : (
+                            <a href="/authentication/select-services">Add</a>
+                          )}
                         </Col>
                       </Row>
-                    </>
+                    </div>
                   ))
                 ) : (
                   <div className="row">
@@ -480,39 +482,15 @@ function OrderDetail({ auth }) {
                 <div>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
-                      Order
+                      Order ID
                     </Col>
-                    <Col>{orderInfo?.id}</Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col xs={12} sm={3}>
-                      Submitted
-                    </Col>
-                    <Col>{new Date(orderInfo.timestamp).toLocaleString()}</Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col xs={12} sm={3}>
-                      Services
-                    </Col>
-                    <Col>Basic Authentication, Official Documentation</Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col xs={12} sm={3}>
-                      Amount
-                    </Col>
-                    <Col>$30</Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col xs={12} sm={3}>
-                      Payment Method
-                    </Col>
-                    <Col>Master Card **** 3200</Col>
+                    <Col>{orderInfo?.customId?.toUpperCase()}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
                       Payment Status
                     </Col>
-                    <Col>{orderInfo?.paymentStatus}</Col>
+                    <Col className="text-capitalize">{orderInfo?.paymentStatus}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
@@ -527,12 +505,6 @@ function OrderDetail({ auth }) {
                     <Col>
                       {new Date(orderInfo?.paymentTimestamp).toLocaleString()}
                     </Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col xs={12} sm={3}>
-                      Payment Reference
-                    </Col>
-                    <Col>{orderInfo?.paymentRef}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={12} sm={3}>
