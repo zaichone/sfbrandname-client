@@ -7,16 +7,21 @@ import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { useRouter } from "next/router";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode.react';
+
+import CertificateTemplate from "../../components/cer/CertificateTemplate";
+import ReactToPrint from 'react-to-print';
 
 import { firestore } from "../../src/config/firebase";
 
 function Certificate() {
   const router = useRouter();
   const { id } = router.query;
+  const componentRef = useRef();
 
   const [cerDetail, setCerDetail] = useState();
+
 
   useEffect(() => {
     async function getCerDetail() {
@@ -107,11 +112,19 @@ function Certificate() {
                     </p>
                   </div>
                   <div className="col-12 mb-5">
-                    <button>certificate</button>
+                    
+                    <ReactToPrint
+                      trigger={() => <button>certificate</button>}
+                      content={() => componentRef.current}
+                    />
+                   
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="d-none">
+            {cerDetail && <CertificateTemplate data={cerDetail} ref={componentRef} />}
           </div>
         </section>
       </main>
