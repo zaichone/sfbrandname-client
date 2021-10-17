@@ -86,7 +86,7 @@ function Authentication({ auth }) {
       window.localStorage.setItem("category", category);
 
 
-      cersRef.add({ taskId: taskRef.id, cerUrl:'', downloadUrl: '', status: 'pending', qrCodeUrl: '' })
+      cersRef.add({ taskId: taskRef.id, cerUrl: '', downloadUrl: '', status: 'pending', qrCodeUrl: '' })
         .then((cer) => {
           tasksRef.doc(taskRef.id).update(
             {
@@ -96,11 +96,11 @@ function Authentication({ auth }) {
           );
           cersRef.doc(cer.id).update({ cerUrl: `https://superauthenticate.com/certificates/${cer.id}` }, { merge: true });
         });
-      /*
-    router.push({
-      pathname: "/authentication/upload-pictures/",
-      query: { taskId: taskRef.id, category: category.value },
-    }); */
+
+      router.push({
+        pathname: "/authentication/upload-pictures/",
+        query: { taskId: taskRef.id, category: category.value },
+      });
     });
 
     console.log("go next");
