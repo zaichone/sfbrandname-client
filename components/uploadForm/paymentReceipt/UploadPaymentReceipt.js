@@ -21,10 +21,10 @@ function UploadFilePaymentReceipt({
     });
   }
   return (
-    <div className="col-12 col-sm-4 text-center mt-4">
+    <div className="col-12 col-sm-4 mt-4">
       <h3>Payment Receipt</h3>
       <div
-        className="d-flex flex-column align-items-center justify-content-center image-box mx-auto"
+        className="d-flex flex-column align-items-center justify-content-center image-box"
         onClick={() => document.getElementById("filesPaymentImage").click()}
         style={{ width: "15rem", height: "15rem" }}
       >
