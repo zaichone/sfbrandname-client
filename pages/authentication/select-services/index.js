@@ -29,7 +29,7 @@ function SelectServices({ auth }) {
   const { user } = auth;
 
   const [basicAuthenProductId] = useState("prod_bO6J5apeYPoEjp");
-  const [productId] = useState('prod_bO6J5apeYPoEjp');
+  const [certDocumentProductId] = useState("prod_A12Jwre87dlPjn");
   const [products, setProducts] = useState();
   const [cart, setCart] = useState([]);
   const [cartId, setCartId] = useState("");
@@ -53,11 +53,11 @@ function SelectServices({ auth }) {
     await taskRef
       .update(
         {
-          services:services
+          services: services,
         },
         { merge: true }
       )
-      .then(() => { })
+      .then(() => {})
       .catch((error) => {});
     router.push({
       pathname: "/authentication/billing/",
@@ -83,17 +83,34 @@ function SelectServices({ auth }) {
         commerce.cart.add(basicAuthenProductId, 1).then((json) => {
           // console.log(`item added!`);
         });
+        commerce.cart.add(certDocumentProductId, 1).then((json) => {
+          // console.log(`item added!`);
+        });
       } else {
         // console.log(`cart already have content: `, items);
 
+        // look for basicauthen
         if (items.find((item) => item["product_id"] === basicAuthenProductId)) {
-          // console.log(`found item, do nothing`);
+          // console.log(`found basicAuthen, do nothing`);
         } else {
           {
             // console.log(
-            //   `[addtocart] ${basicAuthenProductId} not found in cart! should add item now`
+            //   `[addtocart] basicAuthen not found in cart! should add item now`
             // );
-            commerce.cart.add(basicAuthenProductId, 1).then((json) => {
+            commerce.cart.add(basicAuthenProductId, 1).then(() => {
+              // console.log(`item added!`);
+            });
+          }
+        }
+
+        // look for certDocument
+        if (
+          items.find((item) => item["product_id"] === certDocumentProductId)
+        ) {
+          // console.log(`found certDocument, do nothing`);
+        } else {
+          {
+            commerce.cart.add(certDocumentProductId, 1).then(() => {
               // console.log(`item added!`);
             });
           }
@@ -109,12 +126,29 @@ function SelectServices({ auth }) {
           }
           if (item.product_id === basicAuthenProductId && item.quantity > 1) {
             // console.log(`found more than 1 basicauth product at:`, item.id);
-            commerce.cart
-              .update(item.id, { quantity: 1 })
-              // .then((response) =>
-              // console.log(`force change quantity to 1: `, response)
-              // )
-              ;
+            commerce.cart.update(item.id, { quantity: 1 });
+            // .then((response) =>
+            //   console.log(`force change basicauth quantity to 1: `, response)
+            // )
+          }
+          if (
+            item.product_id === certDocumentProductId &&
+            item.quantity === 1
+          ) {
+            // console.log(
+            //   `found previous certDocument product at:`,
+            //   item.id,
+            //   `but quantity is already at 1`
+            // );
+          }
+          if (item.product_id === certDocumentProductId && item.quantity > 1) {
+            commerce.cart.update(item.id, { quantity: 1 });
+            // .then((response) =>
+            //   console.log(
+            //     `force change certdocument quantity to 1: `,
+            //     response
+            //   )
+            // )
           }
         });
       }
@@ -124,15 +158,14 @@ function SelectServices({ auth }) {
       const taskRef = firestore.collection("tasks").doc(taskId);
       const doc = await taskRef.get();
       if (!doc.exists) {
-        console.log('No such document!');
+        // console.log("No such document!");
       } else {
-        console.log('Document data:', doc.data());
+        // console.log("Document data:", doc.data());
         setOrderDetail(doc.data());
         setServices(doc.data().services);
       }
     }
     getOrderDetail();
-
   }, []);
 
   useEffect(() => {
@@ -157,6 +190,7 @@ function SelectServices({ auth }) {
       });
     }
     initCartData();
+    // console.log(`cart: `, cart);
   }, [cart]);
 
   function handleProductToggle(e) {
@@ -164,19 +198,27 @@ function SelectServices({ auth }) {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     let tempServices = services;
-    console.log("🚀 ~ file: index.js ~ line 157 ~ handleProductToggle ~ tempServices", tempServices)
-
+    // console.log(
+    //   "🚀 ~ file: index.js ~ line 157 ~ handleProductToggle ~ tempServices",
+    //   tempServices
+    // );
 
     if (value === true) {
       addToCart(name);
       tempServices.push(name);
-      console.log("🚀 ~ file: index.js ~ line 162 ~ handleProductToggle ~ tempServices", tempServices)
+      // console.log(
+      //   "🚀 ~ file: index.js ~ line 162 ~ handleProductToggle ~ tempServices",
+      //   tempServices
+      // );
       setServices(tempServices);
     }
     if (value === false) {
       removeFromCart(name);
       const index = tempServices.indexOf(name);
-      console.log("🚀 ~ file: index.js ~ line 168 ~ handleProductToggle ~ tempServices", tempServices)
+      // console.log(
+      //   "🚀 ~ file: index.js ~ line 168 ~ handleProductToggle ~ tempServices",
+      //   tempServices
+      // );
       if (index > -1) {
         tempServices.splice(index, 1);
       }
@@ -230,12 +272,10 @@ function SelectServices({ auth }) {
             // console.log(
             //   `[addtocart] found previous ${item.product_id} but quantity is over 1, forcing quantity now...`
             // );
-            commerce.cart
-              .update(item.product_id, { quantity: 1 })
-              // .then((response) =>
-              //   console.log(`force change quantity to 1: `, response)
-              // )
-              ;
+            commerce.cart.update(item.product_id, { quantity: 1 });
+            // .then((response) =>
+            //   console.log(`force change quantity to 1: `, response)
+            // )
             setLockButton(false);
             setNotificationText("Item added!");
             clearNotification();
@@ -253,9 +293,8 @@ function SelectServices({ auth }) {
     await commerce.cart.contents().then((items) => {
       let targetItem = items.find((item) => item["product_id"] === targetId);
       if (targetItem) {
-        commerce.cart.remove(targetItem.id)
-          // .then(console.log(`removed item`))
-          ;
+        commerce.cart.remove(targetItem.id);
+        // .then(console.log(`removed item`))
         cart.filter((e) => e !== targetItem);
       }
       setLockButton(false);
@@ -326,8 +365,12 @@ function SelectServices({ auth }) {
                               name={`${product.id}`}
                               defaultChecked={checkboxInCart(product.id)}
                               onChange={handleProductToggle}
-                              disabled={orderDetail?.services?.includes(product?.id)}
-                              defaultChecked={orderDetail?.services?.includes(product?.id)}
+                              disabled={orderDetail?.services?.includes(
+                                product?.id
+                              )}
+                              defaultChecked={orderDetail?.services?.includes(
+                                product?.id
+                              )}
                             />
                             <label
                               className="form-check-label"

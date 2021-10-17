@@ -31,6 +31,8 @@ function UploadPicutres({ auth }) {
 
   const [basicAuthen, setBasicAuthen] = useState();
   const [basicAuthenProductId] = useState("prod_bO6J5apeYPoEjp");
+  const [certDocumentProductId] = useState("prod_A12Jwre87dlPjn");
+
   const [cartId, setCartId] = useState();
 
   const [clientId, setClientId] = useState(user.uid);
@@ -45,17 +47,15 @@ function UploadPicutres({ auth }) {
 
   function formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('');
-}
+    return [year, month, day].join("");
+  }
 
   async function goNext() {
     console.log("images before update", images);
@@ -68,12 +68,21 @@ function UploadPicutres({ auth }) {
         {
           images: images,
           featured: featured,
-          customId: category.substring(0, 2)+formatDate(Date.now())+'-'+taskId.substring(0, 4),
-          services:[basicAuthenProductId]
+          customId:
+            category.substring(0, 2) +
+            formatDate(Date.now()) +
+            "-" +
+            taskId.substring(0, 4),
+          services: [basicAuthenProductId, certDocumentProductId],
         },
         { merge: true }
       )
-      .then(() => { window.localStorage.setItem("customId", formatDate(Date.now())+'-'+taskId); })
+      .then(() => {
+        window.localStorage.setItem(
+          "customId",
+          formatDate(Date.now()) + "-" + taskId
+        );
+      })
       .catch((error) => {});
 
     router.push({
