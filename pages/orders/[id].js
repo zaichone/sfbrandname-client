@@ -383,10 +383,15 @@ function OrderDetail({ auth }) {
                           />
                         </Col>
                         <Col xs={12} sm={1} className="text-end">
-                          {orderInfo?.orderServices?.[product.sku] ? (
+                          {orderInfo?.services &&
+                          orderInfo.services.includes(product.id) ? (
                             <></>
                           ) : (
-                            <a href={`/authentication/select-services?taskId=${id}&category=${orderInfo?.category}`}>Add</a>
+                            <a
+                              href={`/authentication/select-services?taskId=${id}&category=${orderInfo?.category}`}
+                            >
+                              Add
+                            </a>
                           )}
                         </Col>
                       </Row>
