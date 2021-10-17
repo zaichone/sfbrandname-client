@@ -6,9 +6,31 @@ import cover from "../../assets/certificate/cover.png";
 import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { useRouter } from "next/router";
+
+import {useState, useEffect} from 'react';
+import QRCode from 'qrcode.react';
+
+import { firestore } from "../../src/config/firebase";
+
 function Certificate() {
   const router = useRouter();
   const { id } = router.query;
+
+  const [cerDetail, setCerDetail] = useState();
+
+  useEffect(() => {
+    async function getCerDetail() {
+      const cerRef = firestore.collection("certificates").doc(id);
+      const doc = await cerRef.get();
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log('Document data:', doc.data());
+        setCerDetail(doc.data());
+      }
+    }
+    getCerDetail();
+  }, [])
   return (
     <div>
       <Head>
@@ -32,7 +54,7 @@ function Certificate() {
               <div className="card w-100">
                 <div className="row g-0">
                   <div className="col-md-3 col-lg-2">
-                    <img src={qr.src} className="img-fluid" alt="" />
+                    {cerDetail && <QRCode value={cerDetail.cerUrl} size={230}/> }
                   </div>
                   <div className="col-md-9 col-lg-10 d-flex justify-content-center align-items-center">
                     <div className="card-body px-5">
@@ -49,6 +71,7 @@ function Certificate() {
                         />
                       </h5>
                       <table>
+                        <tbody>
                         <tr>
                           <td>
                             <strong>Product Name: </strong>
@@ -67,6 +90,7 @@ function Certificate() {
                           </td>
                           <td>38052ba2-a640-4207-b533-61f4253bfef9</td>
                         </tr>
+                        </tbody>
                       </table>
                     </div>
                   </div>

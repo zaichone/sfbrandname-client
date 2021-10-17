@@ -155,6 +155,10 @@ function Order({ auth }) {
                                 pathname: "/authentication/thank-you",
                                 query: { taskId: order.id },
                               });
+                            }else{
+                              router.push({
+                                pathname: `/certificates/${order?.certificateId}`
+                              });
                             }
                           }}
                         >
