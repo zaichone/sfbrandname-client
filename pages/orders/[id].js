@@ -386,7 +386,7 @@ function OrderDetail({ auth }) {
                           {orderInfo?.orderServices?.[product.sku] ? (
                             <></>
                           ) : (
-                            <a href="/authentication/select-services">Add</a>
+                            <a href={`/authentication/select-services?taskId=${id}&category=${orderInfo?.category}`}>Add</a>
                           )}
                         </Col>
                       </Row>

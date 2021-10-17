@@ -53,20 +53,22 @@ function Billing({ auth }) {
     async function handleConfirm() {
         console.log("Confirm");
         let taskCustomId = window.localStorage.getItem("customId");
+        console.log('cart', cart);
         let transactionData = {
-            clientId:user.uid,
+            clientId: user.uid,
             taskId,
-            taskCustomId:taskCustomId,
+            taskCustomId: taskCustomId,
             cartId,
-            items:cart.line_items,
-            subtotal:cart.subtotal,
+            items: cart.line_items,
+            subtotal: cart.subtotal,
             timestamp: new Date().getTime(),
-            paymentMethod:'Bank Transfer'
+            paymentMethod: 'Bank Transfer'
         }
         await transactionRef.add(transactionData).then((transactionRef) => {
             console.log(transactionRef.id);
 
         });
+        commerce.cart.delete().then((response) => console.log(response));
         router.push({
             pathname: "/authentication/almost-done/",
             query: { taskId: taskId, cartId: cartId },

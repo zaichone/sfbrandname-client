@@ -68,7 +68,8 @@ function UploadPicutres({ auth }) {
         {
           images: images,
           featured: featured,
-          customId: category.substring(0, 2)+formatDate(Date.now())+'-'+taskId.substring(0, 4)
+          customId: category.substring(0, 2)+formatDate(Date.now())+'-'+taskId.substring(0, 4),
+          services:[basicAuthenProductId]
         },
         { merge: true }
       )

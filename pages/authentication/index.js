@@ -71,6 +71,7 @@ function Authentication({ auth }) {
         fastTurnaround: false,
         hardcopyAndDelivery: false,
       },
+      services:[],
       paymentConfirmed:false,
     };
 

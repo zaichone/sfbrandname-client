@@ -36,6 +36,9 @@ function SelectServices({ auth }) {
   const [notificationText, setNotificationText] = useState("");
   const [lockButton, setLockButton] = useState(false);
 
+  const [orderDetail, setOrderDetail] = useState();
+  const [services, setServices] = useState();
+
   // console.log(
   //   "🚀 ~ file: index.js ~ line 32 ~ SelectServices ~ products",
   //   products
@@ -46,6 +49,16 @@ function SelectServices({ auth }) {
 
   async function handleSelectingServices() {
     console.log("Selecting");
+    const taskRef = firestore.collection("tasks").doc(taskId);
+    await taskRef
+      .update(
+        {
+          services:services
+        },
+        { merge: true }
+      )
+      .then(() => { })
+      .catch((error) => {});
     router.push({
       pathname: "/authentication/billing/",
       query: { taskId: taskId, cartId: cartId },
@@ -99,7 +112,7 @@ function SelectServices({ auth }) {
             commerce.cart
               .update(item.id, { quantity: 1 })
               // .then((response) =>
-                // console.log(`force change quantity to 1: `, response)
+              // console.log(`force change quantity to 1: `, response)
               // )
               ;
           }
@@ -107,16 +120,19 @@ function SelectServices({ auth }) {
       }
     });
 
-    /*
-        commerce.products.list().then(response => {
-            
-            const sortedProduct = await response.data.sort((a,b) =>{
-                return a.sort_order - b.sort_order;
-            });
-            setProducts(sortedProduct);
-        }); */
-    //commerce.products.retrieve(productId).then(product => setBasicAuthen(product));
-    //commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
+    async function getOrderDetail() {
+      const taskRef = firestore.collection("tasks").doc(taskId);
+      const doc = await taskRef.get();
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log('Document data:', doc.data());
+        setOrderDetail(doc.data());
+        setServices(doc.data().services);
+      }
+    }
+    getOrderDetail();
+
   }, []);
 
   useEffect(() => {
@@ -147,12 +163,24 @@ function SelectServices({ auth }) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
+    let tempServices = services;
+    console.log("🚀 ~ file: index.js ~ line 157 ~ handleProductToggle ~ tempServices", tempServices)
+
 
     if (value === true) {
       addToCart(name);
+      tempServices.push(name);
+      console.log("🚀 ~ file: index.js ~ line 162 ~ handleProductToggle ~ tempServices", tempServices)
+      setServices(tempServices);
     }
     if (value === false) {
       removeFromCart(name);
+      const index = tempServices.indexOf(name);
+      console.log("🚀 ~ file: index.js ~ line 168 ~ handleProductToggle ~ tempServices", tempServices)
+      if (index > -1) {
+        tempServices.splice(index, 1);
+      }
+      setServices(tempServices);
     }
   }
 
@@ -226,8 +254,8 @@ function SelectServices({ auth }) {
       let targetItem = items.find((item) => item["product_id"] === targetId);
       if (targetItem) {
         commerce.cart.remove(targetItem.id)
-        // .then(console.log(`removed item`))
-        ;
+          // .then(console.log(`removed item`))
+          ;
         cart.filter((e) => e !== targetItem);
       }
       setLockButton(false);
@@ -298,6 +326,8 @@ function SelectServices({ auth }) {
                               name={`${product.id}`}
                               defaultChecked={checkboxInCart(product.id)}
                               onChange={handleProductToggle}
+                              disabled={orderDetail?.services?.includes(product?.id)}
+                              defaultChecked={orderDetail?.services?.includes(product?.id)}
                             />
                             <label
                               className="form-check-label"
