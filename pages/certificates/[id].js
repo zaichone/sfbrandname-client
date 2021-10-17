@@ -81,7 +81,7 @@ function Certificate() {
                             <td>
                               <strong>Product Name: </strong>
                             </td>
-                            <td>{cerDetail?.brand} - {cerDetail?.name}</td>
+                            <td className="text-uppercase">{cerDetail?.brand} - {cerDetail?.name}</td>
                           </tr>
                           <tr>
                             <td>

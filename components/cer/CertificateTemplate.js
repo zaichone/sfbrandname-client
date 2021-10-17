@@ -15,7 +15,7 @@ export class CertificateTemplate extends Component {
                 <div className="row mt-5">
                     <div className="col">
                         <h3>CLIENT</h3>
-                        <p>{this.props.data.clientName}</p>
+                        <p className="text-uppercase">{this.props.data.clientName}</p>
                         <SymmetricalDiv
                           className="d-flex flex-column align-items-center justify-content-center cer-box"
                           style={{
