@@ -42,6 +42,8 @@ function UploadPicutres({ auth }) {
   const [featured, setFeatured] = useState("");
   const [images, setImages] = useState([]);
 
+  const [cerId, setCerId] = useState();
+
   const router = useRouter();
   const { taskId, category } = router.query;
 
@@ -63,6 +65,7 @@ function UploadPicutres({ auth }) {
     //await commerce.cart.add(productId, 1).then(json => setCartId(json.cart.id));
 
     const taskRef = firestore.collection("tasks").doc(taskId);
+    const cersRef = firestore.collection("certificates").doc(cerId);
     await taskRef
       .update(
         {
@@ -83,13 +86,33 @@ function UploadPicutres({ auth }) {
           formatDate(Date.now()) + "-" + taskId
         );
       })
-      .catch((error) => {});
+      .catch((error) => { });
+    await cersRef.update({ featured: featured }, { merge: true });
 
     router.push({
       pathname: "/authentication/select-services/",
       query: { taskId: taskId },
     });
   }
+
+  useEffect(() => {
+    async function getCerDetail() {
+      const cerRef = firestore.collection("certificates");
+
+
+      const snapshot = await cerRef.where('taskId', '==', taskId).get();
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }
+
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+        setCerId(doc.id);
+      });
+    }
+    getCerDetail();
+  }, [])
 
   function renderUploadForm(category) {
     switch (category) {
