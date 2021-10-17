@@ -5,7 +5,7 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
-  basePath: 'https://superauthenticate.com',
+  
   async redirects() {
     return [
       {
