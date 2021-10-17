@@ -85,26 +85,22 @@ function Authentication({ auth }) {
       window.localStorage.setItem("clientId", user.uid);
       window.localStorage.setItem("category", category);
 
-      if (typeof window !== 'undefined') {
-        const hostname = window.location.hostname;
-        console.log("🚀 ~ file: index.js ~ line 90 ~ awaittasksRef.add ~ hostname", hostname)
-     }
-      cersRef.add({ taskId: taskRef.id, documentUrl: '', status: 'pending', qrCodeUrl: '' })
+
+      cersRef.add({ taskId: taskRef.id, cerUrl:'', downloadUrl: '', status: 'pending', qrCodeUrl: '' })
         .then((cer) => {
           tasksRef.doc(taskRef.id).update(
             {
-              certificateId:cer.id
+              certificateId: cer.id
             },
             { merge: true }
-          )
-          .then(() => { })
-          .catch((error) => {});
+          );
+          cersRef.doc(cer.id).update({ cerUrl: `https://superauthenticate.com/certificates/${cer.id}` }, { merge: true });
         });
-        /*
-      router.push({
-        pathname: "/authentication/upload-pictures/",
-        query: { taskId: taskRef.id, category: category.value },
-      }); */
+      /*
+    router.push({
+      pathname: "/authentication/upload-pictures/",
+      query: { taskId: taskRef.id, category: category.value },
+    }); */
     });
 
     console.log("go next");
