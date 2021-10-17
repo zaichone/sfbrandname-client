@@ -1,4 +1,5 @@
 import Script from "next/script";
+import {useEffect} from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/bootstrap.min.css";
@@ -13,8 +14,12 @@ import { AuthProvider } from "../src/hook/auth";
 import AuthStateChanged from "../src/layout/AuthStateChanged";
 
 import CookieConsent from "react-cookie-consent";
+import TagManager from 'react-gtm-module';
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID });
+}, []);
   return (
     <>
       <Script
