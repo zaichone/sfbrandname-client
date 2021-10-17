@@ -88,7 +88,7 @@ function Certificate() {
                             <td>
                               <strong>Serial Number: </strong>
                             </td>
-                            <td>{cerDetail?.customId.toUpperCase()}</td>
+                            <td>{cerDetail?.customId?.toUpperCase()}</td>
                           </tr>
                         </tbody>
                       </table>
