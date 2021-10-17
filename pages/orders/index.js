@@ -157,7 +157,7 @@ function Order({ auth }) {
                               });
                             }else{
                               router.push({
-                                pathname: `/certificates/${order?.certificateId}`
+                                pathname: `/certificates/${order?.certificateId}`,                          
                               });
                             }
                           }}

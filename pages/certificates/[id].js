@@ -7,7 +7,7 @@ import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { useRouter } from "next/router";
 
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 
 import { firestore } from "../../src/config/firebase";
@@ -47,14 +47,14 @@ function Certificate() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="page-services">
-        <PagtTitle title={`Certificate - ${id}`} bg={cover} />
+        <PagtTitle title={`Certificate`} bg={cover} />
         <section className="service-featured">
           <div className="sub-section">
             <div className="container">
               <div className="card w-100">
                 <div className="row g-0">
                   <div className="col-md-3 col-lg-2">
-                    {cerDetail && <QRCode value={cerDetail.cerUrl} size={230}/> }
+                    {cerDetail && <QRCode value={cerDetail.cerUrl} size={230} />}
                   </div>
                   <div className="col-md-9 col-lg-10 d-flex justify-content-center align-items-center">
                     <div className="card-body px-5">
@@ -72,24 +72,24 @@ function Certificate() {
                       </h5>
                       <table>
                         <tbody>
-                        <tr>
-                          <td>
-                            <strong>Product Name: </strong>
-                          </td>
-                          <td>Louis Vuitton - Pochette</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <strong>Client Name: </strong>
-                          </td>
-                          <td>Image Engine Company Limited</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <strong>Serial Number: </strong>
-                          </td>
-                          <td>38052ba2-a640-4207-b533-61f4253bfef9</td>
-                        </tr>
+                          <tr>
+                            <td>
+                              <strong>Product Name: </strong>
+                            </td>
+                            <td>{cerDetail?.brand} - {cerDetail?.name}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Client Name: </strong>
+                            </td>
+                            <td>{cerDetail?.clientName}</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Serial Number: </strong>
+                            </td>
+                            <td>{cerDetail?.customId.toUpperCase()}</td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>

@@ -35,6 +35,21 @@ function Authentication({ auth }) {
   const cersRef = firestore.collection("certificates");
   const [brands, setBrands] = useState();
   //console.log("🚀 ~ file: index.js ~ line 27 ~ Authentication ~ brands", brands)
+
+  function formatDate(date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('');
+  }
+
   async function goNext(e) {
     e.preventDefault();
     const { brand, name, clientName, category } = e.target.elements;
@@ -84,9 +99,10 @@ function Authentication({ auth }) {
       window.localStorage.setItem("taskId", taskRef.id);
       window.localStorage.setItem("clientId", user.uid);
       window.localStorage.setItem("category", category);
+      console.log('task ref', taskRef);
+      console.log('category', category);
 
-
-      cersRef.add({ taskId: taskRef.id, cerUrl: '', downloadUrl: '', status: 'pending', qrCodeUrl: '' })
+      cersRef.add({ taskId: taskRef.id, cerUrl: '', downloadUrl: '', status: 'pending', qrCodeUrl: '', customId: category.value?.substring(0, 2) + formatDate(Date.now()) + '-' + taskRef.id.substring(0, 4), clientName: clientName.value, brand: brand.value, name: name.value })
         .then((cer) => {
           tasksRef.doc(taskRef.id).update(
             {
