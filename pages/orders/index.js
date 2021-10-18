@@ -32,7 +32,7 @@ function Order({ auth }) {
     const ordersRef = firestore
       .collection("tasks")
       .where("clientId", "==", user.uid)
-      .orderBy("timestamp", "asc");
+      .orderBy("timestamp", "desc");
     const unsubscribe = ordersRef.onSnapshot((snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -155,9 +155,9 @@ function Order({ auth }) {
                                 pathname: "/authentication/thank-you",
                                 query: { taskId: order.id },
                               });
-                            }else{
+                            } else {
                               router.push({
-                                pathname: `/certificates/${order?.certificateId}`,                          
+                                pathname: `/certificates/${order?.certificateId}`,
                               });
                             }
                           }}
