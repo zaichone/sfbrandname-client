@@ -201,7 +201,7 @@ function AuthServiceResetPassword() {
       <form onSubmit={handleSubmit} className="w-100 mt-5">
         {noti && <Alert variant="success">{noti}</Alert>}
         {error && <Alert variant="danger">{JSON.stringify(error)}</Alert>}
-        <div className="row mb-5">
+        <div className="row mb-5" ref={target}>
           <div className="col">
             <input
               type="password"
@@ -210,11 +210,17 @@ function AuthServiceResetPassword() {
               name="password"
               placeholder="Password"
               onChange={handlePasswordChange}
+              onFocus={() => {
+                setShow(true);
+              }}
+              onBlur={() => {
+                setShow(false);
+              }}
               required
             />
           </div>
         </div>
-        <div className="row mb-5">
+        <div className="row mb-5" ref={target}>
           <div className="col">
             <input
               type="password"
@@ -223,34 +229,34 @@ function AuthServiceResetPassword() {
               name="confirmPassword"
               placeholder="Confirm Password"
               onChange={handleConfirmPassword}
+              onFocus={() => {
+                setShow(true);
+              }}
+              onBlur={() => {
+                setShow(false);
+              }}
               required
             />
           </div>
         </div>
 
-        <div className="row mb-5">
-          <div className="col text-center">
+        <Overlay
+          target={target.current}
+          show={show}
+          placement="right"
+          rootClose={true}
+        >
+          {({ placement, arrowProps, show: _show, popper, ...props }) => (
             <div
-              className="btn btn-link mx-auto"
-              ref={target}
-              onClick={() => setShow(!show)}
+              {...props}
+              style={{
+                ...props.style,
+              }}
             >
-              Password requirements
+              <PasswordRequirementsPop />
             </div>
-            <Overlay target={target.current} show={show} placement="bottom">
-              {({ placement, arrowProps, show: _show, popper, ...props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                  }}
-                >
-                  <PasswordRequirementsPop />
-                </div>
-              )}
-            </Overlay>
-          </div>
-        </div>
+          )}
+        </Overlay>
 
         <div className="row mb-3">
           <div className="col">

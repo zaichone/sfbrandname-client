@@ -2,14 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { Alert } from "react-bootstrap";
 
 //import { auth } from "../../src/config/firebase";
 
 import useAuth from "../../src/hooks/auth";
 import { withPublic } from "../../src/hook/route";
 
-import { Overlay } from "react-bootstrap";
+import { Overlay, OverlayTrigger } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 function Register({ auth }) {
   const [loading, setLoading] = useState(false);
@@ -98,6 +98,7 @@ function Register({ auth }) {
 
     setConfirmPasswordCheck(password === confirmPwd);
   }
+
 
   const PasswordRequirementsPop = (props) => (
     <>
@@ -226,7 +227,7 @@ function Register({ auth }) {
                     />
                   </div>
                 </div>
-                <div className="row mb-3">
+                <div className="row mb-3" ref={target}>
                   <div className="col">
                     <input
                       type="password"
@@ -234,11 +235,17 @@ function Register({ auth }) {
                       name="password"
                       placeholder="Password"
                       onChange={handlePasswordChange}
+                      onFocus={() => {
+                        setShow(true);
+                      }}
+                      onBlur={() => {
+                        setShow(false);
+                      }}
                       required
                     />
                   </div>
                 </div>
-                <div className="row mb-3">
+                <div className="row mb-3" ref={target}>
                   <div className="col">
                     <input
                       type="password"
@@ -246,44 +253,35 @@ function Register({ auth }) {
                       name="confirmPassword"
                       placeholder="Confirm Password"
                       onChange={handleConfirmPassword}
+                      onFocus={() => {
+                        setShow(true);
+                      }}
+                      onBlur={() => {
+                        setShow(false);
+                      }}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="row mb-3">
-                  <div className="col text-center">
+                <Overlay target={target.current} show={show} placement={"right"} rootClose={true}>
+                  {({
+                    placement,
+                    arrowProps,
+                    show: _show,
+                    popper,
+                    ...props
+                  }) => (
                     <div
-                      className="btn btn-link mx-auto"
-                      ref={target}
-                      onClick={() => setShow(!show)}
+                      {...props}
+                      style={{
+                        ...props.style,
+                      }}
                     >
-                      Password requirements
+                      <PasswordRequirementsPop />
                     </div>
-                    <Overlay
-                      target={target.current}
-                      show={show}
-                      placement="bottom"
-                    >
-                      {({
-                        placement,
-                        arrowProps,
-                        show: _show,
-                        popper,
-                        ...props
-                      }) => (
-                        <div
-                          {...props}
-                          style={{
-                            ...props.style,
-                          }}
-                        >
-                          <PasswordRequirementsPop />
-                        </div>
-                      )}
-                    </Overlay>
-                  </div>
-                </div>
+                  )}
+                </Overlay>
 
                 <div className="row my-5">
                   <div className="col">
