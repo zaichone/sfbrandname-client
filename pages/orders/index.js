@@ -38,15 +38,67 @@ function Order({ auth }) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log("orders data", data);
+      // console.log("orders data", data);
       setOrders(data);
     });
     return () => unsubscribe();
   }, []);
 
+  function filterOrders() {
+    let cond = [];
+    let query = firestore.collection("tasks");
+    query = query.where("clientId", "==", user.uid);
+
+    if (isAuthentic && isCounterfeit && isInProgress && isNeedAction) {
+      cond = ["Authentic", "Counterfeit", "In Progress", "Need Action"];
+    } else if (
+      !isAuthentic &&
+      !isCounterfeit &&
+      !isInProgress &&
+      !isNeedAction
+    ) {
+      // none is selected, forcing back to all true
+      setIsAuthentic(true);
+      setIsCounterfeit(true);
+      setIsInProgress(true);
+      setIsNeedAction(true);
+      cond = ["Authentic", "Counterfeit", "In Progress", "Need Action"];
+    } else {
+      if (isAuthentic) {
+        cond.push("Authentic");
+      }
+      if (isCounterfeit) {
+        cond.push("Counterfeit");
+      }
+      if (isInProgress) {
+        cond.push("In Progress");
+      }
+      if (isNeedAction) {
+        cond.push("Need Action");
+      }
+    }
+
+    query = query.where("status", "in", cond);
+    query = query.orderBy("timestamp", "desc");
+
+    query.onSnapshot((snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setOrders(data);
+      cond = [];
+    });
+  }
+
+  function filterAction(){
+    filterOrders()
+  }
+
   function showDate(time) {
     console.log(time);
   }
+
   function showIcon(status) {
     switch (status) {
       case "Authentic":
@@ -102,6 +154,10 @@ function Order({ auth }) {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 col-sm-12 gx-0">
+                <div className="row">
+                  <div className="col"></div>
+                </div>
+
                 <OrderFilter
                   isAuthentic={isAuthentic}
                   setIsAuthentic={setIsAuthentic}
@@ -111,6 +167,7 @@ function Order({ auth }) {
                   setIsInProgress={setIsInProgress}
                   isNeedAction={isNeedAction}
                   setIsNeedAction={setIsNeedAction}
+                  filterAction={filterAction}
                 />
                 <div className="orders">
                   {orders?.map((order, index) => (
