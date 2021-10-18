@@ -7,11 +7,11 @@ import qr from "../../assets/certificate/qr.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { useRouter } from "next/router";
 
-import { useState, useEffect, useRef } from 'react';
-import QRCode from 'qrcode.react';
+import { useState, useEffect, useRef } from "react";
+import QRCode from "qrcode.react";
 
 import CertificateTemplate from "../../components/cer/CertificateTemplate";
-import ReactToPrint from 'react-to-print';
+import ReactToPrint from "react-to-print";
 
 import { firestore } from "../../src/config/firebase";
 
@@ -22,20 +22,19 @@ function Certificate() {
 
   const [cerDetail, setCerDetail] = useState();
 
-
   useEffect(() => {
     async function getCerDetail() {
       const cerRef = firestore.collection("certificates").doc(id);
       const doc = await cerRef.get();
       if (!doc.exists) {
-        console.log('No such document!');
+        console.log("No such document!");
       } else {
-        console.log('Document data:', doc.data());
+        console.log("Document data:", doc.data());
         setCerDetail(doc.data());
       }
     }
     getCerDetail();
-  }, [])
+  }, []);
   return (
     <div>
       <Head>
@@ -59,7 +58,11 @@ function Certificate() {
               <div className="card w-100">
                 <div className="row g-0">
                   <div className="col-md-3 col-lg-2">
-                    {cerDetail && <QRCode value={cerDetail.cerUrl} size={230} />}
+                    <div className="d-flex justify-content-center align-items-center mb-5 mb-sm-0">
+                      {cerDetail && (
+                        <QRCode value={cerDetail.cerUrl} size={180} />
+                      )}
+                    </div>
                   </div>
                   <div className="col-md-9 col-lg-10 d-flex justify-content-center align-items-center">
                     <div className="card-body px-5">
@@ -81,7 +84,9 @@ function Certificate() {
                             <td>
                               <strong>Product Name: </strong>
                             </td>
-                            <td className="text-uppercase">{cerDetail?.brand} - {cerDetail?.name}</td>
+                            <td className="text-uppercase">
+                              {cerDetail?.brand} - {cerDetail?.name}
+                            </td>
                           </tr>
                           <tr>
                             <td>
@@ -112,19 +117,19 @@ function Certificate() {
                     </p>
                   </div>
                   <div className="col-12 mb-5">
-                    
                     <ReactToPrint
                       trigger={() => <button>certificate</button>}
                       content={() => componentRef.current}
                     />
-                   
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="d-none">
-            {cerDetail && <CertificateTemplate data={cerDetail} ref={componentRef} />}
+            {cerDetail && (
+              <CertificateTemplate data={cerDetail} ref={componentRef} />
+            )}
           </div>
         </section>
       </main>

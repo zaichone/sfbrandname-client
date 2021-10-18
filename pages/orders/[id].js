@@ -426,7 +426,7 @@ function OrderDetail({ auth }) {
                             <span
                               className="avt-icon"
                               style={{
-                                background: `url(${profileAvatar})center center no-repeat`,
+                                background: `url('${profileAvatar}')center center no-repeat`,
                               }}
                             ></span>
                           ) : (
@@ -443,7 +443,7 @@ function OrderDetail({ auth }) {
                         value={text}
                         onChange={handleTextChange}
                       />
-                      <button className="btn" type="button" id="button-addon2">
+                      <button className="btn px-4" type="button" id="button-addon2">
                         <input
                           style={{ display: "none" }}
                           type="file"
@@ -458,7 +458,7 @@ function OrderDetail({ auth }) {
                           }
                         />
                       </button>
-                      <button className="btn" type="submit" id="button-addon2">
+                      <button className="btn px-4" type="submit" id="button-addon2">
                         <TelegramIcon />
                       </button>
                     </div>
@@ -480,7 +480,6 @@ function OrderDetail({ auth }) {
                 </form>
               </Container>
             </Tab>
-
             <Tab eventKey="transaction" title="Transaction">
               <Container>
                 <h3 className="tab-title mb-5">General Information</h3>
