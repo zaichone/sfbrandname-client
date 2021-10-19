@@ -91,19 +91,17 @@ function AuthServiceResetPassword() {
   const [pwdCheckUpper, setPwdCheckUpper] = useState(false);
   const [pwdCheckLower, setPwdCheckLower] = useState(false);
   const [pwdCheckNumber, setPwdCheckNumber] = useState(false);
-  const [pwdCheckSpecial, setPwdCheckSpecial] = useState(false);
   const [pwdCheckLength, setPwdCheckLength] = useState(false);
 
   // master checker that allow signup
   const passwordRegex = new RegExp(
-    /^(?=[^A-Z\s]*[A-Z])(?=[^a-z\s]*[a-z])(?=[^\d\s]*\d)(?=\w*[\W_])\S{8,}$/gm
+    /^(?=[^A-Z\s]*[A-Z])(?=[^a-z\s]*[a-z])(?=[^\d\s]*\d)\S{8,}$/gm
   );
 
   // just condition display
   const uppercaseRegex = new RegExp(/^(?=[^A-Z\s]*[A-Z])\S{0,}$/gm);
   const lowercaseRegex = new RegExp(/^(?=[^a-z\s]*[a-z])\S{0,}$/gm);
   const numberRegex = new RegExp(/^(?=[^\d\s]*\d)\S{0,}$/gm);
-  const specialRegex = new RegExp(/^(?=\w*[\W_])\S{0,}$/gm);
   const lengthRegex = new RegExp(/^.{8,}$/gm);
 
   function handlePasswordChange(e) {
@@ -114,7 +112,6 @@ function AuthServiceResetPassword() {
     setPwdCheckUpper(uppercaseRegex.test(pwd));
     setPwdCheckLower(lowercaseRegex.test(pwd));
     setPwdCheckNumber(numberRegex.test(pwd));
-    setPwdCheckSpecial(specialRegex.test(pwd));
     setPwdCheckLength(lengthRegex.test(pwd));
   }
 
@@ -166,17 +163,6 @@ function AuthServiceResetPassword() {
               <span className="text-black">&#10003; At least 1 number</span>
             ) : (
               <span className="text-danger">&#8226; At least 1 number</span>
-            )}
-          </p>
-          <p>
-            {pwdCheckSpecial ? (
-              <span className="text-black">
-                &#10003; At least 1 special character
-              </span>
-            ) : (
-              <span className="text-danger">
-                &#8226; At least 1 special character
-              </span>
             )}
           </p>
           <p>
