@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Logo from "../../assets/Logo.png";
 import { useRouter } from "next/router";
 
@@ -18,14 +19,17 @@ function Header() {
     //window.location.reload();
     //return router.push("/sign-in/");
   }
+
   return (
     <header className="top-header">
       <Navbar expand="lg" bg="dark" variant="dark">
         <Container className="justify-content-between justify-content-sm-between py-3 py-sm-0">
           <Navbar.Brand href="/">
-            <img
-              src={Logo.src}
+            <Image
+              src="/assets/SA_Logo.svg"
               className="img-fluid img-logo"
+              width={175}
+              height={56}
               alt="SF Brandname"
             />
           </Navbar.Brand>
