@@ -34,7 +34,7 @@ function HowItWork() {
         <HowItWorkList />
         <Cta title="Documentation" bg={DocumentationBG} />
         <DocumentationList />
-        <LearnMoreBar label="MORE DETAIL" link="/404/" />
+        {/* <LearnMoreBar label="MORE DETAIL" link="/404/" /> */}
       </main>
     </div>
   );
