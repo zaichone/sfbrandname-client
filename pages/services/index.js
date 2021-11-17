@@ -79,14 +79,14 @@ function Services() {
                     <div className="card-body">
                       <h5 className="card-title mb-3">Authentic vs. Fake</h5>
                       <p className="card-text w-100">
-                        The starting price for all authentication services is
-                        $30.20, including an official authentication certificate
-                        in PDF format that determines whether the goods is
-                        ‘Authentic’ or ‘Fake’ based on the pictures you
-                        submitted. We will send authentication results to your
-                        email and it will appear in your account as well. Our
-                        team of experts will verify your goods within 12-24
-                        hours after receiving all needed pictures.
+                        All authentication services start at $30.20, which
+                        includes an official authentication certificate in PDF
+                        format that assesses if the products are 'Authentic' or
+                        'Fake' based on the photos you provide. We'll give you
+                        the authentication results through email, and they'll
+                        also appear in your account. After getting the necessary
+                        photos, our team of professionals will check your items
+                        within 12-24 hours.
                       </p>
                     </div>
                   </div>

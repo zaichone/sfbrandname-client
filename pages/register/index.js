@@ -208,7 +208,7 @@ function Register({ auth }) {
                       type="email"
                       className="form-control"
                       name="email"
-                      placeholder="Enter your email"
+                      placeholder="Email"
                       required
                     />
                   </div>

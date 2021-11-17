@@ -45,11 +45,12 @@ function DocumentationList() {
             >
               <div className="col-md-8 d-flex justify-content-center align-items-center">
                 <div className="card-body">
-                  <h5 className="card-title">SCANNING QR CODE
-</h5>
+                  <h5 className="card-title">SCANNING QR CODE</h5>
                   <p className="card-text w-50">
-                  Our staff of designer brand specialists can 100% guarantee the authenticity of your high-end stuff. We can assist you with authenticating your stuff so that you don't have to worry about it!
-
+                    Our staff of designer brand specialists can 100% guarantee
+                    the authenticity of your high-end stuff. We can assist you
+                    with authenticating your stuff so that you don't have to
+                    worry about it!
                   </p>
                 </div>
               </div>
@@ -72,12 +73,15 @@ function DocumentationList() {
               </div>
               <div className="col-md-6 d-flex justify-content-center align-items-center">
                 <div className="card-body">
-                  <h5 className="card-title">GET DOCUMENTATION</h5>
-                  <p className="card-text w-50">
-                    We offer luxury product authentication certificates in all
-                    forms - PDF certificate, hard-copy certificate, and
-                    certification card. You can choose to upgrade your order to
-                    receive exclusive services from us as well!
+                  <h5 className="card-title">APPLY FOR DOCUMENTATION</h5>
+                  <p className="card-text">
+                    We provide luxury items authentication certifications in a
+                    variety of formats, including PDF certificates, paper
+                    copies, and certification cards.
+                  </p>
+                  <p className="card-text">
+                    You have the option to upgrade your order and obtain
+                    additional services from us!
                   </p>
                 </div>
               </div>

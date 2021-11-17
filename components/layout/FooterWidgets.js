@@ -42,8 +42,8 @@ function FooterWidgets() {
                 All week 24/7
               </li>
               <li className="list-group-item">
-                <a href="mailto:imgen.publish@gmail.com">
-                  <MailOutlineIcon /> imgen.publish@gmail.com
+                <a href="mailto:info@sfbrandname.com">
+                  <MailOutlineIcon /> info@sfbrandname.com
                 </a>
               </li>
             </ul>

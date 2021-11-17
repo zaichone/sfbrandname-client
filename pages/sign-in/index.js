@@ -70,7 +70,7 @@ function SignIn({ auth }) {
                       className="form-control"
                       id="email"
                       name="email"
-                      placeholder="Enter your email"
+                      placeholder="Email"
                     />
                   </div>
                 </div>
