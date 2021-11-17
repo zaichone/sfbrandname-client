@@ -40,7 +40,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             placeholder="Your email"
           />
           <button className="btn btn-primary" onClick={submit}>
-            Submit
+            SEND
           </button>
         </>
       )}
@@ -70,7 +70,7 @@ function Subscribe() {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-sm-3 d-none d-sm-block">
-            <p>BE IN TOUCH WITH US:</p>
+            <p>SUBSCRIBE OUR NEWSLETTER</p>
           </div>
           <div className="col-12 col-sm-6 col-md-7 mt-3 mt-sm-0">
             <MailchimpSubscribe
