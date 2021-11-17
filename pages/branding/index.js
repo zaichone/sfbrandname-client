@@ -61,15 +61,15 @@ function Branding() {
       </Head>
       <main>
         <div className="d-none d-sm-block">
-          <PagtTitle title="Our Specialist" bg={cover} />
+          <PagtTitle title="We are experts in" bg={cover} />
           <section className="page-section">
             <div className="container">
               <p className="page-description">
-                Super Authentic offers various services to authenticate your
-                designer brand products - bags, clothings, shoes, accessories,
-                watches, eyewears etc. We have a team of experts to help verify
-                your beloved goods and a customer services team to provide
-                support for you
+                Super Authentic provides a number of services to help you
+                authenticate your premium brand items, including Bags, Shoes ,
+                Watches, Accessories, Clothing, and Sunglasses. We have a team
+                of professionals to assist you in authenticating your precious
+                items, as well as a customer care staff to assist you.
               </p>
             </div>
           </section>

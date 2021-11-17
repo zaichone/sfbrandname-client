@@ -33,7 +33,7 @@ function ServiceList() {
         </div>
         <div className="row  d-flex justify-content-between">
           <div className="col-12 text-center learn-more">
-            <Link href="/branding/">LEARN MORE</Link>
+            <Link href="/branding/">Find Out More</Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 [
     {
-        "title":"Handbags",
+        "title":"Bags",
         "image":"gs://sf-brandname-57725.appspot.com/Handbags.png"
     },
     {
@@ -12,7 +12,7 @@
         "image":"gs://sf-brandname-57725.appspot.com/Watches.png"
     },
     {
-        "title":"Jewelry",
+        "title":"Accessories",
         "image":"gs://sf-brandname-57725.appspot.com/Jewelry.png"
     },
     {
@@ -20,7 +20,7 @@
         "image":"gs://sf-brandname-57725.appspot.com/Clothing.png"
     },
     {
-        "title":"Eyewear",
+        "title":"Sunglasses",
         "image":"gs://sf-brandname-57725.appspot.com/Eyewear.png"
     }
 ]
