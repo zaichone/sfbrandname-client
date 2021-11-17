@@ -1,6 +1,6 @@
 [
     {
-        "title": "CATEGORIES",
+        "title": "CATEGORY",
         "menus": [
             {
                 "label": "Men",
@@ -21,7 +21,7 @@
         ]
     },
     {
-        "title": "Infomation",
+        "title": "Information",
         "menus": [
             {
                 "label": "About Us",
@@ -42,7 +42,7 @@
         ]
     },
     {
-        "title": "Useful links",
+        "title": "Other",
         "menus": [
             {
                 "label": "Terms & Conditions",

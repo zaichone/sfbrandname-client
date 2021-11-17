@@ -36,8 +36,8 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="position-relative" id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/how-it-work/">How it Work</Nav.Link>
-              <Nav.Link href="/services/">Services</Nav.Link>
+              <Nav.Link href="/how-it-work/">How to use</Nav.Link>
+              <Nav.Link href="/services/">Our Services</Nav.Link>
               <Nav.Link href="/authentication/">Authentication</Nav.Link>
               {!user && <Nav.Link href="/sign-in/">Sign In</Nav.Link>}
               {user && (
