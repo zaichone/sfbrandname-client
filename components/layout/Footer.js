@@ -6,7 +6,7 @@ function Footer() {
     return (
         <>
             <Subscribe />
-            <FooterWidgets/>
+            {/* <FooterWidgets/> */}
             <footer className="d-none d-sm-block">
                 <Credit />
             </footer>
