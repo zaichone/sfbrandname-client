@@ -121,7 +121,7 @@ function SignIn({ auth }) {
               </form>
               <p className="register-text text-center">
                 <Link href="/register/">
-                  Don’t have account? Register here.
+                  Register here.
                 </Link>
               </p>
             </div>
