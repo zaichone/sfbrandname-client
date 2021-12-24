@@ -130,9 +130,7 @@ function Order({ auth }) {
         );
     }
   }
-  if (!user) {
-    return router.push("/sign-in/");
-  }
+  
   return (
     <div>
       <Head>
